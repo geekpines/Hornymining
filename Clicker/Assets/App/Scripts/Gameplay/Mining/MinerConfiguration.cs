@@ -18,5 +18,7 @@ namespace App.Scripts.Gameplay.Mining
             public List<Sprite> Sequence = new List<Sprite>();
         }
 
+        //todo: сделать префабом
+        
     }
 }
