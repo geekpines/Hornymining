@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Collections;
+using UnityEngine;
 
 namespace App.Scripts.Gameplay.Coins
 {
@@ -8,5 +9,6 @@ namespace App.Scripts.Gameplay.Coins
         public string Name;
         public string Description;
         public Sprite Icon;
+        public int ID { get => Icon.GetHashCode(); }
     }
 }

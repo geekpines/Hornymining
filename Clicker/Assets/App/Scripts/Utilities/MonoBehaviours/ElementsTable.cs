@@ -1,12 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Dynamic;
 using UnityEditor;
 using UnityEngine;
 
 namespace App.Scripts.Utilities.MonoBehaviours
 {
+    /// <summary>
+    /// Абстрактная таблица элементов. Может хранить список элементов и 
+    /// их отношение друг к другу
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class ElementsTable<T> : ScriptableObject
         where T : ScriptableObject
     {
+        /// <summary>
+        /// Класс для временного хранения данных в таблице
+        /// </summary>
         [System.Serializable]
         public class ElementData
         {
@@ -30,6 +40,9 @@ namespace App.Scripts.Utilities.MonoBehaviours
         [SerializeField] private Dictionary<T, Dictionary<T, float>> _bonusElement = 
             new Dictionary<T, Dictionary<T, float>>();
 
+        /// <summary>
+        /// Кэш - нужен для сохранения/восстановления данных в таблице
+        /// </summary>
         [SerializeField, HideInInspector] private List<ElementData> _chachedBonusData = new List<ElementData>();
         
         private void OnValidate()
@@ -41,12 +54,16 @@ namespace App.Scripts.Utilities.MonoBehaviours
                     _bonusElement.Add(element, new Dictionary<T, float>(){ {element, 1f} });
                 }
             }
-            
-            //Добавить проверку сохраненных таблиц?
         }
 
+        /// <summary>
+        /// Сохранить данные из словаря в кэш
+        /// </summary>
         public void SaveData()
         {
+            _chachedBonusData.Clear();
+            InitChachedData();
+            
             for (int i = 0; i < _elements.Count; i++)
             {
                 for (int j = 0; j < _elements.Count; j++)
@@ -63,6 +80,9 @@ namespace App.Scripts.Utilities.MonoBehaviours
             AssetDatabase.SaveAssets();
         }
         
+        /// <summary>
+        /// Загрузить закэшированные данные в словарь
+        /// </summary>
         public void LoadData()
         {
             for (int i = 0; i < _elements.Count; i++)
@@ -81,6 +101,16 @@ namespace App.Scripts.Utilities.MonoBehaviours
             }
         }
         
-        
+        private void InitChachedData()
+        {
+            for (int i = 0; i < _elements.Count; i++)
+            {
+                _chachedBonusData.Add(new ElementData());
+                for (int j = 0; j < _elements.Count; j++)
+                {
+                    _chachedBonusData[i].Data.Add(0);
+                }
+            }
+        }
     }
 }

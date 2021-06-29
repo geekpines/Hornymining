@@ -17,11 +17,16 @@ namespace App.Scripts.Utilities.MonoBehaviours
             {
                 Instance = this as T;
                 DontDestroyOnLoad(this.gameObject);
+                OnAwake();
             }
             else
             {
                 Destroy(this);
             }
+        }
+
+        protected virtual void OnAwake()
+        {
         }
     }
 }

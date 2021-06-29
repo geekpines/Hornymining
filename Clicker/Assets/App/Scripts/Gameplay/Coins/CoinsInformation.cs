@@ -1,4 +1,5 @@
-﻿using App.Scripts.Utilities.MonoBehaviours;
+﻿using System.Collections.Generic;
+using App.Scripts.Utilities.MonoBehaviours;
 using UnityEngine;
 
 namespace App.Scripts.Gameplay.Coins
@@ -9,5 +10,11 @@ namespace App.Scripts.Gameplay.Coins
         {
             return CoinsTable.Instance.BonusElement[from][to];
         }
+
+        public static List<Coin> GetElements()
+        {
+            return CoinsTable.Instance.Elements;
+        }
+
     }
 } 
