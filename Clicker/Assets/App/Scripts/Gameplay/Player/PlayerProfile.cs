@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Gameplay.Coins;
-using App.Scripts.Utilities.MonoBehaviours;
+using Assets.App.Scripts.Common;
 
 namespace App.Scripts.Gameplay.Player
 {
-    public class SinglePlayer : Singleton<SinglePlayer>
+    public class PlayerProfile : AbstractService<PlayerProfile>
     {
         public List<CoinData> Coins = new List<CoinData>();
 
-        protected override void OnAwake()
+        private void Awake()
         {
             //todo: добавить сохранение
             Coins.Clear();
@@ -17,5 +17,6 @@ namespace App.Scripts.Gameplay.Player
                 Coins.Add(new CoinData(coin.ID));
             }
         }
+
     }
 }
