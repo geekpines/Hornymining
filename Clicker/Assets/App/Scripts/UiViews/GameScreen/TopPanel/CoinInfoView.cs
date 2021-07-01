@@ -1,6 +1,4 @@
-﻿using System;
-using TMPro;
-using UnityEditor;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +14,7 @@ namespace App.Scripts.UiViews.GameScreen.TopPanel
         public void SetCoinInformation(Sprite icon, float count, string description)
         {
             SetIcon(icon);
-            SetCount(count);
+            SetValue(count);
             SetDescription(description);
         }
         
@@ -25,9 +23,9 @@ namespace App.Scripts.UiViews.GameScreen.TopPanel
             _icon.sprite = icon;
         }
 
-        public void SetCount(float count)
+        public void SetValue(float count)
         {
-            _info.text = String.Format("{0:C}", count);
+            _info.text = $"{count:F1}";
         }
 
         public void SetDescription(string text)
@@ -39,6 +37,5 @@ namespace App.Scripts.UiViews.GameScreen.TopPanel
         {
             _panelDescription.SetActive(show);
         }
-
     }
 }

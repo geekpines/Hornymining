@@ -16,8 +16,8 @@ namespace App.Scripts.UiViews
         
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
         {
-            var result = this.GetComponent<T>();
-            if (result != null)
+            //var result = this.GetComponent<T>();
+            if (this.TryGetComponent(out T result))
             {
                 OnPressDown?.Invoke(result);
             }

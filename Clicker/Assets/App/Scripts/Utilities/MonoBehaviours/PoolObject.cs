@@ -38,9 +38,9 @@ namespace App.Scripts.Utilities.MonoBehaviours
     /// <summary>
     /// Инициализация пула объектов
     /// </summary>
-    /// <param name="poolObject"></param>
-    /// <param name="parentObject"></param>
-    /// <param name="expandable"></param>
+    /// <param name="poolObject">Префаб объекта для спавна</param>
+    /// <param name="parentObject">Родительский объект</param>
+    /// <param name="expandable">Расширяемый ли пул?</param>
     public PoolObject(T poolObject, int size, Transform parentObject, bool expandable = false)
     {
         _objectsList = new List<T>();

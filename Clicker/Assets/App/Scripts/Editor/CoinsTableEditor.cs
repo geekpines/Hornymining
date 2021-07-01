@@ -1,8 +1,8 @@
-using App.Scripts.Gameplay.Coins;
+using App.Scripts.Foundation;
 using UnityEditor;
 using UnityEngine;
 
-namespace Alex.Editor
+namespace App.Scripts.Editor
 {
     [CustomEditor(typeof(CoinsTable))]
     public class CoinsTableEditor : EditorWindow
@@ -154,4 +154,5 @@ namespace Alex.Editor
         }
 
     }
+
 }
