@@ -9,6 +9,6 @@ namespace App.Scripts.Foundation
         public string Description;
         public Sprite Icon;
         //todo: сделать генератор энамов
-        public int ID { get => Icon.GetHashCode(); }
+        public int ID;
     }
 }

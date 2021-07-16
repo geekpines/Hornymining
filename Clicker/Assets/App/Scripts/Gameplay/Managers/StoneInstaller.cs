@@ -1,4 +1,6 @@
-﻿using App.Scripts.Foundation;
+﻿using System.Collections.Generic;
+using App.Scripts.Foundation;
+using App.Scripts.Foundation.Upgrades;
 using App.Scripts.UiControllers.GameScreen;
 using Assets.App.Scripts.Common;
 using UnityEngine;
@@ -10,11 +12,13 @@ namespace Assets.App.Scripts.Gameplay
     {
         [SerializeField] private StoneController _stoneController;
         private PlayerProfile _player;
+        private CoinsChanceLevel _coinsChanceLevel;
 
         [Inject]
-        private void Construct(PlayerProfile player)
+        private void Construct(PlayerProfile player, CoinsChanceLevel coinsChanceLevel)
         {
             _player = player;
+            _coinsChanceLevel = coinsChanceLevel;
         }
 
         protected override void OnEnable()
@@ -43,16 +47,40 @@ namespace Assets.App.Scripts.Gameplay
 
         private void CalculateScore()
         {
-            //todo: загрушка рандома выбора валюты
             var randomValue = Random.Range(0, 100f);
-            if (randomValue < 10)
+            int index = FindCoinIndex(randomValue);
+            if (index != -1)
             {
-                _player.Coins[1].Add(0.1f);
+                _player.Coins[index].Add(1f);
             }
             else
             {
-                _player.Coins[0].Add(1);
+                Debug.LogError($"В таблице шансов выпадения валют уровня {_player.CoinLevelChance} " +
+                               $"не правильная сумма вероятностей! Получено недопустимое значение!");
             }
+        }
+
+        private int FindCoinIndex(float randomValue)
+        {
+            float range = 0;
+            int index = 0;
+            foreach (var coinInfo in _coinsChanceLevel.Levels[_player.CoinLevelChance].Coins)
+            {
+                if (coinInfo.Chance > 0)
+                {
+                    if (randomValue > range &&
+                        randomValue < range + coinInfo.Chance)
+                    {
+                        return index;
+                    }
+                    else
+                    {
+                        range += coinInfo.Chance;
+                    }
+                }
+                index++;
+            }
+            return -1;
         }
         
         private void ChangeCoinValue(int id, float changeCount)

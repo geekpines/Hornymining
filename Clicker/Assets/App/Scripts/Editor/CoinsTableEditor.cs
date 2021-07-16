@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace App.Scripts.Editor
 {
-    [CustomEditor(typeof(CoinsTable))]
+    [CustomEditor(typeof(CoinsTableSetting))]
     public class CoinsTableEditor : EditorWindow
     {
         private static CoinsTableEditor _window;
-        private CoinsTable _coinsTableDatabase;
+        private CoinsTableSetting _coinsTableSettingDatabase;
 
         private const int Offset = 75;
         private const int Spacing = 51;
@@ -29,7 +29,7 @@ namespace App.Scripts.Editor
                 return;
             }
 
-            DrawGrid(Spacing, Color.black, SizeGrid * (_coinsTableDatabase.Elements.Count - 1), Offset);
+            DrawGrid(Spacing, Color.black, SizeGrid * (_coinsTableSettingDatabase.Elements.Count - 1), Offset);
             DrawIcons(SizeGrid, Offset);
             ShowElementValues(SizeGrid, Offset);
             
@@ -45,8 +45,8 @@ namespace App.Scripts.Editor
                 return false;
             }
             
-            _coinsTableDatabase = CoinsTable.Instance;
-            if (CoinsTable.Instance == null)
+            _coinsTableSettingDatabase = CoinsTableSetting.Instance;
+            if (CoinsTableSetting.Instance == null)
             {
                 CenterMessage("Elements table doesn't exist!");
                 return false;
@@ -92,44 +92,44 @@ namespace App.Scripts.Editor
         private void DrawIcons(int sizeIcon, int offset)
         {
             //Line
-            for (int i = 0; i < _coinsTableDatabase.Elements.Count; i++)
+            for (int i = 0; i < _coinsTableSettingDatabase.Elements.Count; i++)
             {
                 GUI.Label(new Rect(offset + ((sizeIcon + 1) * (i + 1)), offset - 15, sizeIcon, 15), 
-                    new GUIContent(_coinsTableDatabase.Elements[i].Name));
-                if (_coinsTableDatabase.Elements[i].Icon.texture != null)
+                    new GUIContent(_coinsTableSettingDatabase.Elements[i].Name));
+                if (_coinsTableSettingDatabase.Elements[i].Icon.texture != null)
                 {
                     GUI.DrawTexture(new Rect(offset + ((sizeIcon + 1) * (i + 1)), offset, sizeIcon, sizeIcon), 
-                        _coinsTableDatabase.Elements[i].Icon.texture);
+                        _coinsTableSettingDatabase.Elements[i].Icon.texture);
                 }
             }
             
             //Row
-            for (int i = 0; i < _coinsTableDatabase.Elements.Count; i++)
+            for (int i = 0; i < _coinsTableSettingDatabase.Elements.Count; i++)
             {
-                if (_coinsTableDatabase.Elements[i].Icon.texture != null)
+                if (_coinsTableSettingDatabase.Elements[i].Icon.texture != null)
                 {
                     GUI.DrawTexture(new Rect(offset, offset + ((sizeIcon + 1) * (i + 1)), sizeIcon, sizeIcon), 
-                        _coinsTableDatabase.Elements[i].Icon.texture);
+                        _coinsTableSettingDatabase.Elements[i].Icon.texture);
                 }
             }
         }
 
         private void ShowElementValues(int sizeGrid, int offset)
         {
-            for (int i = 0; i < _coinsTableDatabase.Elements.Count; i++)
+            for (int i = 0; i < _coinsTableSettingDatabase.Elements.Count; i++)
             {
-                for (int j = 0; j < _coinsTableDatabase.Elements.Count; j++)
+                for (int j = 0; j < _coinsTableSettingDatabase.Elements.Count; j++)
                 {
-                    if (!_coinsTableDatabase.BonusElement[_coinsTableDatabase.Elements[i]]
-                        .ContainsKey(_coinsTableDatabase.Elements[j]))
+                    if (!_coinsTableSettingDatabase.BonusElement[_coinsTableSettingDatabase.Elements[i]]
+                        .ContainsKey(_coinsTableSettingDatabase.Elements[j]))
                     {
-                        _coinsTableDatabase.BonusElement[_coinsTableDatabase.Elements[i]].Add(_coinsTableDatabase.Elements[j], 0);
+                        _coinsTableSettingDatabase.BonusElement[_coinsTableSettingDatabase.Elements[i]].Add(_coinsTableSettingDatabase.Elements[j], 0);
                     }
 
-                    _coinsTableDatabase.BonusElement[_coinsTableDatabase.Elements[i]][_coinsTableDatabase.Elements[j]] =
+                    _coinsTableSettingDatabase.BonusElement[_coinsTableSettingDatabase.Elements[i]][_coinsTableSettingDatabase.Elements[j]] =
                         EditorGUI.FloatField(new Rect(offset + (int)(sizeGrid/10) + ((sizeGrid + 1) * (j + 1)),
                                 offset + (int)(sizeGrid/4) + ((sizeGrid + 1) * (i + 1)),(int)(sizeGrid/1.2f),(int)(sizeGrid/2)),
-                            _coinsTableDatabase.BonusElement[_coinsTableDatabase.Elements[i]][_coinsTableDatabase.Elements[j]]);
+                            _coinsTableSettingDatabase.BonusElement[_coinsTableSettingDatabase.Elements[i]][_coinsTableSettingDatabase.Elements[j]]);
                 }
             }
         }
@@ -138,9 +138,9 @@ namespace App.Scripts.Editor
         {
             if (GUILayout.Button("Save"))
             {          
-                _coinsTableDatabase.SaveData();
+                _coinsTableSettingDatabase.SaveData();
                 
-                EditorUtility.SetDirty(_coinsTableDatabase);
+                EditorUtility.SetDirty(_coinsTableSettingDatabase);
                 AssetDatabase.SaveAssets();
             }
         }
@@ -149,7 +149,7 @@ namespace App.Scripts.Editor
         {
             if (GUILayout.Button("Load"))
             {          
-                _coinsTableDatabase.LoadData();
+                _coinsTableSettingDatabase.LoadData();
             }
         }
 

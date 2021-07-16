@@ -13,7 +13,8 @@ namespace App.Scripts.Foundation.Coins
         where T : ScriptableObject
     {
         /// <summary>
-        /// Класс для временного хранения данных в таблице
+        /// Класс для хранения данных о елементах
+        /// в таблице
         /// </summary>
         [System.Serializable]
         public class ElementData

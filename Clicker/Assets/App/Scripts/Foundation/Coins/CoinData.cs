@@ -18,12 +18,12 @@ namespace App.Scripts.Foundation
         /// <summary>
         /// ID ресурса
         /// </summary>
-        public int ID { get; private set; }
+        [field: SerializeField] public int ID { get; private set; }
         
         /// <summary>
         /// Количество ресурса
         /// </summary>
-        public float Value { get; private set; }
+        [field: SerializeField] public float Value { get; private set; }
 
         public CoinData(int id)
         {
