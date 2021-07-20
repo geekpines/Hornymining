@@ -6,15 +6,12 @@
 
 namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
 {
-    class Cell : FancyCell<ItemData, Context>
+    class MovingCell : FancyCell<ItemData, Context>
     {
         [SerializeField] Animator animator = default;
-        [SerializeField] Text message = default;
-        [SerializeField] Text messageLarge = default;
-        [SerializeField] Image image = default;
-        [SerializeField] Image imageLarge = default;
         [SerializeField] Button button = default;
-
+        float currentPosition = 0;
+        
         static class AnimatorHash
         {
             public static readonly int Scroll = Animator.StringToHash("scroll");
@@ -24,16 +21,10 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
         {
             button.onClick.AddListener(() => Context.OnCellClicked?.Invoke(Index));
         }
-
+        
         public override void UpdateContent(ItemData itemData)
         {
-            //message.text = itemData.Message;
-            messageLarge.text = Index.ToString();
-
-            var selected = Context.SelectedIndex == Index;
-            imageLarge.color = image.color = selected
-                ? new Color32(0, 255, 255, 100)
-                : new Color32(255, 255, 255, 77);
+            
         }
 
         public override void UpdatePosition(float position)
@@ -47,11 +38,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
 
             animator.speed = 0;
         }
-
-        // GameObject が非アクティブになると Animator がリセットされてしまうため
-        // 現在位置を保持しておいて OnEnable のタイミングで現在位置を再設定します
-        float currentPosition = 0;
-
+        
         void OnEnable() => UpdatePosition(currentPosition);
     }
 }
