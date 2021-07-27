@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Foundation.Roulette.Core;
 using UnityEngine;
 
 namespace App.Scripts.Foundation
 {
-    public class Miner : MonoBehaviour
+    public class Miner : RouletteItem<Miner>
     {
         public string Name;
         public string Description;
