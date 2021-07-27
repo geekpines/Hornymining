@@ -26,11 +26,11 @@ namespace App.Scripts.Common
             {
                 transform.SetParent(_targetParant);
             }
-            else
-            {
-                var targetParant = GameObject.FindGameObjectWithTag("FirstLayer");
-                transform.SetParent(targetParant.transform);
-            }
+            // else
+            // {
+            //     var targetParant = GameObject.FindGameObjectWithTag("FirstLayer");
+            //     transform.SetParent(targetParant.transform);
+            // }
         }
     }
 }
