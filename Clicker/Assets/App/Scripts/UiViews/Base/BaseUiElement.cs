@@ -16,7 +16,6 @@ namespace App.Scripts.UiViews
         
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
         {
-            //var result = this.GetComponent<T>();
             if (this.TryGetComponent(out T result))
             {
                 OnPressDown?.Invoke(result);
@@ -25,8 +24,7 @@ namespace App.Scripts.UiViews
     
         void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
         {
-            var result = this.GetComponent<T>();
-            if (result != null)
+            if (this.TryGetComponent(out T result))
             {
                 OnStartHolder?.Invoke(result);
             }
@@ -34,8 +32,7 @@ namespace App.Scripts.UiViews
     
         void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
         {
-            var result = this.GetComponent<T>();
-            if (result != null)
+            if (this.TryGetComponent(out T result))
             {
                 OnEndHolder?.Invoke(result);
             }
@@ -43,8 +40,7 @@ namespace App.Scripts.UiViews
 
         void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
         {
-            var result = this.GetComponent<T>();
-            if (result != null)
+            if (this.TryGetComponent(out T result))
             {
                 OnPressUp?.Invoke(result);
             }

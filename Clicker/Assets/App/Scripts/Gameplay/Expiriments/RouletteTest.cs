@@ -25,7 +25,7 @@ namespace App.Scripts.Gameplay.Expiriments
             var result = _roulette.RollItem();
             if (result != null)
             {
-                Debug.Log($"Result: {result.Name}");
+                //Debug.Log($"Result: {result.Name}");
             }
         }
     }
