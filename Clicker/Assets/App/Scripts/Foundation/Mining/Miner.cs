@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using DragonBones;
 using UnityEngine;
 
 namespace App.Scripts.Foundation
@@ -9,13 +9,8 @@ namespace App.Scripts.Foundation
         public string Name;
         public string Description;
         public Sprite Icon;
-        public List<SequenceCharacter> LevelSequences;
-        public List<Sprite> ClickSequence = new List<Sprite>();
+        public UnityArmatureComponent DragonBones;
         
-        [Serializable]
-        public class SequenceCharacter
-        {
-            public List<Sprite> Sequence = new List<Sprite>();
-        }
+        
     }
 }
