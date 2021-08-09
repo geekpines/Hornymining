@@ -43,11 +43,11 @@ namespace App.Scripts.Foundation.Upgrades
 
             if (Math.Abs(sum - 100) < 0.02f)
             {
-                Debug.Log($"Сумма вероятностей {name}:<color=#00FF00>{sum}</color> Корректна!");
+                //Debug.Log($"Сумма вероятностей {name}:<color=#00FF00>{sum}</color> Корректна!");
             }
             else
             {
-                Debug.Log($"Сумма вероятностей {name}:<color=#FF0000>{sum}</color>");
+                Debug.Log($"Сумма вероятностей {name}:<color=#FF0000>{sum}</color> некорректна!");
             }
         }
     }

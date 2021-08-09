@@ -16,12 +16,12 @@ namespace App.Scripts.Foundation
             return CoinsTableSetting.Instance.Elements;
         }
 
-        public static Coin GetCoinInformation(int id)
+        public static Coin GetCoinInformation(CoinType id)
         {
             return CoinsTableSetting.Instance.Elements.FirstOrDefault(coin => coin.ID == id);
         }
 
-        public static Sprite GetCoinIcon(int id)
+        public static Sprite GetCoinIcon(CoinType id)
         {
             return GetCoinInformation(id).Icon;
         }

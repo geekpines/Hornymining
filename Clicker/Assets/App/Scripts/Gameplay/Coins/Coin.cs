@@ -8,7 +8,6 @@ namespace App.Scripts.Foundation
         public string Name;
         public string Description;
         public Sprite Icon;
-        //todo: сделать генератор энамов
-        public int ID;
+        public CoinType ID;
     }
 }

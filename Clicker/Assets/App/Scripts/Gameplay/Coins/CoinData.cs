@@ -12,20 +12,20 @@ namespace App.Scripts.Foundation
         /// <summary>
         /// Значение изменено
         /// </summary>
-        public Action<int, float> OnChanged;
-        public Action<int, float> OnChangeCount;
+        public Action<CoinType, float> OnChanged;
+        public Action<CoinType, float> OnChangeCount;
         
         /// <summary>
         /// ID ресурса
         /// </summary>
-        [field: SerializeField] public int ID { get; private set; }
+        [field: SerializeField] public CoinType ID { get; private set; }
         
         /// <summary>
         /// Количество ресурса
         /// </summary>
         [field: SerializeField] public float Value { get; private set; }
 
-        public CoinData(int id)
+        public CoinData(CoinType id)
         {
             ID = id;
             Value = 0;

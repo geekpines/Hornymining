@@ -10,7 +10,7 @@ namespace App.Scripts.Foundation.Roulette.Core
     /// </summary>
     /// <typeparam name="T">Тип предмета</typeparam>
     public abstract class Roulette<T> : MonoBehaviour
-        where T : MonoBehaviour
+        where T : ScriptableObject
     {
         /// <summary>
         /// Флаг удаления предмета из списка после 
@@ -40,7 +40,7 @@ namespace App.Scripts.Foundation.Roulette.Core
                 return null;
             }
 
-            var randomWeight = Random.Range(1, _sumWeight);
+            var randomWeight = Random.Range(1, _sumWeight + 1);
             int index = FindItemConfigIndex(randomWeight);
 
             var result = _chachedItemDatas[index].Item;

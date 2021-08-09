@@ -83,7 +83,7 @@ namespace Assets.App.Scripts.Gameplay
             return -1;
         }
         
-        private void ChangeCoinValue(int id, float changeCount)
+        private void ChangeCoinValue(CoinType id, float changeCount)
         {
             var coinIcon = CoinsInformation.GetCoinIcon(id);
             _stoneController.ShowScoreLine(coinIcon, changeCount);

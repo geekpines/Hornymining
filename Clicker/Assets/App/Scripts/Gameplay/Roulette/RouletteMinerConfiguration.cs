@@ -5,7 +5,7 @@ using UnityEngine;
 namespace App.Scripts.Gameplay.Roulette
 {
     [CreateAssetMenu(fileName = "RouletteConfiguration", menuName = "Game/Settings/RouletteConfigurations", order = 0)]
-    public class RouletteMinerConfiguration : RouletteConfiguration<Miner>
+    public class RouletteMinerConfiguration : RouletteConfiguration<MinerConfiguration>
     {
     }
 }

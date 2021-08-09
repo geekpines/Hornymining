@@ -13,7 +13,7 @@ namespace Assets.App.Scripts.Gameplay
     {
         [SerializeField] private TopPanelController _topPanelController;
         private PlayerProfile _player;
-        private Dictionary<int, CoinInfoView> _iDtoCoinView = new Dictionary<int, CoinInfoView>();
+        private Dictionary<CoinType, CoinInfoView> _iDtoCoinView = new Dictionary<CoinType, CoinInfoView>();
         
         [Inject]
         private void Construct(PlayerProfile player)
@@ -70,7 +70,7 @@ namespace Assets.App.Scripts.Gameplay
             }
         }
 
-        private void ChangeCoinValue(int id, float newValue)
+        private void ChangeCoinValue(CoinType id, float newValue)
         {
             _iDtoCoinView[id].SetValue(newValue);
         }

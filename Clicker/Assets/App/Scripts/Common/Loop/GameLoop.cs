@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.Design;
-using App.Scripts.Common;
+﻿using App.Scripts.Common;
 using UnityEngine;
 
 namespace Assets.App.Scripts.Common

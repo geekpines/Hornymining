@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,7 +15,7 @@ namespace App.Scripts.Foundation.Roulette.Core
     /// example:
     ///[CreateAssetMenu(fileName = "RouletteConfiguration", menuName = "Settings/Roulette/Configurations", order = 0)]
     public abstract class RouletteConfiguration<T> : ScriptableObject
-        where T : MonoBehaviour
+        where T : ScriptableObject
     {
         /// <summary>
         /// Список возможных предметов для генерации
@@ -28,11 +29,11 @@ namespace App.Scripts.Foundation.Roulette.Core
         /// </summary>
         [Serializable]
         public class RouletteItemInfo<T>
-            where T : MonoBehaviour
+            where T : ScriptableObject
         {
             public T Item;
             [Range(1, 1000)] public int Weight;
-            //[ReadOnly]
+            [ReadOnly]
             public float ChancePercent;
             
             public void SetChance(float chance)
