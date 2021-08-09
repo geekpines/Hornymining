@@ -95,7 +95,7 @@ namespace App.Scripts.Editor
             for (int i = 0; i < _coinsTableSettingDatabase.Elements.Count; i++)
             {
                 GUI.Label(new Rect(offset + ((sizeIcon + 1) * (i + 1)), offset - 15, sizeIcon, 15), 
-                    new GUIContent(_coinsTableSettingDatabase.Elements[i].Name));
+                    new GUIContent(_coinsTableSettingDatabase.Elements[i].Name.GetLocalizedString()));
                 if (_coinsTableSettingDatabase.Elements[i].Icon.texture != null)
                 {
                     GUI.DrawTexture(new Rect(offset + ((sizeIcon + 1) * (i + 1)), offset, sizeIcon, sizeIcon), 

@@ -1,5 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 namespace App.Scripts.UiViews.GameScreen.TopPanel
@@ -8,10 +10,10 @@ namespace App.Scripts.UiViews.GameScreen.TopPanel
     {
         [SerializeField] private Image _icon;
         [SerializeField] private TMP_Text _info;
-        [SerializeField] private TMP_Text _description;
+        [SerializeField] private LocalizeStringEvent _description;
         [SerializeField] private GameObject _panelDescription;
 
-        public void SetCoinInformation(Sprite icon, float count, string description)
+        public void SetCoinInformation(Sprite icon, float count, LocalizedString description)
         {
             SetIcon(icon);
             SetValue(count);
@@ -28,9 +30,9 @@ namespace App.Scripts.UiViews.GameScreen.TopPanel
             _info.text = $"{count:F1}";
         }
 
-        public void SetDescription(string text)
+        public void SetDescription(LocalizedString text)
         {
-            _description.text = text;
+            _description.StringReference = text;
         }
 
         public void EnableDescription(bool show)
