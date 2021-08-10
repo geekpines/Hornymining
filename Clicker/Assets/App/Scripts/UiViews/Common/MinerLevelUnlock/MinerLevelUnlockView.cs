@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Scripts.UiControllers.Common
 {
-    public class MinerLevelUnlockController : MonoBehaviour
+    public class MinerLevelUnlockView : MonoBehaviour
     {
         public LevelUnlockComponents LevelUnlock { get; private set; }
 

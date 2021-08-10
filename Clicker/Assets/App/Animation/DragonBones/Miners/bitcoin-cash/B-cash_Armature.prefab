@@ -868,6 +868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1558678606320019354}
   - component: {fileID: 1041122077965730409}
+  - component: {fileID: 815591976294307459}
   m_Layer: 0
   m_Name: B-cash_Armature
   m_TagString: Untagged
@@ -883,8 +884,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5083470526210592314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 0}
+  m_LocalPosition: {x: 0, y: -250, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 0}
   m_Children:
   - {fileID: 330733032041185409}
   - {fileID: 4381949144615100209}
@@ -940,6 +941,34 @@ MonoBehaviour:
   _zSpace: 0
   _flipX: 0
   _flipY: 0
+--- !u!114 &815591976294307459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083470526210592314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024058f8246941849eccc3648ec4d77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ArmatureComponent>k__BackingField: {fileID: 1041122077965730409}
+  <UnlockComponents>k__BackingField:
+    Levels:
+    - Cloths: []
+    - Cloths:
+      - {fileID: 6220954270491088936}
+      - {fileID: 5910235204771095668}
+    - Cloths:
+      - {fileID: 3635303124702253252}
+      - {fileID: 6636592319251203674}
+      - {fileID: 4285206834570905307}
+    - Cloths:
+      - {fileID: 5106755324616819797}
+      - {fileID: 4149097001495042384}
+    - Cloths:
+      - {fileID: 5067631891006087517}
 --- !u!1 &5106755324616819797
 GameObject:
   m_ObjectHideFlags: 0

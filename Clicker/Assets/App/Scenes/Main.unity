@@ -1116,6 +1116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1522773163}
+  - component: {fileID: 1522773167}
   - component: {fileID: 1522773166}
   - component: {fileID: 1522773165}
   - component: {fileID: 1522773164}
@@ -1208,6 +1209,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1522773167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522773162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb7ae706c034b3c9f88764eb950c80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameScreen: {fileID: 117973113}
+  RouletteScreen: {fileID: 1733501919}
+  OpenRouletteScreenButton: {fileID: 1492603059}
 --- !u!1 &1545219198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,7 +1584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1733501920
 RectTransform:
   m_ObjectHideFlags: 0

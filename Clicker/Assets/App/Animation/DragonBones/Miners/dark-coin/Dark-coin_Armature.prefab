@@ -538,6 +538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7036286429635714082}
   - component: {fileID: 4641768428845669436}
+  - component: {fileID: 1656340631}
   m_Layer: 0
   m_Name: Dark-coin_Armature
   m_TagString: Untagged
@@ -553,8 +554,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783456849642660632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 0}
+  m_LocalPosition: {x: 0, y: -250, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 0}
   m_Children:
   - {fileID: 5657623944096646928}
   - {fileID: 3123433500271500806}
@@ -616,6 +617,36 @@ MonoBehaviour:
   _zSpace: 0
   _flipX: 0
   _flipY: 0
+--- !u!114 &1656340631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783456849642660632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024058f8246941849eccc3648ec4d77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ArmatureComponent>k__BackingField: {fileID: 4641768428845669436}
+  <UnlockComponents>k__BackingField:
+    Levels:
+    - Cloths: []
+    - Cloths:
+      - {fileID: 4596746693124580397}
+    - Cloths:
+      - {fileID: 7355700462268549727}
+      - {fileID: 22796834059907104}
+      - {fileID: 206751149281285459}
+      - {fileID: 6672601861544910790}
+      - {fileID: 7184537548082733249}
+    - Cloths:
+      - {fileID: 1962381841933914350}
+      - {fileID: 7594154326090844388}
+      - {fileID: 2612192307683595619}
+    - Cloths:
+      - {fileID: 6547699156761205129}
 --- !u!1 &1962381841933914350
 GameObject:
   m_ObjectHideFlags: 0

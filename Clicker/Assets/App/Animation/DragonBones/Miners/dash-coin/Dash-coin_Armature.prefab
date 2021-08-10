@@ -76,6 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2044012105084712516}
   - component: {fileID: 4381467879512407490}
+  - component: {fileID: 1705583540}
   m_Layer: 0
   m_Name: Dash-coin_Armature
   m_TagString: Untagged
@@ -91,8 +92,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564466661438389775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 0}
+  m_LocalPosition: {x: 0, y: -250, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 0}
   m_Children:
   - {fileID: 5099012943866843318}
   - {fileID: 3973278934679822964}
@@ -157,6 +158,40 @@ MonoBehaviour:
   _zSpace: 0
   _flipX: 0
   _flipY: 0
+--- !u!114 &1705583540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564466661438389775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024058f8246941849eccc3648ec4d77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ArmatureComponent>k__BackingField: {fileID: 4381467879512407490}
+  <UnlockComponents>k__BackingField:
+    Levels:
+    - Cloths: []
+    - Cloths:
+      - {fileID: 4825218408260839493}
+      - {fileID: 6140742078941477128}
+      - {fileID: 6280579573135672799}
+      - {fileID: 6249749162232915540}
+    - Cloths:
+      - {fileID: 3202269779433089341}
+      - {fileID: 4541760213019953620}
+      - {fileID: 3737300283710619669}
+      - {fileID: 1243990218717045037}
+    - Cloths:
+      - {fileID: 25934458791350028}
+      - {fileID: 8515131870165943268}
+      - {fileID: 8601715508651768707}
+      - {fileID: 4675339461511935877}
+    - Cloths:
+      - {fileID: 5308727414385984160}
+      - {fileID: 2259972574381145565}
 --- !u!1 &580681947328650876
 GameObject:
   m_ObjectHideFlags: 0

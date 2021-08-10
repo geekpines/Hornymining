@@ -13,8 +13,7 @@ namespace App.Scripts.Foundation
         public LocalizedString Name;
         public LocalizedString Description;
         public Sprite Icon;
-        public UnityArmatureComponent Armature;
-        public LevelUnlockComponents Level;
+        public MinerVisualContext Visual;
         public List<MiningResource> MiningResources = new List<MiningResource>();
         
         [Serializable]

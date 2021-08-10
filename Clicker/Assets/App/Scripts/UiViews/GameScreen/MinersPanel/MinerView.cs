@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.UiControllers.Common.MinerLevelUnlock;
 using DragonBones;
 using UnityEngine;
 
@@ -7,13 +8,14 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
 {
     public class MinerView : BaseUiElement<MinerView>
     {
-        [field: SerializeField] public UnityArmatureComponent Armature { get; private set; }
-        
+        [field: SerializeField] public UnityArmatureComponent Armature { get; protected set; }
+        public LevelUnlockComponents UnlockComponent;
+
         /// <summary>
         /// Установить компонент анимации для майнера
         /// </summary>
         /// <param name="armature"></param>
-        public void SetArmature(UnityArmatureComponent armature)
+        public virtual void SetArmature(UnityArmatureComponent armature)
         {
             Armature = armature;
         }
