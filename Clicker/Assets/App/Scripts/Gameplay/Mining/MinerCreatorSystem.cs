@@ -1,5 +1,4 @@
-﻿using App.Scripts.Foundation.Interfaces;
-using Assets.App.Scripts.Common;
+﻿using Assets.App.Scripts.Common;
 
 namespace App.Scripts.Foundation
 {
