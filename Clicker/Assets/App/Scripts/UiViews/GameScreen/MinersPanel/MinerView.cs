@@ -1,13 +1,14 @@
-﻿using DragonBones;
+﻿using System;
+using System.Collections.Generic;
+using DragonBones;
 using UnityEngine;
 
 namespace App.Scripts.UiViews.GameScreen.MinersPanel
 {
-    public sealed class MinerView : BaseUiElement<MinerView>
+    public class MinerView : BaseUiElement<MinerView>
     {
         [field: SerializeField] public UnityArmatureComponent Armature { get; private set; }
-        [SerializeField] public GameObject LockMask;
-
+        
         /// <summary>
         /// Установить компонент анимации для майнера
         /// </summary>
@@ -18,13 +19,21 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         }
 
         /// <summary>
-        /// Блокировать/Разблокировать майнера
+        /// Воспроизвести анимацию
         /// </summary>
-        /// <param name="state"></param>
-        public void SetLock(bool state)
+        /// <param name="animationName">Название анимации</param>
+        public void PlayAnimation(string animationName)
         {
-            LockMask.SetActive(state);
-            Armature.enabled = state;
+            Armature.animationName = animationName;
+            Armature.animation.Play();
+        }
+
+        /// <summary>
+        /// Остановить воспроизведение анимации
+        /// </summary>
+        public void StopAnimation()
+        {
+            Armature.animation.Stop();
         }
     }
 }

@@ -1,14 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.App.Scripts.Common;
+using UnityEngine;
 
 namespace App.Scripts.Foundation
 {
+    [Serializable]
     public class PlayerProfile : AbstractService<PlayerProfile>
     {
         public List<CoinData> Coins = new List<CoinData>();
-        public int CoinLevelChance;
+        public List<Miner> Miners = new List<Miner>();
         
+        [field: SerializeField]
+        public int CoinLevelChance { get; private set; }
+
         private void Awake()
         {
             //todo: добавить сохранение

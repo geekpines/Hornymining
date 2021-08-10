@@ -1,4 +1,7 @@
-﻿using DragonBones;
+﻿using System;
+using System.Collections.Generic;
+using App.Scripts.UiControllers.Common.MinerLevelUnlock;
+using DragonBones;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -11,7 +14,14 @@ namespace App.Scripts.Foundation
         public LocalizedString Description;
         public Sprite Icon;
         public UnityArmatureComponent Armature;
-        //список добываемой валюты
+        public LevelUnlockComponents Level;
+        public List<MiningResource> MiningResources = new List<MiningResource>();
         
+        [Serializable]
+        public class MiningResource
+        {
+            public CoinType Type;
+            public float Value;
+        }
     }
 }
