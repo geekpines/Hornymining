@@ -12,7 +12,6 @@ namespace App.Scripts.Foundation
     {
         public LocalizedString Name;
         public LocalizedString Description;
-        public Sprite Icon;
         public MinerVisualContext Visual;
         public List<MiningResource> MiningResources = new List<MiningResource>();
         

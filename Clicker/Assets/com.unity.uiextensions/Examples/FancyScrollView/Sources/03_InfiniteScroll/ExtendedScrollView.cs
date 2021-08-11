@@ -9,7 +9,7 @@ using UnityEngine.UI.Extensions.EasingCore;
 
 namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
 {
-    class ScrollView : FancyScrollView<ItemData, Context>
+    public class ExtendedScrollView : FancyScrollView<ItemData, Context>
     {
         [SerializeField] Scroller scroller = default;
         [SerializeField] GameObject cellPrefab = default;

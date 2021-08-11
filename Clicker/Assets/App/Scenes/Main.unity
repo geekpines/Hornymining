@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f38031132bf4305b5a8388155d5a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollView: {fileID: 272585020}
+  extendedScrollView: {fileID: 0}
 --- !u!1 &397222277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,7 +1440,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1633619080}
   - component: {fileID: 1633619085}
-  - component: {fileID: 1633619084}
   - component: {fileID: 1633619083}
   - component: {fileID: 1633619082}
   - component: {fileID: 1633619081}
@@ -1450,7 +1449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1633619080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1484,7 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f38031132bf4305b5a8388155d5a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollView: {fileID: 1633619082}
+  extendedScrollView: {fileID: 0}
 --- !u!114 &1633619082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,8 +1496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1ee62a075132e49b6fc82cd114e89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellInterval: 0.2
-  scrollOffset: 0.45
+  cellInterval: 0.15
+  scrollOffset: 0.5
   loop: 1
   cellContainer: {fileID: 1556234683}
   scroller: {fileID: 1633619083}
@@ -1529,36 +1528,6 @@ MonoBehaviour:
     Easing: 12
   draggable: 1
   scrollbar: {fileID: 0}
---- !u!114 &1633619084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633619079}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1633619085
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1584,7 +1553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1733501920
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1781,7 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573936c7256c485bbdb93d11067a7f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _button: {fileID: 1492603059}
+  _button: {fileID: 2133412528}
   _roulette: {fileID: 2006251005}
 --- !u!114 &2006251005
 MonoBehaviour:

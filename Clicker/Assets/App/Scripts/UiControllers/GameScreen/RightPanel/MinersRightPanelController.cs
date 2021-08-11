@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using App.Scripts.UiControllers.GameScreen.RightPanel.MinersListPanel;
 using App.Scripts.UiViews.GameScreen.MinersListPanel;
-using Assets.App.Scripts.Common;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UI;
