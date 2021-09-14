@@ -11,7 +11,7 @@ namespace App.Scripts.UiControllers.GameScreen
 
         public void ShowScoreLine(Sprite icon, float score)
         {
-            _stoneCoinsView.ShowScoreLine(icon, score);
+            _stoneCoinsView.ShowScoreAnimation(icon, score);
         }
 
         private void OnEnable()

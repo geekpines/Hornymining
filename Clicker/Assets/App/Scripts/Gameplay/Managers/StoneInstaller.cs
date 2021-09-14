@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using App.Scripts.Foundation;
+﻿using App.Scripts.Foundation;
 using App.Scripts.Foundation.Upgrades;
 using App.Scripts.UiControllers.GameScreen;
 using Assets.App.Scripts.Common;
@@ -8,6 +7,10 @@ using Zenject;
 
 namespace Assets.App.Scripts.Gameplay
 {
+    /// <summary>
+    /// Добавляет игроку количество валюты за нажатие
+    /// по майнеру
+    /// </summary>
     public class StoneInstaller : AbstractService<StoneInstaller>
     {
         [SerializeField] private StoneController _stoneController;

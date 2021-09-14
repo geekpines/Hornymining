@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using App.Scripts.Foundation;
 using App.Scripts.UiControllers.GameScreen;
 using App.Scripts.UiViews.GameScreen.TopPanel;
@@ -9,6 +8,9 @@ using Zenject;
 
 namespace Assets.App.Scripts.Gameplay
 {
+    /// <summary>
+    /// Отображает инофрмацию о текущем количестве валюты у игрока
+    /// </summary>
     public class CoinsInstaller : AbstractService<CoinsInstaller>
     {
         [SerializeField] private TopPanelController _topPanelController;
@@ -51,8 +53,7 @@ namespace Assets.App.Scripts.Gameplay
                 Debug.LogError("Элементов валюты на сцене меньше, чем существует в игре!");
             }
         }
-
-
+        
         protected override void OnEnable()
         {
             foreach (var coin in _player.Coins)

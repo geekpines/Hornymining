@@ -26,7 +26,7 @@ namespace App.Scripts.UiViews.GameScreen
             ScoreLines = new PoolObject<ScoreLineView>(_lineViewPrefab, _poolSize, _spawnPosition.transform, true);
         }
         
-        public void ShowScoreLine(Sprite icon, float score)
+        public void ShowScoreAnimation(Sprite icon, float score)
         {
             var scoreLine = ScoreLines.GetObject();
             scoreLine.SetInformation(icon, score);
@@ -40,12 +40,10 @@ namespace App.Scripts.UiViews.GameScreen
             scoreLine.transform.DOMoveY(scoreLine.transform.position.y + _movingDistance, _lifeTime)
                 .OnComplete(() =>
                 {
-                    //Debug.Log("Complete");
                     scoreLine.transform.position = _spawnPosition.position;
                     ScoreLines.ReturnObject(scoreLine);
                 }
                 );
-            
         }
 
     }

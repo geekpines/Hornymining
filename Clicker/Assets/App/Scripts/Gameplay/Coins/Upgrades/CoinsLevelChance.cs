@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace App.Scripts.Foundation.Upgrades
 {
+    /// <summary>
+    /// Класс содержит вероятность добычи той или иной валюты
+    /// при клике на майнера
+    /// </summary>
     [CreateAssetMenu(fileName = "CoinsChance", menuName = "Game/CoinChance/Level", order = 0)]
     public class CoinsLevelChance : ScriptableObject
     {

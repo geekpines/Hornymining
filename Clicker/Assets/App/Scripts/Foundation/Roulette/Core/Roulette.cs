@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 namespace App.Scripts.Foundation.Roulette.Core
 {
     /// <summary>
-    /// Класс генерации предметов на основе конфигурации.
+    /// Класс генерации (ролла) объектов <T> на основе конфигурации.
     /// </summary>
     /// <typeparam name="T">Тип предмета</typeparam>
     public abstract class Roulette<T> : MonoBehaviour

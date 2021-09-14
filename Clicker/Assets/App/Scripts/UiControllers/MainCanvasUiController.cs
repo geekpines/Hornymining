@@ -7,26 +7,26 @@ namespace App.Scripts.UiControllers.GameScreen
     //todo: Заменить на дузи?
     public class MainCanvasUiController : MonoBehaviour
     {
-        public GameObject GameScreen;
-        public GameObject RouletteScreen;
+        [SerializeField] private GameObject _gameScreen;
+        [SerializeField] private GameObject _rouletteScreen;
 
-        public Button OpenRouletteScreenButton;
+        [SerializeField] private Button _openRouletteScreenButton;
 
 
         private void OnEnable()
         {
-            OpenRouletteScreenButton.onClick.AddListener(ShowRouletteScreen);
+            _openRouletteScreenButton.onClick.AddListener(ShowRouletteScreen);
         }
 
         private void OnDisable()
         {
-            OpenRouletteScreenButton.onClick.RemoveListener(ShowRouletteScreen);
+            _openRouletteScreenButton.onClick.RemoveListener(ShowRouletteScreen);
         }
 
         private void ShowRouletteScreen()
         {
-            GameScreen.SetActive(false);
-            RouletteScreen.SetActive(true);
+            _gameScreen.SetActive(false);
+            _rouletteScreen.SetActive(true);
         }
     }
 }
