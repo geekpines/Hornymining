@@ -13,6 +13,7 @@ namespace Assets.App.Scripts.Gameplay
     /// </summary>
     public class CoinsInstaller : AbstractService<CoinsInstaller>
     {
+        //todo: перенести эту логику в UiControllers
         [SerializeField] private TopPanelController _topPanelController;
         private PlayerProfile _player;
         private Dictionary<CoinType, CoinInfoView> _iDtoCoinView = new Dictionary<CoinType, CoinInfoView>();

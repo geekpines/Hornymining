@@ -13,6 +13,7 @@ namespace Assets.App.Scripts.Gameplay
     /// </summary>
     public class StoneInstaller : AbstractService<StoneInstaller>
     {
+        //todo: перенести эту логику в UiControllers
         [SerializeField] private StoneController _stoneController;
         private PlayerProfile _player;
         private CoinsChanceLevel _coinsChanceLevel;
