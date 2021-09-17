@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using App.Scripts.UiControllers.Common.MinerLevelUnlock;
-using DragonBones;
+using App.Scripts.Gameplay.CoreGameplay.Coins;
+using App.Scripts.UiViews.CoreGameplay.Mining;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace App.Scripts.Foundation
+namespace App.Scripts.Gameplay.CoreGameplay.Mining
 {
     [CreateAssetMenu(fileName = "MinerConfiguration", menuName = "Game/MinerConfiguration", order = 0)]
     public class MinerConfiguration : ScriptableObject

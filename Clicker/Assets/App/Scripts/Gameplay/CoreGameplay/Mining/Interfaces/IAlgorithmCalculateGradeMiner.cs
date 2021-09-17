@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Foundation.Interfaces
+﻿namespace App.Scripts.Gameplay.CoreGameplay.Mining.Interfaces
 {
     public interface IAlgorithmCalculateGradeMiner
     {

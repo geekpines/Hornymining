@@ -13,7 +13,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         public void SetLock(bool state)
         {
             LockMask.SetActive(state);
-            Armature.enabled = state;
+            //Armature.enabled = state;
         }
     }
 }

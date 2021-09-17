@@ -22,10 +22,6 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
             
             extendedScrollView.UpdateData(items);
             extendedScrollView.SelectCell(0);
-
-            string? text = null;
-            
-            Debug.Log(text);
         }
     }
 }

@@ -1,4 +1,4 @@
-using App.Scripts.Foundation;
+using App.Scripts.Gameplay.CoreGameplay.Coins;
 using UnityEditor;
 using UnityEngine;
 

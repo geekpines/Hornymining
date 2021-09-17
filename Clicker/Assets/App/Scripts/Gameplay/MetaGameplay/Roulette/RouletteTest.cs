@@ -1,9 +1,7 @@
-﻿using System;
-using App.Scripts.Gameplay.Roulette;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Gameplay.Expiriments
+namespace App.Scripts.Gameplay.MetaGameplay.Roulette
 {
     public class RouletteTest : MonoBehaviour
     {

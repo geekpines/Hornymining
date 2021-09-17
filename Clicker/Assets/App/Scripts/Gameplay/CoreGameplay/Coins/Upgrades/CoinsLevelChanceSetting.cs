@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace App.Scripts.Foundation.Upgrades
+namespace App.Scripts.Gameplay.CoreGameplay.Coins.Upgrades
 {
     [CreateAssetMenu(fileName = "CoinsLevelChanceSetting", menuName = "Game/Settings/CoinsLevelChanceSetting", order = 0)]
     public class CoinsLevelChanceSetting : ScriptableObject

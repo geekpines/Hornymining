@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Gameplay.CoreGameplay.Coins;
+using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
+using App.Scripts.Gameplay.CoreGameplay.Mining;
 using Assets.App.Scripts.Common;
 using UnityEngine;
 
-namespace App.Scripts.Foundation
+namespace App.Scripts.Gameplay.CoreGameplay.Player
 {
     [Serializable]
     public class PlayerProfile : AbstractService<PlayerProfile>

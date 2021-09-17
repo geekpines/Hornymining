@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Alex.Common.tools;
-using App.Scripts.Foundation.Coins;
-using App.Scripts.Utilities.MonoBehaviours;
+using App.Scripts.Gameplay.CoreGameplay.Coins.Base;
 using UnityEngine;
 
-namespace App.Scripts.Foundation
+namespace App.Scripts.Gameplay.CoreGameplay.Coins
 {
     [CreateAssetMenu(fileName = "CoinsTable", menuName = "Game/Settings/CoinsTable", order = 0)]
     public class CoinsTableSetting : ElementsTable<Coin>

@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace App.Scripts.Foundation.Coins
+namespace App.Scripts.Gameplay.CoreGameplay.Coins.Base
 {
     /// <summary>
     /// Абстрактная таблица элементов. Может хранить список элементов и 

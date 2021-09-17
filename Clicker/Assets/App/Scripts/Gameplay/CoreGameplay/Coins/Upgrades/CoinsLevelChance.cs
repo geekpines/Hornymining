@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace App.Scripts.Foundation.Upgrades
+namespace App.Scripts.Gameplay.CoreGameplay.Coins.Upgrades
 {
     /// <summary>
     /// Класс содержит вероятность добычи той или иной валюты

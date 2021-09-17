@@ -1,4 +1,4 @@
-﻿using App.Scripts.UiControllers.Common.MinerLevelUnlock;
+﻿using App.Scripts.UiViews.Common.MinerLevelUnlock;
 using UnityEngine;
 
 namespace App.Scripts.UiControllers.Common

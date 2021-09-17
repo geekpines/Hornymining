@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
-using App.Scripts.Foundation;
+using App.Scripts.Gameplay.CoreGameplay.Coins;
+using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
+using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen;
 using App.Scripts.UiViews.GameScreen.TopPanel;
 using Assets.App.Scripts.Common;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.App.Scripts.Gameplay
+namespace App.Scripts.Gameplay.MetaGameplay
 {
     /// <summary>
     /// Отображает инофрмацию о текущем количестве валюты у игрока

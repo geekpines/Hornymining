@@ -1,6 +1,6 @@
 ﻿using Assets.App.Scripts.Common;
 
-namespace App.Scripts.Foundation
+namespace App.Scripts.Gameplay.CoreGameplay.Mining
 {
     public class MinerCreatorSystem : AbstractService<MinerCreatorSystem>
     {

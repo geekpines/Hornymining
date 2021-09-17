@@ -3,7 +3,7 @@ using App.Scripts.Common;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace App.Scripts.Foundation
+namespace App.Scripts.Gameplay.CoreGameplay.Mining
 {
     [Serializable]
     public class Miner

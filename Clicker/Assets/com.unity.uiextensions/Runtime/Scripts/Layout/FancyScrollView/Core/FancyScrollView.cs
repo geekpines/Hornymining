@@ -1,6 +1,7 @@
 ﻿/// Credit setchi (https://github.com/setchi)
 /// Sourced from - https://github.com/setchi/FancyScrollView
 
+using System;
 using System.Collections.Generic;
 
 namespace UnityEngine.UI.Extensions
@@ -44,6 +45,8 @@ namespace UnityEngine.UI.Extensions
 
         readonly IList<FancyCell<TItemData, TContext>> pool = new List<FancyCell<TItemData, TContext>>();
 
+        protected event Action<GameObject> OnSpawned;
+        
         /// <summary>
         /// 初期化済みかどうか.
         /// </summary>
@@ -141,7 +144,8 @@ namespace UnityEngine.UI.Extensions
                         "FancyCell<{0}, {1}> component not found in {2}.",
                         typeof(TItemData).FullName, typeof(TContext).FullName, CellPrefab.name));
                 }
-
+                
+                OnSpawned?.Invoke(cell.gameObject);
                 cell.SetContext(Context);
                 cell.Initialize();
                 cell.SetVisible(false);

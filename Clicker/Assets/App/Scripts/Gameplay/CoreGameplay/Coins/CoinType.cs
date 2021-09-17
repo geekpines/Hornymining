@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Foundation
+﻿namespace App.Scripts.Gameplay.CoreGameplay.Coins
 {
     public enum CoinType
     {

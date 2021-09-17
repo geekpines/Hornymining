@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace App.Scripts.UiControllers.Common.MinerLevelUnlock
+namespace App.Scripts.UiViews.Common.MinerLevelUnlock
 {
     [Serializable]
     public class LevelUnlockComponents

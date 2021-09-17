@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace App.Scripts.Foundation
+namespace App.Scripts.Gameplay.CoreGameplay.Coins
 {
     /// <summary>
     /// Данные по ресурсам

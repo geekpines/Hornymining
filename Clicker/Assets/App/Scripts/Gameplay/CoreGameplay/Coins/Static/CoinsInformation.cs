@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace App.Scripts.Foundation
+namespace App.Scripts.Gameplay.CoreGameplay.Coins.Static
 {
     public class CoinsInformation
     {

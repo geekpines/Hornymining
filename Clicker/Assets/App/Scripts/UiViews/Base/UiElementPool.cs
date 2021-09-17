@@ -12,7 +12,9 @@ namespace App.Scripts.UiViews.Base
         public event ElementPoolHandler Despawned;
 
         public List<T> Elements => _elements;
-        
+
+        public int PoolSize { get => _pool.Count; }
+
         [SerializeField] private List<T> _elements = new List<T>();
         [SerializeField] private T _prefabUi;
         [SerializeField] private int _poolSize;

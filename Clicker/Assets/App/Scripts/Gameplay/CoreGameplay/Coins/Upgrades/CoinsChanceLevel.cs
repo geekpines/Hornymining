@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.App.Scripts.Common;
-using UnityEngine;
 
-namespace App.Scripts.Foundation.Upgrades
+namespace App.Scripts.Gameplay.CoreGameplay.Coins.Upgrades
 {
     public class CoinsChanceLevel : AbstractService<CoinsChanceLevel>
     {
