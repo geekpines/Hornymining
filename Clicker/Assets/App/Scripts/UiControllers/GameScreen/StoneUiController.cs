@@ -2,12 +2,11 @@
 using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Coins.Upgrades;
 using App.Scripts.Gameplay.CoreGameplay.Player;
-using App.Scripts.UiControllers.GameScreen;
 using Assets.App.Scripts.Common;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.Gameplay.MetaGameplay
+namespace App.Scripts.UiControllers.GameScreen
 {
     /// <summary>
     /// Добавляет игроку количество валюты за нажатие
@@ -15,7 +14,6 @@ namespace App.Scripts.Gameplay.MetaGameplay
     /// </summary>
     public class StoneUiController : AbstractService<StoneUiController>
     {
-        //todo: перенести эту логику в UiControllers
         [SerializeField] private StoneAnimationScore _stoneAnimationScore;
         private PlayerProfile _player;
         private CoinsChanceLevel _coinsChanceLevel;

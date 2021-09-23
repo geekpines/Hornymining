@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.UiControllers.GameScreen
+namespace App.Scripts.UiControllers
 {
     //todo: Заменить на дузи?
     public class MainCanvasUiController : MonoBehaviour

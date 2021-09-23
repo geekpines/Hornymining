@@ -146,6 +146,7 @@ namespace UnityEngine.UI.Extensions
                 }
                 
                 OnSpawned?.Invoke(cell.gameObject);
+                cell.name = cell.name + "_" + pool.Count;
                 cell.SetContext(Context);
                 cell.Initialize();
                 cell.SetVisible(false);

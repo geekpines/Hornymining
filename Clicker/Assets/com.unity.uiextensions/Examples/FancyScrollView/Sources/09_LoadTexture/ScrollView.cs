@@ -10,7 +10,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample09
 {
     class ScrollView : FancyScrollView<ItemData>
     {
-        [SerializeField] Scroller scroller = default;
+        [SerializeField] ScrollerExtension _scrollerExtension = default;
         [SerializeField] GameObject cellPrefab = default;
 
         protected override GameObject CellPrefab => cellPrefab;
@@ -18,13 +18,13 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample09
         protected override void Initialize()
         {
             base.Initialize();
-            scroller.OnValueChanged(UpdatePosition);
+            _scrollerExtension.OnValueChanged(UpdatePosition);
         }
 
         public void UpdateData(IList<ItemData> items)
         {
             UpdateContents(items);
-            scroller.SetTotalCount(items.Count);
+            _scrollerExtension.SetTotalCount(items.Count);
         }
     }
 }

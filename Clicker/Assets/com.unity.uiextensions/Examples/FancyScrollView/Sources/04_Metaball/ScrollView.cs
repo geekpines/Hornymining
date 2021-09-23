@@ -12,7 +12,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample04
 {
     class ScrollView : FancyScrollView<ItemData, Context>
     {
-        [SerializeField] Scroller scroller = default;
+        [SerializeField] ScrollerExtension _scrollerExtension = default;
         [SerializeField] GameObject cellPrefab = default;
 
         Action<int> onSelectionChanged;
@@ -27,8 +27,8 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample04
 
             Context.OnCellClicked = SelectCell;
 
-            scroller.OnValueChanged(UpdatePosition);
-            scroller.OnSelectionChanged(UpdateSelection);
+            _scrollerExtension.OnValueChanged(UpdatePosition);
+            _scrollerExtension.OnSelectionChanged(UpdateSelection);
         }
 
         public void UpdateSelection(int index)
@@ -47,7 +47,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample04
         public void UpdateData(IList<ItemData> items)
         {
             UpdateContents(items);
-            scroller.SetTotalCount(items.Count);
+            _scrollerExtension.SetTotalCount(items.Count);
         }
 
         public void OnSelectionChanged(Action<int> callback)
@@ -78,12 +78,12 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample04
 
         public void ScrollTo(float position, float duration, Ease easing, Action onComplete = null)
         {
-            scroller.ScrollTo(position, duration, easing, onComplete);
+            _scrollerExtension.ScrollTo(position, duration, easing, onComplete);
         }
 
         public void JumpTo(int index)
         {
-            scroller.JumpTo(index);
+            _scrollerExtension.JumpTo(index);
         }
 
         public Vector4[] GetCellState()

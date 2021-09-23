@@ -10,7 +10,7 @@ namespace UnityEngine.UI.Extensions
     /// <summary>
     /// スクロール位置の制御を行うコンポーネント.
     /// </summary>
-    public class Scroller : UIBehaviour, IPointerUpHandler, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IScrollHandler
+    public class ScrollerExtension : UIBehaviour, IPointerUpHandler, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IScrollHandler
     {
         [SerializeField] RectTransform viewport = default;
 
@@ -142,6 +142,8 @@ namespace UnityEngine.UI.Extensions
         Action<float> onValueChanged;
         Action<int> onSelectionChanged;
 
+        public float CurrentPosition => currentPosition;
+        
         Vector2 beginDragPointerPosition;
         float scrollStartPosition;
         float prevPosition;
@@ -573,6 +575,11 @@ namespace UnityEngine.UI.Extensions
 
             prevPosition = currentPosition;
             scrolling = false;
+
+            if (_isForceVelocity)
+            {
+                velocity = _forceVelocityValue;
+            }
         }
 
         float CalculateMovementAmount(float sourcePosition, float destPosition)
@@ -593,5 +600,18 @@ namespace UnityEngine.UI.Extensions
         }
 
         float CircularPosition(float p, int size) => size < 1 ? 0 : p < 0 ? size - 1 + (p + 1) % size : p % size;
+
+        private bool _isForceVelocity;
+        private float _forceVelocityValue;
+        public void SetForceVelocity(float vil)
+        {
+            _isForceVelocity = true;
+            _forceVelocityValue = vil;
+        }
+
+        public void SetForceVelocityOff()
+        {
+            _isForceVelocity = false;
+        }
     }
 }

@@ -8,7 +8,7 @@ using UnityEditor.AnimatedValues;
 
 namespace UnityEngine.UI.Extensions
 {
-    [CustomEditor(typeof(Scroller))]
+    [CustomEditor(typeof(ScrollerExtension))]
     [CanEditMultipleObjects]
     public class ScrollerEditor : Editor
     {

@@ -49,7 +49,7 @@ namespace UnityEngine.UI.Extensions
         protected sealed override GameObject CellPrefab => cellGroupTemplate;
 
         /// <inheritdoc/>
-        protected override float CellSize => Scroller.ScrollDirection == ScrollDirection.Horizontal
+        protected override float CellSize => ScrollerExtension.ScrollDirection == ScrollDirection.Horizontal
             ? cellSize.x
             : cellSize.y;
 
@@ -67,10 +67,10 @@ namespace UnityEngine.UI.Extensions
 
             Debug.Assert(startAxisCellCount > 0);
 
-            Context.ScrollDirection = Scroller.ScrollDirection;
+            Context.ScrollDirection = ScrollerExtension.ScrollDirection;
             Context.GetGroupCount = () => startAxisCellCount;
             Context.GetStartAxisSpacing = () => startAxisSpacing;
-            Context.GetCellSize = () => Scroller.ScrollDirection == ScrollDirection.Horizontal
+            Context.GetCellSize = () => ScrollerExtension.ScrollDirection == ScrollDirection.Horizontal
                 ? cellSize.y
                 : cellSize.x;
 

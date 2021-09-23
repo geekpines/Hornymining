@@ -15,7 +15,7 @@ namespace UnityEngine.UI.Extensions
     /// </summary>
     /// <typeparam name="TItemData">アイテムのデータ型.</typeparam>
     /// <typeparam name="TContext"><see cref="FancyScrollView{TItemData, TContext}.Context"/> の型.</typeparam>
-    [RequireComponent(typeof(Scroller))]
+    [RequireComponent(typeof(ScrollerExtension))]
     public abstract class FancyScrollRect<TItemData, TContext> : FancyScrollView<TItemData, TContext>
         where TContext : class, IFancyScrollRectContext, new()
     {
@@ -56,15 +56,15 @@ namespace UnityEngine.UI.Extensions
         /// </remarks>
         protected virtual bool Scrollable => MaxScrollPosition > 0f;
 
-        Scroller cachedScroller;
+        ScrollerExtension _cachedScrollerExtension;
 
         /// <summary>
         /// スクロール位置を制御する <see cref="FancyScrollView.Scroller"/> のインスタンス.
         /// </summary>
         /// <remarks>
-        /// <see cref="Scroller"/> のスクロール位置を変更する際は必ず <see cref="ToScrollerPosition(float)"/> を使用して変換した位置を使用してください.
+        /// <see cref="ScrollerExtension"/> のスクロール位置を変更する際は必ず <see cref="ToScrollerPosition(float)"/> を使用して変換した位置を使用してください.
         /// </remarks>
-        protected Scroller Scroller => cachedScroller ?? (cachedScroller = GetComponent<Scroller>());
+        protected ScrollerExtension ScrollerExtension => _cachedScrollerExtension ?? (_cachedScrollerExtension = GetComponent<ScrollerExtension>());
 
         float ScrollLength => 1f / Mathf.Max(cellInterval, 1e-2f) - 1f;
 
@@ -82,28 +82,28 @@ namespace UnityEngine.UI.Extensions
         {
             base.Initialize();
 
-            Context.ScrollDirection = Scroller.ScrollDirection;
+            Context.ScrollDirection = ScrollerExtension.ScrollDirection;
             Context.CalculateScrollSize = () =>
             {
                 var interval = CellSize + spacing;
                 var reuseMargin = interval * reuseCellMarginCount;
-                var scrollSize = Scroller.ViewportSize + interval + reuseMargin * 2f;
+                var scrollSize = ScrollerExtension.ViewportSize + interval + reuseMargin * 2f;
                 return (scrollSize, reuseMargin);
             };
 
             AdjustCellIntervalAndScrollOffset();
-            Scroller.OnValueChanged(OnScrollerValueChanged);
+            ScrollerExtension.OnValueChanged(OnScrollerValueChanged);
         }
 
         /// <summary>
-        /// <see cref="Scroller"/> のスクロール位置が変更された際の処理.
+        /// <see cref="ScrollerExtension"/> のスクロール位置が変更された際の処理.
         /// </summary>
-        /// <param name="p"><see cref="Scroller"/> のスクロール位置.</param>
+        /// <param name="p"><see cref="ScrollerExtension"/> のスクロール位置.</param>
         void OnScrollerValueChanged(float p)
         {
             base.UpdatePosition(Scrollable ? ToFancyScrollViewPosition(p) : 0f);
 
-            if (Scroller.Scrollbar)
+            if (ScrollerExtension.Scrollbar)
             {
                 if (p > ItemsSource.Count - 1)
                 {
@@ -143,17 +143,17 @@ namespace UnityEngine.UI.Extensions
         }
 
         /// <summary>
-        /// <see cref="Scroller"/> の各種状態を更新します.
+        /// <see cref="ScrollerExtension"/> の各種状態を更新します.
         /// </summary>
         protected void RefreshScroller()
         {
-            Scroller.Draggable = Scrollable;
-            Scroller.ScrollSensitivity = ToScrollerPosition(ViewportLength - PaddingHeadLength);
-            Scroller.Position = ToScrollerPosition(currentPosition);
+            ScrollerExtension.Draggable = Scrollable;
+            ScrollerExtension.ScrollSensitivity = ToScrollerPosition(ViewportLength - PaddingHeadLength);
+            ScrollerExtension.Position = ToScrollerPosition(currentPosition);
 
-            if (Scroller.Scrollbar)
+            if (ScrollerExtension.Scrollbar)
             {
-                Scroller.Scrollbar.gameObject.SetActive(Scrollable);
+                ScrollerExtension.Scrollbar.gameObject.SetActive(Scrollable);
                 UpdateScrollbarSize(ViewportLength);
             }
         }
@@ -166,7 +166,7 @@ namespace UnityEngine.UI.Extensions
             AdjustCellIntervalAndScrollOffset();
             base.UpdateContents(items);
 
-            Scroller.SetTotalCount(items.Count);
+            ScrollerExtension.SetTotalCount(items.Count);
             RefreshScroller();
         }
 
@@ -176,7 +176,7 @@ namespace UnityEngine.UI.Extensions
         /// <param name="position">スクロール位置.</param>
         protected new void UpdatePosition(float position)
         {
-            Scroller.Position = ToScrollerPosition(position, 0.5f);
+            ScrollerExtension.Position = ToScrollerPosition(position, 0.5f);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace UnityEngine.UI.Extensions
         /// <param name="alignment">ビューポート内におけるセル位置の基準. 0f(先頭) ~ 1f(末尾).</param>
         protected virtual void JumpTo(int itemIndex, float alignment = 0.5f)
         {
-            Scroller.Position = ToScrollerPosition(itemIndex, alignment);
+            ScrollerExtension.Position = ToScrollerPosition(itemIndex, alignment);
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace UnityEngine.UI.Extensions
         /// <param name="onComplete">移動が完了した際に呼び出されるコールバック.</param>
         protected virtual void ScrollTo(int index, float duration, float alignment = 0.5f, Action onComplete = null)
         {
-            Scroller.ScrollTo(ToScrollerPosition(index, alignment), duration, onComplete);
+            ScrollerExtension.ScrollTo(ToScrollerPosition(index, alignment), duration, onComplete);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace UnityEngine.UI.Extensions
         /// <param name="onComplete">移動が完了した際に呼び出されるコールバック.</param>
         protected virtual void ScrollTo(int index, float duration, Ease easing, float alignment = 0.5f, Action onComplete = null)
         {
-            Scroller.ScrollTo(ToScrollerPosition(index, alignment), duration, easing, onComplete);
+            ScrollerExtension.ScrollTo(ToScrollerPosition(index, alignment), duration, easing, onComplete);
         }
 
         /// <summary>
@@ -221,13 +221,13 @@ namespace UnityEngine.UI.Extensions
         protected void UpdateScrollbarSize(float viewportLength)
         {
             var contentLength = Mathf.Max(ItemsSource.Count + (paddingHead + paddingTail - spacing) / (CellSize + spacing), 1);
-            Scroller.Scrollbar.size = Scrollable ? Mathf.Clamp01(viewportLength / contentLength) : 1f;
+            ScrollerExtension.Scrollbar.size = Scrollable ? Mathf.Clamp01(viewportLength / contentLength) : 1f;
         }
 
         /// <summary>
-        /// <see cref="Scroller"/> が扱うスクロール位置を <see cref="FancyScrollRect{TItemData, TContext}"/> が扱うスクロール位置に変換します.
+        /// <see cref="ScrollerExtension"/> が扱うスクロール位置を <see cref="FancyScrollRect{TItemData, TContext}"/> が扱うスクロール位置に変換します.
         /// </summary>
-        /// <param name="position"><see cref="Scroller"/> が扱うスクロール位置.</param>
+        /// <param name="position"><see cref="ScrollerExtension"/> が扱うスクロール位置.</param>
         /// <returns><see cref="FancyScrollRect{TItemData, TContext}"/> が扱うスクロール位置.</returns>
         protected float ToFancyScrollViewPosition(float position)
         {
@@ -235,21 +235,21 @@ namespace UnityEngine.UI.Extensions
         }
 
         /// <summary>
-        /// <see cref="FancyScrollRect{TItemData, TContext}"/> が扱うスクロール位置を <see cref="Scroller"/> が扱うスクロール位置に変換します.
+        /// <see cref="FancyScrollRect{TItemData, TContext}"/> が扱うスクロール位置を <see cref="ScrollerExtension"/> が扱うスクロール位置に変換します.
         /// </summary>
         /// <param name="position"><see cref="FancyScrollRect{TItemData, TContext}"/> が扱うスクロール位置.</param>
-        /// <returns><see cref="Scroller"/> が扱うスクロール位置.</returns>
+        /// <returns><see cref="ScrollerExtension"/> が扱うスクロール位置.</returns>
         protected float ToScrollerPosition(float position)
         {
             return (position + PaddingHeadLength) / MaxScrollPosition * Mathf.Max(ItemsSource.Count - 1, 1);
         }
 
         /// <summary>
-        /// <see cref="FancyScrollRect{TItemData, TContext}"/> が扱うスクロール位置を <see cref="Scroller"/> が扱うスクロール位置に変換します.
+        /// <see cref="FancyScrollRect{TItemData, TContext}"/> が扱うスクロール位置を <see cref="ScrollerExtension"/> が扱うスクロール位置に変換します.
         /// </summary>
         /// <param name="position"><see cref="FancyScrollRect{TItemData, TContext}"/> が扱うスクロール位置.</param>
         /// <param name="alignment">ビューポート内におけるセル位置の基準. 0f(先頭) ~ 1f(末尾).</param>
-        /// <returns><see cref="Scroller"/> が扱うスクロール位置.</returns>
+        /// <returns><see cref="ScrollerExtension"/> が扱うスクロール位置.</returns>
         protected float ToScrollerPosition(float position, float alignment = 0.5f)
         {
             var offset = alignment * (ScrollLength - (1f + reuseCellMarginCount * 2f))
@@ -264,7 +264,7 @@ namespace UnityEngine.UI.Extensions
         /// </summary>
         protected void AdjustCellIntervalAndScrollOffset()
         {
-            var totalSize = Scroller.ViewportSize + (CellSize + spacing) * (1f + reuseCellMarginCount * 2f);
+            var totalSize = ScrollerExtension.ViewportSize + (CellSize + spacing) * (1f + reuseCellMarginCount * 2f);
             cellInterval = (CellSize + spacing) / totalSize;
             scrollOffset = cellInterval * (1f + reuseCellMarginCount);
         }
@@ -279,15 +279,15 @@ namespace UnityEngine.UI.Extensions
                 Debug.LogError("Loop is currently not supported in FancyScrollRect.");
             }
 
-            if (Scroller.SnapEnabled)
+            if (ScrollerExtension.SnapEnabled)
             {
-                Scroller.SnapEnabled = false;
+                ScrollerExtension.SnapEnabled = false;
                 Debug.LogError("Snap is currently not supported in FancyScrollRect.");
             }
 
-            if (Scroller.MovementType == MovementType.Unrestricted)
+            if (ScrollerExtension.MovementType == MovementType.Unrestricted)
             {
-                Scroller.MovementType = MovementType.Elastic;
+                ScrollerExtension.MovementType = MovementType.Elastic;
                 Debug.LogError("MovementType.Unrestricted is currently not supported in FancyScrollRect.");
             }
         }

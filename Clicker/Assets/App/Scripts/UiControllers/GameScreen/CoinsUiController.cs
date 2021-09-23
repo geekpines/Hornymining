@@ -2,20 +2,18 @@
 using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Player;
-using App.Scripts.UiControllers.GameScreen;
 using App.Scripts.UiViews.GameScreen.TopPanel;
 using Assets.App.Scripts.Common;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.Gameplay.MetaGameplay
+namespace App.Scripts.UiControllers.GameScreen
 {
     /// <summary>
     /// Отображает инофрмацию о текущем количестве валюты у игрока
     /// </summary>
     public class CoinsUiController : AbstractService<CoinsUiController>
     {
-        //todo: перенести эту логику в UiControllers
         [SerializeField] private TopPanelController _topPanelController;
         private PlayerProfile _player;
         private Dictionary<CoinType, CoinInfoView> _iDtoCoinView = new Dictionary<CoinType, CoinInfoView>();

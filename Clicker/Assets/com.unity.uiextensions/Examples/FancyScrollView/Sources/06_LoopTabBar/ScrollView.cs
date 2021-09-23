@@ -12,7 +12,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample06
 {
     class ScrollView : FancyScrollView<ItemData, Context>
     {
-        [SerializeField] Scroller scroller = default;
+        [SerializeField] ScrollerExtension _scrollerExtension = default;
         [SerializeField] GameObject cellPrefab = default;
 
         Action<int, MovementDirection> onSelectionChanged;
@@ -25,8 +25,8 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample06
 
             Context.OnCellClicked = SelectCell;
 
-            scroller.OnValueChanged(UpdatePosition);
-            scroller.OnSelectionChanged(UpdateSelection);
+            _scrollerExtension.OnValueChanged(UpdatePosition);
+            _scrollerExtension.OnSelectionChanged(UpdateSelection);
         }
 
         void UpdateSelection(int index)
@@ -36,7 +36,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample06
                 return;
             }
 
-            var direction = scroller.GetMovementDirection(Context.SelectedIndex, index);
+            var direction = _scrollerExtension.GetMovementDirection(Context.SelectedIndex, index);
 
             Context.SelectedIndex = index;
             Refresh();
@@ -47,7 +47,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample06
         public void UpdateData(IList<ItemData> items)
         {
             UpdateContents(items);
-            scroller.SetTotalCount(items.Count);
+            _scrollerExtension.SetTotalCount(items.Count);
         }
 
         public void OnSelectionChanged(Action<int, MovementDirection> callback)
@@ -72,7 +72,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample06
                 return;
             }
 
-            scroller.ScrollTo(index, 0.35f, Ease.OutCubic);
+            _scrollerExtension.ScrollTo(index, 0.35f, Ease.OutCubic);
         }
     }
 }

@@ -7,9 +7,13 @@ using App.Scripts.UiViews.RouletteScreen;
 using UnityEngine;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
 
-namespace App.Scripts.Gameplay.UiControllers.RouletteScreen
+namespace App.Scripts.UiControllers.RouletteScreen
 {
-    public class RouletteSlotsController : MonoBehaviour
+    /// <summary>
+    /// Контроллер слотов рулетки. Отвечает за отображение в
+    /// слотах правильной информации (о майнерах)
+    /// </summary>
+    public class RouletteSlotsUiController : MonoBehaviour
     {
         [SerializeField] private SpecialScrollMinerView _scrollMinerView = default;
         [SerializeField] private RollMinerController _rollMinerController;
@@ -22,6 +26,9 @@ namespace App.Scripts.Gameplay.UiControllers.RouletteScreen
             InitializationRoulette();
         }
 
+        /// <summary>
+        /// Проинициализировать рулетку
+        /// </summary>
         public void InitializationRoulette()
         {
             InitializeScroll();

@@ -6,6 +6,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
 {
     public class MinerView : BaseUiElement<MinerView>
     {
+        public bool IsEmpty => _armatureComponent == null;
         protected UnityArmatureComponent _armatureComponent;
 
         /// <summary>
