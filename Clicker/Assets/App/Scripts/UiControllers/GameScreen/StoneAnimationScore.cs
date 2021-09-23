@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace App.Scripts.UiControllers.GameScreen
 {
-    public class StoneController : MonoBehaviour
+    public class StoneAnimationScore : MonoBehaviour
     {
         public Action OnClicked;
         [SerializeField] private StoneCoinsView _stoneCoinsView;

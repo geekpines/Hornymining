@@ -32,7 +32,7 @@ namespace App.Scripts.UiViews.GameScreen
             scoreLine.SetInformation(icon, score);
 
             scoreLine.transform.position = _spawnPosition.position;
-            scoreLine.transform.AddToCurrentPosition(new Vector3(
+            scoreLine.transform.Move(new Vector3(
                 Random.Range(-_randomSpawnRangeX, _randomSpawnRangeX),
                 Random.Range(-_randomSpawnRangeY, _randomSpawnRangeY),
                 0));

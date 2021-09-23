@@ -13,7 +13,7 @@ namespace App.Scripts.Gameplay.MetaGameplay
     /// <summary>
     /// Отображает инофрмацию о текущем количестве валюты у игрока
     /// </summary>
-    public class CoinsInstaller : AbstractService<CoinsInstaller>
+    public class CoinsUiController : AbstractService<CoinsUiController>
     {
         //todo: перенести эту логику в UiControllers
         [SerializeField] private TopPanelController _topPanelController;

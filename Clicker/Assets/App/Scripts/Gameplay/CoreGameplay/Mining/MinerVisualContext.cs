@@ -2,9 +2,9 @@
 using DragonBones;
 using UnityEngine;
 
-namespace App.Scripts.UiViews.CoreGameplay.Mining
+namespace App.Scripts.Gameplay.CoreGameplay.Mining
 {
-    public class MinerVisualContext : BaseUiElement<MinerVisualContext>
+    public class MinerVisualContext : MonoBehaviour
     {
         [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public UnityArmatureComponent ArmatureComponent { get; private set; }

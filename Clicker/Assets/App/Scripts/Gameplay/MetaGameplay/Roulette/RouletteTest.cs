@@ -6,7 +6,7 @@ namespace App.Scripts.Gameplay.MetaGameplay.Roulette
     public class RouletteTest : MonoBehaviour
     {
         [SerializeField] private Button _button;
-        [SerializeField] private RollMinerController roll;
+        [SerializeField] private RollMinerController _rollController;
         
         private void OnEnable()
         {
@@ -20,7 +20,7 @@ namespace App.Scripts.Gameplay.MetaGameplay.Roulette
 
         private void Clicked()
         {
-            var result = roll.RollItem();
+            var result = _rollController.RollItem();
             if (result != null)
             {
                 Debug.Log($"Result: {result.Name.GetLocalizedString()}");

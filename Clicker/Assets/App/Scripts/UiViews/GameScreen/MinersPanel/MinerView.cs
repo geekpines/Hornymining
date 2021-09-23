@@ -1,6 +1,4 @@
-﻿using App.Scripts.UiViews.Common.MinerLevelUnlock;
-using App.Scripts.UiViews.CoreGameplay.Mining;
-using DragonBones;
+﻿using DragonBones;
 using UnityEngine;
 using Transform = UnityEngine.Transform;
 
@@ -8,7 +6,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
 {
     public class MinerView : BaseUiElement<MinerView>
     {
-        public MinerVisualContext Visual { get; private set; }
+        protected UnityArmatureComponent _armatureComponent;
 
         /// <summary>
         /// Воспроизвести анимацию
@@ -16,8 +14,8 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         /// <param name="animationName">Название анимации</param>
         public void PlayAnimation(string animationName)
         {
-            Visual.ArmatureComponent.animationName = animationName;
-            Visual.ArmatureComponent.animation.Play();
+            _armatureComponent.animationName = animationName;
+            _armatureComponent.animation.Play();
         }
 
         /// <summary>
@@ -25,16 +23,16 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         /// </summary>
         public void StopAnimation()
         {
-            Visual.ArmatureComponent.animation.Stop();
+            _armatureComponent.animation.Stop();
         }
         
         /// <summary>
         /// Установить ссылку на визуальную часть
         /// </summary>
         /// <param name="visualContext"></param>
-        public virtual void SetVisual(MinerVisualContext visualContext)
+        public virtual void SetVisual(UnityArmatureComponent armatureComponent)
         {
-            Visual = visualContext;
+            _armatureComponent = armatureComponent;
         }
 
     }

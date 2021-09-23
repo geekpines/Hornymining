@@ -2,7 +2,7 @@
 using System.Linq;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.MetaGameplay.Roulette;
-using App.Scripts.Gameplay.UiControllers.Commmon;
+using App.Scripts.UiControllers.Commmon;
 using App.Scripts.UiViews.RouletteScreen;
 using UnityEngine;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
@@ -57,7 +57,7 @@ namespace App.Scripts.Gameplay.UiControllers.RouletteScreen
             foreach (var config in _configToView.Keys)
             {
                 var visual = Instantiate(config.Visual, _configToView[config].RootPosition);
-                _configToView[config].SetVisual(visual);
+                _configToView[config].SetVisual(visual.ArmatureComponent);
             }
         }
     }

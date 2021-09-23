@@ -13,10 +13,10 @@ namespace App.Scripts.Gameplay.MetaGameplay
     /// Добавляет игроку количество валюты за нажатие
     /// по майнеру
     /// </summary>
-    public class StoneInstaller : AbstractService<StoneInstaller>
+    public class StoneUiController : AbstractService<StoneUiController>
     {
         //todo: перенести эту логику в UiControllers
-        [SerializeField] private StoneController _stoneController;
+        [SerializeField] private StoneAnimationScore _stoneAnimationScore;
         private PlayerProfile _player;
         private CoinsChanceLevel _coinsChanceLevel;
 
@@ -29,7 +29,7 @@ namespace App.Scripts.Gameplay.MetaGameplay
 
         protected override void OnEnable()
         {
-            _stoneController.OnClicked += StoneClicked;
+            _stoneAnimationScore.OnClicked += StoneClicked;
             foreach (var coin in _player.Coins)
             {
                 coin.OnChangeCount += ChangeCoinValue;
@@ -39,7 +39,7 @@ namespace App.Scripts.Gameplay.MetaGameplay
         protected override void OnDisable()
         {
             base.OnDisable();
-            _stoneController.OnClicked -= StoneClicked;
+            _stoneAnimationScore.OnClicked -= StoneClicked;
             foreach (var coin in _player.Coins)
             {
                 coin.OnChangeCount -= ChangeCoinValue;
@@ -92,7 +92,7 @@ namespace App.Scripts.Gameplay.MetaGameplay
         private void ChangeCoinValue(CoinType id, float changeCount)
         {
             var coinIcon = CoinsInformation.GetCoinIcon(id);
-            _stoneController.ShowScoreLine(coinIcon, changeCount);
+            _stoneAnimationScore.ShowScoreLine(coinIcon, changeCount);
         }
     }
 }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Scripts.UiViews.GameScreen.MinersPanel;
+﻿using System.Collections.Generic;
 using App.Scripts.UiViews.RouletteScreen;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.EasingCore;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
 
-namespace App.Scripts.Gameplay.UiControllers.Commmon
+namespace App.Scripts.UiControllers.Commmon
 {
     public class SpecialScrollMinerView : FancyScrollView<ItemData, Context>
     {

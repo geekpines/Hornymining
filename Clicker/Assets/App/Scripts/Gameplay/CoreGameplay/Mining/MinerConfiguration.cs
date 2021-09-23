@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Scripts.Gameplay.CoreGameplay.Coins;
-using App.Scripts.UiViews.CoreGameplay.Mining;
 using UnityEngine;
 using UnityEngine.Localization;
 
