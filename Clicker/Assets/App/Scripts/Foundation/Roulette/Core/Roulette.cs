@@ -28,7 +28,7 @@ namespace App.Scripts.Foundation.Roulette.Core
         private int _sumWeight;
         
         /// <summary>
-        /// Сгенерировать предмет на основе конфигурации
+        /// Сгенерировать (сроллить) предмет на основе конфигурации
         /// (в ней указан список предметов и их веса)
         /// </summary>
         /// <returns></returns>

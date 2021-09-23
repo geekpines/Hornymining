@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.MetaGameplay.Roulette;
@@ -18,9 +19,24 @@ namespace App.Scripts.UiControllers.RouletteScreen
     {
         [SerializeField] private SpecialScrollMinerView _scrollMinerView = default;
         [SerializeField] private RollMinerController _rollMinerController;
+
+        [ShowInInspector, ReadOnly]
+        public readonly List<MinerSlotContext> Miners = new List<MinerSlotContext>();
         
-        private Dictionary<MinerConfiguration, RouletteSlotView> _configToView =
-            new Dictionary<MinerConfiguration, RouletteSlotView>();
+        [Serializable]
+        public class MinerSlotContext
+        {
+            [ShowInInspector, ReadOnly]
+            public MinerConfiguration Configuration { get; }
+            [ShowInInspector, ReadOnly]
+            public RouletteSlotView View { get; }
+
+            public MinerSlotContext(MinerConfiguration configuration, RouletteSlotView view)
+            {
+                Configuration = configuration;
+                View = view;
+            }
+        }
         
         private void Start()
         {
@@ -32,23 +48,18 @@ namespace App.Scripts.UiControllers.RouletteScreen
         /// </summary>
         public void InitializationRoulette()
         {
+            ClearAll();
             InitializeScroll();
-            InitializeDictionary();
             InitializeViews();
         }
 
-        private void InitializeDictionary()
+        private void ClearAll()
         {
-            _configToView.Clear();
-            for (int i = 0; i < _rollMinerController.Configuration.RouletteItems.Count; i++)
+            foreach (var miner in Miners)
             {
-                if (!_configToView.ContainsKey(_rollMinerController.Configuration.RouletteItems[i].Item))
-                {
-                    _configToView.Add(
-                        _rollMinerController.Configuration.RouletteItems[i].Item,
-                        _scrollMinerView.MinerViews[i]);
-                }
+                miner.View.DestroyVisual();
             }
+            Miners.Clear();
         }
 
         private void InitializeScroll()
@@ -62,10 +73,26 @@ namespace App.Scripts.UiControllers.RouletteScreen
 
         private void InitializeViews()
         {
-            foreach (var config in _configToView.Keys)
+            var j = 0;
+            for (int i = 0; i < _scrollMinerView.MinerViews.Count; i++)
             {
-                var visual = Instantiate(config.Visual, _configToView[config].RootPosition);
-                _configToView[config].SetVisual(visual.ArmatureComponent);
+                if (j >= _rollMinerController.Configuration.RouletteItems.Count)
+                    j = 0;
+
+                var visual = Instantiate(
+                    _rollMinerController.Configuration.RouletteItems[j].Item.Visual, 
+                    _scrollMinerView.MinerViews[i].RootPosition);
+                _scrollMinerView.MinerViews[i].SetVisual(
+                    visual.gameObject, 
+                    visual.ArmatureComponent, 
+                    _rollMinerController.Configuration.RouletteItems[j].Item.GetHashCode());
+                _scrollMinerView.MinerViews[i].SetInformation(
+                    _rollMinerController.Configuration.RouletteItems[j].Item.Name);
+                
+                Miners.Add(new MinerSlotContext(
+                    _rollMinerController.Configuration.RouletteItems[j].Item,
+                    _scrollMinerView.MinerViews[i]));
+                j++;
             }
         }
     }

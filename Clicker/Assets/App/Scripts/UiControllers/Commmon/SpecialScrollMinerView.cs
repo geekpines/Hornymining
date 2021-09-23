@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.UiViews.RouletteScreen;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
@@ -131,12 +132,18 @@ namespace App.Scripts.UiControllers.Commmon
         /// <summary>
         /// Прокрутить рулетку до определенной ячейки
         /// </summary>
-        /// <param name="position">На сколько позиций сдвинуть (минимум 30!)</param>
+        /// <param name="offSetCells">На сколько позиций сдвинуть (минимум 30!)</param>
         /// <param name="duration">Время, за которое сделать сдвиг</param>
         /// <param name="onScrolled"></param>
-        public void ScrollTo(int position, float duration, Action onScrolled)
+        public void ScrollTo(int offSetCells, float duration, Action onScrolled)
         {
-            StartCoroutine(ScrollingToIndex(position, duration, onScrolled));
+            StartCoroutine(ScrollingToIndex(offSetCells, duration, onScrolled));
+        }
+
+        public void ScrollTo(int offSetCells, float duration, Action onScrolled,
+            MinerConfiguration targetConfiguration)
+        {
+            StartCoroutine(ScrollingToIndex(offSetCells, duration, onScrolled, targetConfiguration));
         }
 
         /// <summary>
@@ -146,7 +153,8 @@ namespace App.Scripts.UiControllers.Commmon
         /// <param name="duration"></param>
         /// <param name="onScrolled"></param>
         /// <returns></returns>
-        private IEnumerator ScrollingToIndex(int position, float duration, Action onScrolled)
+        private IEnumerator ScrollingToIndex(int position, float duration, Action onScrolled,
+            MinerConfiguration targetConfiguration = null)
         {
             var targetPosition = currentPosition + position;
             Debug.Log($"CurrentPos: {currentPosition} / targetPos: {targetPosition}");
@@ -160,12 +168,23 @@ namespace App.Scripts.UiControllers.Commmon
 
             while (true)
             {
-                if (Math.Abs(currentPosition - targetPosition) < 0.1f)
+                if (targetConfiguration != null)
                 {
-                    _scrollerExtension.SetForceVelocityOff();
-                    StartCoroutine(WaitingEndScrolling(onScrolled));
-                    break;
+                    if (targetConfiguration.Name == CurrentSelected.Name)
+                    {
+                        //Debug.Log($"Докручено до целевого конфига: {targetConfiguration.Name}");
+                        _scrollerExtension.SetForceVelocityOff();
+                        StartCoroutine(WaitingEndScrolling(onScrolled));
+                        break;
+                    }
                 }
+                // else if (Math.Abs(currentPosition - targetPosition) < 0.1f)
+                // {
+                //     _scrollerExtension.SetForceVelocityOff();
+                //     StartCoroutine(WaitingEndScrolling(onScrolled));
+                //     break;
+                // }
+
                 Debug.Log("Докрутка");
                 _scrollerExtension.SetForceVelocity(1f);
                 yield return new WaitForSeconds(0.05f);

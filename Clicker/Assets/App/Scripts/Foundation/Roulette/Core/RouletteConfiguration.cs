@@ -32,7 +32,7 @@ namespace App.Scripts.Foundation.Roulette.Core
             where T : ScriptableObject
         {
             public T Item;
-            [Range(1, 1000)] public int Weight;
+            [Range(0, 1000)] public int Weight;
             [ReadOnly]
             public float ChancePercent;
             
@@ -52,6 +52,11 @@ namespace App.Scripts.Foundation.Roulette.Core
             }
             foreach (var lootItemData in RouletteItems)
             {
+                if (sumWeight == 0)
+                {
+                    Debug.LogError( "Суммарный шанс не может быть 0!");
+                    return;
+                }
                 lootItemData.SetChance((lootItemData.Weight * 100) / sumWeight);
             }
         }

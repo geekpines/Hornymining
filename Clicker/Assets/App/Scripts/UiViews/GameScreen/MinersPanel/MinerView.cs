@@ -1,4 +1,5 @@
 ﻿using DragonBones;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Transform = UnityEngine.Transform;
 
@@ -6,9 +7,12 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
 {
     public class MinerView : BaseUiElement<MinerView>
     {
+        [ReadOnly, ShowInInspector]
         public bool IsEmpty => _armatureComponent == null;
+        [ReadOnly, ShowInInspector]
         protected UnityArmatureComponent _armatureComponent;
-
+        public UnityArmatureComponent ArmatureComponent => _armatureComponent;
+        
         /// <summary>
         /// Воспроизвести анимацию
         /// </summary>
