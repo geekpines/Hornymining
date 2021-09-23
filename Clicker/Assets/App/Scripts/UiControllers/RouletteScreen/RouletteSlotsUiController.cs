@@ -4,6 +4,7 @@ using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.MetaGameplay.Roulette;
 using App.Scripts.UiControllers.Commmon;
 using App.Scripts.UiViews.RouletteScreen;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
 

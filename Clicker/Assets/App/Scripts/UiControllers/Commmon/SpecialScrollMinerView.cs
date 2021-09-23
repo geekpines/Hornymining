@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.UiViews.RouletteScreen;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
@@ -10,13 +9,32 @@ using Ease = UnityEngine.UI.Extensions.EasingCore.Ease;
 
 namespace App.Scripts.UiControllers.Commmon
 {
+    /// <summary>
+    /// Доработанный контроллер скроллинга ячеек
+    /// </summary>
     public class SpecialScrollMinerView : FancyScrollView<ItemData, Context>
     {
         [SerializeField] private ScrollerExtension _scrollerExtension = default;
         [SerializeField] private GameObject _cellPrefab = default;
+        
+        /// <summary>
+        /// Список визуальных ячеек
+        /// </summary>
         public List<RouletteSlotView> MinerViews { get; private set; } = new List<RouletteSlotView>();
+        
+        /// <summary>
+        /// Количество визуальных ячеек
+        /// </summary>
         public int Size => ItemsSource.Count;
+        
+        /// <summary>
+        /// Текущая выбранная ячейка
+        /// </summary>
         public RouletteSlotView CurrentSelected => MinerViews[CurrentSelectedIndex];
+        
+        /// <summary>
+        /// Индекс текущей выбранной ячейки
+        /// </summary>
         public int CurrentSelectedIndex
         {
             get
@@ -86,12 +104,20 @@ namespace App.Scripts.UiControllers.Commmon
             Refresh();
         }
 
+        /// <summary>
+        /// Обновить информацию о ячейках
+        /// </summary>
+        /// <param name="items"></param>
         public void UpdateData(IList<ItemData> items)
         {
             UpdateContents(items);
             _scrollerExtension.SetTotalCount(items.Count);
         }
 
+        /// <summary>
+        /// Выбрать ячейку по индексу
+        /// </summary>
+        /// <param name="index"></param>
         public void SelectCell(int index)
         {
             if (index < 0 || index >= ItemsSource.Count || index == Context.SelectedIndex)
