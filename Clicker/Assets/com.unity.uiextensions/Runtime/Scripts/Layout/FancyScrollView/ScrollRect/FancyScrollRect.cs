@@ -66,7 +66,7 @@ namespace UnityEngine.UI.Extensions
         /// </remarks>
         protected ScrollerExtension ScrollerExtension => _cachedScrollerExtension ?? (_cachedScrollerExtension = GetComponent<ScrollerExtension>());
 
-        float ScrollLength => 1f / Mathf.Max(cellInterval, 1e-2f) - 1f;
+        float ScrollLength => 1f / Mathf.Max(CellInterval, 1e-2f) - 1f;
 
         float ViewportLength => ScrollLength - reuseCellMarginCount * 2f;
 
@@ -259,14 +259,14 @@ namespace UnityEngine.UI.Extensions
 
         /// <summary>
         /// 指定された設定を実現するための
-        /// <see cref="FancyScrollView{TItemData,TContext}.cellInterval"/> と
+        /// <see cref="FancyScrollView{TItemData,TContext}.CellInterval"/> と
         /// <see cref="FancyScrollView{TItemData,TContext}.scrollOffset"/> を計算して適用します.
         /// </summary>
         protected void AdjustCellIntervalAndScrollOffset()
         {
             var totalSize = ScrollerExtension.ViewportSize + (CellSize + spacing) * (1f + reuseCellMarginCount * 2f);
-            cellInterval = (CellSize + spacing) / totalSize;
-            scrollOffset = cellInterval * (1f + reuseCellMarginCount);
+            CellInterval = (CellSize + spacing) / totalSize;
+            scrollOffset = CellInterval * (1f + reuseCellMarginCount);
         }
 
         protected virtual void OnValidate()

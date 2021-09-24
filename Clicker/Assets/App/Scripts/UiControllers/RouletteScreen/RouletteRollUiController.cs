@@ -25,13 +25,15 @@ namespace App.Scripts.UiControllers.RouletteScreen
         private const int PreferCountRollPerSecond = 10;
         
         [Title("Ссылки на контроллеры")]
-        [SerializeField] private RollMinerController _rollMinerController;
+        [SerializeField] private RollMinerSystem _rollMinerSystem;
         [SerializeField] private SpecialScrollMinerView _scrollMinerView = default;
         
         [Title("Элементы Ui")]
         [SerializeField] private Button _rollButton;
 
         private MinerConfiguration _reward;
+        public Action OnStartedRoll;
+        public Action OnFinishedRoll;
         
         private void OnEnable()
         {
@@ -45,10 +47,11 @@ namespace App.Scripts.UiControllers.RouletteScreen
         
         private void Roll()
         {
-            _reward = _rollMinerController.RollItem();
+            OnStartedRoll?.Invoke();
+            _reward = _rollMinerSystem.RollItem();
             Debug.Log($"Сгенерированная награда: {_reward.Name.GetLocalizedString()}");
             _scrollMinerView.ScrollTo(
-                CalculateCountRoll(_rollDuration, _rollMinerController.Configuration.RouletteItems.Count), 
+                CalculateCountRoll(_rollDuration, _rollMinerSystem.Configuration.RouletteItems.Count), 
                 _rollDuration, 
                 OnScrollFinished,
                 _reward);
@@ -62,9 +65,9 @@ namespace App.Scripts.UiControllers.RouletteScreen
 
         private void OnScrollFinished()
         {
-            Debug.Log("ROLL FINISH");
             //todo: пока нет системы грейдов
             _playerProfile.Miners.Add(_minerCreatorSystem.CreateMiner(_reward, 3));
+            OnFinishedRoll?.Invoke();
         }
     }
 }

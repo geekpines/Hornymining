@@ -19,7 +19,7 @@ namespace UnityEngine.UI.Extensions
         /// <summary>
         /// セル同士の間隔.
         /// </summary>
-        [SerializeField, Range(1e-2f, 1f)] protected float cellInterval = 0.2f;
+        [SerializeField, Range(1e-2f, 1f)] public float CellInterval = 0.2f;
 
         /// <summary>
         /// スクロール位置の基準.
@@ -117,11 +117,11 @@ namespace UnityEngine.UI.Extensions
 
             currentPosition = position;
 
-            var p = position - scrollOffset / cellInterval;
+            var p = position - scrollOffset / CellInterval;
             var firstIndex = Mathf.CeilToInt(p);
-            var firstPosition = (Mathf.Ceil(p) - p) * cellInterval;
+            var firstPosition = (Mathf.Ceil(p) - p) * CellInterval;
 
-            if (firstPosition + pool.Count * cellInterval < 1f)
+            if (firstPosition + pool.Count * CellInterval < 1f)
             {
                 ResizePool(firstPosition);
             }
@@ -134,7 +134,7 @@ namespace UnityEngine.UI.Extensions
             Debug.Assert(CellPrefab != null);
             Debug.Assert(cellContainer != null);
 
-            var addCount = Mathf.CeilToInt((1f - firstPosition) / cellInterval) - pool.Count;
+            var addCount = Mathf.CeilToInt((1f - firstPosition) / CellInterval) - pool.Count;
             for (var i = 0; i < addCount; i++)
             {
                 var cell = Instantiate(CellPrefab, cellContainer).GetComponent<FancyCell<TItemData, TContext>>();
@@ -159,7 +159,7 @@ namespace UnityEngine.UI.Extensions
             for (var i = 0; i < pool.Count; i++)
             {
                 var index = firstIndex + i;
-                var position = firstPosition + i * cellInterval;
+                var position = firstPosition + i * CellInterval;
                 var cell = pool[CircularIndex(index, pool.Count)];
 
                 if (loop)
@@ -193,11 +193,11 @@ namespace UnityEngine.UI.Extensions
         void LateUpdate()
         {
             if (cachedLoop != loop ||
-                cachedCellInterval != cellInterval ||
+                cachedCellInterval != CellInterval ||
                 cachedScrollOffset != scrollOffset)
             {
                 cachedLoop = loop;
-                cachedCellInterval = cellInterval;
+                cachedCellInterval = CellInterval;
                 cachedScrollOffset = scrollOffset;
 
                 UpdatePosition(currentPosition);

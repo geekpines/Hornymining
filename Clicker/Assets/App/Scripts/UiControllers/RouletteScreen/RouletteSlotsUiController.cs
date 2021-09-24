@@ -18,7 +18,7 @@ namespace App.Scripts.UiControllers.RouletteScreen
     public class RouletteSlotsUiController : MonoBehaviour
     {
         [SerializeField] private SpecialScrollMinerView _scrollMinerView = default;
-        [SerializeField] private RollMinerController _rollMinerController;
+        [SerializeField] private RollMinerSystem _rollMinerSystem;
 
         [ShowInInspector, ReadOnly]
         public readonly List<MinerSlotContext> Miners = new List<MinerSlotContext>();
@@ -64,7 +64,7 @@ namespace App.Scripts.UiControllers.RouletteScreen
 
         private void InitializeScroll()
         {
-            var items = Enumerable.Range(0, _rollMinerController.Configuration.RouletteItems.Count)
+            var items = Enumerable.Range(0, _rollMinerSystem.Configuration.RouletteItems.Count)
                 .Select(i => new ItemData())
                 .ToArray();
             _scrollMinerView.UpdateData(items);
@@ -76,21 +76,21 @@ namespace App.Scripts.UiControllers.RouletteScreen
             var j = 0;
             for (int i = 0; i < _scrollMinerView.MinerViews.Count; i++)
             {
-                if (j >= _rollMinerController.Configuration.RouletteItems.Count)
+                if (j >= _rollMinerSystem.Configuration.RouletteItems.Count)
                     j = 0;
 
                 var visual = Instantiate(
-                    _rollMinerController.Configuration.RouletteItems[j].Item.Visual, 
+                    _rollMinerSystem.Configuration.RouletteItems[j].Item.Visual, 
                     _scrollMinerView.MinerViews[i].RootPosition);
                 _scrollMinerView.MinerViews[i].SetVisual(
                     visual.gameObject, 
                     visual.ArmatureComponent, 
-                    _rollMinerController.Configuration.RouletteItems[j].Item.GetInstanceID());
+                    _rollMinerSystem.Configuration.RouletteItems[j].Item.GetInstanceID());
                 _scrollMinerView.MinerViews[i].SetInformation(
-                    _rollMinerController.Configuration.RouletteItems[j].Item.Name);
+                    _rollMinerSystem.Configuration.RouletteItems[j].Item.Name);
                 
                 Miners.Add(new MinerSlotContext(
-                    _rollMinerController.Configuration.RouletteItems[j].Item,
+                    _rollMinerSystem.Configuration.RouletteItems[j].Item,
                     _scrollMinerView.MinerViews[i]));
                 j++;
             }

@@ -179,7 +179,7 @@ namespace App.Scripts.UiControllers.Commmon
 
         private IEnumerator WaitingEndScrolling(Action onScrolled)
         {
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(1f);
             onScrolled?.Invoke();
         }
     }
