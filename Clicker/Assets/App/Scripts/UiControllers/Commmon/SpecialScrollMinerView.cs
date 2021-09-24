@@ -128,21 +128,17 @@ namespace App.Scripts.UiControllers.Commmon
             UpdateSelection(index);
             _scrollerExtension.ScrollTo(index, 0.35f, Ease.OutCubic);
         }
-
+        
         /// <summary>
         /// Прокрутить рулетку до определенной ячейки
         /// </summary>
-        /// <param name="offSetCells">На сколько позиций сдвинуть (минимум 30!)</param>
+        /// <param name="offSetCells">На сколько позиций сдвинуть (желательно более 15!)</param>
         /// <param name="duration">Время, за которое сделать сдвиг</param>
         /// <param name="onScrolled"></param>
-        public void ScrollTo(int offSetCells, float duration, Action onScrolled)
-        {
-            StartCoroutine(ScrollingToIndex(offSetCells, duration, onScrolled));
-        }
-
         public void ScrollTo(int offSetCells, float duration, Action onScrolled,
             MinerConfiguration targetConfiguration)
         {
+            Debug.Log($"Целевой конфиг в рулетке: {targetConfiguration.Name.GetLocalizedString()}");
             StartCoroutine(ScrollingToIndex(offSetCells, duration, onScrolled, targetConfiguration));
         }
 
@@ -154,11 +150,8 @@ namespace App.Scripts.UiControllers.Commmon
         /// <param name="onScrolled"></param>
         /// <returns></returns>
         private IEnumerator ScrollingToIndex(int position, float duration, Action onScrolled,
-            MinerConfiguration targetConfiguration = null)
+            MinerConfiguration targetConfiguration)
         {
-            var targetPosition = currentPosition + position;
-            Debug.Log($"CurrentPos: {currentPosition} / targetPos: {targetPosition}");
-            
             _scrollerExtension.SetForceVelocity((position - (10)) / duration);
             yield return new WaitForSeconds(duration);
             _scrollerExtension.SetForceVelocity(3.5f);
@@ -170,21 +163,14 @@ namespace App.Scripts.UiControllers.Commmon
             {
                 if (targetConfiguration != null)
                 {
-                    if (targetConfiguration.Name == CurrentSelected.Name)
+                    if (targetConfiguration.GetInstanceID() == CurrentSelected.ConfigHash)
                     {
-                        //Debug.Log($"Докручено до целевого конфига: {targetConfiguration.Name}");
+                        Debug.Log($"Докручено до: {targetConfiguration.Name.GetLocalizedString()}");
                         _scrollerExtension.SetForceVelocityOff();
                         StartCoroutine(WaitingEndScrolling(onScrolled));
                         break;
                     }
                 }
-                // else if (Math.Abs(currentPosition - targetPosition) < 0.1f)
-                // {
-                //     _scrollerExtension.SetForceVelocityOff();
-                //     StartCoroutine(WaitingEndScrolling(onScrolled));
-                //     break;
-                // }
-
                 Debug.Log("Докрутка");
                 _scrollerExtension.SetForceVelocity(1f);
                 yield return new WaitForSeconds(0.05f);

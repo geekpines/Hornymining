@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.Gameplay.MetaGameplay.Roulette;
 using App.Scripts.UiControllers.Commmon;
@@ -15,21 +17,21 @@ namespace App.Scripts.UiControllers.RouletteScreen
     /// </summary>
     public class RouletteRollUiController : MonoBehaviour
     {
-        [Inject]
-        private PlayerProfile _playerProfile;
+        [Inject] private PlayerProfile _playerProfile;
+        [Inject] private MinerCreatorSystem _minerCreatorSystem;
         
         [Title("Визуальные настройки ролла")]
-        [SerializeField, Tooltip("Количество полных оборотов перед тем, как выдать результат")]
-        private int _countRollLoop = 10;
-        [SerializeField] private float _rollTime = 5f;
-
+        [SerializeField, Range(3, 8)] private int _rollDuration = 5;
+        private const int PreferCountRollPerSecond = 10;
+        
         [Title("Ссылки на контроллеры")]
         [SerializeField] private RollMinerController _rollMinerController;
-        [SerializeField] private RouletteSlotsUiController _rouletteSlotsUiController;
         [SerializeField] private SpecialScrollMinerView _scrollMinerView = default;
         
         [Title("Элементы Ui")]
         [SerializeField] private Button _rollButton;
+
+        private MinerConfiguration _reward;
         
         private void OnEnable()
         {
@@ -43,18 +45,26 @@ namespace App.Scripts.UiControllers.RouletteScreen
         
         private void Roll()
         {
-            var reward = _rollMinerController.RollItem();
-            Debug.Log($"Целевой конфиг: {reward.Name} / Хэш: {reward.GetHashCode()}");
+            _reward = _rollMinerController.RollItem();
+            Debug.Log($"Сгенерированная награда: {_reward.Name.GetLocalizedString()}");
             _scrollMinerView.ScrollTo(
-                _countRollLoop * _rollMinerController.Configuration.RouletteItems.Count, 
-                _rollTime, 
+                CalculateCountRoll(_rollDuration, _rollMinerController.Configuration.RouletteItems.Count), 
+                _rollDuration, 
                 OnScrollFinished,
-                reward);
+                _reward);
+        }
+
+        private int CalculateCountRoll(int duration, int size)
+        {
+            var countRoll = duration * PreferCountRollPerSecond;
+            return countRoll + (countRoll % size);
         }
 
         private void OnScrollFinished()
         {
-            
+            Debug.Log("ROLL FINISH");
+            //todo: пока нет системы грейдов
+            _playerProfile.Miners.Add(_minerCreatorSystem.CreateMiner(_reward, 3));
         }
     }
 }

@@ -85,7 +85,7 @@ namespace App.Scripts.UiControllers.RouletteScreen
                 _scrollMinerView.MinerViews[i].SetVisual(
                     visual.gameObject, 
                     visual.ArmatureComponent, 
-                    _rollMinerController.Configuration.RouletteItems[j].Item.GetHashCode());
+                    _rollMinerController.Configuration.RouletteItems[j].Item.GetInstanceID());
                 _scrollMinerView.MinerViews[i].SetInformation(
                     _rollMinerController.Configuration.RouletteItems[j].Item.Name);
                 

@@ -79,6 +79,7 @@ Transform:
   m_Children:
   - {fileID: 128209361244581937}
   - {fileID: 3866179262753643324}
+  - {fileID: 6073132324535170249}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,6 +99,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 2474553201447605}
   - {fileID: 7605958924528897118}
+  - {fileID: 1393358518982747759}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 0
   _editorReflectionBakingCoverageMode: 0
@@ -163,3 +165,46 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ead3915d87da67543bef780c423a2442, type: 2}
   - {fileID: 11400000, guid: 656e61140e721e04993d486ef4746aa1, type: 2}
   - {fileID: 11400000, guid: 77b0d322e33842047a3d455b3d2f0254, type: 2}
+--- !u!1 &7790509463340480535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6073132324535170249}
+  - component: {fileID: 1393358518982747759}
+  m_Layer: 0
+  m_Name: Miners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6073132324535170249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7790509463340480535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4650248414114539063}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1393358518982747759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7790509463340480535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bd92fe240b4675bd271d444e0c11ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

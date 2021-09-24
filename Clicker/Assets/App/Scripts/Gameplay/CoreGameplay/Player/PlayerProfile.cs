@@ -5,11 +5,13 @@ using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using Assets.App.Scripts.Common;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace App.Scripts.Gameplay.CoreGameplay.Player
 {
-    [Serializable]
+    [Serializable, InfoBox("Информация о игроке. Своего рода синглтон." +
+                           "Именно через этот класс происходит запоминание всего прогресса.")]
     public class PlayerProfile : AbstractService<PlayerProfile>
     {
         public List<CoinData> Coins = new List<CoinData>();

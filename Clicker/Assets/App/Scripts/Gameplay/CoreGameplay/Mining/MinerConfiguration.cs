@@ -13,7 +13,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         public LocalizedString Description;
         public MinerVisualContext Visual;
         public List<MiningResource> MiningResources = new List<MiningResource>();
-        
+
         [Serializable]
         public class MiningResource
         {

@@ -1,6 +1,5 @@
 ﻿using App.Scripts.UiViews.GameScreen.MinersPanel;
 using DragonBones;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
