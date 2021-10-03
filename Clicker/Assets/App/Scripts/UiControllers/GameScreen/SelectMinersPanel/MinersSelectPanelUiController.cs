@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
-using App.Scripts.UiControllers.GameScreen.RightPanel.MinersListPanel;
+using App.Scripts.UiControllers.GameScreen.SelectMinersPanel.MinersListPanel;
 using App.Scripts.UiViews.GameScreen.MinersListPanel;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UI;
 
-namespace App.Scripts.UiControllers.GameScreen.RightPanel
+namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
 {
-    public class MinersRightPanelController : MonoBehaviour
+    /// <summary>
+    /// Контроллер отображения иконок майнеров на панели выбора.
+    /// </summary>
+    public class MinersSelectPanelUiController : MonoBehaviour
     {
         [SerializeField] private MiniMinerElementsPool _miniMinersPool;
         [SerializeField] private Button _infoButton;

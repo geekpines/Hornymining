@@ -10,11 +10,13 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
 {
     public class MiniMinerElementView : MonoBehaviour
     {
-        public LocalizeStringEvent NameEvent;
-        public LocalizedString Level;
-        public TextMeshProUGUI LevelText;
-        public Image Avatar;
-        public List<GameObject> Stars = new List<GameObject>();
+        private LocalizedString _name;
+        [SerializeField] private LocalizeStringEvent _nameEvent;
+        [SerializeField] private LocalizedString _level;
+        [SerializeField] private TextMeshProUGUI _levelText;
+        [SerializeField] private Image _avatar;
+        [SerializeField] private List<GameObject> _stars = new List<GameObject>();
+        [SerializeField] private GameObject _useMask;
         private int _currentLevel;
         [SerializeField, Range(1, 5)] private int _currentStars = 3;
         
@@ -28,24 +30,25 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         
         public void SetName(LocalizedString name)
         {
-            NameEvent.StringReference = name;
+            _name = name;
+            _nameEvent.StringReference = name;
         }
 
         public void SetLevel(int level)
         {
             _currentLevel = level;
-            LevelText.text = $"{Level.GetLocalizedString()} {_currentLevel}";
+            _levelText.text = $"{_level.GetLocalizedString()} {_currentLevel}";
         }
 
         public void RefreshText()
         {
-            NameEvent.RefreshString();
+            _nameEvent.RefreshString();
             SetLevel(_currentLevel);
         }
 
         public void SetIcon(Sprite newIcon)
         {
-            Avatar.sprite = newIcon;
+            _avatar.sprite = newIcon;
         }
 
         public void SetStars(int countStars)
@@ -55,13 +58,18 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             ResetStars();
             for (int i = 0; i < _currentStars; i++)
             {
-                Stars[i].SetActive(true);
+                _stars[i].SetActive(true);
             }
+        }
+
+        public void SetUseMask(bool state)
+        {
+            _useMask.SetActive(state);
         }
 
         private void ResetStars()
         {
-            foreach (var star in Stars)
+            foreach (var star in _stars)
             {
                 star.SetActive(false);
             }

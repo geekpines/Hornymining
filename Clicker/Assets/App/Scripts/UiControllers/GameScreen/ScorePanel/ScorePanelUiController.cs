@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using App.Scripts.UiViews.GameScreen.TopPanel;
 using UnityEngine;
 
 namespace App.Scripts.UiControllers.GameScreen
 {
-    public class TopPanelController : MonoBehaviour
+    /// <summary>
+    /// Контроллер панели добытых ресурсов
+    /// </summary>
+    public class ScorePanelUiController : MonoBehaviour
     {
         public Action<CoinInfoView> OnStartHolderCoin;
         public Action<CoinInfoView> OnEndHolderCoin;

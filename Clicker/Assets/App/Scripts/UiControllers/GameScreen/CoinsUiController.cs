@@ -14,7 +14,7 @@ namespace App.Scripts.UiControllers.GameScreen
     /// </summary>
     public class CoinsUiController : AbstractService<CoinsUiController>
     {
-        [SerializeField] private TopPanelController _topPanelController;
+        [SerializeField] private ScorePanelUiController _scorePanelUiController;
         private PlayerProfile _player;
         private Dictionary<CoinType, CoinInfoView> _iDtoCoinView = new Dictionary<CoinType, CoinInfoView>();
         
@@ -32,20 +32,20 @@ namespace App.Scripts.UiControllers.GameScreen
         private void ShowPlayerResources()
         {
             _iDtoCoinView.Clear();
-            if (_player.Coins.Count <= _topPanelController.CoinInfoViews.Count)
+            if (_player.Coins.Count <= _scorePanelUiController.CoinInfoViews.Count)
             {
-                for (int i = 0; i < _topPanelController.CoinInfoViews.Count; i++)
+                for (int i = 0; i < _scorePanelUiController.CoinInfoViews.Count; i++)
                 {
                     if (_player.Coins.Count >= i)
                     {
                         var coinInfo = CoinsInformation.GetCoinInformation(_player.Coins[i].ID);
-                        _topPanelController.CoinInfoViews[i].SetCoinInformation(
+                        _scorePanelUiController.CoinInfoViews[i].SetCoinInformation(
                             coinInfo.Icon, _player.Coins[i].Value, coinInfo.Description);
-                        _iDtoCoinView.Add(_player.Coins[i].ID, _topPanelController.CoinInfoViews[i]);
+                        _iDtoCoinView.Add(_player.Coins[i].ID, _scorePanelUiController.CoinInfoViews[i]);
                     }
                     else
                     {
-                        _topPanelController.CoinInfoViews[i].gameObject.SetActive(false);
+                        _scorePanelUiController.CoinInfoViews[i].gameObject.SetActive(false);
                     }
                 }
             }

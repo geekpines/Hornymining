@@ -10,8 +10,8 @@ using UnityEngine;
 
 namespace App.Scripts.Gameplay.CoreGameplay.Player
 {
-    [Serializable, InfoBox("Информация о игроке. Своего рода синглтон." +
-                           "Именно через этот класс происходит запоминание всего прогресса.")]
+    [Serializable, InfoBox("Информация о игроке. Для одиночной игры должен использоваться как " +
+                           "синглтон. Именно через этот класс происходит запоминание всего прогресса.")]
     public class PlayerProfile : AbstractService<PlayerProfile>
     {
         public List<CoinData> Coins = new List<CoinData>();
