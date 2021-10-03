@@ -494,7 +494,7 @@ namespace UnityEngine.UI.Extensions
                     position = Mathf.SmoothDamp(currentPosition, currentPosition + offset, ref velocity,
                         elasticity, Mathf.Infinity, deltaTime);
 
-                    if (Mathf.Abs(velocity) < 0.01f)
+                    if (Mathf.Abs(velocity) < 0.03f)
                     {
                         position = Mathf.Clamp(Mathf.RoundToInt(position), 0, totalCount - 1);
                         velocity = 0f;

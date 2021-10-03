@@ -20,11 +20,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         private int _currentLevel;
         [SerializeField, Range(1, 5)] private int _currentStars = 3;
         
-        public void SetMinerInformation(LocalizedString name, Sprite icon, int grade, int level = 1)
+        public void SetMinerInformation(LocalizedString name, Sprite icon, int grade = 3, int level = 1)
         {
             SetName(name);
             SetIcon(icon);
-            SetStars(grade);
+            //SetStars(grade);
             SetLevel(level);
         }
         
@@ -39,13 +39,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             _currentLevel = level;
             _levelText.text = $"{_level.GetLocalizedString()} {_currentLevel}";
         }
-
-        public void RefreshText()
-        {
-            _nameEvent.RefreshString();
-            SetLevel(_currentLevel);
-        }
-
+        
         public void SetIcon(Sprite newIcon)
         {
             _avatar.sprite = newIcon;
@@ -77,7 +71,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
 
         private void OnValidate()
         {
-            SetStars(_currentStars);
+            //SetStars(_currentStars);
         }
     }
 }

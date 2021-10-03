@@ -33,6 +33,7 @@ namespace App.Scripts.UiControllers.RouletteScreen
         
         [Title("Кнопки")] 
         [SerializeField] private Button _getRewardButton;
+        [SerializeField] private Button _backButton;
 
         private Vector2 _minerDefaultPosition;
         private float _cellIntervalDefault;
@@ -58,7 +59,10 @@ namespace App.Scripts.UiControllers.RouletteScreen
             _rollButton.transform.DOMove(new Vector3(
                 _rollButton.transform.position.x,
                 _rollButton.transform.position.y - _rollButtonHideDownPixels), _animationTime);
-
+            _backButton.transform.DOMove(new Vector3(
+                _backButton.transform.position.x,
+                _backButton.transform.position.y + _rollButtonHideDownPixels), _animationTime);
+            
             _rouletteScroll.DOScale(new Vector2(1.2f, 1.2f), _animationTime);
         }
 
@@ -90,6 +94,9 @@ namespace App.Scripts.UiControllers.RouletteScreen
             _rollButton.transform.DOMove(new Vector3(
                 _rollButton.transform.position.x,
                 _rollButton.transform.position.y + _rollButtonHideDownPixels), _animationTime);
+            _backButton.transform.DOMove(new Vector3(
+                _backButton.transform.position.x,
+                _backButton.transform.position.y - _rollButtonHideDownPixels), _animationTime);
             
             _rouletteScroll.DOScale(new Vector2(1f, 1f), _animationTime);
             _rouletteScroll.DOMove(_minerDefaultPosition, _animationTime);

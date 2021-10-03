@@ -10,16 +10,18 @@ namespace App.Scripts.UiControllers
         [SerializeField] private GameObject _rouletteScreen;
 
         [SerializeField] private Button _openRouletteScreenButton;
-
+        [SerializeField] private Button _backRouletteScreenButton;
 
         private void OnEnable()
         {
             _openRouletteScreenButton.onClick.AddListener(ShowRouletteScreen);
+            _backRouletteScreenButton.onClick.AddListener(ShowGameScreen);
         }
 
         private void OnDisable()
         {
             _openRouletteScreenButton.onClick.RemoveListener(ShowRouletteScreen);
+            _backRouletteScreenButton.onClick.RemoveListener(ShowGameScreen);
         }
 
         private void ShowRouletteScreen()
@@ -27,5 +29,12 @@ namespace App.Scripts.UiControllers
             _gameScreen.SetActive(false);
             _rouletteScreen.SetActive(true);
         }
+
+        private void ShowGameScreen()
+        {
+            _gameScreen.SetActive(true);
+            _rouletteScreen.SetActive(false);
+        }
+        
     }
 }

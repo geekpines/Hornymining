@@ -11,7 +11,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
              "конфига")]
     public class MinerCreatorSystem : AbstractService<MinerCreatorSystem>
     {
-        public Miner CreateMiner(MinerConfiguration configuration, int grade)
+        public Miner CreateMiner(MinerConfiguration configuration, int grade = 3)
         {
             return new Miner(configuration, grade);
         }

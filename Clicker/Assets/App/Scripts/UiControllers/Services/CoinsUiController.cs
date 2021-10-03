@@ -2,17 +2,17 @@
 using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using App.Scripts.UiControllers.GameScreen;
 using App.Scripts.UiViews.GameScreen.TopPanel;
-using Assets.App.Scripts.Common;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.UiControllers.GameScreen
+namespace App.Scripts.UiControllers.Services
 {
     /// <summary>
     /// Отображает инофрмацию о текущем количестве валюты у игрока
     /// </summary>
-    public class CoinsUiController : AbstractService<CoinsUiController>
+    public class CoinsUiController : MonoBehaviour
     {
         [SerializeField] private ScorePanelUiController _scorePanelUiController;
         private PlayerProfile _player;
@@ -55,7 +55,7 @@ namespace App.Scripts.UiControllers.GameScreen
             }
         }
         
-        protected override void OnEnable()
+        protected void OnEnable()
         {
             foreach (var coin in _player.Coins)
             {
@@ -63,9 +63,8 @@ namespace App.Scripts.UiControllers.GameScreen
             }
         }
 
-        protected override void OnDisable()
+        protected void OnDisable()
         {
-            base.OnDisable();
             foreach (var coin in _player.Coins)
             {
                 coin.OnChanged -= ChangeCoinValue;

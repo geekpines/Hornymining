@@ -1,49 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1415025073
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1415025074}
-  - component: {fileID: 1415025075}
-  m_Layer: 0
-  m_Name: CoinsInstaller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1415025074
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415025073}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1874587905801694540}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1415025075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415025073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fad442395a54ff7b66a3138b8f6668f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _topPanelController: {fileID: 0}
 --- !u!1 &1876339381
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1874587905801694540}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1876339383
 MonoBehaviour:
@@ -87,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf52d499850d48ac950f1761f944ceb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stoneController: {fileID: 0}
+  _stoneAnimationScore: {fileID: 0}
 --- !u!1 &903172060530088304
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1032144945958351145, guid: 0b7ab36165235ba4f8bd9798efdd746e, type: 3}
       propertyPath: _monoInstallers.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1032144945958351145, guid: 0b7ab36165235ba4f8bd9798efdd746e, type: 3}
       propertyPath: _monoInstallers.Array.data[0]
@@ -193,7 +149,7 @@ PrefabInstance:
     - target: {fileID: 1032144945958351145, guid: 0b7ab36165235ba4f8bd9798efdd746e, type: 3}
       propertyPath: _monoInstallers.Array.data[1]
       value: 
-      objectReference: {fileID: 1415025075}
+      objectReference: {fileID: 1876339383}
     - target: {fileID: 1032144945958351145, guid: 0b7ab36165235ba4f8bd9798efdd746e, type: 3}
       propertyPath: _monoInstallers.Array.data[2]
       value: 

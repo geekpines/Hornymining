@@ -64,8 +64,7 @@ namespace App.Scripts.UiControllers.RouletteScreen
 
         private void OnScrollFinished()
         {
-            //todo: пока нет системы грейдов
-            _playerProfile.Miners.Add(_minerCreatorSystem.CreateMiner(_reward, 3));
+            _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(_reward));
             OnFinishedRoll?.Invoke();
         }
     }
