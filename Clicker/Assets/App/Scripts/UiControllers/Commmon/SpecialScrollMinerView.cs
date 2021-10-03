@@ -106,13 +106,24 @@ namespace App.Scripts.UiControllers.Commmon
         }
 
         /// <summary>
+        /// Установить возможность расширяемости пула
+        /// </summary>
+        /// <param name="state"></param>
+        public void SetResizeble(bool state)
+        {
+            isResizeble = state;
+        }
+
+        /// <summary>
         /// Обновить информацию о ячейках
         /// </summary>
         /// <param name="items"></param>
         public void UpdateData(IList<ItemData> items)
         {
+            SetResizeble(true);
             UpdateContents(items);
             _scrollerExtension.SetTotalCount(items.Count);
+            SetResizeble(false);
         }
 
         /// <summary>
@@ -143,7 +154,8 @@ namespace App.Scripts.UiControllers.Commmon
         }
 
         /// <summary>
-        /// Корутина содержит всю логику скроллинга (включая остановку).
+        /// Корутина содержит всю логику скроллинга до определенной
+        /// ячейки (конфига) включая остановку.
         /// </summary>
         /// <param name="position"></param>
         /// <param name="duration"></param>
@@ -173,7 +185,7 @@ namespace App.Scripts.UiControllers.Commmon
                 }
                 Debug.Log("Докрутка");
                 _scrollerExtension.SetForceVelocity(1f);
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.02f);
             }
         }
 

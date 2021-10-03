@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.Gameplay.MetaGameplay.Roulette;
@@ -12,7 +11,7 @@ using Zenject;
 namespace App.Scripts.UiControllers.RouletteScreen
 {
     /// <summary>
-    /// Отвечает логику роллинга (визуальную часть) и
+    /// Отвечает за логику роллинга (визуальную часть) и
     /// получение награды игроком
     /// </summary>
     public class RouletteRollUiController : MonoBehaviour

@@ -53,6 +53,12 @@ namespace UnityEngine.UI.Extensions
         protected bool initialized;
 
         /// <summary>
+        /// Нужно ли изменять размер пула в зависимости
+        /// от расстояния ячеек
+        /// </summary>
+        protected bool isResizeble = true;
+        
+        /// <summary>
         /// 現在のスクロール位置.
         /// </summary>
         protected float currentPosition;
@@ -134,6 +140,9 @@ namespace UnityEngine.UI.Extensions
             Debug.Assert(CellPrefab != null);
             Debug.Assert(cellContainer != null);
 
+            if (!isResizeble)
+                return;
+            
             var addCount = Mathf.CeilToInt((1f - firstPosition) / CellInterval) - pool.Count;
             for (var i = 0; i < addCount; i++)
             {

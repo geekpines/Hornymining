@@ -1,5 +1,4 @@
-﻿using System;
-using App.Scripts.UiControllers.Commmon;
+﻿using App.Scripts.UiControllers.Commmon;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -14,8 +13,11 @@ namespace App.Scripts.UiControllers.RouletteScreen
     public class RouletteScreenAnimation : MonoBehaviour
     {
         [Title("Настройки анимации")] 
-        [SerializeField] private int _rollButtonHideDownPixels = 300;
-        [SerializeField] private float _animationTime = 1f;
+        [SerializeField, Tooltip("Насколько пикселей опустить кнопку ролла после нажатия на нее")] 
+        private int _rollButtonHideDownPixels = 300;
+        
+        [SerializeField, Tooltip("Базовое время анимации между состояниями")] 
+        private float _animationTime = 1f;
         
         [Title("Контроллеры")]
         [SerializeField] private RouletteRollUiController _rouletteRollUiController;
