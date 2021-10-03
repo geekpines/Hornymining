@@ -17,6 +17,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         [SerializeField] private Image _avatar;
         [SerializeField] private List<GameObject> _stars = new List<GameObject>();
         [SerializeField] private GameObject _useMask;
+        [SerializeField] private GameObject _lockMask;
         private int _currentLevel;
         [SerializeField, Range(1, 5)] private int _currentStars = 3;
         
@@ -24,7 +25,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         {
             SetName(name);
             SetIcon(icon);
-            //SetStars(grade);
+            SetStars(grade); //временно отключены в префабе
             SetLevel(level);
         }
         
@@ -61,6 +62,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             _useMask.SetActive(state);
         }
 
+        public void SetLockMask(bool state)
+        {
+            _lockMask.SetActive(state);
+        }
+
         private void ResetStars()
         {
             foreach (var star in _stars)
@@ -71,7 +77,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
 
         private void OnValidate()
         {
-            //SetStars(_currentStars);
+            SetStars(_currentStars);
         }
     }
 }
