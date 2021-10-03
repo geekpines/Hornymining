@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel.MinersListPanel;
 using App.Scripts.UiViews.GameScreen.MinersListPanel;
 using Sirenix.OdinInspector;
@@ -13,6 +14,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
     /// </summary>
     public class MinersSelectPanelUiController : MonoBehaviour
     {
+        public event Action<int> OnMinerClicked;
         [SerializeField] private MiniMinerElementsPool _miniMinersPool;
         [SerializeField] private Button _infoButton;
         [SerializeField] private Button _minersButton;
@@ -47,8 +49,10 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             var minerView = _miniMinersPool.Spawn();
             minerView.SetMinerInformation(
                 data.Name,
-                data.Icon);
+                data.Icon,
+                data.ID);
             IdtoViews.Add(data.ID, minerView);
+            minerView.OnMinerClicked += MinerClicked;
         }
         
         /// <summary>
@@ -78,6 +82,19 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         }
 
         /// <summary>
+        /// Установить флаг блокировки
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="state"></param>
+        public void SetMinerLock(int id, bool state)
+        {
+            if (IdtoViews.ContainsKey(id))
+            {
+                IdtoViews[id].SetLockMask(state);
+            }
+        }
+
+        /// <summary>
         /// Скрыть майнера на панели
         /// </summary>
         /// <param name="id"></param>
@@ -86,6 +103,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             if (IdtoViews.ContainsKey(id))
             {
                 _miniMinersPool.Despawn(IdtoViews[id]);
+                IdtoViews[id].OnMinerClicked -= MinerClicked;
                 IdtoViews.Remove(id);
             }
         }
@@ -107,16 +125,45 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             }
         }
 
+        /// <summary>
+        /// Проверить, активен ли майнер
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool CheckActiveMiner(int id)
+        {
+            if (IdtoViews.ContainsKey(id))
+            {
+                return IdtoViews[id].IsActive;
+            }
+            return false;
+        }
+
         private void OnEnable()
         {
             _infoButton.onClick.AddListener(ShowInfo);
             _minersButton.onClick.AddListener(ShowMiners);
+            
+            foreach (var viewsKey in IdtoViews.Keys)
+            {
+                IdtoViews[viewsKey].OnMinerClicked += MinerClicked;
+            }
         }
 
         private void OnDisable()
         {
             _infoButton.onClick.RemoveListener(ShowInfo);
             _minersButton.onClick.RemoveListener(ShowMiners);
+
+            foreach (var viewsKey in IdtoViews.Keys)
+            {
+                IdtoViews[viewsKey].OnMinerClicked -= MinerClicked;
+            }
+        }
+
+        private void MinerClicked(MiniMinerElementView sender)
+        {
+            OnMinerClicked?.Invoke(sender.ID);
         }
 
         private void ShowMiners()

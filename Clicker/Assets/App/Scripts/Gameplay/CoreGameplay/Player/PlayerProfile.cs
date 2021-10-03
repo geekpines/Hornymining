@@ -14,6 +14,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
                            "синглтон. Именно через этот класс происходит запоминание всего прогресса.")]
     public class PlayerProfile : AbstractService<PlayerProfile>
     {
+        //todo: вынести в конфиг
+        private const int MaxActiveMinersCount = 5; 
         public event Action<Miner> OnAllMinersCountChanged;
         public event Action<Miner> OnActiveMinersCountChanged;
         [field:SerializeField] 
@@ -53,6 +55,9 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         /// <param name="miner"></param>
         public void AddActiveMiner(Miner miner)
         {
+            if (_activeMiners.Count >= MaxActiveMinersCount)
+                return;
+            
             if (_allMiners.Contains(miner) &&
                 !_activeMiners.Contains(miner))
             {

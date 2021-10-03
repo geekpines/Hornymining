@@ -2,12 +2,11 @@
 using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Coins.Upgrades;
 using App.Scripts.Gameplay.CoreGameplay.Player;
-using App.Scripts.UiControllers.GameScreen;
 using Assets.App.Scripts.Common;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.UiControllers.Services
+namespace App.Scripts.UiControllers.GameScreen
 {
     /// <summary>
     /// Добавляет игроку количество валюты за нажатие

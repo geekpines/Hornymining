@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using App.Scripts.UiViews.GameScreen.TopPanel;
 using UnityEngine;
 
-namespace App.Scripts.UiControllers.GameScreen
+namespace App.Scripts.UiControllers.GameScreen.ScorePanel
 {
     /// <summary>
     /// Контроллер панели добытых ресурсов

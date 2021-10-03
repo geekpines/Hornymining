@@ -8,7 +8,7 @@ using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
 using Ease = UnityEngine.UI.Extensions.EasingCore.Ease;
 
-namespace App.Scripts.UiControllers.Commmon
+namespace App.Scripts.UiControllers.RouletteScreen
 {
     /// <summary>
     /// Доработанный контроллер скроллинга ячеек

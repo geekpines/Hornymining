@@ -2,7 +2,6 @@
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.Gameplay.MetaGameplay.Roulette;
-using App.Scripts.UiControllers.Commmon;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;

@@ -4,6 +4,7 @@
  * Licensed under MIT (https://github.com/setchi/FancyScrollView/blob/master/LICENSE)
  */
 
+using System;
 using System.Collections.Generic;
 using UnityEngine.UI.Extensions.EasingCore;
 
@@ -13,6 +14,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
     {
         [SerializeField] ScrollerExtension _scrollerExtension = default;
         [SerializeField] GameObject cellPrefab = default;
+        public List<GameObject> Elements { get; private set; } = new List<GameObject>();
 
         protected override GameObject CellPrefab => cellPrefab;
 
@@ -35,6 +37,24 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
 
             Context.SelectedIndex = index;
             Refresh();
+        }
+
+        private void OnEnable()
+        {
+            OnSpawned += AddElement;
+        }
+
+        private void OnDisable()
+        {
+            OnSpawned -= AddElement;
+        }
+
+        private void AddElement(GameObject element)
+        {
+            if (!Elements.Contains(element))
+            {
+                Elements.Add(element);
+            }
         }
 
         public void UpdateData(IList<ItemData> items)

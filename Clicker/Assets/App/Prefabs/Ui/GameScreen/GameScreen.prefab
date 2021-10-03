@@ -485,10 +485,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1960925697514117569}
   - component: {fileID: 1960925697514117573}
-  - component: {fileID: 1960925697514117572}
+  - component: {fileID: 8664711509465304410}
+  - component: {fileID: 5879637830724725995}
   - component: {fileID: 1960925697514117575}
   - component: {fileID: 1960925697514117574}
-  - component: {fileID: 1960925697514117562}
   m_Layer: 5
   m_Name: MinersScroll
   m_TagString: Untagged
@@ -525,36 +525,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960925697514117568}
   m_CullTransparentMesh: 0
---- !u!114 &1960925697514117572
+--- !u!114 &8664711509465304410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960925697514117568}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: ae5923ef4f534cf6b23450546fc3cbd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  _activeSlots: {fileID: 5879637830724725995}
+  _selectPanel: {fileID: 1960925698081208970}
+--- !u!114 &5879637830724725995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960925697514117568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aea682a2301478d83185bb158b45455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrollMinerView: {fileID: 1960925697514117574}
 --- !u!114 &1960925697514117575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,19 +596,6 @@ MonoBehaviour:
   cellContainer: {fileID: 1960925696347496126}
   _scrollerExtension: {fileID: 1960925697514117575}
   cellPrefab: {fileID: 4330371535589643424, guid: 50e5e208607712b4a8ea1b41a4b15987, type: 3}
---- !u!114 &1960925697514117562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960925697514117568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86f38031132bf4305b5a8388155d5a93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  extendedScrollView: {fileID: 1960925697514117574}
 --- !u!1 &1960925697634551160
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +813,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8683192852414255606, guid: 9eec5b7b93fea04418400e69d0969c5e, type: 3}
   m_PrefabInstance: {fileID: 7185069261013674849}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1960925698081208970 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8683192852414255595, guid: 9eec5b7b93fea04418400e69d0969c5e, type: 3}
+  m_PrefabInstance: {fileID: 7185069261013674849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f705d12f44c8450592d8037d85e5a850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8349142779020075516
 PrefabInstance:
   m_ObjectHideFlags: 0

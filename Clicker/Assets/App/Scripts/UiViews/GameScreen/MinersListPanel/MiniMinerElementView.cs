@@ -10,6 +10,8 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
 {
     public class MiniMinerElementView : MonoBehaviour
     {
+        public event Action<MiniMinerElementView> OnMinerClicked;
+        
         private LocalizedString _name;
         [SerializeField] private LocalizeStringEvent _nameEvent;
         [SerializeField] private LocalizedString _level;
@@ -20,11 +22,15 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         [SerializeField] private GameObject _lockMask;
         private int _currentLevel;
         [SerializeField, Range(1, 5)] private int _currentStars = 3;
-        
-        public void SetMinerInformation(LocalizedString name, Sprite icon, int grade = 3, int level = 1)
+        [SerializeField] private Button _minerButton;
+        public int ID { get; private set; }
+        public bool IsActive { get; private set; }
+
+        public void SetMinerInformation(LocalizedString name, Sprite icon, int id, int grade = 3, int level = 1)
         {
             SetName(name);
             SetIcon(icon);
+            ID = id;
             SetStars(grade); //временно отключены в префабе
             SetLevel(level);
         }
@@ -60,6 +66,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         public void SetUseMask(bool state)
         {
             _useMask.SetActive(state);
+            IsActive = state;
         }
 
         public void SetLockMask(bool state)
@@ -73,6 +80,21 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             {
                 star.SetActive(false);
             }
+        }
+
+        private void OnEnable()
+        {
+            _minerButton.onClick.AddListener(MinerClicked);
+        }
+
+        private void OnDisable()
+        {
+            _minerButton.onClick.RemoveListener(MinerClicked);
+        }
+
+        private void MinerClicked()
+        {
+            OnMinerClicked?.Invoke(this);
         }
 
         private void OnValidate()

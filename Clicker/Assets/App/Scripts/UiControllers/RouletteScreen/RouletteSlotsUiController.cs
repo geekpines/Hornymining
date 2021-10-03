@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.MetaGameplay.Roulette;
-using App.Scripts.UiControllers.Commmon;
 using App.Scripts.UiViews.RouletteScreen;
 using Sirenix.OdinInspector;
 using UnityEngine;

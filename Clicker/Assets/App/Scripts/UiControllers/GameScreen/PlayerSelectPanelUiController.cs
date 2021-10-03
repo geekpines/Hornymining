@@ -1,12 +1,10 @@
-﻿using System;
-using App.Scripts.Gameplay.CoreGameplay.Mining;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.UiControllers.Services
+namespace App.Scripts.UiControllers.GameScreen
 {
     public class PlayerSelectPanelUiController : MonoBehaviour
     {
