@@ -6,7 +6,7 @@ namespace App.Scripts.UiControllers.GameScreen
 {
     public class StoneAnimationScore : MonoBehaviour
     {
-        public Action OnClicked;
+        public event Action OnClicked;
         [SerializeField] private StoneCoinsView _stoneCoinsView;
 
         public void ShowScoreLine(Sprite icon, float score)
