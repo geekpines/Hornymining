@@ -29,6 +29,7 @@ Transform:
   m_Children:
   - {fileID: 3439082070264920374}
   - {fileID: 1141274058968806749}
+  - {fileID: 8805738621397633931}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,7 +76,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fad442395a54ff7b66a3138b8f6668f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scorePanelUiController: {fileID: 0}
+  _coinsPanelInformation: {fileID: 0}
+--- !u!1 &6020496335918799871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8805738621397633931}
+  - component: {fileID: 8190414442596080024}
+  m_Layer: 0
+  m_Name: Mining
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8805738621397633931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6020496335918799871}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2341585185595185776}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8190414442596080024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6020496335918799871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1807464151e94aceb90da1bc2d2cf0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minerActiveSlotsUiController: {fileID: 0}
 --- !u!1 &8913483926185525401
 GameObject:
   m_ObjectHideFlags: 0

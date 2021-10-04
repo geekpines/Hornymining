@@ -1,4 +1,4 @@
-﻿using App.Scripts.UiViews.Common.MinerLevelUnlock;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining.MinerLevelUnlock;
 using DragonBones;
 using UnityEngine;
 

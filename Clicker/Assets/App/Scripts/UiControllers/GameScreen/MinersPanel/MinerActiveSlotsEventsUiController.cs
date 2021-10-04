@@ -17,7 +17,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] private MinerActiveSlotsUiController _activeSlots;
         [SerializeField] private MinersSelectPanelUiController _selectPanel;
         private PlayerProfile _playerProfile;
-        
         private MinerSlotView _selectedActiveView;
 
         [Inject]

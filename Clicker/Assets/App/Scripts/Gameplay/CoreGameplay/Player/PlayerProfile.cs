@@ -24,9 +24,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         [SerializeField] private List<Miner> _allMiners = new List<Miner>();
         private List<Miner> _activeMiners = new List<Miner>();
 
-        [field: SerializeField]
-        public int CoinLevelChance { get; private set; }
-
+        private Dictionary<CoinType, CoinData> CoinTypeToData = new Dictionary<CoinType, CoinData>();
+        
         private void Awake()
         {
             //todo: добавить сохранение
@@ -37,6 +36,14 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
                 temp.Add(new CoinData(coin.ID));
             }
             Coins = temp.OrderBy(data => data.ID).ToList();
+
+            foreach (var coinData in Coins)
+            {
+                if (!CoinTypeToData.ContainsKey(coinData.ID))
+                {
+                    CoinTypeToData.Add(coinData.ID, coinData);
+                }
+            }
         }
 
         /// <summary>
@@ -99,24 +106,55 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             }
         }
 
+        /// <summary>
+        /// Получить список всех майнеров игрока
+        /// </summary>
+        /// <returns></returns>
         public List<Miner> GetAllMiners()
         {
             return _allMiners;
         }
-
+        
+        /// <summary>
+        /// Получить список всех активных майнеров игрока
+        /// </summary>
+        /// <returns></returns>
         public List<Miner> GetActiveMiners()
         {
             return _activeMiners;
         }
 
+        /// <summary>
+        /// Проверить, есть ли майнер у игрока
+        /// </summary>
+        /// <param name="miner"></param>
+        /// <returns></returns>
         public bool ContainsMiner(Miner miner)
         {
             return _allMiners.Contains(miner);
         }
 
+        /// <summary>
+        /// Проверить, есть ли активный майнер у игрока
+        /// </summary>
+        /// <param name="miner"></param>
+        /// <returns></returns>
         public bool ContainsActiveMiner(Miner miner)
         {
             return _activeMiners.Contains(miner);
+        }
+
+        /// <summary>
+        /// Добавить валюту опредленного типа игроку
+        /// </summary>
+        /// <param name="resourceId">Тип валюты</param>
+        /// <param name="addScore">Количество добавленной валюты</param>
+        public void AddScore(CoinType resourceId, float addScore)
+        {
+            if (CoinTypeToData.ContainsKey(resourceId))
+            {
+                CoinTypeToData[resourceId].Add(addScore);
+            }
         }
 
     }

@@ -1,13 +1,12 @@
-﻿using System;
-using App.Scripts.Utilities.Extensions;
+﻿using App.Scripts.Utilities.Extensions;
 using App.Scripts.Utilities.MonoBehaviours;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace App.Scripts.UiViews.GameScreen
+namespace App.Scripts.UiViews.GameScreen.Stone
 {
-    public class StoneCoinsView : BaseUiElement<StoneCoinsView>
+    public class MiningCoinsView : BaseUiElement<MiningCoinsView>
     {
         [Header("Score Line")]
         [SerializeField] private ScoreLineView _lineViewPrefab;

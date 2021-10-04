@@ -1,8 +1,8 @@
 ﻿using System;
+using App.Scripts.UiViews.GameScreen.Stone;
 using DragonBones;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 using Transform = UnityEngine.Transform;
 
 namespace App.Scripts.UiViews.GameScreen.MinersPanel
@@ -11,8 +11,10 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
     {
         public event Action<MinerSlotView> OnMinerClicked;
 
-        [SerializeField] public GameObject MinerContent;
-        [SerializeField] public GameObject LockMask;
+        [SerializeField] private GameObject _minerContent;
+        [SerializeField] private GameObject _lockMask;
+        [SerializeField] private MiningCoinsView _miningCoinsView;
+        
         [field: SerializeField] public Transform RootPosition { get; private set; }
         public GameObject RootVisual { get; private set; }
         public int Id { get; private set; }
@@ -29,8 +31,8 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         /// <param name="state"></param>
         public void SetLock(bool state)
         {
-            MinerContent.SetActive(!state);
-            LockMask.SetActive(state);
+            _minerContent.SetActive(!state);
+            _lockMask.SetActive(state);
             IsLocked = state;
         }
         
@@ -49,11 +51,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
             }
         }
 
-        public void GenerateIdWithoutVisual()
+        public void ShowScoreLine(Sprite icon, float score)
         {
-            Id = Random.Range(Int32.MinValue, Int32.MaxValue);
+            _miningCoinsView.ShowScoreAnimation(icon, score);
         }
-
+        
         private void OnEnable()
         {
             _minerButton.onClick.AddListener(MinerClicked);

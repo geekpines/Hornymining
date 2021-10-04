@@ -20,7 +20,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] private ExtendedScrollView _scrollMinerView;
         private PlayerProfile _playerProfile;
 
-        private List<MinerSlotView> _minerSlotViews = new List<MinerSlotView>();
+        public List<MinerSlotView> MinersSlotView { get; private set; } = new List<MinerSlotView>();
         private Dictionary<int, MinerSlotView> IdToView = new Dictionary<int, MinerSlotView>();
         
         [Inject]
@@ -29,7 +29,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             _playerProfile = playerProfile;
         }
 
-        private void Start()
+        private void Awake()
         {
             //todo: добавить в систему инициализации
             InitializationActiveMiners();
@@ -58,7 +58,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 if (element.TryGetComponent(out MinerSlotView view))
                 {
-                    _minerSlotViews.Add(view);
+                    MinersSlotView.Add(view);
                     view.OnMinerClicked += MinerClicked;
                 }
             }
@@ -66,12 +66,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         
         private void InitializeContent()
         {
-            if (_minerSlotViews.Count > 0)
+            if (MinersSlotView.Count > 0)
             {
                 var allActiveMiners = _playerProfile.GetActiveMiners();
                 for (int i = 0; i < allActiveMiners.Count; i++)
                 {
-                    AddMinerToSlot(_minerSlotViews[i], allActiveMiners[i]);
+                    AddMinerToSlot(MinersSlotView[i], allActiveMiners[i]);
                 }
             }
         }
@@ -131,7 +131,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void OnDestroy()
         {
-            foreach (var minerSlotView in _minerSlotViews)
+            foreach (var minerSlotView in MinersSlotView)
             {
                 minerSlotView.OnMinerClicked -= MinerClicked;
             }

@@ -155,6 +155,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &87564125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5879637830724725995, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
+  m_PrefabInstance: {fileID: 1960925697786300666}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aea682a2301478d83185bb158b45455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &117973113 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1960925697668343939, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
@@ -174,17 +185,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 922f0968b38142b3819ba4bf010e3fc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &397222283 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1960925697406003569, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
-  m_PrefabInstance: {fileID: 1960925697786300666}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc9b84ba1b214a0d8de9529abdf79052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519420028
@@ -324,6 +324,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2474553201447605, guid: 6d91992285df44140baa313b86387b9f, type: 3}
       propertyPath: _allMiners.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474553201447605, guid: 6d91992285df44140baa313b86387b9f, type: 3}
+      propertyPath: <Coins>k__BackingField.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2474553201447605, guid: 6d91992285df44140baa313b86387b9f, type: 3}
@@ -1099,6 +1103,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1591034541}
     m_Modifications:
     - target: {fileID: 1456114613243146138, guid: e0786d8bd593462489d73192cde09720, type: 3}
+      propertyPath: _coinsPanelInformation
+      value: 
+      objectReference: {fileID: 120344367}
+    - target: {fileID: 1456114613243146138, guid: e0786d8bd593462489d73192cde09720, type: 3}
       propertyPath: _scorePanelUiController
       value: 
       objectReference: {fileID: 120344367}
@@ -1154,6 +1162,10 @@ PrefabInstance:
       propertyPath: _minersSelectPanel
       value: 
       objectReference: {fileID: 1937910220}
+    - target: {fileID: 8190414442596080024, guid: e0786d8bd593462489d73192cde09720, type: 3}
+      propertyPath: _minerActiveSlotsUiController
+      value: 
+      objectReference: {fileID: 87564125}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0786d8bd593462489d73192cde09720, type: 3}
 --- !u!4 &2811581424331097977 stripped
@@ -1448,7 +1460,7 @@ PrefabInstance:
     - target: {fileID: 1876339383, guid: 35e2c4a6c4053e0488352205ac5c7b28, type: 3}
       propertyPath: _stoneAnimationScore
       value: 
-      objectReference: {fileID: 397222283}
+      objectReference: {fileID: 0}
     - target: {fileID: 1874587905801694538, guid: 35e2c4a6c4053e0488352205ac5c7b28, type: 3}
       propertyPath: m_Name
       value: SceneContext

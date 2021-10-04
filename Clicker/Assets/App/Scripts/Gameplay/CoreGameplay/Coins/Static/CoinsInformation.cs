@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace App.Scripts.Gameplay.CoreGameplay.Coins.Static
 {
-    public class CoinsInformation
+    public static class CoinsInformation
     {
         public static float GetBonus(Coin from, Coin to)
         {

@@ -1,0 +1,82 @@
+﻿using System.Collections.Generic;
+using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
+using App.Scripts.Gameplay.CoreGameplay.Mining;
+using App.Scripts.Gameplay.CoreGameplay.Player;
+using App.Scripts.UiViews.GameScreen.MinersPanel;
+using UnityEngine;
+using Zenject;
+
+namespace App.Scripts.UiControllers.GameScreen.MinersPanel
+{
+    public class MiningUiController : MonoBehaviour
+    {
+        //todo: логику класса в идеале нужно перенести в Gameplay
+
+        [SerializeField] private MinerActiveSlotsUiController _minerActiveSlotsUiController;
+        private PlayerProfile _playerProfile;
+
+        private Dictionary<int, Miner> IdToMiner = new Dictionary<int, Miner>();
+
+        [Inject]
+        private void Construct(PlayerProfile playerProfile)
+        {
+            _playerProfile = playerProfile;
+        }
+
+        private void Start()
+        {
+            foreach (var miner in _playerProfile.GetActiveMiners())
+            {
+                if (!IdToMiner.ContainsKey(miner.ID))
+                {
+                    IdToMiner.Add(miner.ID, miner);
+                }
+            }
+        }
+
+        private void OnEnable()
+        {
+            foreach (var slotView in _minerActiveSlotsUiController.MinersSlotView)
+            {
+                slotView.OnMinerClicked += MinerClicked;
+            }
+            _playerProfile.OnActiveMinersCountChanged += MinerChanged;
+        }
+
+        private void OnDisable()
+        {
+            foreach (var slotView in _minerActiveSlotsUiController.MinersSlotView)
+            {
+                slotView.OnMinerClicked -= MinerClicked;
+            }
+            _playerProfile.OnActiveMinersCountChanged -= MinerChanged;
+        }
+
+        private void MinerClicked(MinerSlotView view)
+        {
+            if (IdToMiner.ContainsKey(view.Id))
+            {
+                var miner = IdToMiner[view.Id];
+                foreach (var miningResource in miner.Configuration.Levels[miner.Level].MiningResources)
+                {
+                    _playerProfile.AddScore(miningResource.Type, miningResource.Value);
+                    view.ShowScoreLine(
+                        CoinsInformation.GetCoinIcon(miningResource.Type),
+                        miningResource.Value);
+                }
+            }
+        }
+
+        private void MinerChanged(Miner miner)
+        {
+            if (IdToMiner.ContainsKey(miner.ID))
+            {
+                IdToMiner.Remove(miner.ID);
+            }
+            else
+            {
+                IdToMiner.Add(miner.ID, miner);
+            }
+        }
+    }
+}

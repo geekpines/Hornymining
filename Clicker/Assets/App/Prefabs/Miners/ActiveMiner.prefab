@@ -329,12 +329,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2139901efce04d38a35e53d15f9bcb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinerContent: {fileID: 3907140066764016781}
-  LockMask: {fileID: 3952927009037585067}
+  _minerContent: {fileID: 3907140066764016781}
+  _lockMask: {fileID: 3952927009037585067}
+  _miningCoinsView: {fileID: 8145013947319925548}
   <RootPosition>k__BackingField: {fileID: 3028967054874420569}
   <IsLocked>k__BackingField: 0
   _minerButton: {fileID: 1746422024504276809}
   _lockButton: {fileID: 2771994013164249649}
+--- !u!1 &5487342924908412124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6500825001140166834}
+  - component: {fileID: 8145013947319925548}
+  m_Layer: 5
+  m_Name: MiningCoins
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6500825001140166834
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487342924908412124}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5577636657312925741}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8145013947319925548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487342924908412124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283c7c516958493c83e102121a7af9a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lineViewPrefab: {fileID: 321109391264212784, guid: 110deab973d8afb49ace663274e800fa, type: 3}
+  _lifeTime: 0.8
+  _movingDistance: 80
+  _poolSize: 20
+  _spawnPosition: {fileID: 6500825001140166834}
+  _randomSpawnRangeX: 90
+  _randomSpawnRangeY: 50
 --- !u!1001 &4331988313247683298
 PrefabInstance:
   m_ObjectHideFlags: 0
