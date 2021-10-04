@@ -143,22 +143,13 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         {
             _infoButton.onClick.AddListener(ShowInfo);
             _minersButton.onClick.AddListener(ShowMiners);
-            
-            foreach (var viewsKey in IdtoViews.Keys)
-            {
-                IdtoViews[viewsKey].OnMinerClicked += MinerClicked;
-            }
         }
 
         private void OnDisable()
         {
             _infoButton.onClick.RemoveListener(ShowInfo);
             _minersButton.onClick.RemoveListener(ShowMiners);
-
-            foreach (var viewsKey in IdtoViews.Keys)
-            {
-                IdtoViews[viewsKey].OnMinerClicked -= MinerClicked;
-            }
+            RemoveAllMinersInformation();
         }
 
         private void MinerClicked(MiniMinerElementView sender)

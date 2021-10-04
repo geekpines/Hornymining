@@ -2,6 +2,7 @@
 using DragonBones;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 using Transform = UnityEngine.Transform;
 
 namespace App.Scripts.UiViews.GameScreen.MinersPanel
@@ -14,10 +15,9 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         [SerializeField] public GameObject LockMask;
         [field: SerializeField] public Transform RootPosition { get; private set; }
         public GameObject RootVisual { get; private set; }
-        public int ConfigHash { get; private set; }
+        public int Id { get; private set; }
 
-        [field: SerializeField]
-        public bool IsLocked { get; private set; }
+        [field: SerializeField] public bool IsLocked { get; private set; } = true;
 
         [Header("Кнопки")] 
         [SerializeField] private Button _minerButton;
@@ -37,7 +37,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         public void SetVisual(GameObject rootObject, UnityArmatureComponent armatureComponent, int configHash)
         {
             RootVisual = rootObject;
-            ConfigHash = configHash;
+            Id = configHash;
             SetVisual(armatureComponent);
         }
         
@@ -47,6 +47,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
             {
                 Destroy(RootVisual);
             }
+        }
+
+        public void GenerateIdWithoutVisual()
+        {
+            Id = Random.Range(Int32.MinValue, Int32.MaxValue);
         }
 
         private void OnEnable()

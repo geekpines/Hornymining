@@ -2,6 +2,7 @@
 using System.Linq;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
+using App.Scripts.UiViews.GameScreen.MinersPanel;
 using UnityEngine;
 using Zenject;
 
@@ -17,8 +18,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] private MinersSelectPanelUiController _selectPanel;
         private PlayerProfile _playerProfile;
         
-        private bool _selectFreeActiveSlot;
-        private int _selectedId;
+        private MinerSlotView _selectedActiveView;
 
         [Inject]
         private void Construct(PlayerProfile playerProfile)
@@ -41,34 +41,36 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private void MiniViewClick(int id)
         {
             Debug.Log($"MiniViewClick: {id}");
-            if (_selectFreeActiveSlot &&
+            if (_selectedActiveView != null &&
                 !_selectPanel.CheckActiveMiner(id))
             {
                 var miner = _playerProfile.GetAllMiners().FirstOrDefault(item => item.ID == id);
                 if (miner != null)
                 {
-                    _activeSlots.AddMinerToSlot(_activeSlots.GetView(id), miner);
+                    _playerProfile.AddActiveMiner(miner);
+                    _activeSlots.AddMinerToSlot(_selectedActiveView, miner);
+                    _activeSlots.SetLock(id, false);
                     _selectPanel.SetMinerActive(id, true);
                 }
                 ResetLockActiveMinersOnSelectPanel();
             }
         }
 
-        private void ActiveClick(int id)
+        private void ActiveClick(MinerSlotView view)
         {
-            Debug.Log($"ActiveClick: {id}");
-            if (_activeSlots.GetAvailableSlot(id))
+            Debug.Log($"ActiveClick: {view.name} / Id: {view.Id}");
+            if (view.IsEmpty)
             {
-                _selectFreeActiveSlot = true;
-
+                _selectedActiveView = view;
                 foreach (var activeMiner in _playerProfile.GetActiveMiners())
                 {
                     _selectPanel.SetMinerLock(activeMiner.ID, true);
+                    Debug.Log("Выберите майнера для того, чтобы сделать его активным");
                 }
             }
             else
             {
-                _selectFreeActiveSlot = false;
+                _selectedActiveView = null;
                 ResetLockActiveMinersOnSelectPanel();
             }
         }

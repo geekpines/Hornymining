@@ -11,12 +11,12 @@ using Zenject;
 namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 {
     /// <summary>
-    /// Класс управляет ячейками майнеров на сцене. Отвечает за отображение
-    /// контента.
+    /// Класс управляет ячейками майнеров на сцене (активные майнеры).
+    /// Отвечает за отображение контента.
     /// </summary>
     public class MinerActiveSlotsUiController : MonoBehaviour
     {
-        public event Action<int> OnMinerSelected;
+        public event Action<MinerSlotView> OnMinerSelected;
         [SerializeField] private ExtendedScrollView _scrollMinerView;
         private PlayerProfile _playerProfile;
 
@@ -78,12 +78,13 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         
         private void MinerClicked(MinerSlotView sender)
         {
-            OnMinerSelected?.Invoke(sender.ConfigHash);
+            OnMinerSelected?.Invoke(sender);
         }
 
         public void AddMinerToSlot(MinerSlotView viewSlot, Miner miner)
         {
-            if (viewSlot.IsEmpty)
+            if (viewSlot != null &&
+                viewSlot.IsEmpty)
             {
                 if (IdToView.ContainsKey(miner.ID))
                     return;
@@ -120,13 +121,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             return null;
         }
 
-        public bool GetAvailableSlot(int id)
+        public void SetLock(int id, bool state)
         {
             if (IdToView.ContainsKey(id))
             {
-                return IdToView[id].IsLocked;
+                IdToView[id].SetLock(state);
             }
-            return true;
         }
 
         private void OnDestroy()
