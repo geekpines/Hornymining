@@ -62,10 +62,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             if (view.IsEmpty)
             {
                 _selectedActiveView = view;
+                Debug.Log("Выберите майнера для того, чтобы сделать его активным");
                 foreach (var activeMiner in _playerProfile.GetActiveMiners())
                 {
                     _selectPanel.SetMinerLock(activeMiner.ID, true);
-                    Debug.Log("Выберите майнера для того, чтобы сделать его активным");
                 }
             }
             else

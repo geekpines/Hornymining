@@ -28,8 +28,38 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 1
-  Icon: {fileID: 21300000, guid: 50ffb15f677c89e438d6fa31efb93d8b, type: 3}
   Visual: {fileID: 815591976294307459, guid: cbaad6cbd8fbf9c4b8938e72471decc7, type: 3}
-  MiningResources:
-  - Type: 0
-    Value: 1
+  Levels:
+  - PeriodAutoMining: 5
+    MiningResources:
+    - Type: 0
+      Value: 1
+    UpgradeCost: []
+  - PeriodAutoMining: 4
+    MiningResources:
+    - Type: 0
+      Value: 2
+    UpgradeCost:
+    - Type: 0
+      Value: 20
+  - PeriodAutoMining: 3
+    MiningResources:
+    - Type: 0
+      Value: 3
+    UpgradeCost:
+    - Type: 0
+      Value: 20
+  - PeriodAutoMining: 2
+    MiningResources:
+    - Type: 0
+      Value: 4
+    UpgradeCost:
+    - Type: 0
+      Value: 20
+  - PeriodAutoMining: 1
+    MiningResources:
+    - Type: 0
+      Value: 5
+    UpgradeCost:
+    - Type: 0
+      Value: 20
