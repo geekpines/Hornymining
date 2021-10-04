@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel.MinersListPanel;
 using App.Scripts.UiViews.GameScreen.MinersListPanel;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UI;

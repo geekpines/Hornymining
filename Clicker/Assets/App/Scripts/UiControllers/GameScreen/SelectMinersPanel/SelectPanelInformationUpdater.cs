@@ -1,12 +1,15 @@
 ﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
-using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.UiControllers.GameScreen
+namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
 {
-    public class PlayerSelectPanelUiController : MonoBehaviour
+    /// <summary>
+    /// Обновляет информацию о майнерах на панели выбора в
+    /// зависимости от изменений информации у игрока
+    /// </summary>
+    public class SelectPanelInformationUpdater : MonoBehaviour
     {
         [SerializeField] private MinersSelectPanelUiController _minersSelectPanel;
         private PlayerProfile _playerProfile;

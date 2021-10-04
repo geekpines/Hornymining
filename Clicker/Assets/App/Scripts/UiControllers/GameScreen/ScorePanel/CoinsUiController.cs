@@ -2,19 +2,18 @@
 using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Player;
-using App.Scripts.UiControllers.GameScreen.ScorePanel;
 using App.Scripts.UiViews.GameScreen.TopPanel;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.UiControllers.GameScreen
+namespace App.Scripts.UiControllers.GameScreen.ScorePanel
 {
     /// <summary>
     /// Отображает инофрмацию о текущем количестве валюты у игрока
     /// </summary>
     public class CoinsUiController : MonoBehaviour
     {
-        [SerializeField] private ScorePanelUiController _scorePanelUiController;
+        [SerializeField] private CoinsPanelInformation _coinsPanelInformation;
         private PlayerProfile _player;
         private Dictionary<CoinType, CoinInfoView> _iDtoCoinView = new Dictionary<CoinType, CoinInfoView>();
         
@@ -32,20 +31,20 @@ namespace App.Scripts.UiControllers.GameScreen
         private void ShowPlayerResources()
         {
             _iDtoCoinView.Clear();
-            if (_player.Coins.Count <= _scorePanelUiController.CoinInfoViews.Count)
+            if (_player.Coins.Count <= _coinsPanelInformation.CoinInfoViews.Count)
             {
-                for (int i = 0; i < _scorePanelUiController.CoinInfoViews.Count; i++)
+                for (int i = 0; i < _coinsPanelInformation.CoinInfoViews.Count; i++)
                 {
                     if (_player.Coins.Count >= i)
                     {
                         var coinInfo = CoinsInformation.GetCoinInformation(_player.Coins[i].ID);
-                        _scorePanelUiController.CoinInfoViews[i].SetCoinInformation(
+                        _coinsPanelInformation.CoinInfoViews[i].SetCoinInformation(
                             coinInfo.Icon, _player.Coins[i].Value, coinInfo.Description);
-                        _iDtoCoinView.Add(_player.Coins[i].ID, _scorePanelUiController.CoinInfoViews[i]);
+                        _iDtoCoinView.Add(_player.Coins[i].ID, _coinsPanelInformation.CoinInfoViews[i]);
                     }
                     else
                     {
-                        _scorePanelUiController.CoinInfoViews[i].gameObject.SetActive(false);
+                        _coinsPanelInformation.CoinInfoViews[i].gameObject.SetActive(false);
                     }
                 }
             }

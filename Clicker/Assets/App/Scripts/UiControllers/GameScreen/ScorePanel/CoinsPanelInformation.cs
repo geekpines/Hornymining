@@ -8,7 +8,7 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
     /// <summary>
     /// Контроллер панели добытых ресурсов
     /// </summary>
-    public class ScorePanelUiController : MonoBehaviour
+    public class CoinsPanelInformation : MonoBehaviour
     {
         public Action<CoinInfoView> OnStartHolderCoin;
         public Action<CoinInfoView> OnEndHolderCoin;
