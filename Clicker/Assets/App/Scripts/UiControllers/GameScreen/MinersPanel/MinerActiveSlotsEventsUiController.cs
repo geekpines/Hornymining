@@ -45,10 +45,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 var miner = _playerProfile.GetAllMiners().FirstOrDefault(item => item.ID == id);
                 if (miner != null)
                 {
-                    _playerProfile.AddActiveMiner(miner);
                     _activeSlots.AddMinerToSlot(_selectedActiveView, miner);
                     _activeSlots.SetLock(id, false);
                     _selectPanel.SetMinerActive(id, true);
+                    _playerProfile.AddActiveMiner(miner);
                 }
                 ResetLockActiveMinersOnSelectPanel();
             }

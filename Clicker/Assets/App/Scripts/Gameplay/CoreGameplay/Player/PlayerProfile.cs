@@ -18,6 +18,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         private const int MaxActiveMinersCount = 5; 
         public event Action<Miner> OnAllMinersCountChanged;
         public event Action<Miner> OnActiveMinersCountChanged;
+        public event Action<Miner> OnMinerLevelUp; 
+        
         [field:SerializeField] 
         public List<CoinData> Coins { get; private set; } = new List<CoinData>();
         
@@ -53,9 +55,10 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         public void AddMiner(Miner miner)
         {
             _allMiners.Add(miner);
+            miner.OnLevelUp += MinerLevelUp;
             OnAllMinersCountChanged?.Invoke(miner);
         }
-
+        
         /// <summary>
         /// Добавить активного майнера игроку
         /// </summary>
@@ -96,6 +99,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             if (_allMiners.Contains(miner))
             {
                 _allMiners.Remove(miner);
+                miner.OnLevelUp -= MinerLevelUp;
                 OnAllMinersCountChanged?.Invoke(miner);
             }
 
@@ -157,5 +161,10 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             }
         }
 
+        private void MinerLevelUp(Miner sender)
+        {
+            OnMinerLevelUp?.Invoke(sender);
+        }
+        
     }
 }

@@ -46,12 +46,27 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         [field: SerializeField]
         public int Grade { get; private set; }
 
+        /// <summary>
+        /// Событие повышения уровня
+        /// </summary>
+        public event Action<Miner> OnLevelUp; 
+        
         public Miner(MinerConfiguration configuration, int grade)
         {
             Configuration = configuration;
             Grade = grade;
             Level = 0;
             ID = UniqueID.Generate();
+        }
+
+        public void LevelUp()
+        {
+            //todo: добавить проверку на максимальный уровень через общий конфиг
+            if (Level < 5)
+            {
+                Level++;
+                OnLevelUp?.Invoke(this);
+            }
         }
     }
 }
