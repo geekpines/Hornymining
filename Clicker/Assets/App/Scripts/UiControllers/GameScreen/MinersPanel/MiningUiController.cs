@@ -25,6 +25,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void Start()
         {
+            //будет актуально, когда будет сделано сохранение/загрузка прогресса
             foreach (var miner in _playerProfile.GetActiveMiners())
             {
                 if (!IdToMiner.ContainsKey(miner.ID))
@@ -36,19 +37,13 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void OnEnable()
         {
-            foreach (var slotView in _minerActiveSlotsUiController.MinersSlotView)
-            {
-                slotView.OnMinerClicked += MinerClicked;
-            }
+            _minerActiveSlotsUiController.OnMinerSelected += MinerClicked;
             _playerProfile.OnActiveMinersCountChanged += MinerChanged;
         }
 
         private void OnDisable()
         {
-            foreach (var slotView in _minerActiveSlotsUiController.MinersSlotView)
-            {
-                slotView.OnMinerClicked -= MinerClicked;
-            }
+            _minerActiveSlotsUiController.OnMinerSelected -= MinerClicked;
             _playerProfile.OnActiveMinersCountChanged -= MinerChanged;
         }
 
