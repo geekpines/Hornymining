@@ -15,10 +15,6 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
     {
         public event Action<int> OnMinerClicked;
         [SerializeField] private MiniMinerElementsPool _miniMinersPool;
-        [SerializeField] private Button _infoButton;
-        [SerializeField] private Button _minersButton;
-        [SerializeField] private GameObject _panelInfo;
-        [SerializeField] private GameObject _panelMinersList;
         private Dictionary<int, MiniMinerElementView> IdtoViews = new Dictionary<int, MiniMinerElementView>();
         
         public class MiniMinerElementData
@@ -138,34 +134,10 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             return false;
         }
 
-        private void OnEnable()
-        {
-            _infoButton.onClick.AddListener(ShowInfo);
-            _minersButton.onClick.AddListener(ShowMiners);
-        }
-
-        private void OnDisable()
-        {
-            _infoButton.onClick.RemoveListener(ShowInfo);
-            _minersButton.onClick.RemoveListener(ShowMiners);
-            RemoveAllMinersInformation();
-        }
-
         private void MinerClicked(MiniMinerElementView sender)
         {
             OnMinerClicked?.Invoke(sender.ID);
         }
 
-        private void ShowMiners()
-        {
-            _panelMinersList.SetActive(true);
-            _panelInfo.SetActive(false);
-        }
-
-        private void ShowInfo()
-        {
-            _panelMinersList.SetActive(false);
-            _panelInfo.SetActive(true);
-        }
     }
 }
