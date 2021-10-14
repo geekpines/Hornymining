@@ -36,8 +36,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         [SerializeField] private ForceRebuildLayout _rebuildLayout;
         
         private Miner _currentMiner;
-        private MinerVisualContext _visualMiner;
         private bool _isShow;
+
+        private Dictionary<Miner, MinerVisualContext> MinerToVisual = new Dictionary<Miner, MinerVisualContext>();
         
         [Inject]
         private void Construct(PlayerProfile playerProfile)
@@ -73,11 +74,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         private bool TryInitializationMinerVisual(int idMiner)
         {
-            if (_visualMiner != null)
-            {
-                Destroy(_visualMiner);
-            }
-
             _currentMiner = _playerProfile.GetAllMiners().FirstOrDefault(targetMiner => targetMiner.ID == idMiner);
             if (_currentMiner == null)
             {
@@ -85,10 +81,15 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 return false;
             }
 
-            _visualMiner = Instantiate(
-                _currentMiner.Configuration.Visual, 
-                _minerRootPosition);
-            _currentMiner.OnLevelUp += _visualMiner.UnlockComponents.SetUnlockLevel;
+            if (!MinerToVisual.ContainsKey(_currentMiner))
+            {
+                var visualContext = Instantiate(
+                    _currentMiner.Configuration.Visual, 
+                    _minerRootPosition);
+                _currentMiner.OnLevelUp += visualContext.UnlockComponents.SetUnlockLevel;
+                MinerToVisual.Add(_currentMiner, visualContext);
+            }
+            MinerToVisual[_currentMiner].gameObject.SetActive(true);
             return true;
         }
         
@@ -112,13 +113,13 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             {
                 _levelUpButton.gameObject.SetActive(false);
             }
-            _rebuildLayout.Run();
+            _rebuildLayout.ForceRebuild();
         }
 
         private void HideInformation()
         {
             _isShow = false;
-            DestroyMinerVisual();
+            HideMiner();
             OnHidePanel?.Invoke();
         }
 
@@ -165,9 +166,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             }
         }
 
-        private void DestroyMinerVisual()
+        private void HideMiner()
         {
-            Destroy(_visualMiner.gameObject);
+            if (MinerToVisual.ContainsKey(_currentMiner))
+            {
+                MinerToVisual[_currentMiner].gameObject.SetActive(false);
+            }
         }
 
     }

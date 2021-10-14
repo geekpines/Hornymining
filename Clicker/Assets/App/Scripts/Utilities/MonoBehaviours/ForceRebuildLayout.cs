@@ -31,6 +31,11 @@ namespace App.Scripts.Utilities.MonoBehaviours
             }
         }
 
+        public void ForceRebuild()
+        {
+            Rebuild();
+        }
+
         private void Rebuild()
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(LayoutRoot);
