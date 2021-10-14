@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel.MinersListPanel;
 using App.Scripts.UiViews.GameScreen.MinersListPanel;
+using App.Scripts.UiViews.GameScreen.MinersPanel;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
     public class MinersSelectPanelUiController : MonoBehaviour
     {
         public event Action<int> OnMinerClicked;
+        public event Action<int> OnMinerDoubleClicked;
         [SerializeField] private MiniMinerElementsPool _miniMinersPool;
         private Dictionary<int, MiniMinerElementView> IdtoViews = new Dictionary<int, MiniMinerElementView>();
         
@@ -48,6 +50,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
                 data.ID);
             IdtoViews.Add(data.ID, minerView);
             minerView.OnMinerClicked += MinerClicked;
+            minerView.OnMinerDoubleClicked += MinerDoubleClicked;
         }
         
         /// <summary>
@@ -99,6 +102,8 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             {
                 _miniMinersPool.Despawn(IdtoViews[id]);
                 IdtoViews[id].OnMinerClicked -= MinerClicked;
+                IdtoViews[id].OnMinerDoubleClicked -= MinerDoubleClicked;
+                
                 IdtoViews.Remove(id);
             }
         }
@@ -137,6 +142,11 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         private void MinerClicked(MiniMinerElementView sender)
         {
             OnMinerClicked?.Invoke(sender.ID);
+        }
+
+        private void MinerDoubleClicked(MiniMinerElementView sender)
+        {
+            OnMinerDoubleClicked?.Invoke(sender.ID);
         }
 
     }

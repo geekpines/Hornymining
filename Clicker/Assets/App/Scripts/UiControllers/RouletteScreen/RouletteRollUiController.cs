@@ -30,8 +30,8 @@ namespace App.Scripts.UiControllers.RouletteScreen
         [SerializeField] private Button _rollButton;
 
         private MinerConfiguration _reward;
-        public Action OnStartedRoll;
-        public Action OnFinishedRoll;
+        public event Action OnStartedRoll;
+        public event Action OnFinishedRoll;
         
         private void OnEnable()
         {

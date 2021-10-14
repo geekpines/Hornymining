@@ -38,7 +38,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void MiniViewClick(int id)
         {
-            Debug.Log($"MiniViewClick: {id}");
             if (_selectedActiveView != null &&
                 !_selectPanel.CheckActiveMiner(id))
             {

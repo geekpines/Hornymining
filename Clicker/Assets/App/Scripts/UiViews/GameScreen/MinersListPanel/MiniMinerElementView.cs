@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,8 +12,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
     public class MiniMinerElementView : MonoBehaviour
     {
         public event Action<MiniMinerElementView> OnMinerClicked;
+        public event Action<MiniMinerElementView> OnMinerDoubleClicked;
         
         private LocalizedString _name;
+        private float _timeForDoubleClick = 0.5f;
+        private bool _isReadyForDoubleClick;
         [SerializeField] private LocalizeStringEvent _nameEvent;
         [SerializeField] private LocalizedString _level;
         [SerializeField] private TextMeshProUGUI _levelText;
@@ -95,11 +99,28 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         private void MinerClicked()
         {
             OnMinerClicked?.Invoke(this);
+            if (_isReadyForDoubleClick)
+            {
+                OnMinerDoubleClicked?.Invoke(this);
+                _isReadyForDoubleClick = false;
+                StopAllCoroutines();
+            }
+            else
+            {
+                StartCoroutine(WaitingDoubleClick());
+            }
         }
 
         private void OnValidate()
         {
             SetStars(_currentStars);
+        }
+
+        private IEnumerator WaitingDoubleClick()
+        {
+            _isReadyForDoubleClick = true;
+            yield return new WaitForSeconds(_timeForDoubleClick);
+            _isReadyForDoubleClick = false;
         }
     }
 }
