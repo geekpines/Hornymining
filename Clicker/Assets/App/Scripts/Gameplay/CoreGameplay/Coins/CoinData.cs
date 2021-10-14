@@ -12,7 +12,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins
         /// <summary>
         /// Значение изменено
         /// </summary>
-        public Action<CoinType, float> OnChanged;
+        public Action<CoinType, float> OnAddValue;
         public Action<CoinType, float> OnChangeCount;
         
         /// <summary>
@@ -37,10 +37,17 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins
         /// <param name="addValue"></param>
         public void Add(float addValue)
         {
-            OnChangeCount?.Invoke(ID, addValue);
-            Value += addValue;
-            Value = Mathf.Max(Value, 0);
-            OnChanged?.Invoke(ID, Value);
+            Set(Value + addValue);
+            OnAddValue?.Invoke(ID, Value);
+        }
+
+        /// <summary>
+        /// Вычесть из текущего количества
+        /// </summary>
+        /// <param name="subValue"></param>
+        public void Decrease(float subValue)
+        {
+            Set(Value - subValue);
         }
 
         /// <summary>
@@ -49,7 +56,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins
         /// <param name="value"></param>
         public void Set(float value)
         {
-            Value = value;
+            Value = Mathf.Max(value, 0);
+            OnChangeCount?.Invoke(ID, Value);
         }
     }
 }

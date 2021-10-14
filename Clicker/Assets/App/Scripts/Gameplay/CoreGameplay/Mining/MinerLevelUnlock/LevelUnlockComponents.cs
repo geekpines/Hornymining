@@ -24,6 +24,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining.MinerLevelUnlock
                 return;
             }
 
+            CurrentLevel = levelUnlockIndex;
             ResetAllLevels();
             for (int i = 0; i < levelUnlockIndex + 1; i++)
             {

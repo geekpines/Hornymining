@@ -5,6 +5,7 @@ using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
+using App.Scripts.Utilities.MonoBehaviours;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,6 +32,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         [Title("Элементы панели")]
         [SerializeField] private Transform _minerRootPosition;
+
+        [SerializeField] private ForceRebuildLayout _rebuildLayout;
+        
+        private Miner _currentMiner;
         private MinerVisualContext _visualMiner;
         private bool _isShow;
         
@@ -44,12 +49,14 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         {
             _minersSelectPanelUiController.OnMinerDoubleClicked += ShowInformation;
             _backButton.onClick.AddListener(HideInformation);
+            _levelUpButton.onClick.AddListener(LevelUpClicked);
         }
 
         private void OnDisable()
         {
             _minersSelectPanelUiController.OnMinerDoubleClicked -= ShowInformation;
             _backButton.onClick.RemoveListener(HideInformation);
+            _levelUpButton.onClick.RemoveListener(LevelUpClicked);
         }
 
         private void ShowInformation(int idMiner)
@@ -71,28 +78,28 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 Destroy(_visualMiner);
             }
 
-            var miner = _playerProfile.GetAllMiners().FirstOrDefault(targetMiner => targetMiner.ID == idMiner);
-            if (miner == null)
+            _currentMiner = _playerProfile.GetAllMiners().FirstOrDefault(targetMiner => targetMiner.ID == idMiner);
+            if (_currentMiner == null)
             {
                 Debug.LogError("Попытка отобразить майнера, ID которого нет у игрока");
                 return false;
             }
 
             _visualMiner = Instantiate(
-                miner.Configuration.Visual, 
+                _currentMiner.Configuration.Visual, 
                 _minerRootPosition);
-
+            _currentMiner.OnLevelUp += _visualMiner.UnlockComponents.SetUnlockLevel;
             return true;
         }
-
+        
         private void InitializationUpgradeCosts(int idMiner)
         {
             _levelUpButton.gameObject.SetActive(true);
             var costInformation = new List<CostViewPool.CoinInformation>();
-            var miner = _playerProfile.GetAllMiners().FirstOrDefault(targetMiner => targetMiner.ID == idMiner);
-            if (miner.Level + 1 <= miner.Configuration.Levels.Count)
+            _currentMiner = _playerProfile.GetAllMiners().FirstOrDefault(targetMiner => targetMiner.ID == idMiner);
+            if (_currentMiner != null && _currentMiner.Level + 1 < _currentMiner.Configuration.Levels.Count)
             {
-                var costs = miner.Configuration.Levels[miner.Level + 1].UpgradeCost;
+                var costs = _currentMiner.Configuration.Levels[_currentMiner.Level + 1].UpgradeCost;
                 foreach (var cost in costs)
                 {
                     costInformation.Add(new CostViewPool.CoinInformation(
@@ -105,12 +112,63 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             {
                 _levelUpButton.gameObject.SetActive(false);
             }
+            _rebuildLayout.Run();
         }
 
         private void HideInformation()
         {
             _isShow = false;
+            DestroyMinerVisual();
             OnHidePanel?.Invoke();
         }
+
+        private void LevelUpClicked()
+        {
+            if (_currentMiner.Level + 1 > _currentMiner.Configuration.Levels.Count)
+            {
+                Debug.Log("У вас максимальный уровень!");
+                return;
+            }
+
+            var costs = _currentMiner.Configuration.Levels[_currentMiner.Level + 1].UpgradeCost;
+            if (CheckPossibleLevelUp(costs))
+            {
+                Debug.Log("Уровень повышен!");
+                DecreaseResources(costs);
+                _currentMiner.LevelUp();
+                InitializationUpgradeCosts(_currentMiner.ID);
+            }
+            else
+            {
+                Debug.Log("Недостаточно средств для повышения уровня!");
+            }
+        }
+
+        private bool CheckPossibleLevelUp(List<MinerConfiguration.MiningResource> costs)
+        {
+            var isPossible = true;
+            foreach (var cost in costs)
+            {
+                if (!_playerProfile.TryRemoveScore(cost.Type, cost.Value))
+                {
+                    isPossible = false;
+                }
+            }
+            return isPossible;
+        }
+
+        private void DecreaseResources(List<MinerConfiguration.MiningResource> costs)
+        {
+            foreach (var cost in costs)
+            {
+                _playerProfile.RemoveScore(cost.Type, cost.Value);
+            }
+        }
+
+        private void DestroyMinerVisual()
+        {
+            Destroy(_visualMiner.gameObject);
+        }
+
     }
 }

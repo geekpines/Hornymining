@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Gameplay.CoreGameplay.Mining.MinerLevelUnlock;
 using DragonBones;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace App.Scripts.Gameplay.CoreGameplay.Mining

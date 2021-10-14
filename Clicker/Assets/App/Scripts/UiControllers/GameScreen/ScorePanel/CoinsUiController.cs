@@ -58,7 +58,7 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
         {
             foreach (var coin in _player.Coins)
             {
-                coin.OnChanged += ChangeCoinValue;
+                coin.OnChangeCount += ChangeCoinValue;
             }
         }
 
@@ -66,7 +66,7 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
         {
             foreach (var coin in _player.Coins)
             {
-                coin.OnChanged -= ChangeCoinValue;
+                coin.OnChangeCount -= ChangeCoinValue;
             }
         }
 

@@ -49,7 +49,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         /// <summary>
         /// Событие повышения уровня
         /// </summary>
-        public event Action<Miner> OnLevelUp; 
+        public event Action<int> OnLevelUp; 
         
         public Miner(MinerConfiguration configuration, int grade)
         {
@@ -65,7 +65,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
             if (Level < 5)
             {
                 Level++;
-                OnLevelUp?.Invoke(this);
+                OnLevelUp?.Invoke(Level);
             }
         }
     }

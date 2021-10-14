@@ -18,8 +18,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         private const int MaxActiveMinersCount = 5; 
         public event Action<Miner> OnAllMinersCountChanged;
         public event Action<Miner> OnActiveMinersCountChanged;
-        public event Action<Miner> OnMinerLevelUp; 
-        
+
         [field:SerializeField] 
         public List<CoinData> Coins { get; private set; } = new List<CoinData>();
         
@@ -55,7 +54,6 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         public void AddMiner(Miner miner)
         {
             _allMiners.Add(miner);
-            miner.OnLevelUp += MinerLevelUp;
             OnAllMinersCountChanged?.Invoke(miner);
         }
         
@@ -99,7 +97,6 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             if (_allMiners.Contains(miner))
             {
                 _allMiners.Remove(miner);
-                miner.OnLevelUp -= MinerLevelUp;
                 OnAllMinersCountChanged?.Invoke(miner);
             }
 
@@ -116,6 +113,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         /// <returns></returns>
         public List<Miner> GetAllMiners()
         {
+            //todo: Заменить на IEnumerator
             return _allMiners;
         }
         
@@ -161,9 +159,25 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             }
         }
 
-        private void MinerLevelUp(Miner sender)
+        /// <summary>
+        /// Попытаться вычесть определенное количество валюты у игрока
+        /// </summary>
+        /// <param name="resourceId">Тип валюты</param>
+        /// <param name="value">Количество</param>
+        /// <returns></returns>
+        public bool TryRemoveScore(CoinType resourceId, float value)
         {
-            OnMinerLevelUp?.Invoke(sender);
+            return CoinTypeToData[resourceId].Value - value > 0;
+        }
+
+        /// <summary>
+        /// Вычесть валюту у игрока
+        /// </summary>
+        /// <param name="resourceId">Тип валюты</param>
+        /// <param name="value">Количество</param>
+        public void RemoveScore(CoinType resourceId, float value)
+        {
+            CoinTypeToData[resourceId].Decrease(value);
         }
         
     }
