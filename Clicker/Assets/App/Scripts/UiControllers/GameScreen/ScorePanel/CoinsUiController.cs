@@ -14,6 +14,7 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
     public class CoinsUiController : MonoBehaviour
     {
         [SerializeField] private CoinsPanelInformation _coinsPanelInformation;
+
         private PlayerProfile _player;
         private Dictionary<CoinType, CoinInfoView> _iDtoCoinView = new Dictionary<CoinType, CoinInfoView>();
         
@@ -30,6 +31,7 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
 
         private void ShowPlayerResources()
         {
+
             _iDtoCoinView.Clear();
             if (_player.Coins.Count <= _coinsPanelInformation.CoinInfoViews.Count)
             {
@@ -39,21 +41,27 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
                     {
                         var coinInfo = CoinsInformation.GetCoinInformation(_player.Coins[i].ID);
                         _coinsPanelInformation.CoinInfoViews[i].SetCoinInformation(
-                            coinInfo.Icon, _player.Coins[i].Value, coinInfo.Description);
+                            coinInfo.Icon, _player.Coins[i].Value, coinInfo.Description);                        
                         _iDtoCoinView.Add(_player.Coins[i].ID, _coinsPanelInformation.CoinInfoViews[i]);
+
+                        
                     }
                     else
                     {
                         _coinsPanelInformation.CoinInfoViews[i].gameObject.SetActive(false);
                     }
                 }
+                
+                
             }
             else
             {
                 Debug.LogError("Элементов валюты на сцене меньше, чем существует в игре!");
             }
         }
-        
+
+       
+
         protected void OnEnable()
         {
             foreach (var coin in _player.Coins)

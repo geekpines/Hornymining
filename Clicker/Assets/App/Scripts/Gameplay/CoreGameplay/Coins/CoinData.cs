@@ -24,11 +24,15 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins
         /// Количество ресурса
         /// </summary>
         [field: SerializeField] public float Value { get; private set; }
-
-        public CoinData(CoinType id)
+        /// <summary>
+        /// Ценность ресурса
+        /// </summary>
+        [field: SerializeField] public float TradeValue { get; private set; }
+        public CoinData(CoinType id, float tradeValue)
         {
             ID = id;
             Value = 0;
+            TradeValue = tradeValue;
         }
 
         /// <summary>
@@ -57,6 +61,12 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins
         public void Set(float value)
         {
             Value = Mathf.Max(value, 0);
+            OnChangeCount?.Invoke(ID, Value);
+        }
+
+        public void SetTradeValue(float value)
+        {
+            TradeValue = Mathf.Max(value, 0);
             OnChangeCount?.Invoke(ID, Value);
         }
     }

@@ -6,6 +6,7 @@
         BTC = 1,
         Dash = 2,
         Ether = 3,
-        LTC = 4
+        LTC = 4,
+        HornyBucks = 5
     }
 }

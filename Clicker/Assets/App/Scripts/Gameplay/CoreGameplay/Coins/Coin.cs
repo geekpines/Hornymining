@@ -10,5 +10,6 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins
         public LocalizedString Description;
         public Sprite Icon;
         public CoinType ID;
+        public float coinTradeValue;
     }
 }

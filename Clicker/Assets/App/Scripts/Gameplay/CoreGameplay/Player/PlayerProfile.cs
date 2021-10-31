@@ -34,7 +34,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             var temp = new List<CoinData>();
             foreach (var coin in CoinsInformation.GetElements())
             {
-                temp.Add(new CoinData(coin.ID));
+                temp.Add(new CoinData(coin.ID, coin.coinTradeValue));
             }
             Coins = temp.OrderBy(data => data.ID).ToList();
 
@@ -179,6 +179,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             CoinTypeToData[resourceId].Decrease(value);
         }
+
+        
         
     }
 }
