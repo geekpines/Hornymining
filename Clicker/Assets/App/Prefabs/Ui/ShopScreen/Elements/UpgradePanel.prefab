@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 6488327585069987}
   - component: {fileID: 2669714926041426158}
   - component: {fileID: 2366460719135032800}
+  - component: {fileID: 4292529591563664255}
   m_Layer: 0
   m_Name: UpgradePanel
   m_TagString: Untagged
@@ -159,6 +160,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4292529591563664255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637935660929694953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54bc9a9f3f70b3409a58e425255fc9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeButton: {fileID: 8102441504024071108}
+  _openSlotButton: {fileID: 2075122521429946639}
+  _openTradeButton: {fileID: 2198475621289099832}
+  _surpriseButton: {fileID: 2840436658955146751}
+  levelShop:
+  - {fileID: 1113113646256968137}
+  - {fileID: 2128967677073242522}
+  - {fileID: 667636697289831409}
+  - {fileID: 3843202914640188009}
 --- !u!1 &2307685678224824341
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +353,7 @@ GameObject:
   - component: {fileID: 2341947644874386856}
   - component: {fileID: 3100226458204221704}
   - component: {fileID: 2198475621289099832}
+  - component: {fileID: 667636697289831409}
   m_Layer: 0
   m_Name: OpenTradeButton
   m_TagString: Untagged
@@ -440,6 +463,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &667636697289831409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4208761150681359903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4c04de233e4f74ead4347415bfbcfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentLevel>k__BackingField: 0
 --- !u!1 &5784695427419673822
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +567,7 @@ GameObject:
   - component: {fileID: 4886968467451840425}
   - component: {fileID: 4712950619784012687}
   - component: {fileID: 2075122521429946639}
+  - component: {fileID: 2128967677073242522}
   m_Layer: 0
   m_Name: OpenSlotButton
   m_TagString: Untagged
@@ -640,6 +677,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2128967677073242522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7078566408418857239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4c04de233e4f74ead4347415bfbcfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentLevel>k__BackingField: 0
 --- !u!1 &7135631578974170245
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,8 +702,9 @@ GameObject:
   - component: {fileID: 7509214511387065303}
   - component: {fileID: 8801371110347744461}
   - component: {fileID: 8102441504024071108}
+  - component: {fileID: 1113113646256968137}
   m_Layer: 0
-  m_Name: MultButton
+  m_Name: UpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,6 +812,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1113113646256968137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135631578974170245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4c04de233e4f74ead4347415bfbcfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentLevel>k__BackingField: 0
 --- !u!1 &7812576606683474547
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,6 +916,7 @@ GameObject:
   - component: {fileID: 1890777563102850014}
   - component: {fileID: 32355418160646390}
   - component: {fileID: 2840436658955146751}
+  - component: {fileID: 3843202914640188009}
   m_Layer: 0
   m_Name: SurpriseButton
   m_TagString: Untagged
@@ -961,3 +1026,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3843202914640188009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8398830118545228623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4c04de233e4f74ead4347415bfbcfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentLevel>k__BackingField: 0

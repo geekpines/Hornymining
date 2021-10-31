@@ -21,6 +21,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
 
         [field:SerializeField] 
         public List<CoinData> Coins { get; private set; } = new List<CoinData>();
+        public float percentUpgrade = 1;
         
         [SerializeField] private List<Miner> _allMiners = new List<Miner>();
         private List<Miner> _activeMiners = new List<Miner>();
@@ -155,7 +156,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             if (CoinTypeToData.ContainsKey(resourceId))
             {
-                CoinTypeToData[resourceId].Add(addScore);
+                CoinTypeToData[resourceId].Add(addScore*percentUpgrade);
             }
         }
 

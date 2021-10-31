@@ -57,7 +57,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     _playerProfile.AddScore(miningResource.Type, miningResource.Value);
                     view.ShowScoreLine(
                         CoinsInformation.GetCoinIcon(miningResource.Type),
-                        miningResource.Value);
+                        miningResource.Value*_playerProfile.percentUpgrade);
+                    
                 }
             }
         }
