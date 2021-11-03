@@ -5,6 +5,8 @@ using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
 using Zenject;
 
@@ -16,6 +18,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
     /// </summary>
     public class MinerActiveSlotsUiController : MonoBehaviour
     {
+        [SerializeField] private ScrollerExtension extension;
+        [SerializeField] private Button OpenSlotButton;
+        private LevelShopUpgrades Level = new LevelShopUpgrades();
+
         public event Action<MinerSlotView> OnMinerSelected;
         [SerializeField] private ExtendedScrollView _scrollMinerView;
         private PlayerProfile _playerProfile;
@@ -33,13 +39,20 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         {
             //todo: добавить в систему инициализации
             InitializationActiveMiners();
+            
         }
         
         private void InitializationActiveMiners()
         {
+            extension.enabled = false;
             InitializeScroll();
             InitializeViews();
             InitializeContent();
+            
+            OpenSlotButton.onClick.AddListener(MinersViewController);
+            OpenSlotButton.onClick.AddListener(InitializeContent);
+            OpenSlotButton.onClick.AddListener(InitializeViews);
+            OpenSlotButton.onClick.AddListener(InitializeScroll);
         }
 
         private void InitializeScroll()
@@ -83,6 +96,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         public void AddMinerToSlot(MinerSlotView viewSlot, Miner miner)
         {
+
+
             if (viewSlot != null &&
                 viewSlot.IsEmpty)
             {
@@ -135,6 +150,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 minerSlotView.OnMinerClicked -= MinerClicked;
             }
+        }
+
+        private void MinersViewController()
+        {
+            extension.enabled = true;
+            _scrollMinerView.CellInterval = Level.OpenMinerSlot(_playerProfile);
         }
     }
 }

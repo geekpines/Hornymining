@@ -9,12 +9,13 @@ public class UpgradeUiController : MonoBehaviour
 {
     [SerializeField] private Button _upgradeButton;
     [SerializeField] private Button _openSlotButton;
-    [SerializeField] private Button _openTradeButton;
     [SerializeField] private Button _surpriseButton;
     [SerializeField] List<LevelShopUpgrades> levelShop;
 
+
+
     private PlayerProfile _playerProfile;
-    
+
 
     [Inject]
     private void Construct(PlayerProfile playerProfile)
@@ -31,6 +32,9 @@ public class UpgradeUiController : MonoBehaviour
     {
 
         _playerProfile.percentUpgrade = levelShop[0].CasualUpgrade(_playerProfile);
-        
+        Debug.Log(_playerProfile.percentUpgrade);
+
     }
+
+
 }

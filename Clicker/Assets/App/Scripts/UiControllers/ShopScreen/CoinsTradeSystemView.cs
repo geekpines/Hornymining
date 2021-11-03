@@ -15,8 +15,11 @@ public class CoinsTradeSystemView : MonoBehaviour
     [SerializeField] private Button _buyButton;
     [SerializeField] private Button _sellButton;
 
+    public float percent = 1;
+
     [SerializeField] private CoinsPanelInformation panelInformation;
     
+   
 
 
     [Inject]
@@ -39,7 +42,7 @@ public class CoinsTradeSystemView : MonoBehaviour
             {
                 if (_player.Coins[5].Value - 1 >= 0)
                 {
-                    _player.AddScore(_player.Coins[i].ID, _player.Coins[i].TradeValue);
+                    _player.AddScore(_player.Coins[i].ID, _player.Coins[i].TradeValue * percent);
                     _player.AddScore(CoinType.HornyBucks, -1);
                 }
                 
@@ -54,9 +57,10 @@ public class CoinsTradeSystemView : MonoBehaviour
         {
             if (panelInformation.CoinInfoViews[i] == _coinInfoView)
             {
-                if (_player.Coins[i].Value - _player.Coins[i].TradeValue >= 0)
+                if (_player.Coins[i].Value - _player.Coins[i].TradeValue * percent >= 0)
                 {
-                    _player.AddScore(_player.Coins[i].ID, -_player.Coins[i].TradeValue);
+                    Debug.Log(-_player.Coins[i].TradeValue * percent);
+                    _player.AddScore(_player.Coins[i].ID, -_player.Coins[i].TradeValue * percent);
                     _player.AddScore(CoinType.HornyBucks, 1);
                 }
                
