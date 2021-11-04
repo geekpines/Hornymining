@@ -20,6 +20,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
     {
         [SerializeField] private ScrollerExtension extension;
         [SerializeField] private Button OpenSlotButton;
+
         private LevelShopUpgrades Level = new LevelShopUpgrades();
 
         public event Action<MinerSlotView> OnMinerSelected;
@@ -38,22 +39,30 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private void Awake()
         {
             //todo: добавить в систему инициализации
+            extension.enabled = false;
             InitializationActiveMiners();
             
+            OpenSlotButton.onClick.AddListener(Init);
         }
         
         private void InitializationActiveMiners()
         {
-            extension.enabled = false;
+            
             InitializeScroll();
             InitializeViews();
             InitializeContent();
-            
-            OpenSlotButton.onClick.AddListener(MinersViewController);
-            OpenSlotButton.onClick.AddListener(InitializeContent);
-            OpenSlotButton.onClick.AddListener(InitializeViews);
-            OpenSlotButton.onClick.AddListener(InitializeScroll);
+
         }
+
+        private void Init()
+        {
+            InitializeViews();
+            InitializeContent();
+            MinersViewController();
+            
+        }
+
+
 
         private void InitializeScroll()
         {
@@ -157,5 +166,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             extension.enabled = true;
             _scrollMinerView.CellInterval = Level.OpenMinerSlot(_playerProfile);
         }
+
     }
 }
