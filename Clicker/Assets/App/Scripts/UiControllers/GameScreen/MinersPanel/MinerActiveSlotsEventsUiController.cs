@@ -39,11 +39,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private void MiniViewClick(int id)
         {
 
-
-
             if (_selectedActiveView != null &&
                 !_selectPanel.CheckActiveMiner(id) &&
-                _selectedActiveView.IsEmpty
+                _selectedActiveView.IsEmpty &&
+                _selectedActiveView.IsOpen                
                 )
             {
                 var miner = _playerProfile.GetAllMiners().FirstOrDefault(item => item.ID == id);

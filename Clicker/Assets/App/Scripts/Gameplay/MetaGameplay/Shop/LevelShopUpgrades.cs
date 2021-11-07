@@ -95,34 +95,33 @@ public class LevelShopUpgrades : MonoBehaviour
         return 1;
     }
     
-    public float OpenMinerSlot(PlayerProfile playerProfile)
+    public bool OpenMinerSlot(PlayerProfile playerProfile)
     {
         LevelUp();
 
         switch (CurrentLevel)
         {
             case 0:
-                return 0.54f;
+                return true;
             case 1:
                 playerProfile.AddScore(CoinType.Bit, -100);
-                return 0.54f;
+                return true;
             case 2:
                 playerProfile.AddScore(CoinType.Dash, -100);
-                return 0.39f;
+                return true;
             case 3:
                 playerProfile.AddScore(CoinType.LTC, -100);
-                return 0.26f;
+                return true;
             case 4:
                 playerProfile.AddScore(CoinType.Ether, -100);
-                return 0.24f;
+                return true;
             case 5:
                 playerProfile.AddScore(CoinType.BTC, -100);
-                return 0.24f;
+                return true;
 
             default:
-                return 1;
+                return true;
         }
-        return 1;
     }
 
     

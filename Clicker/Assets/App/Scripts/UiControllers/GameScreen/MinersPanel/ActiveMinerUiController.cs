@@ -8,10 +8,12 @@ using Zenject;
 
 public class ActiveMinerUiController : MonoBehaviour
 {
-    [SerializeField] private MinerActiveSlotsUiController minerActiveSlotsUi;
+    private MinerActiveSlotsUiController minerActive;
+    
     private MinerSlotView minerSlotView;
     private PlayerProfile _playerProfile;
-        
+    
+    
 
     [Inject]
     private void Construct(PlayerProfile playerProfile)
@@ -22,12 +24,16 @@ public class ActiveMinerUiController : MonoBehaviour
 
     private void Awake()
     {
-        minerActiveSlotsUi = GameObject.Find("MinersScroll").GetComponent<MinerActiveSlotsUiController>();
+        minerSlotView = gameObject.GetComponent<MinerSlotView>();
+        minerActive = GameObject.Find("MinersScroll").GetComponent<MinerActiveSlotsUiController>();
     }
 
     private void OnEnable()
     {
-        Debug.Log(minerActiveSlotsUi.MinersSlotView.Count);
+        //minerSlotView.IsEmpty = true;
+        minerActive.MinersSlotView.Add(minerSlotView);
+        minerSlotView.SetLock(true);
+        gameObject.GetComponent<ActiveMinerUiController>().enabled = false;
     }
 
 }

@@ -39,10 +39,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private void Awake()
         {
             //todo: добавить в систему инициализации
-            extension.enabled = false;
             InitializationActiveMiners();
-            
-            OpenSlotButton.onClick.AddListener(Init);
+            OpenSlotButton.onClick.AddListener(MinersViewController);
         }
         
         private void InitializationActiveMiners()
@@ -53,16 +51,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             InitializeContent();
 
         }
-
-        private void Init()
-        {
-            InitializeViews();
-            InitializeContent();
-            MinersViewController();
-            
-        }
-
-
 
         private void InitializeScroll()
         {
@@ -88,6 +76,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         
         private void InitializeContent()
         {
+            MinersSlotView[0].IsOpen = true;
+
             if (MinersSlotView.Count > 0)
             {
                 var allActiveMiners = _playerProfile.GetActiveMiners();
@@ -163,9 +153,14 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void MinersViewController()
         {
-            extension.enabled = true;
-            _scrollMinerView.CellInterval = Level.OpenMinerSlot(_playerProfile);
+            Debug.Log(Level.CurrentLevel);
+            if(Level.CurrentLevel != 5)
+            {
+                MinersSlotView[Level.CurrentLevel + 1].IsOpen = Level.OpenMinerSlot(_playerProfile);
+            }
+            
         }
+
 
     }
 }
