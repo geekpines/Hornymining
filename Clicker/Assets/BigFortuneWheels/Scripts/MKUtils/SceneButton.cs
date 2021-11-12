@@ -60,12 +60,14 @@ namespace Mkey
 
         public void Release()
         {
+            Debug.Log("Release");
             Pressed = false;
             if (spriteRenderer && normalSprite && pressedSprite) spriteRenderer.sprite = (Pressed) ? pressedSprite : normalSprite;
         }
 
         public void SetPressed()
         {
+            Debug.Log("SetPressed");
             Pressed = true;
             if (spriteRenderer && normalSprite && pressedSprite) spriteRenderer.sprite = (Pressed) ? pressedSprite : normalSprite;
         }

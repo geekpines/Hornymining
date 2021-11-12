@@ -85,7 +85,7 @@ namespace MkeyFW // mkey fortune wheel
         private bool debug = false;
 
         #region events
-        public Action<int, bool> SpinResultEvent; // spin result event <coins, isBigWin>
+        public Action<String, bool> SpinResultEvent; // spin result event <coins, isBigWin>
         public Action CloseButtonClickEvent;
         #endregion events
 
@@ -195,7 +195,7 @@ namespace MkeyFW // mkey fortune wheel
                 }
 
                 bool isBigWin = false;
-                int res = GetWin(ref isBigWin);
+                string res = GetWin(ref isBigWin);
                 resultEvent?.Invoke();
                 SpinResultEvent?.Invoke(res, isBigWin);
                 completeCallBack?.Invoke();
@@ -386,7 +386,7 @@ namespace MkeyFW // mkey fortune wheel
         /// </summary>
         private void CheckResult()
         {
-            int coins = 0;
+            string coins = "";
             bool isBigWin = false;
 
             if (sectors != null && currSector >= 0 && currSector < sectors.Length)
@@ -407,9 +407,9 @@ namespace MkeyFW // mkey fortune wheel
         /// </summary>
         /// <param name="isBigWin"></param>
         /// <returns></returns>
-        public int GetWin(ref bool isBigWin)
+        public string GetWin(ref bool isBigWin)
         {
-            int res = 0;
+            string res = "";
             isBigWin = false;
             if (sectors != null && currSector >= 0 && currSector < sectors.Length)
             {
