@@ -39,7 +39,7 @@ public class ShopScreenUiController : MonoBehaviour
         {
             shopUpgrades.OpenSlot(_playerProfile, _sellBuyUnits[shopUpgrades.CurrentLevel]);
         }
-        
+        // понижение цены HB привело к багу с дюпом денег
         foreach (var unit in _sellBuyUnits)
         {
             CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
