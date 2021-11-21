@@ -43,6 +43,7 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
                         _coinsPanelInformation.CoinInfoViews[i].SetCoinInformation(
                             coinInfo.Icon, _player.Coins[i].Value, coinInfo.Description);                        
                         _iDtoCoinView.Add(_player.Coins[i].ID, _coinsPanelInformation.CoinInfoViews[i]);
+                        
 
                         
                     }
