@@ -21,6 +21,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
 
         [field:SerializeField] 
         public List<CoinData> Coins { get; private set; } = new List<CoinData>();
+        public float percentUpgrade = 1;
         
         [SerializeField] private List<Miner> _allMiners = new List<Miner>();
         private List<Miner> _activeMiners = new List<Miner>();
@@ -34,7 +35,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             var temp = new List<CoinData>();
             foreach (var coin in CoinsInformation.GetElements())
             {
-                temp.Add(new CoinData(coin.ID));
+                temp.Add(new CoinData(coin.ID, coin.coinTradeValue));
             }
             Coins = temp.OrderBy(data => data.ID).ToList();
 
@@ -155,7 +156,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             if (CoinTypeToData.ContainsKey(resourceId))
             {
-                CoinTypeToData[resourceId].Add(addScore);
+                CoinTypeToData[resourceId].Add(addScore*percentUpgrade);
             }
         }
 
@@ -179,6 +180,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             CoinTypeToData[resourceId].Decrease(value);
         }
+
+        
         
     }
 }

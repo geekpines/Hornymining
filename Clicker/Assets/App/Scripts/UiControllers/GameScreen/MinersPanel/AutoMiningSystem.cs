@@ -60,7 +60,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     {
                         ActiveMinerToView[miner].ShowScoreLine(
                             CoinsInformation.GetCoinIcon(miningResource.Type),
-                            miningResource.Value);
+                            miningResource.Value*_playerProfile.percentUpgrade);
                     }
                 }
             }

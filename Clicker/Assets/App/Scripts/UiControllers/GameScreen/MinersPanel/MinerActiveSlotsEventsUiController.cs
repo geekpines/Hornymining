@@ -38,18 +38,27 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void MiniViewClick(int id)
         {
+
             if (_selectedActiveView != null &&
-                !_selectPanel.CheckActiveMiner(id))
+                !_selectPanel.CheckActiveMiner(id) &&
+                _selectedActiveView.IsEmpty &&
+                _selectedActiveView.IsOpen                
+                )
             {
                 var miner = _playerProfile.GetAllMiners().FirstOrDefault(item => item.ID == id);
                 if (miner != null)
                 {
+                    
                     _activeSlots.AddMinerToSlot(_selectedActiveView, miner);
                     _activeSlots.SetLock(id, false);
                     _selectPanel.SetMinerActive(id, true);
                     _playerProfile.AddActiveMiner(miner);
                 }
                 ResetLockActiveMinersOnSelectPanel();
+            }
+            else
+            {
+                Debug.LogError("Слот для майнера занят");
             }
         }
 

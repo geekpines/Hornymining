@@ -98,6 +98,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         /// <param name="id"></param>
         public void RemoveMinerInformation(int id)
         {
+            
             if (IdtoViews.ContainsKey(id))
             {
                 _miniMinersPool.Despawn(IdtoViews[id]);

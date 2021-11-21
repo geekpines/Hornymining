@@ -5,6 +5,8 @@ using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
 using Zenject;
 
@@ -16,6 +18,11 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
     /// </summary>
     public class MinerActiveSlotsUiController : MonoBehaviour
     {
+        [SerializeField] private ScrollerExtension extension;
+        [SerializeField] private Button OpenSlotButton;
+
+        private LevelShopUpgrades Level = new LevelShopUpgrades();
+
         public event Action<MinerSlotView> OnMinerSelected;
         [SerializeField] private ExtendedScrollView _scrollMinerView;
         private PlayerProfile _playerProfile;
@@ -33,13 +40,16 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         {
             //todo: добавить в систему инициализации
             InitializationActiveMiners();
+            OpenSlotButton.onClick.AddListener(MinersViewController);
         }
         
         private void InitializationActiveMiners()
         {
+            
             InitializeScroll();
             InitializeViews();
             InitializeContent();
+
         }
 
         private void InitializeScroll()
@@ -66,6 +76,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         
         private void InitializeContent()
         {
+            MinersSlotView[0].IsOpen = true;
+
             if (MinersSlotView.Count > 0)
             {
                 var allActiveMiners = _playerProfile.GetActiveMiners();
@@ -83,6 +95,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         public void AddMinerToSlot(MinerSlotView viewSlot, Miner miner)
         {
+
+
             if (viewSlot != null &&
                 viewSlot.IsEmpty)
             {
@@ -136,5 +150,17 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 minerSlotView.OnMinerClicked -= MinerClicked;
             }
         }
+
+        private void MinersViewController()
+        {
+            Debug.Log(Level.CurrentLevel);
+            if(Level.CurrentLevel != 5)
+            {
+                MinersSlotView[Level.CurrentLevel + 1].IsOpen = Level.OpenMinerSlot(_playerProfile);
+            }
+            
+        }
+
+
     }
 }

@@ -20,6 +20,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         public int Id { get; private set; }
 
         [field: SerializeField] public bool IsLocked { get; private set; } = true;
+        public bool IsOpen = false;
 
         [Header("Кнопки")] 
         [SerializeField] private Button _minerButton;
@@ -35,6 +36,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
             _lockMask.SetActive(state);
             IsLocked = state;
         }
+
         
         public void SetVisual(GameObject rootObject, UnityArmatureComponent armatureComponent, int configHash)
         {
