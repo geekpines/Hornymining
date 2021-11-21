@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Miners
+  m_text: "\u041C\u0430\u0439\u043D\u0435\u0440\u044B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -262,10 +262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _miniMinersPool: {fileID: 1835390688961892943}
-  _infoButton: {fileID: 0}
-  _minersButton: {fileID: 0}
-  _panelInfo: {fileID: 0}
-  _panelMinersList: {fileID: 8683192851280941397}
 --- !u!1001 &4581841903885727893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -633,6 +629,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5122032084601563614, guid: f83aa45280e0c5946b5a54281ac8e204, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122032084841468073, guid: f83aa45280e0c5946b5a54281ac8e204, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5461359456796595850, guid: f83aa45280e0c5946b5a54281ac8e204, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -883,11 +887,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f83aa45280e0c5946b5a54281ac8e204, type: 3}
---- !u!1 &8683192851280941397 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5122032084601563584, guid: f83aa45280e0c5946b5a54281ac8e204, type: 3}
-  m_PrefabInstance: {fileID: 4581841903885727893}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8683192851280941396 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5122032084601563585, guid: f83aa45280e0c5946b5a54281ac8e204, type: 3}
