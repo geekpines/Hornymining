@@ -43,7 +43,7 @@ public class CoinsTradeSystemView : MonoBehaviour
                 if (_player.Coins[5].Value - 1 >= 0)
                 {
                     _player.AddScore(_player.Coins[i].ID, _player.Coins[i].TradeValue * percent);
-                    _player.AddScore(CoinType.HornyBucks, -1);
+                    _player.RemoveScore(CoinType.HornyBucks, 1);
                 }
                 
             }
@@ -60,7 +60,7 @@ public class CoinsTradeSystemView : MonoBehaviour
                 if (_player.Coins[i].Value - _player.Coins[i].TradeValue * percent >= 0)
                 {
                     Debug.Log(-_player.Coins[i].TradeValue * percent);
-                    _player.AddScore(_player.Coins[i].ID, -_player.Coins[i].TradeValue * percent);
+                    _player.RemoveScore(_player.Coins[i].ID, _player.Coins[i].TradeValue * percent);
                     _player.AddScore(CoinType.HornyBucks, 1);
                 }
                
