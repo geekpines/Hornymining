@@ -76,8 +76,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         
         private void InitializeContent()
         {
+            
             MinersSlotView[0].IsOpen = true;
-
+            
             if (MinersSlotView.Count > 0)
             {
                 var allActiveMiners = _playerProfile.GetActiveMiners();

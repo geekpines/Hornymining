@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 6764524898094802076}
   - component: {fileID: 8946342060636723652}
   - component: {fileID: 9015759916441783814}
+  - component: {fileID: 2579360779295022710}
   m_Layer: 0
   m_Name: Upgrade Panel
   m_TagString: Untagged
@@ -199,6 +200,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2579360779295022710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4158958140282243177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54bc9a9f3f70b3409a58e425255fc9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeButton: {fileID: 448489252536721114}
+  _surpriseButton: {fileID: 1148953231721047200}
+  levelShop:
+  - {fileID: 4020202294782344050}
 --- !u!1 &5109004648776334222
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +468,7 @@ GameObject:
   - component: {fileID: 1277800503236940460}
   - component: {fileID: 5528389320951024511}
   - component: {fileID: 448489252536721114}
+  - component: {fileID: 4020202294782344050}
   m_Layer: 0
   m_Name: MultUpgrade
   m_TagString: Untagged
@@ -559,6 +577,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4020202294782344050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6406094104116341745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4c04de233e4f74ead4347415bfbcfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentLevel>k__BackingField: 0
 --- !u!1 &7432136034089103949
 GameObject:
   m_ObjectHideFlags: 0

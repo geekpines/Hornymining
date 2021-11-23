@@ -8,7 +8,6 @@ using Zenject;
 public class UpgradeUiController : MonoBehaviour
 {
     [SerializeField] private Button _upgradeButton;
-    [SerializeField] private Button _openSlotButton;
     [SerializeField] private Button _surpriseButton;
     [SerializeField] List<LevelShopUpgrades> levelShop;
 
