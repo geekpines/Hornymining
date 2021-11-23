@@ -8,7 +8,7 @@ using Zenject;
 public class ShopScreenUiController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _sellBuyUnits;
-    [SerializeField] private Button _openTradesButton;
+    [SerializeField] private Button _StockUpgradeButton;
     private PlayerProfile _playerProfile;
     private LevelShopUpgrades shopUpgrades = new LevelShopUpgrades();
 
@@ -21,7 +21,7 @@ public class ShopScreenUiController : MonoBehaviour
 
     private void Awake()
     {
-        _openTradesButton.onClick.AddListener(OpenTrade);
+        _StockUpgradeButton.onClick.AddListener(OpenTrade);
         SetActiveUnits(false);  
     }
 
