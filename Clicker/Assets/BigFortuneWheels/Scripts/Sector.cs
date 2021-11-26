@@ -13,7 +13,7 @@ namespace MkeyFW
         [SerializeField]
         private bool autoText = true;
         [SerializeField]
-        private int coins;
+        private string coins;
         [SerializeField]
         private bool bigWin;
         [SerializeField]
@@ -27,10 +27,10 @@ namespace MkeyFW
 
         public TextMesh Text { get; private set; }
 
-        public int Coins
+        public string Coins
         {
             get { return coins; }
-            set { coins = Mathf.Max(0, value); RefreshText(); }
+            set { coins = value; RefreshText(); }
         }
 
         public bool BigWin
@@ -47,7 +47,7 @@ namespace MkeyFW
 
         void OnValidate()
         {
-           coins = Mathf.Max(0, coins);
+           coins =  coins;
            RefreshText();
         }
         #endregion regular
@@ -58,7 +58,7 @@ namespace MkeyFW
             if (!Text) Text = GetComponent<TextMesh>();
             if (!Text) return;
             var f = new NumberFormatInfo { NumberGroupSeparator = " " }; // Text.text = Coins.ToString("n0", f);
-            Text.text = coins.ToString("N0", CultureInfo.CreateSpecificCulture("en-US"));
+            Text.text = coins;
         }
 
         /// <summary>
@@ -67,18 +67,6 @@ namespace MkeyFW
         /// <param name="position"></param>
         public void PlayHit(Vector3 position)
         {
-            if (hitPrefabs != null)
-            {
-                foreach (var item in hitPrefabs)
-                {
-                    if (item)
-                    {
-                        Transform partT = Instantiate(item).transform;
-                        partT.position = position;
-                        if (this && partT) Destroy(partT.gameObject, destroyTime);
-                    }
-                }
-            }
            hitEvent?.Invoke();
         }
     }
