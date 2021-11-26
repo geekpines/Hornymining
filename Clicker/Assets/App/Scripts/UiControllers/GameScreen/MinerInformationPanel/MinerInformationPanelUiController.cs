@@ -118,6 +118,21 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         private void HideInformation()
         {
+            if (_playerProfile.ContainsMiner(_currentMiner))
+            {
+                foreach (var miner in _playerProfile.GetAllMiners())
+                {
+                    if(miner.Name == _currentMiner.Name && miner != _currentMiner)
+                    {
+                        int lvl = _currentMiner.Level;
+                        while (lvl != 0)
+                        {
+                            miner.LevelUp();
+                            lvl--;
+                        }
+                    }
+                }
+            }
             _isShow = false;
             HideMiner();
             OnHidePanel?.Invoke();

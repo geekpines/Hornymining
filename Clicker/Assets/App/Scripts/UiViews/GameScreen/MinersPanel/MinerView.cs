@@ -1,4 +1,5 @@
-﻿using DragonBones;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
+using DragonBones;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -37,6 +38,13 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         public virtual void SetVisual(UnityArmatureComponent armatureComponent)
         {
             _armatureComponent = armatureComponent;
+        }
+
+        public void SetLevelVisual(int level)
+        {
+            MinerVisualContext mvc = ArmatureComponent.gameObject.GetComponent<MinerVisualContext>();
+
+            mvc.UnlockComponents.SetUnlockLevel(level);
         }
 
     }

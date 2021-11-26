@@ -18,7 +18,6 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         public event Action<int> OnMinerDoubleClicked;
         [SerializeField] private MiniMinerElementsPool _miniMinersPool;
         private Dictionary<int, MiniMinerElementView> IdtoViews = new Dictionary<int, MiniMinerElementView>();
-        
         public class MiniMinerElementData
         {
             public LocalizedString Name { get; }
