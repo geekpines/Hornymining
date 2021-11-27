@@ -25,7 +25,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         [SerializeField] private GameObject _useMask;
         [SerializeField] private GameObject _lockMask;
         private int _currentLevel;
-        [SerializeField, Range(1, 5)] private int _currentStars = 3;
+        [SerializeField, Range(1, 5)] private int _currentStars = 1;
         [SerializeField] private Button _minerButton;
         public int ID { get; private set; }
         public bool IsActive { get; private set; }
@@ -50,6 +50,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         {
             _currentLevel = level;
             _levelText.text = $"{_level.GetLocalizedString()} {_currentLevel}";
+            SetStars(level);
         }
         
         public void SetIcon(Sprite newIcon)

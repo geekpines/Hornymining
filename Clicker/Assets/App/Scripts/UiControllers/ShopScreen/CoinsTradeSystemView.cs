@@ -64,9 +64,17 @@ public class CoinsTradeSystemView : MonoBehaviour
                     _player.AddScore(_player.Coins[i].ID, -_player.Coins[i].TradeValue * percent);
                     _player.AddScore(CoinType.HornyBucks, 1);
                 }
-               
             }
         }
+    }
 
+    public void SetLock()
+    {
+        _coinInfoView.SetLock();
+    }
+
+    public void SetUnlock()
+    {
+        _coinInfoView.SetUnlock();
     }
 }

@@ -9,8 +9,10 @@ public class ShopScreenUiController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _sellBuyUnits;
     [SerializeField] private Button _StockUpgradeButton;
+    
     private PlayerProfile _playerProfile;
     private LevelShopUpgrades shopUpgrades = new LevelShopUpgrades();
+    
 
 
     [Inject]
@@ -22,7 +24,8 @@ public class ShopScreenUiController : MonoBehaviour
     private void Awake()
     {
         _StockUpgradeButton.onClick.AddListener(OpenTrade);
-        SetActiveUnits(false);  
+        SetActiveUnits(false);
+        StartCoroutine(LockCoinInfo());
     }
 
     private void SetActiveUnits(bool state)
@@ -38,6 +41,7 @@ public class ShopScreenUiController : MonoBehaviour
         if (shopUpgrades.CurrentLevel < 5)
         {
             shopUpgrades.OpenSlot(_playerProfile, _sellBuyUnits[shopUpgrades.CurrentLevel]);
+            _sellBuyUnits[shopUpgrades.CurrentLevel].GetComponent<CoinsTradeSystemView>().SetUnlock();
         }
         
         foreach (var unit in _sellBuyUnits)
@@ -47,5 +51,17 @@ public class ShopScreenUiController : MonoBehaviour
             coinTradeSystem.percent = shopUpgrades.GetSale();
         }
         
+    }
+
+    private IEnumerator LockCoinInfo()
+    {
+        yield return new WaitForSeconds(0.1f);
+        for (int i = 1; i < _sellBuyUnits.Count; i++)
+        {
+
+            CoinsTradeSystemView coinTradeSystem = _sellBuyUnits[i].GetComponent<CoinsTradeSystemView>();
+
+            coinTradeSystem.SetLock();
+        }
     }
 }
