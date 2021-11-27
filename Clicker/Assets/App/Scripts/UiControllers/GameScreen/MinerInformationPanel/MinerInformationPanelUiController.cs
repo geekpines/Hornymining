@@ -38,6 +38,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         private Miner _currentMiner;
         private bool _isShow;
 
+        private int _outsideMinerId;
+
         private Dictionary<Miner, MinerVisualContext> MinerToVisual = new Dictionary<Miner, MinerVisualContext>();
         
         [Inject]
@@ -62,9 +64,14 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         private void ShowInformation(int idMiner)
         {
+
             if (!TryInitializationMinerVisual(idMiner))
                 return;
             InitializationUpgradeCosts(idMiner);
+
+            //значение внешнего id майнера
+            _outsideMinerId = idMiner;
+
             if (!_isShow)
             {
                 _isShow = true;
@@ -134,10 +141,11 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
             var costs = _currentMiner.Configuration.Levels[_currentMiner.Level + 1].UpgradeCost;
             if (CheckPossibleLevelUp(costs))
-            {
+            {            
                 Debug.Log("Уровень повышен!");
                 DecreaseResources(costs);
                 _currentMiner.LevelUp();
+                _minersSelectPanelUiController.SetMinerLevel(_outsideMinerId, _currentMiner.Level + 1);
                 InitializationUpgradeCosts(_currentMiner.ID);
             }
             else

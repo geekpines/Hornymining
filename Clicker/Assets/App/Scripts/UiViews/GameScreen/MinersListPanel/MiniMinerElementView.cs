@@ -30,6 +30,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         public int ID { get; private set; }
         public bool IsActive { get; private set; }
 
+
         public void SetMinerInformation(LocalizedString name, Sprite icon, int id, int grade = 3, int level = 1)
         {
             SetName(name);
@@ -89,6 +90,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         private void OnEnable()
         {
             _minerButton.onClick.AddListener(MinerClicked);
+            //проверка уровня
         }
 
         private void OnDisable()

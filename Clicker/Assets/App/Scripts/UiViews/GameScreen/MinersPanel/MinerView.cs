@@ -43,7 +43,6 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         public void SetLevelVisual(int level)
         {
             MinerVisualContext mvc = ArmatureComponent.gameObject.GetComponent<MinerVisualContext>();
-
             mvc.UnlockComponents.SetUnlockLevel(level);
         }
 

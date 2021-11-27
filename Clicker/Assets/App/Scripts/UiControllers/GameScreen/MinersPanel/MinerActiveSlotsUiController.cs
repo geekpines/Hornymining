@@ -115,6 +115,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 
                 IdToView.Add(miner.ID, viewSlot);
                 viewSlot.SetLock(false);
+
+                viewSlot.SetLevelVisual(miner.Level);
             }
         }
 
@@ -162,6 +164,22 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             
         }
 
+        public void UpdateVisual()
+        {
+            var allActiveMiners = _playerProfile.GetActiveMiners();
+            for (int i = 0; i < allActiveMiners.Count; i++)
+            {
+                CheckForVisualUpdate(MinersSlotView[i], allActiveMiners[i]);
+            }
+        }
 
+        private void CheckForVisualUpdate(MinerSlotView viewSlot, Miner miner)
+        {
+            if (viewSlot != null &&
+               !viewSlot.IsEmpty)
+            {
+                viewSlot.SetLevelVisual(miner.Level);
+            }
+        }
     }
 }

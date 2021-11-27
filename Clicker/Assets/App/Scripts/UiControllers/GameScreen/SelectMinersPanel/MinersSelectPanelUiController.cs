@@ -59,6 +59,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         /// <param name="level"></param>
         public void SetMinerLevel(int id, int level)
         {
+            
             if (IdtoViews.ContainsKey(id))
             {
                 IdtoViews[id].SetLevel(level);
@@ -149,5 +150,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             OnMinerDoubleClicked?.Invoke(sender.ID);
         }
 
+
+        
     }
 }

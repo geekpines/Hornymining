@@ -15,7 +15,6 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         {
             UnlockComponents.SetUnlockLevel(UnlockComponents.CurrentLevel);
             ArmatureComponent.animationName = "action" ;
-            
         }
     }
 }
