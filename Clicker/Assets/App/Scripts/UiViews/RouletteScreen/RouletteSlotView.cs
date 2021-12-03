@@ -15,7 +15,7 @@ namespace App.Scripts.UiViews.RouletteScreen
         public int ConfigHash { get; private set; }
         [SerializeField] private LocalizeStringEvent _nameLocalize;
         public LocalizedString Name => _nameLocalize.StringReference;
-        
+
         public void SetVisual(GameObject rootObject, UnityArmatureComponent armatureComponent, int configHash)
         {
             RootVisual = rootObject;

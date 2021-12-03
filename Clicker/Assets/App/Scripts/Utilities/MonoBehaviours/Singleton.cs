@@ -6,7 +6,7 @@ namespace App.Scripts.Utilities.MonoBehaviours
     /// Абстрактная реализация синглтона
     /// </summary>
     /// <typeparam name="T">Класс, который необходимо сделать единственным</typeparam>
-    public class Singleton<T> : MonoBehaviour 
+    public class Singleton<T> : MonoBehaviour
         where T : MonoBehaviour
     {
         public static T Instance;

@@ -20,7 +20,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-﻿using System;
+using System;
 
 namespace DragonBones
 {
@@ -114,7 +114,7 @@ namespace DragonBones
             {
                 var playTimes = this._animationState.playTimes;
                 var totalTime = playTimes * this._duration;
-                
+
                 passedTime *= this._timeScale;
                 if (this._timeOffset != 0.0f)
                 {
@@ -242,7 +242,7 @@ namespace DragonBones
                 {
                     this._frameIndex = 0;
                     if (this._timelineData != null)
-                    { 
+                    {
                         // May be pose timeline.
                         this._frameOffset = this._animationData.frameOffset + this._timelineArray[this._timelineData.offset + (int)BinaryOffset.TimelineFrameOffset];
                     }
@@ -429,5 +429,5 @@ namespace DragonBones
 
             this.constraint = null; //
         }
-}
+    }
 }

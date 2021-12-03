@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using DragonBones;
+using System.Collections.Generic;
 using UnityEngine;
-using DragonBones;
 
 namespace coreElement
 {
@@ -19,7 +19,7 @@ namespace coreElement
         private static readonly string[] WEAPON_LEFT_LIST = { "weapon_1502b_l", "weapon_1005", "weapon_1005b", "weapon_1005c", "weapon_1005d", "weapon_1005e" };
         private static readonly string[] WEAPON_RIGHT_LIST = { "weapon_1502b_r", "weapon_1005", "weapon_1005b", "weapon_1005c", "weapon_1005d" };
         private static readonly string[] SKINS = { "mecha_1502b", "skin_a", "skin_b", "skin_c" };
-        
+
         public KeyCode left = KeyCode.A;
         public KeyCode right = KeyCode.D;
         public KeyCode up = KeyCode.W;
@@ -27,7 +27,7 @@ namespace coreElement
         public KeyCode switchSkin = KeyCode.Space;
         public KeyCode switchLeftWeapon = KeyCode.Q;
         public KeyCode switchRightWeapon = KeyCode.E;
-        
+
         private bool _isJumpingA = false;
         private bool _isJumpingB = false;
         private bool _isSquating = false;
@@ -116,7 +116,7 @@ namespace coreElement
             }
 
             _squat(Input.GetKey(down));
-            
+
             if (Input.GetKeyDown(switchSkin))
             {
                 _switchSkin();
@@ -200,7 +200,7 @@ namespace coreElement
             }
 
             _isJumpingA = true;
-            _armatureComponent.animation.FadeIn("jump_1", -1.0f, -1, 0, NORMAL_ANIMATION_GROUP).resetToPose = false ;
+            _armatureComponent.animation.FadeIn("jump_1", -1.0f, -1, 0, NORMAL_ANIMATION_GROUP).resetToPose = false;
             _walkState = null;
         }
 
@@ -322,7 +322,7 @@ namespace coreElement
                     _walkState = _armatureComponent.animation.FadeIn("walk", -1.0f, -1, 0, NORMAL_ANIMATION_GROUP);
                     this._walkState.resetToPose = false;
                 }
-                
+
                 if (this._moveDir * this._faceDir > 0.0f)
                 {
                     this._walkState.timeScale = MAX_MOVE_SPEED_FRONT / NORMALIZE_MOVE_SPEED;
@@ -352,7 +352,7 @@ namespace coreElement
 
             var position = this._armatureComponent.transform.localPosition;
             //var position = this.transform.localPosition;
-            
+
             if (_speed.x != 0.0f)
             {
                 position.x += _speed.x * _armatureComponent.animation.timeScale;
@@ -432,7 +432,7 @@ namespace coreElement
                     _aimRadian -= Mathf.PI * 2.0f;
                 }
             }
-            
+
             int aimDir = 0;
             if (_aimRadian > 0.0f)
             {
@@ -517,7 +517,7 @@ namespace coreElement
             this.transform.localPosition += _speed;
 
             if (this.transform.localPosition.x < -7.0f || this.transform.localPosition.x > 7.0f ||
-                this.transform.localPosition.y < -7.0f || this.transform.localPosition.y > 7.0f )
+                this.transform.localPosition.y < -7.0f || this.transform.localPosition.y > 7.0f)
             {
                 _armatureComponent.armature.Dispose();
 

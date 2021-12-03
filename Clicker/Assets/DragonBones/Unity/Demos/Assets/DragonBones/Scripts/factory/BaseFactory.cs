@@ -20,7 +20,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace DragonBones
 {
@@ -424,7 +424,7 @@ namespace DragonBones
         /// <language>zh_CN</language>
         public DragonBonesData ParseDragonBonesData(object rawData, string name = null, float scale = 1.0f)
         {
-            var dataParser = rawData is byte[] ? BaseFactory._binaryParser : this._dataParser;
+            var dataParser = rawData is byte[]? BaseFactory._binaryParser : this._dataParser;
             DragonBonesData dragonBonesData = dataParser.ParseDragonBonesData(rawData, scale);
 
             while (true)

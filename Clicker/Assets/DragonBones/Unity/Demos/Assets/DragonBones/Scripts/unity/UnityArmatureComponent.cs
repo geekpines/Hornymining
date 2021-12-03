@@ -20,8 +20,8 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
- using System.Collections.Generic;
- using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -261,13 +261,13 @@ namespace DragonBones
                     return;
                 }
 
-                #if UNITY_5_6_OR_NEWER
+#if UNITY_5_6_OR_NEWER
                 var isWarning = false;
-                #else
+#else
                 var isWarning = value == SortingMode.SortByOrder;
-                #endif
+#endif
 
-                if(isWarning)
+                if (isWarning)
                 {
                     LogHelper.LogWarning("SortingMode.SortByOrder is userd by Unity 5.6 or highter only.");
                     return;
@@ -276,11 +276,11 @@ namespace DragonBones
                 _sortingMode = value;
 
                 //
-                #if UNITY_5_6_OR_NEWER
-                if(_sortingMode == SortingMode.SortByOrder)
+#if UNITY_5_6_OR_NEWER
+                if (_sortingMode == SortingMode.SortByOrder)
                 {
                     _sortingGroup = GetComponent<UnityEngine.Rendering.SortingGroup>();
-                    if(_sortingGroup == null)
+                    if (_sortingGroup == null)
                     {
                         _sortingGroup = gameObject.AddComponent<UnityEngine.Rendering.SortingGroup>();
                     }
@@ -289,12 +289,12 @@ namespace DragonBones
                 {
                     _sortingGroup = GetComponent<UnityEngine.Rendering.SortingGroup>();
 
-                    if(_sortingGroup != null)
+                    if (_sortingGroup != null)
                     {
                         DestroyImmediate(_sortingGroup);
                     }
                 }
-                #endif
+#endif
 
                 _UpdateSlotsSorting();
             }
@@ -383,7 +383,7 @@ namespace DragonBones
 
                 _UpdateSlotsSorting();
             }
-        }        
+        }
         /// <summary>
         /// - The armature color.
         /// </summary>
@@ -408,7 +408,7 @@ namespace DragonBones
                 }
             }
         }
-        
+
 
 #if UNITY_5_6_OR_NEWER
         internal UnityEngine.Rendering.SortingGroup _sortingGroup;
@@ -460,9 +460,9 @@ namespace DragonBones
                 }
             }
 
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             EditorUtility.SetDirty(this);
-            #endif
+#endif
 
             _UpdateSlotsSorting();
         }
@@ -503,7 +503,7 @@ namespace DragonBones
 
                 slot._SetZorder(new Vector3(display.transform.localPosition.x, display.transform.localPosition.y, -slot._zOrder * (_zSpace + 0.001f)));
 
-                if(slot.childArmature != null)
+                if (slot.childArmature != null)
                 {
                     (slot.childArmature.proxy as UnityArmatureComponent)._UpdateSlotsSorting();
                 }
@@ -577,7 +577,7 @@ namespace DragonBones
             _flipX = _armature.flipX;
             _flipY = _armature.flipY;
 
-            #if UNITY_5_6_OR_NEWER
+#if UNITY_5_6_OR_NEWER
             var hasSortingGroup = GetComponent<UnityEngine.Rendering.SortingGroup>() != null;
             if (hasSortingGroup != _hasSortingGroup)
             {
@@ -585,7 +585,7 @@ namespace DragonBones
 
                 _UpdateSortingGroup();
             }
-            #endif
+#endif
 
             if (unityBones != null)
             {

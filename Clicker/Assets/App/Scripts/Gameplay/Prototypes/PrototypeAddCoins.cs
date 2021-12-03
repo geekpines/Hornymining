@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Scripts.Gameplay.CoreGameplay.Coins;
+﻿using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -18,7 +18,7 @@ namespace App.Scripts.Gameplay.Prototypes
             public CoinType Type;
             public float Value;
         }
-        
+
         [Inject]
         private void Construct(PlayerProfile playerProfile)
         {
@@ -27,7 +27,7 @@ namespace App.Scripts.Gameplay.Prototypes
 
         private void Start()
         {
-            foreach (var coin in AddCoins)  
+            foreach (var coin in AddCoins)
             {
                 _playerProfile.AddScore(coin.Type, coin.Value);
             }

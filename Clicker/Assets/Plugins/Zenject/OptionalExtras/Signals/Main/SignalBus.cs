@@ -1,7 +1,7 @@
+using ModestTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ModestTree;
 #if ZEN_SIGNALS_ADD_UNIRX
 using UniRx;
 #endif
@@ -121,12 +121,12 @@ namespace Zenject
             return IsSignalDeclared(typeof(TSignal), identifier);
         }
 
-        public bool IsSignalDeclared(Type signalType)  
+        public bool IsSignalDeclared(Type signalType)
         {
             return IsSignalDeclared(signalType, null);
         }
 
-        public bool IsSignalDeclared(Type signalType, object identifier) 
+        public bool IsSignalDeclared(Type signalType, object identifier)
         {
             return GetDeclaration(signalType, identifier, false) != null;
         }

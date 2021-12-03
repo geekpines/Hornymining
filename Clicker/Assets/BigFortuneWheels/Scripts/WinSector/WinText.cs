@@ -1,7 +1,4 @@
 ﻿using Mkey;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WinText : WinSectorBehavior
@@ -46,7 +43,7 @@ public class WinText : WinSectorBehavior
 
     private void FlashAlpha()
     {
-        cF = new ColorFlasher(gameObject, new TextMesh[] {text}, null, null, null, 1);
+        cF = new ColorFlasher(gameObject, new TextMesh[] { text }, null, null, null, 1);
         cF.FlashingAlpha();
     }
 }

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using App.Scripts.Gameplay.CoreGameplay.Coins.Base;
+using System.Collections.Generic;
 using System.Linq;
-using App.Scripts.Gameplay.CoreGameplay.Coins.Base;
 using UnityEngine;
 
 namespace App.Scripts.Gameplay.CoreGameplay.Coins
@@ -45,9 +45,9 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins
                 return _instance;
             }
         }
-        
+
 #if UNITY_EDITOR
-        
+
         //todo: добавить генерацию
 
         // /// <summary>
@@ -89,7 +89,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins
         //     
         //     heroInformationDataBase.RefreshCollections();
         // }
-        
+
 #endif
     }
 }

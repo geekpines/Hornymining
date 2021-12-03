@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using System;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
 #endif
 /*
   06.01.2020 - first
@@ -30,7 +28,7 @@ namespace Mkey
         public override void OnInspectorGUI()
         {
             Inspector_Button myScript = (Inspector_Button)target;
-            string buttonName = (myScript.clickFirstEvent!=null && myScript.clickFirstEvent.GetPersistentEventCount()>0) ? myScript.clickFirstEvent.GetPersistentMethodName(0) : "not defined";
+            string buttonName = (myScript.clickFirstEvent != null && myScript.clickFirstEvent.GetPersistentEventCount() > 0) ? myScript.clickFirstEvent.GetPersistentMethodName(0) : "not defined";
             if (string.IsNullOrEmpty(buttonName)) buttonName = "not defined";
             if (GUILayout.Button(buttonName))
             {

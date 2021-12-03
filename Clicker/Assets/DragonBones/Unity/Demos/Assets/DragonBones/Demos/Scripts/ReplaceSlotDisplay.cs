@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using DragonBones;
+﻿using DragonBones;
+using UnityEngine;
 
 [RequireComponent(typeof(UnityArmatureComponent))]
 public class ReplaceSlotDisplay : MonoBehaviour

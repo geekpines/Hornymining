@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace App.Scripts.Common
 {
@@ -17,7 +16,8 @@ namespace App.Scripts.Common
         /// </summary>
         public void Dispose()
         {
-            if (List != null) {
+            if (List != null)
+            {
                 List.Remove(this);
             }
         }

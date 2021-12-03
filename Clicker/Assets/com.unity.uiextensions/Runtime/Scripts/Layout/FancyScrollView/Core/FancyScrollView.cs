@@ -46,7 +46,7 @@ namespace UnityEngine.UI.Extensions
         readonly IList<FancyCell<TItemData, TContext>> pool = new List<FancyCell<TItemData, TContext>>();
 
         protected event Action<GameObject> OnSpawned;
-        
+
         /// <summary>
         /// 初期化済みかどうか.
         /// </summary>
@@ -57,7 +57,7 @@ namespace UnityEngine.UI.Extensions
         /// от расстояния ячеек
         /// </summary>
         protected bool isResizeble = true;
-        
+
         /// <summary>
         /// 現在のスクロール位置.
         /// </summary>
@@ -142,7 +142,7 @@ namespace UnityEngine.UI.Extensions
 
             if (!isResizeble)
                 return;
-            
+
             var addCount = Mathf.CeilToInt((1f - firstPosition) / CellInterval) - pool.Count;
             for (var i = 0; i < addCount; i++)
             {
@@ -153,7 +153,7 @@ namespace UnityEngine.UI.Extensions
                         "FancyCell<{0}, {1}> component not found in {2}.",
                         typeof(TItemData).FullName, typeof(TContext).FullName, CellPrefab.name));
                 }
-                
+
                 OnSpawned?.Invoke(cell.gameObject);
                 cell.name = cell.name + "_" + pool.Count;
                 cell.SetContext(Context);

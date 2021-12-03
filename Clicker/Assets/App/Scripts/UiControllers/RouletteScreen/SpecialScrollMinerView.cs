@@ -1,8 +1,8 @@
-﻿using System;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
+using App.Scripts.UiViews.RouletteScreen;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using App.Scripts.Gameplay.CoreGameplay.Mining;
-using App.Scripts.UiViews.RouletteScreen;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
@@ -17,22 +17,22 @@ namespace App.Scripts.UiControllers.RouletteScreen
     {
         [SerializeField] private ScrollerExtension _scrollerExtension = default;
         [SerializeField] private GameObject _cellPrefab = default;
-        
+
         /// <summary>
         /// Список визуальных ячеек
         /// </summary>
         public List<RouletteSlotView> MinerViews { get; private set; } = new List<RouletteSlotView>();
-        
+
         /// <summary>
         /// Количество визуальных ячеек
         /// </summary>
         public int Size => ItemsSource.Count;
-        
+
         /// <summary>
         /// Текущая выбранная ячейка
         /// </summary>
         public RouletteSlotView CurrentSelected => MinerViews[CurrentSelectedIndex];
-        
+
         /// <summary>
         /// Индекс текущей выбранной ячейки
         /// </summary>
@@ -52,7 +52,7 @@ namespace App.Scripts.UiControllers.RouletteScreen
                 }
                 else if (currentPosition < 0)
                 {
-                    var temp = (int) (MinerViews.Count + (currentPosition % MinerViews.Count));
+                    var temp = (int)(MinerViews.Count + (currentPosition % MinerViews.Count));
                     if (temp == MinerViews.Count)
                         temp = 0;
                     return temp;
@@ -139,7 +139,7 @@ namespace App.Scripts.UiControllers.RouletteScreen
             UpdateSelection(index);
             _scrollerExtension.ScrollTo(index, 0.35f, Ease.OutCubic);
         }
-        
+
         /// <summary>
         /// Прокрутить рулетку до определенной ячейки
         /// </summary>

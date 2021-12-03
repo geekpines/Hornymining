@@ -20,7 +20,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace DragonBones
@@ -309,7 +309,7 @@ namespace DragonBones
                         // Arrive at frame.
                         var framePosition = (float)this._frameArray[this._frameOffset] / (float)this._frameRate;
                         if (this.currentPlayTimes == prevPlayTimes)
-                        { 
+                        {
                             // Start.
                             if (prevTime <= framePosition)
                             {
@@ -317,10 +317,10 @@ namespace DragonBones
                             }
                         }
                         else if (this._position <= framePosition)
-                        { 
+                        {
                             // Loop complete.
                             if (!isReverse && loopCompleteEvent != null)
-                            { 
+                            {
                                 // Add loop complete event before first frame.
                                 this._armature._dragonBones.BufferEvent(loopCompleteEvent);
                                 loopCompleteEvent = null;
@@ -451,7 +451,7 @@ namespace DragonBones
             {
                 this._tweenState = TweenState.None;
             }
-            
+
             result.x = current.x + delta.x * this._tweenProgress;
             result.y = current.y + delta.y * this._tweenProgress;
             result.rotation = current.rotation + delta.rotation * this._tweenProgress;
@@ -526,7 +526,7 @@ namespace DragonBones
             {
                 this._tweenState = TweenState.None;
             }
-            
+
             result.x = current.x + delta.x * this._tweenProgress;
             result.y = current.y + delta.y * this._tweenProgress;
         }
@@ -677,7 +677,7 @@ namespace DragonBones
                 var displayIndex = this._timelineData != null ? this._frameArray[this._frameOffset + 1] : this.slot.slotData.displayIndex;
                 if (this.slot.displayIndex != displayIndex)
                 {
-                   this.slot._SetDisplayIndex(displayIndex, true);
+                    this.slot._SetDisplayIndex(displayIndex, true);
                 }
             }
         }
@@ -1056,7 +1056,7 @@ namespace DragonBones
                         this.slot._meshDirty = true;
                     }
                 }
-                
+
             }
         }
     }

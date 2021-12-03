@@ -7,7 +7,7 @@ namespace App.Scripts.Gameplay.MetaGameplay.Roulette
     {
         [SerializeField] private Button _button;
         [SerializeField] private RollMinerSystem _rollSystem;
-        
+
         private void OnEnable()
         {
             _button.onClick.AddListener(Clicked);

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -43,7 +43,7 @@ namespace Mkey
 {
     public class SimpleTween : MonoBehaviour
     {
-        public enum CancelCondition {SetStartValue, SetEndValue, AsIs}
+        public enum CancelCondition { SetStartValue, SetEndValue, AsIs }
         static List<SimpleTweenObject> tweenObjects;
         static SimpleTween Instance;
         static float PI = (float)Math.PI;
@@ -170,7 +170,7 @@ namespace Mkey
         /// <param name="OnComplete"></param>
         public static void Cancel(GameObject gO, bool OnComplete, CancelCondition cancelCondition)
         {
-            if (gO == null || tweenObjects==null) return;
+            if (gO == null || tweenObjects == null) return;
             List<SimpleTweenObject> sTOL = new List<SimpleTweenObject>();
             int length = tweenObjects.Count;
             SimpleTweenObject sTO;
@@ -213,7 +213,7 @@ namespace Mkey
             }
         }
 
-		/// <summary>
+        /// <summary>
         /// Cancel all tweens for gameObject, without to start complete callbacks
         /// </summary>
         /// <param name="gO"></param>
@@ -230,7 +230,7 @@ namespace Mkey
             for (int i = 0; i < length; i++)
             {
                 tweenObjects[i].Update(Time.deltaTime);
-                if (tweenObjects[i].IsFree) freeInd=i;
+                if (tweenObjects[i].IsFree) freeInd = i;
             }
 
             if (freeInd > -1 && length > 50) tweenObjects.RemoveAt(freeInd);
@@ -286,7 +286,7 @@ namespace Mkey
 
         public class SimpleTweenObject
         {
-            enum STT {FloatTween, Vector3Tween, Vector3TweenMove}
+            enum STT { FloatTween, Vector3Tween, Vector3TweenMove }
             static int lastID = 1;
             public GameObject gameObject;
             public int ID
@@ -358,7 +358,7 @@ namespace Mkey
                 ID = lastID;
 
                 EaseFunc = EaseLinear;
-                stt =(!move)? STT.Vector3Tween : STT.Vector3TweenMove;
+                stt = (!move) ? STT.Vector3Tween : STT.Vector3TweenMove;
                 IsFree = false;
                 IsCycled = false;
                 UpdateCallBackV3 = null;
@@ -486,7 +486,7 @@ namespace Mkey
 
             public SimpleTweenObject AddCompleteCallBack(Action callBack)
             {
-               if(callBack!=null) completeCallBack += callBack;
+                if (callBack != null) completeCallBack += callBack;
                 return this;
             }
 
@@ -495,11 +495,11 @@ namespace Mkey
                 IsCycled = true;
                 return this;
             }
- 
+
             public void Update(float deltaTime)
             {
                 if (IsFree) return;
-               // Debug.Log(ID + " : " + gameObject );
+                // Debug.Log(ID + " : " + gameObject );
                 if (delay > 0)
                 {
                     delay -= deltaTime;
@@ -513,7 +513,7 @@ namespace Mkey
 
                 if (timeLeft)
                 {
-                     completeCallBack?.Invoke();
+                    completeCallBack?.Invoke();
                     if (!IsCycled) IsFree = true;
                     else
                     {
@@ -795,8 +795,8 @@ namespace Mkey
             {
                 if (d == 0) return 1;
                 t /= d;
-                float s =  1.70158f;
-               // Debug.Log("t: " + t + " ;c: "+c +  " ;d: " + d +" ; return: " +  (c * t * t * ((s + 1.0f) * t - s)));
+                float s = 1.70158f;
+                // Debug.Log("t: " + t + " ;c: "+c +  " ;d: " + d +" ; return: " +  (c * t * t * ((s + 1.0f) * t - s)));
                 return c * t * t * ((s + 1.0f) * t - s);
             }
 
@@ -804,7 +804,7 @@ namespace Mkey
             {
                 if (d == 0) return 1;
                 t /= d;
-                float s =  1.70158f;
+                float s = 1.70158f;
                 t = t - 1;
                 return c * (t * t * ((s + 1.0f) * t + s) + 1.0f);
             }
@@ -813,7 +813,7 @@ namespace Mkey
             {
                 if (d == 0) return 1;
                 t /= d;
-                float s =   1.70158f;
+                float s = 1.70158f;
                 float s1 = s * 1.525f;
 
                 float td2 = t * 2.0f;
@@ -931,10 +931,10 @@ namespace Mkey
                 completeCallBack = null;
                 UpdateCallBackV3 = null;
                 UpdateCallBack = null;
-              //  Debug.Log("Rebuild " + ID + gameObject);
+                //  Debug.Log("Rebuild " + ID + gameObject);
             }
 
-            internal void Rebuild(GameObject gameObject, Vector3 startPosition, Vector3 endPosition,  float tweenTime, bool move)
+            internal void Rebuild(GameObject gameObject, Vector3 startPosition, Vector3 endPosition, float tweenTime, bool move)
             {
                 this.gameObject = gameObject;
                 this.tweenTime = tweenTime;
@@ -949,13 +949,13 @@ namespace Mkey
                 EaseFunc = EaseLinear;
                 currTime = 0.0f;
                 delay = 0.0f;
-                stt =(move) ? STT.Vector3TweenMove : STT.Vector3Tween;
+                stt = (move) ? STT.Vector3TweenMove : STT.Vector3Tween;
                 IsFree = false;
                 IsCycled = false;
                 completeCallBack = null;
                 UpdateCallBack = null;
                 UpdateCallBackV3 = null;
-               // Debug.Log("Rebuild " + ID + gameObject);
+                // Debug.Log("Rebuild " + ID + gameObject);
             }
 
             internal void Restart()

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using App.Scripts.Gameplay.CoreGameplay.Coins;
+﻿using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using Assets.App.Scripts.Common;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace App.Scripts.Gameplay.CoreGameplay.Player
@@ -15,19 +15,19 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
     public class PlayerProfile : AbstractService<PlayerProfile>
     {
         //todo: вынести в конфиг
-        private const int MaxActiveMinersCount = 5; 
+        private const int MaxActiveMinersCount = 5;
         public event Action<Miner> OnAllMinersCountChanged;
         public event Action<Miner> OnActiveMinersCountChanged;
 
-        [field:SerializeField] 
+        [field: SerializeField]
         public List<CoinData> Coins { get; private set; } = new List<CoinData>();
         public float percentUpgrade = 1;
-        
+
         [SerializeField] private List<Miner> _allMiners = new List<Miner>();
         private List<Miner> _activeMiners = new List<Miner>();
 
         private Dictionary<CoinType, CoinData> CoinTypeToData = new Dictionary<CoinType, CoinData>();
-        
+
         private void Awake()
         {
             //todo: добавить сохранение
@@ -57,7 +57,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             _allMiners.Add(miner);
             OnAllMinersCountChanged?.Invoke(miner);
         }
-        
+
         /// <summary>
         /// Добавить активного майнера игроку
         /// </summary>
@@ -66,7 +66,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             if (_activeMiners.Count >= MaxActiveMinersCount)
                 return;
-            
+
             if (_allMiners.Contains(miner) &&
                 !_activeMiners.Contains(miner))
             {
@@ -117,7 +117,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             //todo: Заменить на IEnumerator
             return _allMiners;
         }
-        
+
         /// <summary>
         /// Получить список всех активных майнеров игрока
         /// </summary>
@@ -156,7 +156,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             if (CoinTypeToData.ContainsKey(resourceId))
             {
-                CoinTypeToData[resourceId].Add(addScore*percentUpgrade);
+                CoinTypeToData[resourceId].Add(addScore * percentUpgrade);
             }
         }
 
@@ -181,7 +181,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             CoinTypeToData[resourceId].Decrease(value);
         }
 
-        
-        
+
+
     }
 }

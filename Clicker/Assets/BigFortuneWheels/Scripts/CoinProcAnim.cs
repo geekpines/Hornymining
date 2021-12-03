@@ -2,12 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Mkey
 {
-	public class CoinProcAnim : MonoBehaviour
-	{
+    public class CoinProcAnim : MonoBehaviour
+    {
         [SerializeField]
         private Transform coin;
         [SerializeField]
@@ -26,7 +25,7 @@ namespace Mkey
         [SerializeField]
         private Vector3 V02 = new Vector3(1, 2, 0);
         [SerializeField]
-        private GameObject [] coinPrefab;
+        private GameObject[] coinPrefab;
         [SerializeField]
         private float maxDelay = 1;
         [SerializeField]
@@ -34,7 +33,7 @@ namespace Mkey
         [SerializeField]
         private float radius = 1;
         [SerializeField]
-        private float coinScale=1;
+        private float coinScale = 1;
 
         [SerializeField]
         private bool autoJump = false;
@@ -48,15 +47,15 @@ namespace Mkey
 
         #region regular
         private void Start()
-		{
+        {
             if (autoJump) StartCoroutine(JumpC());
-		}
+        }
 
-		private void Update()
-		{
-			
-		}
-       
+        private void Update()
+        {
+
+        }
+
         #endregion regular
 
         public void Move()
@@ -67,7 +66,7 @@ namespace Mkey
 
         public void Jump()
         {
-            if (coinPrefab== null || coinPrefab.Length == 0) return;
+            if (coinPrefab == null || coinPrefab.Length == 0) return;
             List<GameObject> coinsL = new List<GameObject>();
 
             for (int i = 0; i < coinsCount; i++)
@@ -78,8 +77,8 @@ namespace Mkey
 
             foreach (var item in coinsL)
             {
-                item.transform.localPosition = RandomRange(new Vector3(-radius, - radius, 0), new Vector3(radius, radius, 0));
-                item.transform.localEulerAngles = RandomRange(new Vector3(0, 0, -30), new Vector3(0,0, 30));
+                item.transform.localPosition = RandomRange(new Vector3(-radius, -radius, 0), new Vector3(radius, radius, 0));
+                item.transform.localEulerAngles = RandomRange(new Vector3(0, 0, -30), new Vector3(0, 0, 30));
                 item.transform.localScale *= coinScale;
                 StartCoroutine(JumpC(item.transform, UnityEngine.Random.Range(0, maxDelay), lifeTime, () => { Destroy(item); }));
             }
@@ -95,14 +94,14 @@ namespace Mkey
         {
             yield return delay;
             WaitForEndOfFrame wfef = new WaitForEndOfFrame();
-            Vector3 a = new Vector3(0, - gravity, 0); 
+            Vector3 a = new Vector3(0, -gravity, 0);
             float dt = 0;
             Vector3 jumpV0 = RandomRange(V01, V02);
             Vector3 lPos = t.localPosition;
 
             while (time > dt)
             {
-              //  Debug.Log("move: " + dt);
+                //  Debug.Log("move: " + dt);
                 dt += Time.deltaTime;
                 if (t) t.localPosition = lPos + jumpV0 * dt + a * dt * dt / 2f;
                 yield return wfef;

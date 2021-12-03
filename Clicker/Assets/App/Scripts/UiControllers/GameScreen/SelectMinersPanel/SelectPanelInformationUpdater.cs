@@ -25,7 +25,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             _playerProfile.OnAllMinersCountChanged += ChangeMinerInformation;
             _playerProfile.OnActiveMinersCountChanged += ChangeActiveMinerInformation;
         }
-        
+
         private void OnDisable()
         {
             _playerProfile.OnAllMinersCountChanged -= ChangeMinerInformation;
@@ -48,7 +48,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
                 _minersSelectPanel.RemoveMinerInformation(miner.ID);
             }
         }
-        
+
         private void ChangeActiveMinerInformation(Miner miner)
         {
             if (_playerProfile.ContainsActiveMiner(miner))

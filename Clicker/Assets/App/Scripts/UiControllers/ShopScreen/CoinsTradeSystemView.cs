@@ -2,8 +2,6 @@ using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.ScorePanel;
 using App.Scripts.UiViews.GameScreen.TopPanel;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -18,8 +16,8 @@ public class CoinsTradeSystemView : MonoBehaviour
     public float percent = 1;
 
     [SerializeField] private CoinsPanelInformation panelInformation;
-    
-   
+
+
 
 
     [Inject]
@@ -38,7 +36,7 @@ public class CoinsTradeSystemView : MonoBehaviour
     {
         for (int i = 0; i < panelInformation.CoinInfoViews.Count; i++)
         {
-            if(panelInformation.CoinInfoViews[i] == _coinInfoView)
+            if (panelInformation.CoinInfoViews[i] == _coinInfoView)
             {
                 if (_player.Coins[5].Value - 1 >= 0)
                 {
@@ -46,10 +44,10 @@ public class CoinsTradeSystemView : MonoBehaviour
                     _player.AddScore(_player.Coins[i].ID, _player.Coins[i].TradeValue * percent);
                     _player.AddScore(CoinType.HornyBucks, -1);
                 }
-                
+
             }
-        }        
-       
+        }
+
     }
     void Sell()
     {

@@ -830,7 +830,7 @@ namespace DragonBones
                 }
             }
         }
-         /// <private/>
+        /// <private/>
         public override void ReplaceDisplay(Slot slot, DisplayData displayData, int displayIndex = -1)
         {
             //UGUI Display Object and Normal Display Object cannot be replaced with each other

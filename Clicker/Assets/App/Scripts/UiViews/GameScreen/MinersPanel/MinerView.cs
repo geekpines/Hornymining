@@ -12,7 +12,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         [ReadOnly, ShowInInspector]
         protected UnityArmatureComponent _armatureComponent;
         public UnityArmatureComponent ArmatureComponent => _armatureComponent;
-        
+
         /// <summary>
         /// Воспроизвести анимацию
         /// </summary>
@@ -30,7 +30,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         {
             _armatureComponent.animation.Stop();
         }
-        
+
         /// <summary>
         /// Установить ссылку на визуальную часть
         /// </summary>

@@ -70,7 +70,8 @@ namespace App.Scripts.Common
         /// <param name="handle"></param>
         public void Unobserve(ObserverHandle handle)
         {
-            if (handle != null) {
+            if (handle != null)
+            {
                 handle.Dispose();
                 handles.Remove(handle);
             }

@@ -8,7 +8,7 @@ namespace Assets.App.Scripts.Common
         public ObserverList<IOnFixedUpdate> OnFixedUpdate { get; } = new ObserverList<IOnFixedUpdate>();
         public ObserverList<IOnLateUpdate> OnLateUpdate { get; } = new ObserverList<IOnLateUpdate>();
         public ObserverList<IOnUpdate> OnUpdate { get; } = new ObserverList<IOnUpdate>();
-        
+
         void Update()
         {
             float timeDelta = Time.deltaTime;

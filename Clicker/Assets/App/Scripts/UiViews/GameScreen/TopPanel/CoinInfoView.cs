@@ -24,7 +24,7 @@ namespace App.Scripts.UiViews.GameScreen.TopPanel
             SetDescription(description);
             _openIcon = icon;
         }
-        
+
         public void SetIcon(Sprite icon)
         {
             _icon.sprite = icon;
@@ -44,10 +44,10 @@ namespace App.Scripts.UiViews.GameScreen.TopPanel
         {
             _panelDescription.SetActive(show);
         }
-        
+
         public void SetLock()
         {
-            SetIcon( _lockIcon);
+            SetIcon(_lockIcon);
             _isLocked = true;
         }
 

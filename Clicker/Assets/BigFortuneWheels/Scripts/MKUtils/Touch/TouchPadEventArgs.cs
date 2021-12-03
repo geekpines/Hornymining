@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -66,7 +65,7 @@ namespace Mkey
             PointerEventData pointerData = new PointerEventData(EventSystem.current);
             pointerData.position = touch.position;
             List<RaycastResult> results = new List<RaycastResult>();
-            if(EventSystem.current) EventSystem.current.RaycastAll(pointerData, results);
+            if (EventSystem.current) EventSystem.current.RaycastAll(pointerData, results);
             //  Debug.Log("results.Count: " + results.Count);
             if (results.Count > 0) { hits = new Collider2D[0]; return; }
 
@@ -109,7 +108,7 @@ namespace Mkey
             PointerEventData pointerData = new PointerEventData(EventSystem.current);
             pointerData.position = position;
             List<RaycastResult> results = new List<RaycastResult>();
-            if(EventSystem.current)   EventSystem.current.RaycastAll(pointerData, results);
+            if (EventSystem.current) EventSystem.current.RaycastAll(pointerData, results);
             //  Debug.Log("results.Count: " + results.Count);
             float camPosZ = (Camera.main) ? Camera.main.transform.position.z : -float.MaxValue;
 
@@ -124,7 +123,7 @@ namespace Mkey
             List<Collider2D> hl = new List<Collider2D>(Physics2D.OverlapPointAll(new Vector2(wPos.x, wPos.y)));
             if (hl.Count > 0)
             {
-                hl.RemoveAll((coll)=> { return (coll.transform.position.z - camPosZ > distRCZ); });
+                hl.RemoveAll((coll) => { return (coll.transform.position.z - camPosZ > distRCZ); });
             }
 
             if (onlyTopCollider)

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using App.Scripts.Gameplay.CoreGameplay.Mining;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
@@ -29,7 +29,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         public List<MinerSlotView> MinersSlotView { get; private set; } = new List<MinerSlotView>();
         private Dictionary<int, MinerSlotView> IdToView = new Dictionary<int, MinerSlotView>();
-        
+
         [Inject]
         private void Construct(PlayerProfile playerProfile)
         {
@@ -42,10 +42,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             InitializationActiveMiners();
             OpenSlotButton.onClick.AddListener(MinersViewController);
         }
-        
+
         private void InitializationActiveMiners()
         {
-            
+
             InitializeScroll();
             InitializeViews();
             InitializeContent();
@@ -73,12 +73,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 }
             }
         }
-        
+
         private void InitializeContent()
         {
-            
+
             MinersSlotView[0].IsOpen = true;
-            
+
             if (MinersSlotView.Count > 0)
             {
                 var allActiveMiners = _playerProfile.GetActiveMiners();
@@ -88,7 +88,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 }
             }
         }
-        
+
         private void MinerClicked(MinerSlotView sender)
         {
             OnMinerSelected?.Invoke(sender);
@@ -103,16 +103,16 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 if (IdToView.ContainsKey(miner.ID))
                     return;
-                
+
                 var visual = Instantiate(
-                    miner.Configuration.Visual, 
+                    miner.Configuration.Visual,
                     viewSlot.RootPosition);
-                
+
                 viewSlot.SetVisual(
-                    visual.gameObject, 
-                    visual.ArmatureComponent, 
+                    visual.gameObject,
+                    visual.ArmatureComponent,
                     miner.ID);
-                
+
                 IdToView.Add(miner.ID, viewSlot);
                 viewSlot.SetLock(false);
 
@@ -158,12 +158,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void MinersViewController()
         {
-            
-            if(Level.CurrentLevel < 4)
+
+            if (Level.CurrentLevel < 4)
             {
                 MinersSlotView[Level.CurrentLevel + 1].IsOpen = Level.OpenMinerSlot(_playerProfile);
             }
-            
+
         }
 
         public void UpdateVisual()

@@ -1,6 +1,5 @@
 ﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -53,7 +52,7 @@ namespace MkeyFW
                 _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(_minerConfs[Random.Range(0, _minerConfs.Count)]));
 
             }
-            
+
             Debug.Log("Result event");
         }
     }

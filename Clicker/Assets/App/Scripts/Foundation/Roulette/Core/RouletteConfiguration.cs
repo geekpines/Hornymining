@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Foundation.Roulette.Core
 {
@@ -22,7 +21,7 @@ namespace App.Scripts.Foundation.Roulette.Core
         /// </summary>
         //[InfoBox("Список возможных предметов")]
         public List<RouletteItemInfo<T>> RouletteItems = new List<RouletteItemInfo<T>>();
-  
+
         /// <summary>
         /// Класс обертка для генерации. Можно задать  
         /// настройки для генерации предмета
@@ -35,13 +34,13 @@ namespace App.Scripts.Foundation.Roulette.Core
             [Range(0, 1000)] public int Weight;
             [ReadOnly]
             public float ChancePercent;
-            
+
             public void SetChance(float chance)
             {
                 ChancePercent = chance;
             }
         }
-        
+
         private void OnValidate()
         {
             //Отображаем шанс
@@ -54,12 +53,12 @@ namespace App.Scripts.Foundation.Roulette.Core
             {
                 if (sumWeight == 0)
                 {
-                    Debug.LogError( "Суммарный шанс не может быть 0!");
+                    Debug.LogError("Суммарный шанс не может быть 0!");
                     return;
                 }
                 lootItemData.SetChance((lootItemData.Weight * 100) / sumWeight);
             }
         }
-        
+
     }
 }

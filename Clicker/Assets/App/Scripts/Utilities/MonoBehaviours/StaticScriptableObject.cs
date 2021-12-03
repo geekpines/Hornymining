@@ -12,7 +12,7 @@ namespace App.Scripts.Utilities.MonoBehaviours
     /// ссылки или общая конфигурация игры и т.п.
     /// </summary>
     /// <typeparam name="T">Имя наследуемого класса (имя ассета должно быть на английском, без пробелов и специальных символов)</typeparam>
-    public class StaticScriptableObject<T> : ScriptableObject 
+    public class StaticScriptableObject<T> : ScriptableObject
         where T : ScriptableObject
     {
         private static T _instance;
@@ -20,7 +20,7 @@ namespace App.Scripts.Utilities.MonoBehaviours
         /// <summary>
         /// Получить ссылку на экземпляр ScriptableObject
         /// </summary>
-        [Obsolete ("Для получения доступа к данным используйте классы обертки")]
+        [Obsolete("Для получения доступа к данным используйте классы обертки")]
         public static T Instance
         {
             get

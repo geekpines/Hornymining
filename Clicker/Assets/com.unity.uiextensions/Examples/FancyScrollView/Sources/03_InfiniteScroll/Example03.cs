@@ -4,9 +4,7 @@
  * Licensed under MIT (https://github.com/setchi/FancyScrollView/blob/master/LICENSE)
  */
 
-using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 
 namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
 {
@@ -19,7 +17,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
             var items = Enumerable.Range(0, 10)
                 .Select(i => new ItemData())
                 .ToArray();
-            
+
             extendedScrollView.UpdateData(items);
             extendedScrollView.SelectCell(0);
         }

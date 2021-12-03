@@ -14,7 +14,7 @@ namespace MkeyFW
         public float dist = 2.5f;
         public float dy = 0;
 
-      public void SetPostion()
+        public void SetPostion()
         {
             Sector[] sectors = GetComponentsInChildren<Sector>();
             int length = sectors.Length;
@@ -24,12 +24,12 @@ namespace MkeyFW
             // set position
             for (int i = 0; i < length; i++)
             {
-              sectors[i].transform.parent = null;
-              float angleDeg = 90.0f - i * dAngleDeg;
-              float angleRad = angleDeg * Mathf.Deg2Rad;
-              sectors[i].transform.position = transform.position + new Vector3(dist * Mathf.Cos(angleRad + radY), dist * Mathf.Sin(angleRad + radY), 0);
-              sectors[i].transform.localEulerAngles = new Vector3(0, 0, angleDeg);
-              sectors[i].transform.parent = transform;
+                sectors[i].transform.parent = null;
+                float angleDeg = 90.0f - i * dAngleDeg;
+                float angleRad = angleDeg * Mathf.Deg2Rad;
+                sectors[i].transform.position = transform.position + new Vector3(dist * Mathf.Cos(angleRad + radY), dist * Mathf.Sin(angleRad + radY), 0);
+                sectors[i].transform.localEulerAngles = new Vector3(0, 0, angleDeg);
+                sectors[i].transform.parent = transform;
             }
         }
     }
@@ -49,7 +49,7 @@ namespace MkeyFW
                 setText.SetPostion();
                 EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
-          
+
         }
     }
 #endif

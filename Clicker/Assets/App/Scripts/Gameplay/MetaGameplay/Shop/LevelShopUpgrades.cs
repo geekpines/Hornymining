@@ -1,7 +1,5 @@
 using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelShopUpgrades : MonoBehaviour
@@ -23,7 +21,7 @@ public class LevelShopUpgrades : MonoBehaviour
                 break;
             case 1:
                 playerProfile.AddScore(CoinType.Bit, -100);
-                return 1.25f;                
+                return 1.25f;
             case 2:
                 playerProfile.AddScore(CoinType.Dash, -100);
                 return 1.35f;
@@ -59,19 +57,19 @@ public class LevelShopUpgrades : MonoBehaviour
                 break;
             case 3:
                 playerProfile.AddScore(CoinType.LTC, -10);
-                break;            
+                break;
             case 4:
                 playerProfile.AddScore(CoinType.Ether, -10);
-                break;          
+                break;
             case 5:
                 playerProfile.AddScore(CoinType.BTC, -10);
-                break;           
+                break;
             default:
-                break;     
-        }        
+                break;
+        }
     }
 
-    
+
     public float GetSale()
     {
         switch (CurrentLevel)
@@ -94,7 +92,7 @@ public class LevelShopUpgrades : MonoBehaviour
         }
         return 1;
     }
-    
+
     public bool OpenMinerSlot(PlayerProfile playerProfile)
     {
         LevelUp();
@@ -124,5 +122,5 @@ public class LevelShopUpgrades : MonoBehaviour
         }
     }
 
-    
+
 }

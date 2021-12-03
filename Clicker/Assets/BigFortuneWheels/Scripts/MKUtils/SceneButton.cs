@@ -23,7 +23,7 @@ namespace Mkey
 
         #region events
         public Button.ButtonClickedEvent clickEvent;
-        public Action <SceneButton> clickEventAction;
+        public Action<SceneButton> clickEventAction;
         #endregion events
 
         #region temp vars
@@ -37,9 +37,9 @@ namespace Mkey
         void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-            PointerUpEvent += (tpea) => 
+            PointerUpEvent += (tpea) =>
             {
-                if(!interactable) return;
+                if (!interactable) return;
                 if (!pDown) return;
                 pDown = false;
                 if (!canFixed) Pressed = false;
@@ -48,12 +48,12 @@ namespace Mkey
                 clickEventAction?.Invoke(this);
             };
 
-            PointerDownEvent += (tpea) => 
+            PointerDownEvent += (tpea) =>
             {
                 if (!interactable) return;
                 pDown = true;
                 if (canFixed) Pressed = !Pressed;
-                if (spriteRenderer && pressedSprite) spriteRenderer.sprite =  pressedSprite;
+                if (spriteRenderer && pressedSprite) spriteRenderer.sprite = pressedSprite;
             };
         }
         #endregion regular

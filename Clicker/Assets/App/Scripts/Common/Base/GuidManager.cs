@@ -1,8 +1,7 @@
 ﻿// From https://github.com/Unity-Technologies/guid-based-reference
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace Assets.App.Scripts.Common
 {
@@ -46,7 +45,7 @@ namespace Assets.App.Scripts.Common
         static GuidManager Instance;
 
         // All the public API is static so you need not worry about creating an instance
-        public static bool Add(GuidComponent guidComponent )
+        public static bool Add(GuidComponent guidComponent)
         {
             if (Instance == null)
             {
@@ -115,7 +114,7 @@ namespace Assets.App.Scripts.Common
             }
 
             GuidInfo existingInfo = guidToObjectMap[guid];
-            if ( existingInfo.go != null && existingInfo.go != guidComponent.gameObject )
+            if (existingInfo.go != null && existingInfo.go != guidComponent.gameObject)
             {
                 // normally, a duplicate GUID is a big problem, means you won't necessarily be referencing what you expect
                 if (Application.isPlaying)

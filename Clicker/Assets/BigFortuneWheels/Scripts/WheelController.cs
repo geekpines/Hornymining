@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Mkey;
+﻿using Mkey;
 using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace MkeyFW // mkey fortune wheel
 {
-	enum SpinDir {Counter,  ClockWise}
+    enum SpinDir { Counter, ClockWise }
     public class WheelController : MonoBehaviour
     {
         [Header("Main references")]
@@ -49,7 +47,7 @@ namespace MkeyFW // mkey fortune wheel
         private int spinSpeedMultiplier = 1;
         [SerializeField]
         private SpinDir spinDir = SpinDir.Counter;
-   
+
         [Header("Lamps control")]
         [Space(16, order = 0)]
         [Tooltip("Before spin")]
@@ -61,7 +59,7 @@ namespace MkeyFW // mkey fortune wheel
         [Tooltip("After spin")]
         [SerializeField]
         private LampsFlash lampsFlashEnd = LampsFlash.All;
-      
+
         [Header("Additional options")]
         [Space(16, order = 0)]
         [Tooltip("Help arrow")]
@@ -118,7 +116,7 @@ namespace MkeyFW // mkey fortune wheel
         {
             sectors = GetComponentsInChildren<Sector>();
             sectorsCount = (sectors != null) ? sectors.Length : 0;
-            if(debug) Debug.Log("sectorsCount: " + sectorsCount);
+            if (debug) Debug.Log("sectorsCount: " + sectorsCount);
             if (sectorsCount > 0)
             {
                 sectorAngleDeg = 360f / sectorsCount;
@@ -132,7 +130,7 @@ namespace MkeyFW // mkey fortune wheel
             }
             if (lampsController) lampsController.lampFlash = lampsFlashAtStart;
             UpdateRand();
-            if (arrowBeviour) arrowBeviour.Show(arrowBlinkCount,0.1f);
+            if (arrowBeviour) arrowBeviour.Show(arrowBlinkCount, 0.1f);
             audioSource = GetComponent<AudioSource>();
 
             if (closeButton)
@@ -161,7 +159,7 @@ namespace MkeyFW // mkey fortune wheel
             WinSector = null;
             if (arrowBeviour) arrowBeviour.CancelTween();
             if (tS != null) return;
-            if(debug) Debug.Log("rand: " + rand);
+            if (debug) Debug.Log("rand: " + rand);
             nextSector = rand;
             if (spinButton) spinButton.interactable = false;
             CancelSectorWin();
@@ -234,12 +232,12 @@ namespace MkeyFW // mkey fortune wheel
                 SimpleTween.Value(gameObject, 0f, inRotAngle, inRotTime)
                                   .SetOnUpdate((float val) =>
                                   {
-                                      if (Reel) Reel.Rotate(0, 0, (-val + oldVal) *rotDirF);
+                                      if (Reel) Reel.Rotate(0, 0, (-val + oldVal) * rotDirF);
                                       oldVal = val;
                                   })
                                   .AddCompleteCallBack(() =>
                                   {
-                                     callBack?.Invoke();
+                                      callBack?.Invoke();
                                   }).SetDelay(spinStartDelay);
             });
 
@@ -280,7 +278,7 @@ namespace MkeyFW // mkey fortune wheel
                 SimpleTween.Value(gameObject, 0, outRotAngle, outRotTime)
                                   .SetOnUpdate((float val) =>
                                   {
-                                      if (Reel) Reel.Rotate(0, 0, (-val + oldVal)*rotDirF);
+                                      if (Reel) Reel.Rotate(0, 0, (-val + oldVal) * rotDirF);
                                       oldVal = val;
                                   })
                                   .AddCompleteCallBack(() =>
@@ -332,7 +330,7 @@ namespace MkeyFW // mkey fortune wheel
         private float GetAngleToNextSector(int nextOrderPosition)
         {
             rotDirF = (spinDir == SpinDir.ClockWise) ? -1f : 1f;
-            return (currSector < nextOrderPosition) ? rotDirF* (nextOrderPosition - currSector) * sectorAngleDeg : (sectors.Length - rotDirF*(currSector - nextOrderPosition)) * sectorAngleDeg;
+            return (currSector < nextOrderPosition) ? rotDirF * (nextOrderPosition - currSector) * sectorAngleDeg : (sectors.Length - rotDirF * (currSector - nextOrderPosition)) * sectorAngleDeg;
         }
 
         /// <summary>

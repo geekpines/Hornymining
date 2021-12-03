@@ -21,36 +21,37 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins.Base
         {
             public List<float> Data = new List<float>();
         }
-        
+
         /// <summary>
         /// Словарь в котором хранятся все данные о отношении
         /// элементов друг к другу. 
         /// </summary>
         public Dictionary<T, Dictionary<T, float>> BonusElement => _bonusElement;
-        
+
         /// <summary>
         /// Список всех элементов.
         /// При необходимости добавить новый элемент в игру -
         /// добавить сюда через инспектор.
         /// </summary>
         public List<T> Elements => _elements;
-        
+
         [SerializeField] private List<T> _elements = new List<T>();
-        [SerializeField] private Dictionary<T, Dictionary<T, float>> _bonusElement = 
+        [SerializeField]
+        private Dictionary<T, Dictionary<T, float>> _bonusElement =
             new Dictionary<T, Dictionary<T, float>>();
 
         /// <summary>
         /// Кэш - нужен для сохранения/восстановления данных в таблице
         /// </summary>
         [SerializeField, HideInInspector] private List<ElementData> _chachedBonusData = new List<ElementData>();
-        
+
         private void OnValidate()
         {
             foreach (var element in Elements)
             {
                 if (!_bonusElement.ContainsKey(element) && element != null)
                 {
-                    _bonusElement.Add(element, new Dictionary<T, float>(){ {element, 1f} });
+                    _bonusElement.Add(element, new Dictionary<T, float>() { { element, 1f } });
                 }
             }
         }
@@ -62,7 +63,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins.Base
         {
             _chachedBonusData.Clear();
             InitChachedData();
-            
+
             for (int i = 0; i < _elements.Count; i++)
             {
                 for (int j = 0; j < _elements.Count; j++)
@@ -74,13 +75,13 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins.Base
                     _chachedBonusData[i].Data[j] = _bonusElement[_elements[i]][_elements[j]];
                 }
             }
-            
-            #if UNITY_EDITOR
+
+#if UNITY_EDITOR
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
-            #endif
+#endif
         }
-        
+
         /// <summary>
         /// Загрузить закэшированные данные в словарь
         /// </summary>
@@ -101,7 +102,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins.Base
                 }
             }
         }
-        
+
         private void InitChachedData()
         {
             for (int i = 0; i < _elements.Count; i++)

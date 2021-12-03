@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Scripts.UiControllers.GameScreen.SelectMinersPanel.MinersListPanel;
+﻿using App.Scripts.UiControllers.GameScreen.SelectMinersPanel.MinersListPanel;
 using App.Scripts.UiViews.GameScreen.MinersListPanel;
-using App.Scripts.UiViews.GameScreen.MinersPanel;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
-using UnityEngine.UI;
 
 namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
 {
@@ -51,7 +49,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             minerView.OnMinerClicked += MinerClicked;
             minerView.OnMinerDoubleClicked += MinerDoubleClicked;
         }
-        
+
         /// <summary>
         /// Установить уровень майнера
         /// </summary>
@@ -59,13 +57,13 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         /// <param name="level"></param>
         public void SetMinerLevel(int id, int level)
         {
-            
+
             if (IdtoViews.ContainsKey(id))
             {
                 IdtoViews[id].SetLevel(level);
             }
         }
-        
+
         /// <summary>
         /// Установить флаг активности
         /// </summary>
@@ -98,17 +96,17 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         /// <param name="id"></param>
         public void RemoveMinerInformation(int id)
         {
-            
+
             if (IdtoViews.ContainsKey(id))
             {
                 _miniMinersPool.Despawn(IdtoViews[id]);
                 IdtoViews[id].OnMinerClicked -= MinerClicked;
                 IdtoViews[id].OnMinerDoubleClicked -= MinerDoubleClicked;
-                
+
                 IdtoViews.Remove(id);
             }
         }
-        
+
         /// <summary>
         /// Скрыть всех майнеров с панели
         /// </summary>
@@ -151,6 +149,6 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         }
 
 
-        
+
     }
 }

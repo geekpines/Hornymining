@@ -32,10 +32,10 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample05
             var rect = rectTransform.rect.size * 0.5f;
             var offset = scrollView.CellInstanceCount;
 
-            scrollView.SetCellState(offset + 0, -1,  rect.x, -rect.y * 1.3f, 0f);
-            scrollView.SetCellState(offset + 1, -1, -rect.x,  rect.y * 1.3f, 0f);
+            scrollView.SetCellState(offset + 0, -1, rect.x, -rect.y * 1.3f, 0f);
+            scrollView.SetCellState(offset + 1, -1, -rect.x, rect.y * 1.3f, 0f);
             scrollView.SetCellState(offset + 2, -1, -rect.x, -rect.y * 1.3f, 0f);
-            scrollView.SetCellState(offset + 3, -1,  rect.x,  rect.y * 1.3f, 0f);
+            scrollView.SetCellState(offset + 3, -1, rect.x, rect.y * 1.3f, 0f);
 
             background.material.SetVector(Uniform.Resolution, rectTransform.rect.size);
             background.material.SetVectorArray(Uniform.CellState, scrollView.GetCellState());

@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
-using System;
 
 
 namespace Mkey
@@ -28,5 +26,5 @@ namespace Mkey
         }
     }
 
-  
+
 }

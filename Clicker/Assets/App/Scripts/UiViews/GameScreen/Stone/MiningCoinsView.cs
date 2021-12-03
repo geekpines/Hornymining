@@ -12,11 +12,11 @@ namespace App.Scripts.UiViews.GameScreen.Stone
         [SerializeField] private ScoreLineView _lineViewPrefab;
         [SerializeField] private float _lifeTime;
         [SerializeField] private float _movingDistance;
-        
+
         [Header("Pool")]
         [SerializeField] private int _poolSize;
         [SerializeField] private Transform _spawnPosition;
-        [SerializeField, Range(0,200)] private float _randomSpawnRangeX;
+        [SerializeField, Range(0, 200)] private float _randomSpawnRangeX;
         [SerializeField, Range(0, 200)] private float _randomSpawnRangeY;
         private PoolObject<ScoreLineView> ScoreLines;
 
@@ -24,7 +24,7 @@ namespace App.Scripts.UiViews.GameScreen.Stone
         {
             ScoreLines = new PoolObject<ScoreLineView>(_lineViewPrefab, _poolSize, _spawnPosition.transform, true);
         }
-        
+
         public void ShowScoreAnimation(Sprite icon, float score)
         {
             var scoreLine = ScoreLines.GetObject();

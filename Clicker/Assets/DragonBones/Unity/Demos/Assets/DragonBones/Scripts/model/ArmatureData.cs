@@ -20,7 +20,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-﻿using System;
 using System.Collections.Generic;
 
 namespace DragonBones
@@ -140,7 +139,8 @@ namespace DragonBones
                 action.ReturnToPool();
             }
 
-            foreach (var action in this.actions) {
+            foreach (var action in this.actions)
+            {
                 action.ReturnToPool();
             }
 
@@ -228,7 +228,7 @@ namespace DragonBones
                 {
                     continue;
                 }
-                
+
                 var flag = false;
                 foreach (var constraint in this.constraints.Values)
                 {
@@ -260,7 +260,7 @@ namespace DragonBones
         public void CacheFrames(uint frameRate)
         {
             if (this.cacheFrameRate > 0)
-            { 
+            {
                 // TODO clear cache.
                 return;
             }
@@ -380,7 +380,7 @@ namespace DragonBones
                     this.defaultSkin = value;
                 }
 
-                if(value.name == "default")
+                if (value.name == "default")
                 {
                     this.defaultSkin = value;
                 }

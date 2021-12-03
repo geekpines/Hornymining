@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Mkey;
 using System;
-using Mkey;
+using UnityEngine;
 
 namespace MkeyFW
 {
@@ -27,7 +27,7 @@ namespace MkeyFW
         /// </summary>
         public void Show(int count, float delay)
         {
-            if(!sR)  sR = GetComponent<SpriteRenderer>();
+            if (!sR) sR = GetComponent<SpriteRenderer>();
 
             if (!showArrow || !isActiveAndEnabled) return;
             if (tS != null) return;

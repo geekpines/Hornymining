@@ -20,7 +20,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-﻿using System;
 using System.Collections.Generic;
 
 namespace DragonBones
@@ -108,7 +107,7 @@ namespace DragonBones
         protected override void _OnClear()
         {
             if (this._clock != null)
-            { 
+            {
                 // Remove clock first.
                 this._clock.Remove(this);
             }
@@ -195,7 +194,7 @@ namespace DragonBones
                 }
 
                 if (bone._hasConstraint)
-                { 
+                {
                     // Wait constraint.
                     var flag = false;
                     foreach (var constraint in this._constraints)
@@ -214,7 +213,7 @@ namespace DragonBones
                 }
 
                 if (bone.parent != null && !this._bones.Contains(bone.parent))
-                { 
+                {
                     // Wait parent.
                     continue;
                 }
@@ -524,42 +523,42 @@ namespace DragonBones
 
             return null;
         }
-         /// <summary>
-         /// - Check whether a specific segment intersects a custom bounding box for a slot in the armature.
-         /// The coordinate system of the segment and intersection is the inner coordinate system of the armature.
-         /// Custom bounding boxes need to be customized in Dragonbones Pro.
-         /// </summary>
-         /// <param name="xA">- The horizontal coordinate of the beginning of the segment.</param>
-         /// <param name="yA">- The vertical coordinate of the beginning of the segment.</param>
-         /// <param name="xB">- The horizontal coordinate of the end point of the segment.</param>
-         /// <param name="yB">- The vertical coordinate of the end point of the segment.</param>
-         /// <param name="intersectionPointA">- The first intersection at which a line segment intersects the bounding box from the beginning to the end. (If not set, the intersection point will not calculated)</param>
-         /// <param name="intersectionPointB">- The first intersection at which a line segment intersects the bounding box from the end to the beginning. (If not set, the intersection point will not calculated)</param>
-         /// <param name="normalRadians">- The normal radians of the tangent of the intersection boundary box. [x: Normal radian of the first intersection tangent, y: Normal radian of the second intersection tangent] (If not set, the normal will not calculated)</param>
-         /// <returns>The slot of the first custom bounding box where the segment intersects from the start point to the end point.</returns>
-         /// <version>DragonBones 5.0</version>
-         /// <language>en_US</language>
+        /// <summary>
+        /// - Check whether a specific segment intersects a custom bounding box for a slot in the armature.
+        /// The coordinate system of the segment and intersection is the inner coordinate system of the armature.
+        /// Custom bounding boxes need to be customized in Dragonbones Pro.
+        /// </summary>
+        /// <param name="xA">- The horizontal coordinate of the beginning of the segment.</param>
+        /// <param name="yA">- The vertical coordinate of the beginning of the segment.</param>
+        /// <param name="xB">- The horizontal coordinate of the end point of the segment.</param>
+        /// <param name="yB">- The vertical coordinate of the end point of the segment.</param>
+        /// <param name="intersectionPointA">- The first intersection at which a line segment intersects the bounding box from the beginning to the end. (If not set, the intersection point will not calculated)</param>
+        /// <param name="intersectionPointB">- The first intersection at which a line segment intersects the bounding box from the end to the beginning. (If not set, the intersection point will not calculated)</param>
+        /// <param name="normalRadians">- The normal radians of the tangent of the intersection boundary box. [x: Normal radian of the first intersection tangent, y: Normal radian of the second intersection tangent] (If not set, the normal will not calculated)</param>
+        /// <returns>The slot of the first custom bounding box where the segment intersects from the start point to the end point.</returns>
+        /// <version>DragonBones 5.0</version>
+        /// <language>en_US</language>
 
-         /// <summary>
-         /// - 检查特定线段是否与骨架的某个插槽的自定义边界框相交。
-         /// 线段和交点的坐标系均为骨架内坐标系。
-         /// 自定义边界框需要在 DragonBones Pro 中自定义。
-         /// </summary>
-         /// <param name="xA">- 线段起点的水平坐标。</param>
-         /// <param name="yA">- 线段起点的垂直坐标。</param>
-         /// <param name="xB">- 线段终点的水平坐标。</param>
-         /// <param name="yB">- 线段终点的垂直坐标。</param>
-         /// <param name="intersectionPointA">- 线段从起点到终点与边界框相交的第一个交点。 （如果未设置，则不计算交点）</param>
-         /// <param name="intersectionPointB">- 线段从终点到起点与边界框相交的第一个交点。 （如果未设置，则不计算交点）</param>
-         /// <param name="normalRadians">- 交点边界框切线的法线弧度。 [x: 第一个交点切线的法线弧度, y: 第二个交点切线的法线弧度] （如果未设置，则不计算法线）</param>
-         /// <returns>线段从起点到终点相交的第一个自定义边界框的插槽。</returns>
-         /// <version>DragonBones 5.0</version>
-         /// <language>zh_CN</language>
-         public Slot IntersectsSegment(float xA, float yA, float xB, float yB,
-                                        Point intersectionPointA = null,
-                                        Point intersectionPointB = null,
-                                        Point normalRadians = null)
-         {
+        /// <summary>
+        /// - 检查特定线段是否与骨架的某个插槽的自定义边界框相交。
+        /// 线段和交点的坐标系均为骨架内坐标系。
+        /// 自定义边界框需要在 DragonBones Pro 中自定义。
+        /// </summary>
+        /// <param name="xA">- 线段起点的水平坐标。</param>
+        /// <param name="yA">- 线段起点的垂直坐标。</param>
+        /// <param name="xB">- 线段终点的水平坐标。</param>
+        /// <param name="yB">- 线段终点的垂直坐标。</param>
+        /// <param name="intersectionPointA">- 线段从起点到终点与边界框相交的第一个交点。 （如果未设置，则不计算交点）</param>
+        /// <param name="intersectionPointB">- 线段从终点到起点与边界框相交的第一个交点。 （如果未设置，则不计算交点）</param>
+        /// <param name="normalRadians">- 交点边界框切线的法线弧度。 [x: 第一个交点切线的法线弧度, y: 第二个交点切线的法线弧度] （如果未设置，则不计算法线）</param>
+        /// <returns>线段从起点到终点相交的第一个自定义边界框的插槽。</returns>
+        /// <version>DragonBones 5.0</version>
+        /// <language>zh_CN</language>
+        public Slot IntersectsSegment(float xA, float yA, float xB, float yB,
+                                       Point intersectionPointA = null,
+                                       Point intersectionPointB = null,
+                                       Point normalRadians = null)
+        {
             var isV = xA == xB;
             var dMin = 0.0f;
             var dMax = 0.0f;

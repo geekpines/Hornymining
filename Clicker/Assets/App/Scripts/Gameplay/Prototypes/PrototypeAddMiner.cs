@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Scripts.Gameplay.CoreGameplay.Mining;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 

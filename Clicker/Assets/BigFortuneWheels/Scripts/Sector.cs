@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.Events;
-using Mkey;
 
 namespace MkeyFW
 {
@@ -20,7 +18,7 @@ namespace MkeyFW
         private List<GameObject> hitPrefabs;
         private float destroyTime = 3f;
         [SerializeField]
-        private UnityEvent  hitEvent;
+        private UnityEvent hitEvent;
 
         [SerializeField]
         public AudioClip hitSound;
@@ -47,8 +45,8 @@ namespace MkeyFW
 
         void OnValidate()
         {
-           coins =  coins;
-           RefreshText();
+            coins = coins;
+            RefreshText();
         }
         #endregion regular
 
@@ -67,7 +65,7 @@ namespace MkeyFW
         /// <param name="position"></param>
         public void PlayHit(Vector3 position)
         {
-           hitEvent?.Invoke();
+            hitEvent?.Invoke();
         }
     }
 }

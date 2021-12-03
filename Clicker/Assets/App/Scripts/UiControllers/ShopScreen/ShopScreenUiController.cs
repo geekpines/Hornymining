@@ -9,10 +9,10 @@ public class ShopScreenUiController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _sellBuyUnits;
     [SerializeField] private Button _StockUpgradeButton;
-    
+
     private PlayerProfile _playerProfile;
     private LevelShopUpgrades shopUpgrades = new LevelShopUpgrades();
-    
+
 
 
     [Inject]
@@ -43,14 +43,14 @@ public class ShopScreenUiController : MonoBehaviour
             shopUpgrades.OpenSlot(_playerProfile, _sellBuyUnits[shopUpgrades.CurrentLevel]);
             _sellBuyUnits[shopUpgrades.CurrentLevel].GetComponent<CoinsTradeSystemView>().SetUnlock();
         }
-        
+
         foreach (var unit in _sellBuyUnits)
         {
             CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
 
             coinTradeSystem.percent = shopUpgrades.GetSale();
         }
-        
+
     }
 
     private IEnumerator LockCoinInfo()

@@ -1,19 +1,18 @@
-﻿using System.Collections;
+﻿using Mkey;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
-using Mkey;
 
 namespace MkeyFW
 {
-    public enum LampsFlash {Random, All, Sequence, NoneEnabled, NoneDisabled }
+    public enum LampsFlash { Random, All, Sequence, NoneEnabled, NoneDisabled }
     public class LampsController : MonoBehaviour
     {
         [SerializeField]
         private Sprite lampOn;
 
-        private List <SpriteRenderer> lampsOn;
+        private List<SpriteRenderer> lampsOn;
         private int enabledCount = 0;
         private bool cancel = false;
         public LampsFlash lampFlash = LampsFlash.Random;
@@ -37,7 +36,7 @@ namespace MkeyFW
                         lG.transform.parent = lamps[i].transform;
                         lG.transform.localPosition = Vector3.zero;
                         SpriteRenderer sR = lG.AddComponent<SpriteRenderer>();
-                        sR.sortingOrder = lamps[i].sortingOrder+1;
+                        sR.sortingOrder = lamps[i].sortingOrder + 1;
                         sR.sortingLayerID = lamps[i].sortingLayerID;
                         sR.sprite = lampOn;
                         lampsOn.Add(sR);
@@ -145,7 +144,7 @@ namespace MkeyFW
                     {
                         if (lampsOn[i]) lampsOn[i].color = new Color(1, 1, 1, (1.0f - val) * fadeK1);
                     }
-                }).AddCompleteCallBack(()=> 
+                }).AddCompleteCallBack(() =>
                 {
                     if (lampsOn[i])
                     {
@@ -154,7 +153,7 @@ namespace MkeyFW
                     }
                     enabledCount--;
                     if (completeCallBack != null) completeCallBack();
-                }); 
+                });
         }
 
         private bool IndexOk(int i)

@@ -21,7 +21,6 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace DragonBones
 {
@@ -803,7 +802,7 @@ namespace DragonBones
                 return _textureData.parent as UnityTextureAtlasData;
             }
         }
-        
+
         public GameObject renderDisplay
         {
             get { return _renderDisplay; }

@@ -14,12 +14,12 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins
         /// </summary>
         public Action<CoinType, float> OnAddValue;
         public Action<CoinType, float> OnChangeCount;
-        
+
         /// <summary>
         /// ID ресурса
         /// </summary>
         [field: SerializeField] public CoinType ID { get; private set; }
-        
+
         /// <summary>
         /// Количество ресурса
         /// </summary>

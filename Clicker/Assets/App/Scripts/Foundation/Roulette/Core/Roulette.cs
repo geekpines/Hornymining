@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,16 +16,16 @@ namespace App.Scripts.Foundation.Roulette.Core
         /// успешной генерации
         /// </summary>
         public bool IsRemoveItemAfterRoll;
-        
+
         /// <summary>
         /// Текущая концигурация для генерации предметов
         /// </summary>
-        [field:SerializeField]
+        [field: SerializeField]
         public RouletteConfiguration<T> Configuration { get; private set; }
-        private List<RouletteConfiguration<T>.RouletteItemInfo<T>> _chachedItemDatas 
+        private List<RouletteConfiguration<T>.RouletteItemInfo<T>> _chachedItemDatas
             = new List<RouletteConfiguration<T>.RouletteItemInfo<T>>();
         private int _sumWeight;
-        
+
         /// <summary>
         /// Сгенерировать (сроллить) предмет на основе конфигурации
         /// (в ней указан список предметов и их веса)
@@ -77,7 +76,7 @@ namespace App.Scripts.Foundation.Roulette.Core
                 _sumWeight += Configuration.RouletteItems[i].Weight;
             }
         }
-        
+
         private int FindItemConfigIndex(int randomValue)
         {
             int range = 0;

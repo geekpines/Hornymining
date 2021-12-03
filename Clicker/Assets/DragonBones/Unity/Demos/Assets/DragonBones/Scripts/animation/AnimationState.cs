@@ -20,7 +20,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace DragonBones
@@ -323,7 +323,7 @@ namespace DragonBones
                     boneTimelines[timelineName].Add(timeline);
                 }
 
-                foreach (var bone in this._armature.GetBones()) 
+                foreach (var bone in this._armature.GetBones())
                 {
                     var timelineName = bone.name;
                     if (!this.ContainsBoneMask(timelineName))
@@ -402,7 +402,7 @@ namespace DragonBones
                 }
 
                 foreach (var timelines in boneTimelines.Values)
-                { 
+                {
                     // Remove bone timelines.
                     foreach (var timeline in timelines)
                     {
@@ -453,7 +453,7 @@ namespace DragonBones
 
                         if (timelineDatas != null)
                         {
-                            foreach (var timelineData in timelineDatas) 
+                            foreach (var timelineData in timelineDatas)
                             {
                                 switch (timelineData.type)
                                 {
@@ -536,7 +536,7 @@ namespace DragonBones
                 }
 
                 foreach (var timelines in slotTimelines.Values)
-                { 
+                {
                     // Remove slot timelines.
                     foreach (var timeline in timelines)
                     {
@@ -594,7 +594,7 @@ namespace DragonBones
                             }
                         }
                         else if (this.resetToPose)
-                        { 
+                        {
                             // Pose timeline.
                             var timeline = BaseObject.BorrowObject<IKConstraintTimelineState>();
                             timeline.constraint = constraint;
@@ -643,24 +643,24 @@ namespace DragonBones
             this._fadeTime += passedTime;
 
             if (this._fadeTime >= this.fadeTotalTime)
-            { 
+            {
                 // Fade complete.
                 this._subFadeState = 1;
                 this._fadeProgress = isFadeOut ? 0.0f : 1.0f;
             }
             else if (this._fadeTime > 0.0f)
-            { 
+            {
                 // Fading.
                 this._fadeProgress = isFadeOut ? (1.0f - this._fadeTime / this.fadeTotalTime) : (this._fadeTime / this.fadeTotalTime);
             }
             else
-            { 
+            {
                 // Before fade.
                 this._fadeProgress = isFadeOut ? 1.0f : 0.0f;
             }
 
             if (this._subFadeState > 0)
-            { 
+            {
                 // Fade complete event.
                 if (!isFadeOut)
                 {
@@ -826,7 +826,7 @@ namespace DragonBones
 
             // Update time.
             if (this._playheadState == 3)
-            { 
+            {
                 // 11
                 if (this.timeScale != 1.0f)
                 {
@@ -852,7 +852,7 @@ namespace DragonBones
             var isUpdateBoneTimeline = true;
             var time = this._time;
             this._weightResult = this.weight * this._fadeProgress;
-            
+
             if (this._actionTimeline.playState <= 0)
             {
                 // Update main timeline.
@@ -860,24 +860,24 @@ namespace DragonBones
             }
 
             if (isCacheEnabled)
-            { 
+            {
                 // Cache time internval.
                 var internval = cacheFrameRate * 2.0f;
                 this._actionTimeline.currentTime = (float)Math.Floor(this._actionTimeline.currentTime * internval) / internval;
             }
 
             if (this._zOrderTimeline != null && this._zOrderTimeline.playState <= 0)
-            { 
+            {
                 // Update zOrder timeline.
                 this._zOrderTimeline.Update(time);
             }
 
             if (isCacheEnabled)
-            { 
+            {
                 // Update cache.
                 var cacheFrameIndex = (int)Math.Floor(this._actionTimeline.currentTime * cacheFrameRate); // uint
                 if (this._armature._cacheFrameIndex == cacheFrameIndex)
-                { 
+                {
                     // Same cache.
                     isUpdateTimeline = false;
                     isUpdateBoneTimeline = false;
@@ -886,12 +886,12 @@ namespace DragonBones
                 {
                     this._armature._cacheFrameIndex = cacheFrameIndex;
                     if (this._animationData.cachedFrames[cacheFrameIndex])
-                    { 
+                    {
                         // Cached.
                         isUpdateBoneTimeline = false;
                     }
                     else
-                    { 
+                    {
                         // Cache.
                         this._animationData.cachedFrames[cacheFrameIndex] = true;
                     }
@@ -947,7 +947,7 @@ namespace DragonBones
                             {
                                 timeline.Update(time);
                             }
-                            
+
                             if (i == l - 1)
                             {
                                 this._BlendBoneTimline(timeline);
@@ -1024,7 +1024,7 @@ namespace DragonBones
                 if (this._actionTimeline.playState > 0)
                 {
                     if (this.autoFadeOutTime >= 0.0f)
-                    { 
+                    {
                         // Auto fade out.
                         this.FadeOut(this.autoFadeOutTime);
                     }
@@ -1092,7 +1092,7 @@ namespace DragonBones
             if (this._fadeState > 0)
             {
                 if (fadeOutTime > this.fadeTotalTime - this._fadeTime)
-                { 
+                {
                     // If the animation is already in fade out, the new fade out will be ignored.
                     return;
                 }
@@ -1158,24 +1158,25 @@ namespace DragonBones
         public void AddBoneMask(string name, bool recursive = true)
         {
             var currentBone = this._armature.GetBone(name);
-            if (currentBone == null) {
+            if (currentBone == null)
+            {
                 return;
             }
 
             if (this._boneMask.IndexOf(name) < 0)
-            { 
+            {
                 // Add mixing
                 this._boneMask.Add(name);
             }
 
             if (recursive)
-            { 
+            {
                 // Add recursive mixing.
                 foreach (var bone in this._armature.GetBones())
                 {
                     if (this._boneMask.IndexOf(bone.name) < 0 && currentBone.Contains(bone))
                     {
-                    this._boneMask.Add(bone.name);
+                        this._boneMask.Add(bone.name);
                     }
                 }
             }

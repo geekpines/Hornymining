@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using App.Scripts.UiViews.GameScreen.TopPanel;
+﻿using App.Scripts.UiViews.GameScreen.TopPanel;
 using App.Scripts.Utilities.MonoBehaviours;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
@@ -22,7 +22,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 Value = value;
             }
         }
-        
+
         private void Awake()
         {
             InitializationPool();

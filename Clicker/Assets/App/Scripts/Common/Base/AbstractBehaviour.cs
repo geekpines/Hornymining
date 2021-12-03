@@ -6,11 +6,15 @@ namespace Assets.App.Scripts.Common
     public abstract class AbstractBehaviour : MonoBehaviour
     {
         ObserverHandleManager observers;
-        protected ObserverHandleManager Observers { get {
+        protected ObserverHandleManager Observers
+        {
+            get
+            {
                 if (observers == null)
                     observers = new ObserverHandleManager();
                 return observers;
-            } }
+            }
+        }
 
         protected void Observe<O>(IObserverList<O> observable)
             where O : class

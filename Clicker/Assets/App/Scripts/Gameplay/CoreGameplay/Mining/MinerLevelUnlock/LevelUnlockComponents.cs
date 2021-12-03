@@ -14,7 +14,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining.MinerLevelUnlock
     public class LevelUnlockComponents
     {
         public List<LevelUnlock> Levels = new List<LevelUnlock>();
-        [field:SerializeField, Range(0, 4)] public int CurrentLevel { get; private set; } = 0;
+        [field: SerializeField, Range(0, 4)] public int CurrentLevel { get; private set; } = 0;
 
         public void SetUnlockLevel(int levelUnlockIndex)
         {

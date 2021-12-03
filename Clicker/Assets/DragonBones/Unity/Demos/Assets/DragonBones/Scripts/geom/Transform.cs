@@ -20,7 +20,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-﻿using System;
+using System;
 
 namespace DragonBones
 {
@@ -54,7 +54,7 @@ namespace DragonBones
         {
             value = (value + PI) % (PI * 2.0f);
 
-           
+
             value += value > 0.0f ? -PI : PI;
 
             return value;
@@ -136,12 +136,12 @@ namespace DragonBones
         /// <private/>
         public Transform()
         {
-            
+
         }
 
         public override string ToString()
         {
-            return "[object dragonBones.Transform] x:" + this.x + " y:" + this.y + " skew:" + this.skew* 180.0 / PI + " rotation:" + this.rotation* 180.0 / PI + " scaleX:" + this.scaleX + " scaleY:" + this.scaleY;
+            return "[object dragonBones.Transform] x:" + this.x + " y:" + this.y + " skew:" + this.skew * 180.0 / PI + " rotation:" + this.rotation * 180.0 / PI + " scaleX:" + this.scaleX + " scaleY:" + this.scaleY;
         }
 
         /// <private/>

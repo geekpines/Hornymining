@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using App.Scripts.Gameplay.CoreGameplay.Mining;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.MetaGameplay.Roulette;
 using App.Scripts.UiViews.RouletteScreen;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03;
 
@@ -21,7 +21,7 @@ namespace App.Scripts.UiControllers.RouletteScreen
 
         [ShowInInspector, ReadOnly]
         public readonly List<MinerSlotContext> Miners = new List<MinerSlotContext>();
-        
+
         [Serializable]
         public class MinerSlotContext
         {
@@ -36,7 +36,7 @@ namespace App.Scripts.UiControllers.RouletteScreen
                 View = view;
             }
         }
-        
+
         private void Start()
         {
             InitializationRoulette();
@@ -79,15 +79,15 @@ namespace App.Scripts.UiControllers.RouletteScreen
                     j = 0;
 
                 var visual = Instantiate(
-                    _rollMinerSystem.Configuration.RouletteItems[j].Item.Visual, 
+                    _rollMinerSystem.Configuration.RouletteItems[j].Item.Visual,
                     _scrollMinerView.MinerViews[i].RootPosition);
                 _scrollMinerView.MinerViews[i].SetVisual(
-                    visual.gameObject, 
-                    visual.ArmatureComponent, 
+                    visual.gameObject,
+                    visual.ArmatureComponent,
                     _rollMinerSystem.Configuration.RouletteItems[j].Item.GetInstanceID());
                 _scrollMinerView.MinerViews[i].SetInformation(
                     _rollMinerSystem.Configuration.RouletteItems[j].Item.Name);
-                
+
                 Miners.Add(new MinerSlotContext(
                     _rollMinerSystem.Configuration.RouletteItems[j].Item,
                     _scrollMinerView.MinerViews[i]));

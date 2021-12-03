@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using DragonBones;
+﻿using DragonBones;
+using UnityEngine;
 
 /**
  * How to use
@@ -13,10 +13,10 @@ using DragonBones;
  * 3. Play animation.
  *    armatureComponent.animation.Play("animationName");
  */
-public class HelloDragonBones :MonoBehaviour
+public class HelloDragonBones : MonoBehaviour
 {
-	public UnityDragonBonesData dragonBoneData;
-    
+    public UnityDragonBonesData dragonBoneData;
+
     void Start()
     {
         UnityFactory.factory.autoSearch = true;

@@ -31,7 +31,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample04
         {
             var offset = scrollView.CellInstanceCount;
 
-            scrollView.SetCellState(offset + 0, -1,  500, -330 + Mathf.Sin(Time.time) * 60, 2.5f);
+            scrollView.SetCellState(offset + 0, -1, 500, -330 + Mathf.Sin(Time.time) * 60, 2.5f);
             scrollView.SetCellState(offset + 1, -1, -500, -330 + Mathf.Sin(Time.time) * 60, 2.5f);
 
             background.material.SetVector(Uniform.Resolution, rectTransform.rect.size);

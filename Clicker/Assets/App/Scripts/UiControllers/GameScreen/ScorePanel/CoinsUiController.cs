@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using App.Scripts.Gameplay.CoreGameplay.Coins;
+﻿using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiViews.GameScreen.TopPanel;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +17,7 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
 
         private PlayerProfile _player;
         private Dictionary<CoinType, CoinInfoView> _iDtoCoinView = new Dictionary<CoinType, CoinInfoView>();
-        
+
         [Inject]
         private void Construct(PlayerProfile player)
         {
@@ -41,19 +41,19 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
                     {
                         var coinInfo = CoinsInformation.GetCoinInformation(_player.Coins[i].ID);
                         _coinsPanelInformation.CoinInfoViews[i].SetCoinInformation(
-                            coinInfo.Icon, _player.Coins[i].Value, coinInfo.Description);                        
+                            coinInfo.Icon, _player.Coins[i].Value, coinInfo.Description);
                         _iDtoCoinView.Add(_player.Coins[i].ID, _coinsPanelInformation.CoinInfoViews[i]);
-                        
 
-                        
+
+
                     }
                     else
                     {
                         _coinsPanelInformation.CoinInfoViews[i].gameObject.SetActive(false);
                     }
                 }
-                
-                
+
+
             }
             else
             {
@@ -61,7 +61,7 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
             }
         }
 
-       
+
 
         protected void OnEnable()
         {

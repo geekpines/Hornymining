@@ -55,7 +55,7 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample09
 
                     onSuccess((
                         url,
-                        ((DownloadHandlerTexture) request.downloadHandler).texture
+                        ((DownloadHandlerTexture)request.downloadHandler).texture
                     ));
                 }
             }

@@ -1,7 +1,4 @@
 ﻿using Mkey;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WinLightSector : WinSectorBehavior
@@ -18,7 +15,7 @@ public class WinLightSector : WinSectorBehavior
             return;
         }
         FlashAlpha();
-      
+
     }
 
     protected override void Cancel()
@@ -27,13 +24,13 @@ public class WinLightSector : WinSectorBehavior
         if (!this) return;
         if (cF != null) cF.Cancel();
         SimpleTween.Cancel(gameObject, false);
-        if(sR) sR.color = new Color(1, 1, 1, 0);
+        if (sR) sR.color = new Color(1, 1, 1, 0);
     }
     #endregion override
 
     private void FlashAlpha()
     {
-        cF = new ColorFlasher(gameObject, null, null, new SpriteRenderer[] {sR}, null, 1);
+        cF = new ColorFlasher(gameObject, null, null, new SpriteRenderer[] { sR }, null, 1);
         cF.FlashingAlpha();
     }
 }

@@ -26,4 +26,4 @@ namespace App.Scripts.Gameplay.CoreGameplay.Coins.Static
             return GetCoinInformation(id).Icon;
         }
     }
-} 
+}

@@ -13,7 +13,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
     {
         public event Action<MiniMinerElementView> OnMinerClicked;
         public event Action<MiniMinerElementView> OnMinerDoubleClicked;
-        
+
         private LocalizedString _name;
         private float _timeForDoubleClick = 0.5f;
         private bool _isReadyForDoubleClick;
@@ -39,7 +39,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             SetStars(grade); //временно отключены в префабе
             SetLevel(level);
         }
-        
+
         public void SetName(LocalizedString name)
         {
             _name = name;
@@ -52,7 +52,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             _levelText.text = $"{_level.GetLocalizedString()} {_currentLevel}";
             SetStars(level);
         }
-        
+
         public void SetIcon(Sprite newIcon)
         {
             _avatar.sprite = newIcon;
@@ -61,7 +61,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         public void SetStars(int countStars)
         {
             _currentStars = Mathf.Clamp(countStars, 1, 5);
-            
+
             ResetStars();
             for (int i = 0; i < _currentStars; i++)
             {

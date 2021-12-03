@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
+﻿using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -57,8 +57,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     _playerProfile.AddScore(miningResource.Type, miningResource.Value);
                     view.ShowScoreLine(
                         CoinsInformation.GetCoinIcon(miningResource.Type),
-                        miningResource.Value*_playerProfile.percentUpgrade);
-                    
+                        miningResource.Value * _playerProfile.percentUpgrade);
+
                 }
             }
         }

@@ -1,7 +1,6 @@
-﻿using System;
-using App.Scripts.UiViews.GameScreen.Stone;
+﻿using App.Scripts.UiViews.GameScreen.Stone;
 using DragonBones;
-using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
@@ -42,15 +41,15 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
             IsLocked = state;
         }
 
-        
+
         public void SetVisual(GameObject rootObject, UnityArmatureComponent armatureComponent, int configHash)
         {
             RootVisual = rootObject;
             Id = configHash;
             SetVisual(armatureComponent);
-            
+
         }
-        
+
         public void DestroyVisual()
         {
             if (RootVisual != null)
@@ -63,7 +62,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         {
             _miningCoinsView.ShowScoreAnimation(icon, score);
         }
-        
+
         private void OnEnable()
         {
             _minerButton.onClick.AddListener(MinerClicked);
@@ -72,7 +71,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
 
         private void OnDisable()
         {
-            
+
             _minerButton.onClick.RemoveListener(MinerClicked);
             _lockButton.onClick.RemoveListener(MinerClicked);
         }

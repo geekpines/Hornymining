@@ -1,6 +1,5 @@
 ﻿using App.Scripts.Gameplay.CoreGameplay.Mining.MinerLevelUnlock;
 using DragonBones;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace App.Scripts.Gameplay.CoreGameplay.Mining
@@ -14,7 +13,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         private void OnValidate()
         {
             UnlockComponents.SetUnlockLevel(UnlockComponents.CurrentLevel);
-            ArmatureComponent.animationName = "action" ;
+            ArmatureComponent.animationName = "action";
         }
     }
 }

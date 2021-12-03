@@ -70,7 +70,7 @@ namespace App.Scripts.UiControllers
 
             _openStockButton.gameObject.SetActive(false);
             _openUpgradeButton.gameObject.SetActive(false);
-            
+
         }
 
         private void ShowUpgradeScreen()

@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-
-using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 // mouse https://answers.unity.com/questions/448771/simulate-touch-with-mouse.html
 // https://answers.unity.com/questions/1284788/how-to-convert-touch-input-to-mouse-input-c-unity.html
@@ -82,19 +81,19 @@ namespace Mkey
         {
             #region pointer down
             bool mouse = Input.GetMouseButtonDown(0);
-            if (!IsTouched && (Input.touchCount > 0 || mouse) ) // pointerdown
+            if (!IsTouched && (Input.touchCount > 0 || mouse)) // pointerdown
             {
                 IsTouched = true;
                 if (IsActive)
                 {
-                    if (mouse || (Input.touchCount>0 && Input.GetTouch(0).phase == TouchPhase.Began ))
+                    if (mouse || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
                     {
-                        pointerID = (!mouse)? Input.GetTouch(0).fingerId : 10;
+                        pointerID = (!mouse) ? Input.GetTouch(0).fingerId : 10;
 #if UNITY_EDITOR
-                        if (dlog) Debug.Log("----------------POINTER DOWN (began)--------------( " +  pointerID);
+                        if (dlog) Debug.Log("----------------POINTER DOWN (began)--------------( " + pointerID);
 #endif
                         tpea = new TouchPadEventArgs();
-                        ScreenTouchPos =(!mouse) ? Input.GetTouch(0).position : (Vector2) Input.mousePosition;
+                        ScreenTouchPos = (!mouse) ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
                         oldPosition = ScreenTouchPos;
 
                         tpea.SetTouch(ScreenTouchPos, Vector2.zero, TouchPhase.Began, onlyTopCollider);
@@ -185,7 +184,7 @@ namespace Mkey
                 if (mouse || (Input.touchCount > 0 && (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled)))
                 {
                     IsTouched = false;
-                    if (IsActive && (mouse || (Input.touchCount > 0 && pointerID == Input.GetTouch(0).fingerId) ))
+                    if (IsActive && (mouse || (Input.touchCount > 0 && pointerID == Input.GetTouch(0).fingerId)))
                     {
 #if UNITY_EDITOR
                         if (dlog) Debug.Log("----------------POINTER EXIT, DROP ( ended, canceled )--------------( " + pointerID);

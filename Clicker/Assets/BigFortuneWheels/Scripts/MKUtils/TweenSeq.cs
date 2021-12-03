@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 /*
  20.12.18
     avoid zero sequence error
@@ -100,7 +100,7 @@ namespace Mkey
         public void StartCycle()
         {
             CreateCB();
-            fullComplete = new Action(() => { if(!breakSeq) callBackL[callBackL.Count - 1]?.Invoke(); });
+            fullComplete = new Action(() => { if (!breakSeq) callBackL[callBackL.Count - 1]?.Invoke(); });
             if (!breakSeq) callBackL[callBackL.Count - 1]?.Invoke();
         }
 
@@ -113,7 +113,7 @@ namespace Mkey
 
         public void Add(Action<Action> tweenAction)
         {
-            seqL.Add(tweenAction); 
+            seqL.Add(tweenAction);
         }
 
         public void Remove(Action<Action> tweenAction)

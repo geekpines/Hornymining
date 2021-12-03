@@ -20,9 +20,9 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-﻿using System;
-using System.IO;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DragonBones
 {
@@ -157,7 +157,7 @@ namespace DragonBones
                 {
                     if (code_point <= 0xFFFF)
                     {
-                        
+
                         if (code_point > 0) result += Convert.ToChar(code_point);
                     }
                     else
@@ -234,7 +234,7 @@ namespace DragonBones
                 var vertexCount = this._intArrayBuffer[mesh.offset + (int)BinaryOffset.MeshVertexCount];
                 var boneCount = this._intArrayBuffer[weightOffset + (int)BinaryOffset.WeigthBoneCount];
                 weight.offset = weightOffset;
-                
+
                 for (var i = 0; i < boneCount; ++i)
                 {
                     var boneIndex = this._intArrayBuffer[weightOffset + (int)BinaryOffset.WeigthBoneIndices + i];
@@ -377,7 +377,7 @@ namespace DragonBones
             float[] frameFloatArray = { };
             short[] frameArray = { };
             ushort[] timelineArray = { };
-            
+
             using (MemoryStream ms = new MemoryStream(_binary))
             using (BinaryDataReader reader = new BinaryDataReader(ms))
             {
@@ -414,7 +414,7 @@ namespace DragonBones
         }
         public override DragonBonesData ParseDragonBonesData(object rawObj, float scale = 1)
         {
-            Helper.Assert(rawObj != null  && rawObj is byte[], "Data error.");
+            Helper.Assert(rawObj != null && rawObj is byte[], "Data error.");
 
             byte[] bytes = rawObj as byte[];
             int headerLength = 0;
@@ -430,7 +430,7 @@ namespace DragonBones
 
         private string _GetUTF16Key(string value)
         {
-            for (int i = 0, l = value.Length; i<l; ++i)
+            for (int i = 0, l = value.Length; i < l; ++i)
             {
                 if (Convert.ToByte(value[i]) > 255)
                 {

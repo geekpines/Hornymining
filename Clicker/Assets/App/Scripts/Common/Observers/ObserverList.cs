@@ -31,7 +31,8 @@ namespace App.Scripts.Common
         {
             if (observer is T typedObserver)
                 Add(ref handle, typedObserver);
-            else {
+            else
+            {
                 if (observer == null)
                     Debug.LogError("Observer is null.");
                 else
@@ -53,7 +54,7 @@ namespace App.Scripts.Common
             Debug.Assert(handle.List == null, "Handle is already in use.");
 
             handle.Index = _items.Count;
-            _items.Add(new Item{ Handle = handle, Observer = observer });
+            _items.Add(new Item { Handle = handle, Observer = observer });
         }
 
         /// <summary>
@@ -66,7 +67,8 @@ namespace App.Scripts.Common
             Debug.Assert(handle.List == this, "Handle is not registered with this list.");
 
             int lastIndex = _items.Count - 1;
-            if (handle.Index != lastIndex) {
+            if (handle.Index != lastIndex)
+            {
                 var replacement = _items[lastIndex];
                 _items[handle.Index] = replacement;
                 replacement.Handle.Index = handle.Index;

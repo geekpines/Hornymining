@@ -1,6 +1,5 @@
 ﻿using App.Scripts.Foundation.Roulette.Core;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
-using Sirenix.OdinInspector;
 
 namespace App.Scripts.Gameplay.MetaGameplay.Roulette
 {

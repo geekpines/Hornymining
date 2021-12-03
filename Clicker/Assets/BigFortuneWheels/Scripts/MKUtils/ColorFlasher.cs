@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 /*
   06.07.2020 - first
- */ 
+ */
 namespace Mkey
 {
     public class ColorFlasher

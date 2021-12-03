@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using DragonBones;
+using System.Collections;
 using UnityEngine;
-using DragonBones;
 
 namespace performanceTest
 {

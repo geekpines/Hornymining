@@ -81,7 +81,7 @@ namespace Mkey
             if (!rend)
                 rend = GetComponent<Renderer>();
             if (!rend) return;
-           
+
             rend.sortingLayerID = SortingLayerID;
             rend.sortingOrder = SortingOrder;
         }

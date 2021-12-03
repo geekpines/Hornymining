@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using App.Scripts.Gameplay.CoreGameplay.Player;
+﻿using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -42,7 +42,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             if (_selectedActiveView != null &&
                 !_selectPanel.CheckActiveMiner(id) &&
                 _selectedActiveView.IsEmpty &&
-                _selectedActiveView.IsOpen                
+                _selectedActiveView.IsOpen
                 )
             {
                 var miner = _playerProfile.GetAllMiners().FirstOrDefault(item => item.ID == id);
@@ -52,7 +52,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     _activeSlots.SetLock(id, false);
                     _selectPanel.SetMinerActive(id, true);
                     _playerProfile.AddActiveMiner(miner);
-                    
+
                 }
                 ResetLockActiveMinersOnSelectPanel();
             }

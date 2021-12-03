@@ -1,6 +1,4 @@
 ﻿using MkeyFW;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mkey
@@ -8,7 +6,7 @@ namespace Mkey
     public class WinSectorBehavior : MonoBehaviour
     {
         protected Sector WinSector { get; private set; }
-        protected WheelController Wheel{ get; private set; }
+        protected WheelController Wheel { get; private set; }
 
         #region regular
         private void Start()

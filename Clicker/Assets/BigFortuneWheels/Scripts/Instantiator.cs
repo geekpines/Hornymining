@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Mkey;
 using UnityEngine;
-using Mkey;
 using UnityEngine.UI;
 
 namespace MkeyFW

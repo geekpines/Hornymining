@@ -1,5 +1,5 @@
-﻿using System;
-using App.Scripts.Common;
+﻿using App.Scripts.Common;
+using System;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -12,17 +12,17 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         /// Локализованное имя
         /// </summary>
         public LocalizedString Name => Configuration.Name;
-        
+
         /// <summary>
         /// Локализованное описание
         /// </summary>
         public LocalizedString Description => Configuration.Description;
-        
+
         /// <summary>
         /// Иконка/Аватар
         /// </summary>
         public Sprite Icon => Configuration.Visual.Icon;
-        
+
         /// <summary>
         /// Конфигурационный файл (общий для всех героев одного типа)
         /// </summary>
@@ -49,8 +49,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         /// <summary>
         /// Событие повышения уровня
         /// </summary>
-        public event Action<int> OnLevelUp; 
-        
+        public event Action<int> OnLevelUp;
+
         public Miner(MinerConfiguration configuration, int grade)
         {
             Configuration = configuration;

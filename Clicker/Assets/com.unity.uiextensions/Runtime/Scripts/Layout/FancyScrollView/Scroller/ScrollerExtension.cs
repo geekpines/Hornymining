@@ -83,7 +83,9 @@ namespace UnityEngine.UI.Extensions
             set => decelerationRate = value;
         }
 
-        [SerializeField] Snap snap = new Snap {
+        [SerializeField]
+        Snap snap = new Snap
+        {
             Enable = true,
             VelocityThreshold = 0.5f,
             Duration = 0.3f,
@@ -143,7 +145,7 @@ namespace UnityEngine.UI.Extensions
         Action<int> onSelectionChanged;
 
         public float CurrentPosition => currentPosition;
-        
+
         Vector2 beginDragPointerPosition;
         float scrollStartPosition;
         float prevPosition;

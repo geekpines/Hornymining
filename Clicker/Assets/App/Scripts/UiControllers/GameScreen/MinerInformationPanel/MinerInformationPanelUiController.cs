@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
+﻿using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using App.Scripts.Utilities.MonoBehaviours;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -19,11 +19,11 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         public event Action OnHidePanel;
         public event Action OnNextMiner;
         public event Action OnPreviousMiner;
-        
+
         [SerializeField] private MinersSelectPanelUiController _minersSelectPanelUiController;
         [SerializeField] private CostViewPool _costViewPool;
         private PlayerProfile _playerProfile;
-        
+
         [Title("Кнопки")]
         [SerializeField] private Button _levelUpButton;
         [SerializeField] private Button _backButton;
@@ -34,20 +34,20 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         [SerializeField] private Transform _minerRootPosition;
 
         [SerializeField] private ForceRebuildLayout _rebuildLayout;
-        
+
         private Miner _currentMiner;
         private bool _isShow;
 
         private int _outsideMinerId;
 
         private Dictionary<Miner, MinerVisualContext> MinerToVisual = new Dictionary<Miner, MinerVisualContext>();
-        
+
         [Inject]
         private void Construct(PlayerProfile playerProfile)
         {
             _playerProfile = playerProfile;
         }
-        
+
         private void OnEnable()
         {
             _minersSelectPanelUiController.OnMinerDoubleClicked += ShowInformation;
@@ -91,7 +91,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             if (!MinerToVisual.ContainsKey(_currentMiner))
             {
                 var visualContext = Instantiate(
-                    _currentMiner.Configuration.Visual, 
+                    _currentMiner.Configuration.Visual,
                     _minerRootPosition);
                 _currentMiner.OnLevelUp += visualContext.UnlockComponents.SetUnlockLevel;
                 MinerToVisual.Add(_currentMiner, visualContext);
@@ -99,7 +99,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             MinerToVisual[_currentMiner].gameObject.SetActive(true);
             return true;
         }
-        
+
         private void InitializationUpgradeCosts(int idMiner)
         {
             _levelUpButton.gameObject.SetActive(true);
@@ -125,7 +125,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         private void HideInformation()
         {
-            
+
             _isShow = false;
             HideMiner();
             OnHidePanel?.Invoke();
@@ -141,7 +141,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
             var costs = _currentMiner.Configuration.Levels[_currentMiner.Level + 1].UpgradeCost;
             if (CheckPossibleLevelUp(costs))
-            {            
+            {
                 Debug.Log("Уровень повышен!");
                 DecreaseResources(costs);
                 _currentMiner.LevelUp();

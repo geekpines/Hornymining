@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using App.Scripts.Utilities.MonoBehaviours;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.Scripts.UiViews.Base
@@ -7,7 +7,7 @@ namespace App.Scripts.UiViews.Base
     public class UiElementPool<T> : MonoBehaviour where T : MonoBehaviour
     {
         public delegate void ElementPoolHandler(T sender);
-        
+
         public event ElementPoolHandler Spawned;
         public event ElementPoolHandler Despawned;
 
@@ -45,7 +45,7 @@ namespace App.Scripts.UiViews.Base
                 Spawn();
             }
         }
-        
+
         public void Despawn(T element)
         {
             if (_elements.Contains(element))
@@ -64,13 +64,13 @@ namespace App.Scripts.UiViews.Base
             {
                 chachedElements.Add(element);
             }
-            
+
             foreach (var element in chachedElements)
             {
                 Despawn(element);
             }
             _elements.Clear();
         }
-        
+
     }
 }
