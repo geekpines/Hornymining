@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -21,6 +22,12 @@ namespace App.Scripts.Gameplay.Prototypes
 
         private void Start()
         {
+            StartCoroutine(MinerAdder());
+        }
+
+        private IEnumerator MinerAdder()
+        {
+            yield return new WaitForSeconds(0.1f);
             foreach (var minerConfiguration in AddMiners)
             {
                 _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));
