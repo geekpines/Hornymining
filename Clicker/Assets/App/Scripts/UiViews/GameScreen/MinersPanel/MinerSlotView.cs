@@ -1,7 +1,10 @@
 ﻿using System;
 using App.Scripts.UiViews.GameScreen.Stone;
 using DragonBones;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 using Transform = UnityEngine.Transform;
 
@@ -14,7 +17,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         [SerializeField] private GameObject _minerContent;
         [SerializeField] private GameObject _lockMask;
         [SerializeField] private MiningCoinsView _miningCoinsView;
-        
+
         [field: SerializeField] public Transform RootPosition { get; private set; }
         public GameObject RootVisual { get; private set; }
         public int Id { get; private set; }
@@ -22,9 +25,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         [field: SerializeField] public bool IsLocked { get; private set; } = true;
         public bool IsOpen = false;
 
-        [Header("Кнопки")] 
+        [Header("Кнопки")]
         [SerializeField] private Button _minerButton;
         [SerializeField] private Button _lockButton;
+
+        [SerializeField] private LocalizeStringEvent minerName;
 
         /// <summary>
         /// Блокировать/Разблокировать майнера
@@ -43,6 +48,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
             RootVisual = rootObject;
             Id = configHash;
             SetVisual(armatureComponent);
+            
         }
         
         public void DestroyVisual()
@@ -66,6 +72,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
 
         private void OnDisable()
         {
+            
             _minerButton.onClick.RemoveListener(MinerClicked);
             _lockButton.onClick.RemoveListener(MinerClicked);
         }
@@ -73,6 +80,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         private void MinerClicked()
         {
             OnMinerClicked?.Invoke(this);
+        }
+
+        public void SetName(LocalizedString minerName)
+        {
+            this.minerName.StringReference = minerName;
         }
     }
 }

@@ -117,7 +117,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 viewSlot.SetLock(false);
 
                 viewSlot.SetLevelVisual(miner.Level);
+                viewSlot.SetName(miner.Name);
             }
+
         }
 
         public void RemoveSlot(MinerSlotView viewSlot)
@@ -156,8 +158,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void MinersViewController()
         {
-            Debug.Log(Level.CurrentLevel);
-            if(Level.CurrentLevel != 5)
+            
+            if(Level.CurrentLevel < 4)
             {
                 MinersSlotView[Level.CurrentLevel + 1].IsOpen = Level.OpenMinerSlot(_playerProfile);
             }
