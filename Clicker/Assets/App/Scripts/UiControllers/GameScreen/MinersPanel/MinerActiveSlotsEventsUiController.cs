@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -17,6 +18,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] private MinersSelectPanelUiController _selectPanel;
         private PlayerProfile _playerProfile;
         private MinerSlotView _selectedActiveView;
+
+        [SerializeField] DialogContainer dataContainer;
 
         [Inject]
         private void Construct(PlayerProfile playerProfile)
@@ -79,6 +82,24 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 _selectedActiveView = null;
                 ResetLockActiveMinersOnSelectPanel();
             }
+
+            //Открытие случайных диалогов для майнера
+            int rand = Random.Range(0, 100);
+
+            if(rand < 2)
+            {
+                foreach (var dialog in dataContainer.dialogDataControllers)
+                {
+                    if (view.CheckName(dialog.MinerConf.Name)) 
+                    {
+                        int dialogRand = Random.Range(0, dialog.Dialogs_Ru.Count);
+                        view.dialogUiController.SetName(dialog.MinerConf.Name);
+                        view.dialogUiController.OpenRuDialogContent(true, dialog.Dialogs_Ru[dialogRand]);
+
+                        StartCoroutine(SetDialogOff(view));
+                    }                    
+                }              
+            }
         }
 
         private void ResetLockActiveMinersOnSelectPanel()
@@ -87,6 +108,13 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 _selectPanel.SetMinerLock(activeMiner.ID, false);
             }
+        }
+        
+
+        private IEnumerator SetDialogOff(MinerSlotView view)
+        {
+            yield return new WaitForSeconds(3);
+            view.dialogUiController.SetOff(false);
         }
     }
 }

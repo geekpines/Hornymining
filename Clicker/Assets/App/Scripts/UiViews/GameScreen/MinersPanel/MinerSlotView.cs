@@ -16,6 +16,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         [SerializeField] private GameObject _minerContent;
         [SerializeField] private GameObject _lockMask;
         [SerializeField] private MiningCoinsView _miningCoinsView;
+        public DialogUiController dialogUiController;
 
         [field: SerializeField] public Transform RootPosition { get; private set; }
         public GameObject RootVisual { get; private set; }
@@ -84,6 +85,15 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         public void SetName(LocalizedString minerName)
         {
             this.minerName.StringReference = minerName;
+        }
+
+        public bool CheckName(LocalizedString minerName)
+        {
+            if(this.minerName.StringReference == minerName)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
