@@ -148,7 +148,14 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             OnMinerDoubleClicked?.Invoke(sender.ID);
         }
 
+        public void SetHearts(int id)
+        {
+            IdtoViews[id].SetHearts();
+        }
 
-
+        public int GetHearts(int id)
+        {
+            return IdtoViews[id].GetHearts();
+        }
     }
 }

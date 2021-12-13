@@ -1,9 +1,11 @@
-﻿using App.Scripts.Gameplay.CoreGameplay.Player;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
+using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace App.Scripts.UiControllers.GameScreen.MinersPanel
@@ -18,8 +20,11 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] private MinersSelectPanelUiController _selectPanel;
         private PlayerProfile _playerProfile;
         private MinerSlotView _selectedActiveView;
+        [SerializeField] Button stock;
 
         [SerializeField] DialogContainer dataContainer;
+
+        private int _countsActiveClick = 0;
 
         [Inject]
         private void Construct(PlayerProfile playerProfile)
@@ -31,12 +36,14 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         {
             _activeSlots.OnMinerSelected += ActiveClick;
             _selectPanel.OnMinerClicked += MiniViewClick;
+            
         }
 
         private void OnDisable()
         {
             _activeSlots.OnMinerSelected -= ActiveClick;
             _selectPanel.OnMinerClicked -= MiniViewClick;
+            
         }
 
         private void MiniViewClick(int id)
@@ -82,25 +89,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 _selectedActiveView = null;
                 ResetLockActiveMinersOnSelectPanel();
             }
-
             //Открытие случайных диалогов для майнера
-            int rand = Random.Range(0, 100);
-
-            if(rand < 2)
-            {
-                foreach (var dialog in dataContainer.dialogDataControllers)
-                {
-                    if (view.CheckName(dialog.MinerConf.Name)) 
-                    {
-                        int dialogRand = Random.Range(0, dialog.Dialogs_Ru.Count);
-                        view.dialogUiController.SetName(dialog.MinerConf.Name);
-                        view.dialogUiController.OpenRuDialogContent(true, dialog.Dialogs_Ru[dialogRand]);
-
-                        StartCoroutine(SetDialogOff(view));
-                    }                    
-                }              
-            }
+            OpenDialog(view);
+            //увеличение количества сердечек
+            AddHeartCounts(view);
         }
+
 
         private void ResetLockActiveMinersOnSelectPanel()
         {
@@ -108,13 +102,79 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 _selectPanel.SetMinerLock(activeMiner.ID, false);
             }
-        }
-        
 
-        private IEnumerator SetDialogOff(MinerSlotView view)
+
+        }
+
+
+        private IEnumerator PopOffDialog(MinerSlotView view, int rand, Miner activeMiner)
         {
-            yield return new WaitForSeconds(3);
-            view.dialogUiController.SetOff(false);
+            int heartsCount = _selectPanel.GetHearts(activeMiner.ID);
+            if (rand < 2)
+            {
+                foreach (var dialog in dataContainer.dialogDataControllers)
+                {
+                    if (view.CheckName(dialog.MinerConf.Name))
+                    {
+                        int dialogRand = Random.Range(0, dialog.Dialogs_Ru[heartsCount].Dialog.Count-1);
+                        view.dialogUiController.SetName(dialog.MinerConf.Name);
+                        view.dialogUiController.OpenRuDialogContent(true, dialog.Dialogs_Ru[heartsCount-1].Dialog[dialogRand]);
+                        yield return new WaitForSeconds(3);
+                        view.dialogUiController.SetOff(false);
+                    }
+                }
+            }
+            
+        }
+
+        private void SetHearts(MinerSlotView view, Miner activeMiner)
+        {
+            _selectPanel.SetHearts(activeMiner.ID);
+        }
+
+        private void OpenDialog(MinerSlotView view)
+        {
+            int rand = Random.Range(0, 100);
+            foreach (var activeMiner in _playerProfile.GetActiveMiners())
+            {
+                if (activeMiner.ID == view.Id)
+                {
+                    StartCoroutine(PopOffDialog(view, rand, activeMiner));
+                }
+            }
+        }
+
+        private void AddHeartCounts(MinerSlotView view)
+        {
+            if (!view.IsEmpty)
+            {
+                _countsActiveClick++;
+
+                if (_countsActiveClick == 100)
+                {
+                    _countsActiveClick = 0;
+                    foreach (var activeMiner in _playerProfile.GetActiveMiners())
+                    {
+                        if (activeMiner.ID == view.Id)
+                        {
+                            SetHearts(view, activeMiner);
+                        }
+                    }
+
+                }
+            }
+        }
+
+        public void SpecialDialogPopOff(MinerSlotView view)
+        {
+            int rand = Random.Range(0, 100);
+            foreach (var activeMiner in _playerProfile.GetActiveMiners())
+            {
+                if (activeMiner.ID == view.Id)
+                {
+                    StartCoroutine(PopOffDialog(view, rand, activeMiner));
+                }
+            }
         }
     }
 }

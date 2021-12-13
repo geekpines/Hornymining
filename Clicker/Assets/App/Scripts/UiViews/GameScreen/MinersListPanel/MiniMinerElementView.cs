@@ -22,10 +22,15 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         [SerializeField] private TextMeshProUGUI _levelText;
         [SerializeField] private Image _avatar;
         [SerializeField] private List<GameObject> _stars = new List<GameObject>();
+        [SerializeField] private List<GameObject> _hearts = new List<GameObject>();
+
         [SerializeField] private GameObject _useMask;
         [SerializeField] private GameObject _lockMask;
+
         private int _currentLevel;
+
         [SerializeField, Range(1, 5)] private int _currentStars = 1;
+        [SerializeField, Range(1, 5)] private int _currentHearts  = 1;
         [SerializeField] private Button _minerButton;
         public int ID { get; private set; }
         public bool IsActive { get; private set; }
@@ -66,6 +71,17 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             for (int i = 0; i < _currentStars; i++)
             {
                 _stars[i].SetActive(true);
+            }
+        }
+
+        public void SetHearts()
+        {
+            _currentHearts++;
+            int countHearts = _currentHearts;            
+            _currentHearts = Mathf.Clamp(countHearts, 1, 5);
+            for (int i = 0; i < _currentHearts; i++)
+            {
+                _hearts[i].SetActive(true);
             }
         }
 
@@ -124,6 +140,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             _isReadyForDoubleClick = true;
             yield return new WaitForSeconds(_timeForDoubleClick);
             _isReadyForDoubleClick = false;
+        }
+
+        public int GetHearts()
+        {
+            return _currentHearts;
         }
     }
 }
