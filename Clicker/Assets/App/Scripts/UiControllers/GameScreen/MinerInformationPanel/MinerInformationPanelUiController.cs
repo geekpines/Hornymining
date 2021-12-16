@@ -93,6 +93,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 var visualContext = Instantiate(
                     _currentMiner.Configuration.Visual,
                     _minerRootPosition);
+                visualContext.transform.localScale = new Vector3(12, 12, 12);
+                visualContext.transform.localPosition = new Vector3(0, -137, 0);
                 _currentMiner.OnLevelUp += visualContext.UnlockComponents.SetUnlockLevel;
                 MinerToVisual.Add(_currentMiner, visualContext);
             }
