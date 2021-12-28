@@ -10,6 +10,7 @@ namespace MkeyFW
     {
 
         [SerializeField] private List<MinerConfiguration> AddMiners = new List<MinerConfiguration>();
+        [SerializeField] private RollGirlController rollGirl;
 
         private PlayerProfile _playerProfile;
         private MinerCreatorSystem _minerCreatorSystem;
@@ -25,6 +26,7 @@ namespace MkeyFW
 
         public void TestEvent_1(string coin)
         {
+            rollGirl.PlayHappy();
             if (coin != "nothing")
             {
                 foreach (var miner in AddMiners)
@@ -46,7 +48,7 @@ namespace MkeyFW
 
         public void HitEvent_10000000()
         {
-            Debug.Log("Hit Event 10 000 000");
+            rollGirl.PlaySad();
         }
 
         public void ResultEvent()

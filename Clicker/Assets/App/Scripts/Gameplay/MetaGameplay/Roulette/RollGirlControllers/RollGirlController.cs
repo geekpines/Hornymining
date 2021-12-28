@@ -7,13 +7,29 @@ public class RollGirlController : MonoBehaviour
 
     private void OnEnable()
     {
-        ArmatureComponent.animationName = "stand";
+        ArmatureComponent.animation.Play("stand");
     }
 
     public void RollEnable()
     {
-        ArmatureComponent.animationName = "rolling";
+        ArmatureComponent.animation.Play("rolling");
     }
 
+    public void PlaySad()
+    {
+        ArmatureComponent.animation.Play("sad");
+    }
 
+    public void PlayHappy()
+    {
+        ;
+        if(Random.Range(1, 100) < 50)
+        {
+            ArmatureComponent.animation.Play("happy");
+        }
+        else
+        {
+            ArmatureComponent.animation.Play("smile");
+        }
+    }
 }

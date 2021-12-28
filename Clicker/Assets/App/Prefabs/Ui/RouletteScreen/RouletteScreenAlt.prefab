@@ -152,8 +152,8 @@ RectTransform:
   m_Children:
   - {fileID: 8743972428878285930}
   - {fileID: 3020789912864638129}
-  - {fileID: 866525776466409670}
   - {fileID: 5040073604703497973}
+  - {fileID: 866525776466409670}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -471,6 +471,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5311099182954804861}
     m_Modifications:
+    - target: {fileID: 2970500079120788798, guid: 3e9efdda96112d04f992bd1e701ca671, type: 3}
+      propertyPath: rollGirl
+      value: 
+      objectReference: {fileID: 866525776466409669}
     - target: {fileID: 2970500079333496400, guid: 3e9efdda96112d04f992bd1e701ca671, type: 3}
       propertyPath: m_Name
       value: WheelModern_06_Ui
@@ -539,9 +543,21 @@ PrefabInstance:
       propertyPath: hitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Dash
       objectReference: {fileID: 0}
+    - target: {fileID: 5249206780588171632, guid: 3e9efdda96112d04f992bd1e701ca671, type: 3}
+      propertyPath: m_Text
+      value: nothing
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249206780588171634, guid: 3e9efdda96112d04f992bd1e701ca671, type: 3}
+      propertyPath: coins
+      value: nothing
+      objectReference: {fileID: 0}
     - target: {fileID: 5249206780588171634, guid: 3e9efdda96112d04f992bd1e701ca671, type: 3}
       propertyPath: hitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249206780588171634, guid: 3e9efdda96112d04f992bd1e701ca671, type: 3}
+      propertyPath: hitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HitEvent_10000000
       objectReference: {fileID: 0}
     - target: {fileID: 5249206780588171634, guid: 3e9efdda96112d04f992bd1e701ca671, type: 3}
       propertyPath: hitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -573,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6112085981105313083, guid: 3e9efdda96112d04f992bd1e701ca671, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6112085981105313083, guid: 3e9efdda96112d04f992bd1e701ca671, type: 3}
       propertyPath: m_AnchorMax.x
@@ -822,7 +838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7613227803988869200, guid: 174f67a32c5ab7f44aa39f35d988881a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7613227803988869200, guid: 174f67a32c5ab7f44aa39f35d988881a, type: 3}
       propertyPath: m_AnchorMax.x
