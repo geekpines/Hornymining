@@ -13,7 +13,7 @@ namespace MkeyFW
 
         private PlayerProfile _playerProfile;
         private MinerCreatorSystem _minerCreatorSystem;
-        private List<MinerConfiguration> _minerConfs;
+        private List<MinerConfiguration> _minerConfs = new List<MinerConfiguration>();
 
         [Inject]
         private void Construct(PlayerProfile playerProfile, MinerCreatorSystem minerCreatorSystem)
@@ -23,22 +23,7 @@ namespace MkeyFW
         }
 
 
-        public void TestEvent_1()
-        {
-            Debug.Log("Test Event _1");
-        }
-
-        public void HitEvent_2500000()
-        {
-            Debug.Log("Hit Event 2 500 000");
-        }
-
-        public void HitEvent_10000000()
-        {
-            Debug.Log("Hit Event 10 000 000");
-        }
-
-        public void ResultEvent(string coin)
+        public void TestEvent_1(string coin)
         {
             if (coin != "nothing")
             {
@@ -52,6 +37,21 @@ namespace MkeyFW
                 _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(_minerConfs[Random.Range(0, _minerConfs.Count)]));
 
             }
+        }
+
+        public void HitEvent_2500000()
+        {
+            Debug.Log("Hit Event 2 500 000");
+        }
+
+        public void HitEvent_10000000()
+        {
+            Debug.Log("Hit Event 10 000 000");
+        }
+
+        public void ResultEvent()
+        {
+            
 
             Debug.Log("Result event");
         }
