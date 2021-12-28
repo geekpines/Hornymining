@@ -7,7 +7,10 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 using Zenject;
 
@@ -35,6 +38,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         [SerializeField] private ForceRebuildLayout _rebuildLayout;
 
+        [SerializeField] private LocalizeStringEvent Miner_name;
+        [SerializeField] private LocalizeStringEvent Miner_description;
         private Miner _currentMiner;
         private bool _isShow;
 
@@ -97,6 +102,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 visualContext.transform.localPosition = new Vector3(0, -137, 0);
                 _currentMiner.OnLevelUp += visualContext.UnlockComponents.SetUnlockLevel;
                 MinerToVisual.Add(_currentMiner, visualContext);
+                SetNameAndDescriprion(_currentMiner.Name, _currentMiner.Description);
             }
             MinerToVisual[_currentMiner].gameObject.SetActive(true);
             return true;
@@ -185,5 +191,13 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             }
         }
 
+        private void SetNameAndDescriprion(LocalizedString name, LocalizedString description)
+        {
+            Miner_name.StringReference = name;
+            Debug.Log(Miner_name);
+            Miner_description.StringReference = description;
+        }
+
+        
     }
 }
