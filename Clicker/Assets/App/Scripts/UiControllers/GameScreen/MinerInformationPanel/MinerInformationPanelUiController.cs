@@ -41,8 +41,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         [SerializeField] private LocalizeStringEvent Miner_name;
         [SerializeField] private LocalizeStringEvent Miner_description;
 
-        [SerializeField] private GameObject _stars;
-        [SerializeField] private GameObject _hearts;
         private Miner _currentMiner;
         private bool _isShow;
 
@@ -197,10 +195,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         private void SetNameAndDescriprion(LocalizedString name, LocalizedString description)
         {
             Miner_name.StringReference = name;
-            Debug.Log(Miner_name);
             Miner_description.StringReference = description;
         }
 
+        
         
     }
 }
