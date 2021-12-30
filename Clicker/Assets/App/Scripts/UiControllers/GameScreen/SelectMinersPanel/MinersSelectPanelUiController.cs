@@ -40,11 +40,13 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         /// <param name="data"></param>
         public void AddMinerInformation(MiniMinerElementData data)
         {
+
             var minerView = _miniMinersPool.Spawn();
             minerView.SetMinerInformation(
                 data.Name,
                 data.Icon,
                 data.ID);
+            
             IdtoViews.Add(data.ID, minerView);
             minerView.OnMinerClicked += MinerClicked;
             minerView.OnMinerDoubleClicked += MinerDoubleClicked;

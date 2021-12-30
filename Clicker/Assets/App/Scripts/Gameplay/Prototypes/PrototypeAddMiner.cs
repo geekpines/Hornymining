@@ -31,6 +31,7 @@ namespace App.Scripts.Gameplay.Prototypes
             foreach (var minerConfiguration in AddMiners)
             {
                 _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));
+                Debug.Log(minerConfiguration);
             }
         }
     }

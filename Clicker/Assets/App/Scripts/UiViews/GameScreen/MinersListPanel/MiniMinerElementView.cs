@@ -43,6 +43,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             ID = id;
             SetStars(grade); //временно отключены в префабе
             SetLevel(level);
+            
         }
 
         public void SetName(LocalizedString name)
