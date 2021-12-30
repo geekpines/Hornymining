@@ -154,6 +154,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 Debug.Log("Уровень повышен!");
                 DecreaseResources(costs);
                 _currentMiner.LevelUp();
+                
                 _minersSelectPanelUiController.SetMinerLevel(_outsideMinerId, _currentMiner.Level + 1);
                 InitializationUpgradeCosts(_currentMiner.ID);
             }

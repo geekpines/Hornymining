@@ -20,6 +20,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
     {
         [SerializeField] private ScrollerExtension extension;
         [SerializeField] private Button OpenSlotButton;
+        [SerializeField] private Button RefreshMinerUI;
 
         private LevelShopUpgrades Level = new LevelShopUpgrades();
 
@@ -41,6 +42,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             //todo: добавить в систему инициализации
             InitializationActiveMiners();
             OpenSlotButton.onClick.AddListener(MinersViewController);
+            RefreshMinerUI.onClick.AddListener(UpdateVisual);
         }
 
         private void InitializationActiveMiners()

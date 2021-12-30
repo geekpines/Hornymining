@@ -181,7 +181,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             CoinTypeToData[resourceId].Decrease(value);
         }
 
-
+        
 
     }
 }
