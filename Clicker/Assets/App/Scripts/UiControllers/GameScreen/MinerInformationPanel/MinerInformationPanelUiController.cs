@@ -40,6 +40,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         [SerializeField] private LocalizeStringEvent Miner_name;
         [SerializeField] private LocalizeStringEvent Miner_description;
+
+        [SerializeField] private GameObject _stars;
+        [SerializeField] private GameObject _hearts;
         private Miner _currentMiner;
         private bool _isShow;
 
