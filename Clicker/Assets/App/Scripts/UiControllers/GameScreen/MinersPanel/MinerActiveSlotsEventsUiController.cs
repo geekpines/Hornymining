@@ -25,6 +25,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] DialogContainer dataContainer;
 
         private int _countsActiveClick = 0;
+        private int _maxCountsActiveClick = 100;
 
         [Inject]
         private void Construct(PlayerProfile playerProfile)
@@ -124,7 +125,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     }
                 }
             }
-            
         }
 
         private void SetHearts(MinerSlotView view, Miner activeMiner)
@@ -150,16 +150,19 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 _countsActiveClick++;
 
-                if (_countsActiveClick == 100)
+                if (_countsActiveClick == _maxCountsActiveClick)
                 {
                     _countsActiveClick = 0;
+                    _maxCountsActiveClick *= 10;
                     foreach (var activeMiner in _playerProfile.GetActiveMiners())
                     {
                         if (activeMiner.ID == view.Id)
                         {
                             SetHearts(view, activeMiner);
+                            PopOffDialog(view, 0, activeMiner);
                         }
                     }
+                    
 
                 }
             }

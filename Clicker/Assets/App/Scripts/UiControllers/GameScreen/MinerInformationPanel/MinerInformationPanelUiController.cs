@@ -5,6 +5,7 @@ using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using App.Scripts.Utilities.MonoBehaviours;
 using Sirenix.OdinInspector;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -33,6 +34,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         [SerializeField] private Button _nextMiner;
         [SerializeField] private Button _previousMiner;
 
+        
         [Title("Элементы панели")]
         [SerializeField] private Transform _minerRootPosition;
 
@@ -41,10 +43,15 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         [SerializeField] private LocalizeStringEvent Miner_name;
         [SerializeField] private LocalizeStringEvent Miner_description;
 
+        [SerializeField] private DialogContainer dataContainer;
+
+        [SerializeField] private DialogUiController dialogUiController;
+
         private Miner _currentMiner;
         private bool _isShow;
 
         private int _outsideMinerId;
+
 
         private Dictionary<Miner, MinerVisualContext> MinerToVisual = new Dictionary<Miner, MinerVisualContext>();
 
@@ -56,9 +63,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         private void OnEnable()
         {
+            
             _minersSelectPanelUiController.OnMinerDoubleClicked += ShowInformation;
             _backButton.onClick.AddListener(HideInformation);
-            _levelUpButton.onClick.AddListener(LevelUpClicked);
+            _levelUpButton.onClick.AddListener(LevelUpClicked);            
         }
 
         private void OnDisable()
@@ -154,7 +162,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 Debug.Log("Уровень повышен!");
                 DecreaseResources(costs);
                 _currentMiner.LevelUp();
-                
+                StartCoroutine(PopOffDialog(_currentMiner));
                 _minersSelectPanelUiController.SetMinerLevel(_outsideMinerId, _currentMiner.Level + 1);
                 InitializationUpgradeCosts(_currentMiner.ID);
             }
@@ -199,7 +207,21 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             Miner_description.StringReference = description;
         }
 
-        
-        
+        private IEnumerator PopOffDialog(Miner activeMiner)
+        {
+
+            foreach (var dialog in dataContainer.dialogDataControllers)
+            {
+                if (_currentMiner.Name == dialog.MinerConf.Name)
+                {
+                    int dialogRand = UnityEngine.Random.Range(0, dialog.additionalDialogs[0].Dialog.Count);
+                    dialogUiController.SetName(dialog.MinerConf.Name);
+                    dialogUiController.OpenRuDialogContent(true, dialog.additionalDialogs[0].Dialog[dialogRand]);
+                    yield return new WaitForSeconds(3);
+                    dialogUiController.SetOff(false);
+                }
+            }
+            
+        }
     }
 }
