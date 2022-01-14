@@ -16,10 +16,6 @@ public class Saver : MonoBehaviour
     private MinerCreatorSystem _minerCreatorSystem;
     [SerializeField] private MinersSelectPanelUiController selectPanelUiController;
 
-    [SerializeField] GameObject LoadigScreen;
-
-
-
 
     [Inject]
     private void Construct(PlayerProfile playerProfile, MinerCreatorSystem minerCreatorSystem)
@@ -34,11 +30,11 @@ public class Saver : MonoBehaviour
     {
         
         StartCoroutine(LoadMiner());
-        StartCoroutine(GameSaver());
+        StartCoroutine(MinerSaver());
     }
 
 
-    private IEnumerator GameSaver()
+    private IEnumerator MinerSaver()
     {
         Debug.Log("Save in 50 sec");
 
@@ -48,7 +44,7 @@ public class Saver : MonoBehaviour
             SaveGame.Clear();
             SaveGame.Save<List<Miner>>(key, _playerProfile.GetAllMiners());
         }
-        StartCoroutine(GameSaver());
+        StartCoroutine(MinerSaver());
     }
 
     private IEnumerator LoadMiner()
@@ -57,27 +53,29 @@ public class Saver : MonoBehaviour
         if (SaveGame.Load<List<Miner>>(key) != null)
         {
             Debug.Log("Trying Load");
-            foreach (var miner in SaveGame.Load<List<Miner>>(key))
-            {
-                foreach(var v in AddMiners)
-                    if(v.Name.ToString() == miner.Name.ToString())
-                    {
-                        Debug.Log(miner.Level);
-                        Miner created = _minerCreatorSystem.CreateMiner(v);
-                        int k = miner.Level;
-                        while (k != 0)
-                        {
-                            created.LevelUp();
-                            k--;
-                        }                        
-                        Debug.Log(created.Level);
-                        _playerProfile.AddMiner(created);
-                        selectPanelUiController.SetMinerLevel(created.ID, created.Level + 1);
-                    }
-                
-                
-            }
+            SearchMinerToLoad(SaveGame.Load<List<Miner>>(key));
+        }
+    }
 
+    private void SearchMinerToLoad(List<Miner> Miners)
+    {
+        foreach (var miner in Miners)
+        {
+            foreach (var v in AddMiners)
+            {
+                if (v.Name.ToString() == miner.Name.ToString())
+                {
+                    Miner created = _minerCreatorSystem.CreateMiner(v);
+                    int k = miner.Level;
+                    while (k != 0)
+                    {
+                        created.LevelUp();
+                        k--;
+                    }
+                    _playerProfile.AddMiner(created);
+                    selectPanelUiController.SetMinerLevel(created.ID, created.Level + 1);
+                }
+            }
         }
     }
 }

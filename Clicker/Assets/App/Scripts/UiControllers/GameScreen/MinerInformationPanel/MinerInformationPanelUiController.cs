@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Gameplay.CoreGameplay.Coins.Static;
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using App.Scripts.UiControllers.GameScreen.MinersPanel;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using App.Scripts.Utilities.MonoBehaviours;
 using Sirenix.OdinInspector;
@@ -33,8 +34,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         [SerializeField] private Button _backButton;
         [SerializeField] private Button _nextMiner;
         [SerializeField] private Button _previousMiner;
+        [SerializeField] private Button _sellMiner;
+        [SerializeField] private Button _removeMiner;
 
-        
+
         [Title("Элементы панели")]
         [SerializeField] private Transform _minerRootPosition;
 
@@ -47,6 +50,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         [SerializeField] private DialogUiController dialogUiController;
 
+        [Title ("Сторонние элементы")]
+        [SerializeField] private MinerActiveSlotsUiController minerActiveSlotsUiController;
+        
         private Miner _currentMiner;
         private bool _isShow;
 
@@ -66,7 +72,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             
             _minersSelectPanelUiController.OnMinerDoubleClicked += ShowInformation;
             _backButton.onClick.AddListener(HideInformation);
-            _levelUpButton.onClick.AddListener(LevelUpClicked);            
+            _levelUpButton.onClick.AddListener(LevelUpClicked);
+            _sellMiner.onClick.AddListener(MinerSeller);
+            _removeMiner.onClick.AddListener(RemoveMiner);
         }
 
         private void OnDisable()
@@ -74,6 +82,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             _minersSelectPanelUiController.OnMinerDoubleClicked -= ShowInformation;
             _backButton.onClick.RemoveListener(HideInformation);
             _levelUpButton.onClick.RemoveListener(LevelUpClicked);
+            _sellMiner.onClick.RemoveListener(MinerSeller);
         }
 
         private void ShowInformation(int idMiner)
@@ -222,6 +231,34 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 }
             }
             
+        }
+
+        private void MinerSeller()
+        {
+            foreach (var miner in _playerProfile.GetActiveMiners())
+            { 
+                if(miner.ID == _outsideMinerId)
+                {
+                    minerActiveSlotsUiController.RemoveSlot(minerActiveSlotsUiController.GetView(miner.ID));
+                    _playerProfile.RemoveMiner(miner);                    
+                    HideInformation();
+                    _playerProfile.AddScore(miner.Configuration.Levels[0].MiningResources[0].Type, miner.Configuration.Levels[0].MiningResources[0].Value * 100);
+                    //_minersSelectPanelUiController.SetMinerLock(miner.ID, true);
+                }
+            }                
+        }
+
+        private void RemoveMiner()
+        {
+            foreach (var miner in _playerProfile.GetActiveMiners())
+            {
+
+                Debug.Log(minerActiveSlotsUiController.GetView(miner.ID));
+                minerActiveSlotsUiController.RemoveSlot(minerActiveSlotsUiController.GetView(miner.ID));
+                HideInformation();
+                minerActiveSlotsUiController.GetView(miner.ID).IsOpen = true;
+                _minersSelectPanelUiController.SetMinerLock(miner.ID, true);
+            }
         }
     }
 }
