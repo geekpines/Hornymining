@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+
 namespace App.Scripts.Gameplay.Prototypes
 {
     public class PrototypeAddMiner : MonoBehaviour
@@ -15,7 +16,7 @@ namespace App.Scripts.Gameplay.Prototypes
 
         [SerializeField] GameObject LoadigScreen;
         
-        string key = "playerHMData";
+
 
 
         [Inject]
@@ -27,9 +28,8 @@ namespace App.Scripts.Gameplay.Prototypes
 
         private void Start()
         {
-            StartCoroutine(MinerAdder());
-            StartCoroutine(LoadGame());
-            StartCoroutine(GameSaver());
+            //StartCoroutine(MinerAdder());
+            
         }
 
         private IEnumerator MinerAdder()
@@ -41,41 +41,7 @@ namespace App.Scripts.Gameplay.Prototypes
             }
         }
 
-        private IEnumerator GameSaver()
-        {
-            Debug.Log("Save in 50 sec");
-            yield return new WaitForSeconds(50);
-            if(true)
-            {
-                Debug.Log("Save Started");
-                string value = JsonUtility.ToJson(_playerProfile);
-
-                PlayerPrefs.SetString(key, value);
-                PlayerPrefs.Save();
-                Debug.Log("Save Finished");
-            }
-            StartCoroutine(GameSaver());
-        }
-
-        private IEnumerator LoadGame()
-        {
-            yield return new WaitForSeconds(2);
-            if (true)
-            {
-                Debug.Log("TryingLoad");
-                string value = PlayerPrefs.GetString(key);
-                Debug.Log(value);
-
-                if (value != null)
-                {
-                    foreach(var miner in JsonUtility.FromJson<PlayerProfile>(value).GetAllMiners())
-                    {
-                        _playerProfile.AddMiner(miner);
-                    }
-                }
-
-            }
-        }
+        
 
 
     }
