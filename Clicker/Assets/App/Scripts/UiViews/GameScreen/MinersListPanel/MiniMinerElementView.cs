@@ -95,6 +95,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         public void SetLockMask(bool state)
         {
             _lockMask.SetActive(state);
+
         }
 
         private void ResetStars()

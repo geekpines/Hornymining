@@ -181,7 +181,16 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             CoinTypeToData[resourceId].Decrease(value);
         }
 
-        
+        public void RemoveActiveMiner(int ID)
+        {
+            foreach (var miner in GetActiveMiners())
+            {
+                if(miner.ID == ID)
+                {
+                    _activeMiners.Remove(miner);
+                }
+            }
+        }
 
     }
 }

@@ -257,7 +257,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 minerActiveSlotsUiController.RemoveSlot(minerActiveSlotsUiController.GetView(miner.ID));
                 HideInformation();
                 minerActiveSlotsUiController.GetView(miner.ID).IsOpen = true;
-                _minersSelectPanelUiController.SetMinerLock(miner.ID, true);
+                _minersSelectPanelUiController.SetMinerActive(miner.ID, false);
+                _playerProfile.RemoveActiveMiner(miner.ID);
             }
         }
     }

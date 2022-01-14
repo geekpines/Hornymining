@@ -28,7 +28,7 @@ namespace App.Scripts.Gameplay.Prototypes
 
         private void Start()
         {
-            //StartCoroutine(MinerAdder());
+            StartCoroutine(MinerAdder());
             
         }
 
