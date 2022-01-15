@@ -133,6 +133,15 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             }
         }
 
+        public void ClearSlot(MinerSlotView viewSlot)
+        {
+            if (!viewSlot.IsEmpty)
+            {
+                viewSlot.SetLock(true);
+                Destroy(viewSlot.gameObject);
+            }
+        }
+
         public MinerSlotView GetView(int id)
         {
             if (IdToView.ContainsKey(id))

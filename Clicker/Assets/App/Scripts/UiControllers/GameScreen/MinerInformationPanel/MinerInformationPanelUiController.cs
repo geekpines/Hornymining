@@ -252,13 +252,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         {
             foreach (var miner in _playerProfile.GetActiveMiners())
             {
-
-                Debug.Log(minerActiveSlotsUiController.GetView(miner.ID));
-                minerActiveSlotsUiController.RemoveSlot(minerActiveSlotsUiController.GetView(miner.ID));
-                HideInformation();
-                minerActiveSlotsUiController.GetView(miner.ID).IsOpen = true;
-                _minersSelectPanelUiController.SetMinerActive(miner.ID, false);
-                _playerProfile.RemoveActiveMiner(miner.ID);
+                if (miner.ID == _outsideMinerId)
+                {
+                    minerActiveSlotsUiController.RemoveSlot(minerActiveSlotsUiController.GetView(miner.ID));
+                    //_playerProfile.RemoveMiner(miner);
+                    HideInformation();
+                }
             }
         }
     }

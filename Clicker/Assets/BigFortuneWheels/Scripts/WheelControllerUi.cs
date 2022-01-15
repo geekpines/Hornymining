@@ -1,13 +1,18 @@
+using App.Scripts.Gameplay.CoreGameplay.Player;
 using Mkey;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace MkeyFW // mkey fortune wheel
 {
     public class WheelControllerUi : MonoBehaviour
     {
-        
+
+        private PlayerProfile _playerProfile;
+        private int spinCounts = 0;
+
         [Header("Main references")]
         [Space(16, order = 0)]
         [SerializeField]
@@ -151,6 +156,13 @@ namespace MkeyFW // mkey fortune wheel
         }
         #endregion regular
 
+
+        [Inject]
+        private void Construct(PlayerProfile playerProfile)
+        {
+            _playerProfile = playerProfile;
+        }
+
         /// <summary>
         /// Start spin
         /// </summary>
@@ -202,7 +214,14 @@ namespace MkeyFW // mkey fortune wheel
 
         public void StartSpin()
         {
-            StartSpin(null);
+            if(_playerProfile.Coins[spinCounts].Value >= 100)
+            {
+                _playerProfile.AddScore(_playerProfile.Coins[spinCounts].ID, -100);
+                StartSpin(null);
+                spinCounts++;
+            }
+            
+
         }
 
         /// <summary>
