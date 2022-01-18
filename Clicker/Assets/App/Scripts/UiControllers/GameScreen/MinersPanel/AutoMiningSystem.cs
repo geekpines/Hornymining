@@ -88,7 +88,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             StartCoroutine(ActiveMinerToTimer[miner]);
         }
 
-        private void RemoveMiner(Miner miner)
+        //Здесь было private
+        public void RemoveMiner(Miner miner)
         {
             if (!IdToActiveMiner.ContainsKey(miner.ID) &&
                 !ActiveMinerToView.ContainsKey(miner) &&

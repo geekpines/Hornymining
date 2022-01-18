@@ -74,5 +74,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 IdToMiner.Add(miner.ID, miner);
             }
         }
+       public void RemoveMinerFromActiveMining(Miner miner)
+        {
+            if (IdToMiner.ContainsKey(miner.ID))
+            {
+                IdToMiner.Remove(miner.ID);
+            }
+        }
     }
 }

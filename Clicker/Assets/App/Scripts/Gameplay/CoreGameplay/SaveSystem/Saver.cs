@@ -28,9 +28,12 @@ public class Saver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //load
         StartCoroutine(LoadMiner());
+        //LoadCoin();
+        //save
         StartCoroutine(MinerSaver());
+        //StartCoroutine(SaveCoins());
     }
 
 
@@ -49,7 +52,7 @@ public class Saver : MonoBehaviour
 
     private IEnumerator LoadMiner()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         if (SaveGame.Load<List<Miner>>(key) != null)
         {
             Debug.Log("Trying Load");
@@ -74,6 +77,36 @@ public class Saver : MonoBehaviour
                     }
                     _playerProfile.AddMiner(created);
                     selectPanelUiController.SetMinerLevel(created.ID, created.Level + 1);
+                }
+            }
+        }
+    }
+
+    private IEnumerator SaveCoins()
+    {
+        yield return new WaitForSeconds(10);
+        if (true)
+        {
+            List<float> CoinsValue = new List<float>();
+            foreach (var coin in _playerProfile.Coins)
+            {
+                CoinsValue.Add(coin.Value);
+            }
+            SaveGame.Save<List<float>>("CoinHM", CoinsValue);    
+        }
+        StartCoroutine(SaveCoins());
+    }
+
+    private void LoadCoin()
+    {
+        List<float> CoinsValue = SaveGame.Load<List<float>>("CoinHM"); ;
+        if (CoinsValue != null)
+        {
+            for (int i = 0; i < _playerProfile.Coins.Count; i++)
+            {
+                if (_playerProfile.Coins[i].Value == 0)
+                {
+                    _playerProfile.AddScore(_playerProfile.Coins[i].ID, CoinsValue[i]);
                 }
             }
         }

@@ -2,6 +2,7 @@
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -44,6 +45,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             OpenSlotButton.onClick.AddListener(MinersViewController);
             RefreshMinerUI.onClick.AddListener(UpdateVisual);
         }
+
 
         private void InitializationActiveMiners()
         {
@@ -194,5 +196,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 viewSlot.SetLevelVisual(miner.Level);
             }
         }
+
+        
     }
 }

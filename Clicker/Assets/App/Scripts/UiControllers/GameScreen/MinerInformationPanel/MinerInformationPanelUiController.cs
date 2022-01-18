@@ -52,6 +52,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         [Title ("Сторонние элементы")]
         [SerializeField] private MinerActiveSlotsUiController minerActiveSlotsUiController;
+        [SerializeField] private AutoMiningSystem autoMining;
+        [SerializeField] private MiningUiController miningUi;
         
         private Miner _currentMiner;
         private bool _isShow;
@@ -89,7 +91,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         {
 
             if (!TryInitializationMinerVisual(idMiner))
+            {
                 return;
+            }
             InitializationUpgradeCosts(idMiner);
 
             //значение внешнего id майнера
@@ -113,6 +117,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
             if (!MinerToVisual.ContainsKey(_currentMiner))
             {
+                _currentMiner.Configuration.Visual.UnlockComponents.SetUnlockLevel(_currentMiner.Level);
                 var visualContext = Instantiate(
                     _currentMiner.Configuration.Visual,
                     _minerRootPosition);
@@ -122,7 +127,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 MinerToVisual.Add(_currentMiner, visualContext);
                 SetNameAndDescriprion(_currentMiner.Name, _currentMiner.Description);
             }
+            MinerToVisual[_currentMiner].UnlockComponents.SetUnlockLevel(_currentMiner.Level);
             MinerToVisual[_currentMiner].gameObject.SetActive(true);
+            
             return true;
         }
 
@@ -240,25 +247,58 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 if(miner.ID == _outsideMinerId)
                 {
                     minerActiveSlotsUiController.RemoveSlot(minerActiveSlotsUiController.GetView(miner.ID));
+                    autoMining.RemoveMiner(miner);
+                    miningUi.RemoveMinerFromActiveMining(miner);
                     _playerProfile.RemoveMiner(miner);                    
                     HideInformation();
-                    _playerProfile.AddScore(miner.Configuration.Levels[0].MiningResources[0].Type, miner.Configuration.Levels[0].MiningResources[0].Value * 100);
+                    // _playerProfile.AddScore(miner.Configuration.Levels[0].MiningResources[0].Type, miner.Configuration.Levels[0].MiningResources[0].Value * 100);
+                    
                     //_minersSelectPanelUiController.SetMinerLock(miner.ID, true);
                 }
             }                
         }
+        private void MinerSeller(Miner miner)
+        {
+
+            if (miner.ID == _outsideMinerId)
+            {
+                minerActiveSlotsUiController.RemoveSlot(minerActiveSlotsUiController.GetView(miner.ID));
+                autoMining.RemoveMiner(miner);
+                miningUi.RemoveMinerFromActiveMining(miner);
+                _playerProfile.RemoveMiner(miner);
+                HideInformation();
+                // _playerProfile.AddScore(miner.Configuration.Levels[0].MiningResources[0].Type, miner.Configuration.Levels[0].MiningResources[0].Value * 100);
+
+                //_minersSelectPanelUiController.SetMinerLock(miner.ID, true);
+            }
+            
+        }
 
         private void RemoveMiner()
         {
+            Miner minerS;
             foreach (var miner in _playerProfile.GetActiveMiners())
             {
                 if (miner.ID == _outsideMinerId)
                 {
-                    minerActiveSlotsUiController.RemoveSlot(minerActiveSlotsUiController.GetView(miner.ID));
-                    //_playerProfile.RemoveMiner(miner);
-                    HideInformation();
+                    MinerCreatorSystem minerCreatorSystem = new MinerCreatorSystem();
+                    minerS = minerCreatorSystem.CreateMiner(miner.Configuration);
+                    int k = miner.Level;
+                    while (k != 0)
+                    {
+                        minerS.LevelUp();
+                        k--;
+                    }
+                    
+                    MinerSeller(miner);
+                    
+
+                    
+
+                    _playerProfile.AddMiner(minerS);
                 }
             }
+            
         }
     }
 }
