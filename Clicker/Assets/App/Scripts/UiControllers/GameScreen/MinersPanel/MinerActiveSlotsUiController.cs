@@ -24,6 +24,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] private Button RefreshMinerUI;
 
         private LevelShopUpgrades Level = new LevelShopUpgrades();
+        private string _slotKey = "slot";
 
         public event Action<MinerSlotView> OnMinerSelected;
         [SerializeField] private ExtendedScrollView _scrollMinerView;
@@ -44,6 +45,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             InitializationActiveMiners();
             OpenSlotButton.onClick.AddListener(MinersViewController);
             RefreshMinerUI.onClick.AddListener(UpdateVisual);
+            Level.LoadLevel(_slotKey);
+            Level.SaveLevel(_slotKey);
+
         }
 
 

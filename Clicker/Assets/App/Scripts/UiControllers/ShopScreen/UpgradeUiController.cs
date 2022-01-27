@@ -10,7 +10,7 @@ public class UpgradeUiController : MonoBehaviour
     [SerializeField] private Button _surpriseButton;
     [SerializeField] List<LevelShopUpgrades> levelShop;
 
-
+    private string _levelShopKey = "levelShop";
 
     private PlayerProfile _playerProfile;
 
@@ -24,6 +24,13 @@ public class UpgradeUiController : MonoBehaviour
     private void Awake()
     {
         _upgradeButton.onClick.AddListener(CasualUpgrade);
+        int k = levelShop.Count;
+        foreach(var level in levelShop)
+        {            
+            level.LoadLevel(_levelShopKey + k);
+            level.SaveLevel(_levelShopKey + k);
+            k--;
+        }
     }
 
     private void CasualUpgrade()

@@ -11,9 +11,9 @@ public class ShopScreenUiController : MonoBehaviour
     [SerializeField] private Button _StockUpgradeButton;
 
     private PlayerProfile _playerProfile;
+    
     private LevelShopUpgrades shopUpgrades = new LevelShopUpgrades();
-
-
+    private string _shopKey = "shop";
 
     [Inject]
     private void Construct(PlayerProfile playerProfile)
@@ -26,6 +26,8 @@ public class ShopScreenUiController : MonoBehaviour
         _StockUpgradeButton.onClick.AddListener(OpenTrade);
         SetActiveUnits(false);
         StartCoroutine(LockCoinInfo());
+        shopUpgrades.LoadLevel(_shopKey);
+        shopUpgrades.SaveLevel(_shopKey);
     }
 
     private void SetActiveUnits(bool state)

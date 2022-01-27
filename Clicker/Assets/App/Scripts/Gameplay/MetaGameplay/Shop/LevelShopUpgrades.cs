@@ -1,10 +1,12 @@
 using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using System.Collections;
 using UnityEngine;
 
 public class LevelShopUpgrades : MonoBehaviour
 {
     [field: SerializeField, Range(0, 5)] public int CurrentLevel { get; private set; } = 0;
+    private string _shopLevelKey = "HMShopsLevel";
 
     private void LevelUp()
     {
@@ -122,5 +124,15 @@ public class LevelShopUpgrades : MonoBehaviour
         }
     }
 
+    public IEnumerator SaveLevel(string key)
+    {
+        yield return new WaitForSeconds(10f);
+        PlayerPrefs.SetInt(_shopLevelKey + key, CurrentLevel);
+        StartCoroutine(SaveLevel(key));
+    }
 
+    public void LoadLevel(string key)
+    {
+       CurrentLevel = PlayerPrefs.GetInt(_shopLevelKey + key);        
+    }
 }
