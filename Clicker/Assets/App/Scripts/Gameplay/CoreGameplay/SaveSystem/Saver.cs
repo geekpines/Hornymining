@@ -4,18 +4,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using BayatGames.SaveGameFree;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 
 public class Saver : MonoBehaviour
 {
     
-    string key = "playerHMData";
-    [SerializeField] private List<MinerConfiguration> AddMiners = new List<MinerConfiguration>();
+    string key = "HMinerName";
+    string levelKey = "HMinerLevel";
+    string coinKey = "HMCoins";
+    [SerializeField] public List<MinerConfiguration> AddMiners = new List<MinerConfiguration>();
     private PlayerProfile _playerProfile;
     private MinerCreatorSystem _minerCreatorSystem;
     [SerializeField] private MinersSelectPanelUiController selectPanelUiController;
 
+    private int minerCounts = 0;
 
     [Inject]
     private void Construct(PlayerProfile playerProfile, MinerCreatorSystem minerCreatorSystem)
@@ -30,85 +32,118 @@ public class Saver : MonoBehaviour
     {
         //load
         StartCoroutine(LoadMiner());
-        //LoadCoin();
+        LoadCoin();
         //save
-        StartCoroutine(MinerSaver());
-        //StartCoroutine(SaveCoins());
+        StartCoroutine(AllMinerSaver());
+        StartCoroutine(SaveCoins());
     }
 
 
-    private IEnumerator MinerSaver()
+    private IEnumerator AllMinerSaver()
     {
         Debug.Log("Save in 50 sec");
-
+        
         yield return new WaitForSeconds(10);
         if (true)
         {
-            SaveGame.Clear();
-            SaveGame.Save<List<Miner>>(key, _playerProfile.GetAllMiners());
+            PlayerPrefs.DeleteAll();
+            minerCounts = _playerProfile.GetAllMiners().Count;
+            PlayerPrefs.SetInt("HMinerCounts", minerCounts);
+            PlayerPrefs.Save();
+            foreach (var miner in _playerProfile.GetAllMiners())
+            {
+                SaveMiner(miner.Name.ToString(), miner.Level);
+            }
+            
         }
-        StartCoroutine(MinerSaver());
+        StartCoroutine(AllMinerSaver());
     }
+
+    private void SaveMiner(string MinerName, int MinerLevel)
+    {
+        
+        PlayerPrefs.SetString(key + minerCounts, MinerName);
+        PlayerPrefs.SetInt(levelKey + minerCounts, MinerLevel);
+        minerCounts--;
+        PlayerPrefs.Save();
+    }
+
 
     private IEnumerator LoadMiner()
     {
         yield return new WaitForSeconds(0.5f);
-        if (SaveGame.Load<List<Miner>>(key) != null)
+        if (true)
         {
             Debug.Log("Trying Load");
-            SearchMinerToLoad(SaveGame.Load<List<Miner>>(key));
-        }
-    }
-
-    private void SearchMinerToLoad(List<Miner> Miners)
-    {
-        foreach (var miner in Miners)
-        {
-            foreach (var v in AddMiners)
+            int count = PlayerPrefs.GetInt("HMinerCounts");
+            
+            while (count != 0)
             {
-                if (v.Name.ToString() == miner.Name.ToString())
+                Debug.Log("Loaded");
+                
+                foreach(var miner in AddMiners)
                 {
-                    Miner created = _minerCreatorSystem.CreateMiner(v);
-                    int k = miner.Level;
-                    while (k != 0)
+                    
+                    if(miner.Name.ToString() == PlayerPrefs.GetString(key + count))
                     {
-                        created.LevelUp();
-                        k--;
+                        
+                        Miner minerC = _minerCreatorSystem.CreateMiner(miner);
+
+                        LoadLevel(minerC, count);
                     }
-                    _playerProfile.AddMiner(created);
-                    selectPanelUiController.SetMinerLevel(created.ID, created.Level + 1);
                 }
+                count--;
             }
         }
     }
+
+    private void LoadLevel(Miner miner, int count)
+    {
+        int level = PlayerPrefs.GetInt(levelKey + count);
+        _playerProfile.AddMiner(miner);
+
+        while (level != 0)
+        {
+            foreach(var m in _playerProfile.GetAllMiners())
+            {
+                if(m == miner)
+                {
+                    m.LevelUp();
+                    level--;
+                }
+            }
+                        
+        }
+    }
+
 
     private IEnumerator SaveCoins()
     {
         yield return new WaitForSeconds(10);
         if (true)
         {
-            List<float> CoinsValue = new List<float>();
+            
             foreach (var coin in _playerProfile.Coins)
             {
-                CoinsValue.Add(coin.Value);
+                SaveCoin(coin.Value, coin.ID.ToString());
             }
-            SaveGame.Save<List<float>>("CoinHM", CoinsValue);    
+            
         }
         StartCoroutine(SaveCoins());
     }
 
+    private void SaveCoin(float value, string coinName)
+    {
+        PlayerPrefs.SetFloat(coinKey + coinName, value);
+        PlayerPrefs.Save();
+    }
+
     private void LoadCoin()
     {
-        List<float> CoinsValue = SaveGame.Load<List<float>>("CoinHM"); ;
-        if (CoinsValue != null)
+        foreach (var coin in _playerProfile.Coins)
         {
-            for (int i = 0; i < _playerProfile.Coins.Count; i++)
-            {
-                if (_playerProfile.Coins[i].Value == 0)
-                {
-                    _playerProfile.AddScore(_playerProfile.Coins[i].ID, CoinsValue[i]);
-                }
-            }
+            float coinsValue = PlayerPrefs.GetFloat(coinKey + coin.ID.ToString());
+            coin.Add(coinsValue);            
         }
     }
 }

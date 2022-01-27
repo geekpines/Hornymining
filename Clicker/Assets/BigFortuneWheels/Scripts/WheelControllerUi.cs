@@ -32,6 +32,8 @@ namespace MkeyFW // mkey fortune wheel
         [SerializeField]
         private RectTransform winSectorParent;
 
+        [SerializeField] RollGirlController rollGirl;
+
         [Header("Spin options")]
         [Space(16, order = 0)]
         [SerializeField]
@@ -214,8 +216,10 @@ namespace MkeyFW // mkey fortune wheel
 
         public void StartSpin()
         {
+
             if(_playerProfile.Coins[spinCounts].Value >= 100)
             {
+                rollGirl.RollEnable();
                 _playerProfile.AddScore(_playerProfile.Coins[spinCounts].ID, -100);
                 StartSpin(null);
                 spinCounts++;

@@ -16,6 +16,8 @@ namespace MkeyFW
         private MinerCreatorSystem _minerCreatorSystem;
         private List<MinerConfiguration> _minerConfs = new List<MinerConfiguration>();
 
+        private int minerCounter = 0;
+
         [Inject]
         private void Construct(PlayerProfile playerProfile, MinerCreatorSystem minerCreatorSystem)
         {
@@ -23,20 +25,33 @@ namespace MkeyFW
             _minerCreatorSystem = minerCreatorSystem;
         }
 
+        private void Start()
+        {
+            foreach (var miner in _playerProfile.GetAllMiners())
+            {
+                AddMiners.Remove(miner.Configuration);
+                minerCounter++;
+            }
+        }
+
 
         public void TestEvent_1(string coin)
         {
-            rollGirl.PlayHappy();
-            if (coin != "nothing")
+            
+            if (coin != "nothing" || minerCounter < 5)
             {
+                rollGirl.PlayHappy();
                 foreach (var miner in AddMiners)
                 {
                     if (miner.Levels[0].MiningResources[0].Type.ToString() == coin)
                     {
                         _minerConfs.Add(miner);
+                        
                     }
                 }
-                _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(_minerConfs[Random.Range(0, _minerConfs.Count)]));
+                MinerConfiguration minerConfiguration = _minerConfs[Random.Range(0, _minerConfs.Count)];
+                _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));
+                AddMiners.Remove(minerConfiguration);
 
             }
         }

@@ -54,6 +54,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         [SerializeField] private MinerActiveSlotsUiController minerActiveSlotsUiController;
         [SerializeField] private AutoMiningSystem autoMining;
         [SerializeField] private MiningUiController miningUi;
+        [SerializeField] private Saver _minerConfList;
         
         private Miner _currentMiner;
         private bool _isShow;
@@ -76,7 +77,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             _backButton.onClick.AddListener(HideInformation);
             _levelUpButton.onClick.AddListener(LevelUpClicked);
             _sellMiner.onClick.AddListener(MinerSeller);
-            _removeMiner.onClick.AddListener(RemoveMiner);
+            _removeMiner.onClick.AddListener(CallRemoveMiner);
         }
 
         private void OnDisable()
@@ -274,7 +275,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             
         }
 
-        private void RemoveMiner()
+        private IEnumerator RemoveMiner()
         {
             Miner minerS;
             foreach (var miner in _playerProfile.GetActiveMiners())
@@ -282,23 +283,34 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 if (miner.ID == _outsideMinerId)
                 {
                     MinerCreatorSystem minerCreatorSystem = new MinerCreatorSystem();
-                    minerS = minerCreatorSystem.CreateMiner(miner.Configuration);
-                    int k = miner.Level;
-                    while (k != 0)
+                    
+                    foreach(var minerConf in _minerConfList.AddMiners)
                     {
-                        minerS.LevelUp();
-                        k--;
+                        if(miner.Name == minerConf.Name)
+                        {
+                            minerS = minerCreatorSystem.CreateMiner(minerConf);
+                            int k = miner.Level;
+                            while (k != 0)
+                            {
+                                minerS.LevelUp();
+                                k--;
+                            }
+                            yield return new WaitForSeconds(0.5f);
+                            _playerProfile.AddMiner(minerS);
+                            MinerSeller(miner);
+                            
+                            
+                            break;
+                        }                        
                     }
-                    
-                    MinerSeller(miner);
-                    
-
-                    
-
-                    _playerProfile.AddMiner(minerS);
+                    break;
                 }
             }
             
+        }
+        private void CallRemoveMiner()
+        {
+            StartCoroutine(RemoveMiner());
         }
     }
 }

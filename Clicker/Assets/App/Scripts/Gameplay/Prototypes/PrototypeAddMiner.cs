@@ -28,12 +28,6 @@ namespace App.Scripts.Gameplay.Prototypes
         private void Start()
         {
             StartCoroutine(MinerAdder());
-<<<<<<< HEAD
-            
-=======
-            StartCoroutine(LoadGame());
-            StartCoroutine(GameSaver());
->>>>>>> parent of 06a6761 (Добавлено сохранение майнеров игрока со всеми статами. И их загрузка. Также добавлен сторонний модуль сохранения.)
         }
 
         private IEnumerator MinerAdder()
