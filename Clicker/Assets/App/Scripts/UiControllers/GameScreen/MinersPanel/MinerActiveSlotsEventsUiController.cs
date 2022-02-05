@@ -3,6 +3,7 @@ using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +27,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private int _countsActiveClick = 0;
         private int _maxCountsActiveClick = 100;
+        private List<AdditionalCoins> _additionalCoins;
 
         [Inject]
         private void Construct(PlayerProfile playerProfile)
@@ -75,7 +77,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void ActiveClick(MinerSlotView view)
         {
-            Debug.Log($"ActiveClick: {view.name} / Id: {view.Id}");
+            //Debug.Log($"ActiveClick: {view.name} / Id: {view.Id}");
             if (view.IsEmpty)
             {
                 _selectedActiveView = view;
@@ -94,6 +96,14 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             OpenDialog(view);
             //увеличение количества сердечек
             AddHeartCounts(view);
+            //Выпадение рандомной валюты при surprise button upgrade
+            if(_additionalCoins != null)
+            {
+                foreach (var additionalCoin in _additionalCoins)
+                {
+                    AddSpecialScore(additionalCoin);
+                }
+            }            
         }
 
 
@@ -178,6 +188,21 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     StartCoroutine(PopOffDialog(view, rand, activeMiner));
                 }
             }
+        }
+
+
+        private void AddSpecialScore(AdditionalCoins additionalCoin)
+        {
+            if (Random.Range(0, 100) <= additionalCoin.chance)
+            {
+                _playerProfile.AddScore(additionalCoin.type, 1f);
+            }
+            
+            
+        }
+        public void AddAdditionalCoin(AdditionalCoins additionalCoin)
+        {
+            _additionalCoins.Add(additionalCoin);
         }
     }
 }

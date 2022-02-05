@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
+using UnityEngine.UI;
 
 public class Saver : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Saver : MonoBehaviour
     private PlayerProfile _playerProfile;
     private MinerCreatorSystem _minerCreatorSystem;
     [SerializeField] private MinersSelectPanelUiController selectPanelUiController;
+    [SerializeField] private Button _clearSave;
 
     private int minerCounts = 0;
 
@@ -36,6 +38,7 @@ public class Saver : MonoBehaviour
         //save
         StartCoroutine(AllMinerSaver());
         StartCoroutine(SaveCoins());
+        _clearSave.onClick.AddListener(ClearSave);
     }
 
 
@@ -145,5 +148,10 @@ public class Saver : MonoBehaviour
             float coinsValue = PlayerPrefs.GetFloat(coinKey + coin.ID.ToString());
             coin.Add(coinsValue);            
         }
+    }
+
+    private void ClearSave()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

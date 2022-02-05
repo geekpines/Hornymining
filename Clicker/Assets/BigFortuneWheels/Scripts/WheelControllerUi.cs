@@ -3,6 +3,7 @@ using Mkey;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Zenject;
 
 namespace MkeyFW // mkey fortune wheel
@@ -12,6 +13,7 @@ namespace MkeyFW // mkey fortune wheel
 
         private PlayerProfile _playerProfile;
         private int spinCounts = 0;
+        [SerializeField] private Button resetButton;
 
         [Header("Main references")]
         [Space(16, order = 0)]
@@ -217,13 +219,18 @@ namespace MkeyFW // mkey fortune wheel
         public void StartSpin()
         {
 
-            if(_playerProfile.Coins[spinCounts].Value >= 100)
+            if(_playerProfile.Coins[spinCounts].Value >= 100 && spinCounts < 4)
             {
                 rollGirl.RollEnable();
                 _playerProfile.AddScore(_playerProfile.Coins[spinCounts].ID, -100);
                 StartSpin(null);
                 spinCounts++;
             }
+            if(spinCounts == 4)
+            {
+                resetButton.gameObject.SetActive(true);
+            } 
+            
             
 
         }
