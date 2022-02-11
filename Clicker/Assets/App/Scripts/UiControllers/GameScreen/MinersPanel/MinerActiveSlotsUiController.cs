@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
@@ -23,6 +24,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] private Button OpenSlotButton;
         [SerializeField] private Button RefreshMinerUI;
 
+        [SerializeField] private TextMeshProUGUI _levelText;
         private LevelShopUpgrades Level = new LevelShopUpgrades();
         private string _slotKey = "slot";
 
@@ -32,6 +34,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         public List<MinerSlotView> MinersSlotView { get; private set; } = new List<MinerSlotView>();
         private Dictionary<int, MinerSlotView> IdToView = new Dictionary<int, MinerSlotView>();
+
 
         [Inject]
         private void Construct(PlayerProfile playerProfile)
@@ -179,8 +182,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             if (Level.CurrentLevel < 4)
             {
                 MinersSlotView[Level.CurrentLevel + 1].IsOpen = Level.OpenMinerSlot(_playerProfile);
+                _levelText.text = "Level: " + Level.CurrentLevel;
             }
-
         }
 
         public void UpdateVisual()

@@ -148,5 +148,10 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         {
             return _currentHearts;
         }
+
+        public int GetStars()
+        {
+            return _currentStars;
+        }
     }
 }

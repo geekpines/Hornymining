@@ -1,6 +1,7 @@
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -9,10 +10,12 @@ public class ShopScreenUiController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _sellBuyUnits;
     [SerializeField] private Button _StockUpgradeButton;
+    [SerializeField] private TextMeshProUGUI _levelText;
 
     private PlayerProfile _playerProfile;
     
     private LevelShopUpgrades shopUpgrades = new LevelShopUpgrades();
+    
     private string _shopKey = "shop";
 
     [Inject]
@@ -52,7 +55,7 @@ public class ShopScreenUiController : MonoBehaviour
 
             coinTradeSystem.percent = shopUpgrades.GetSale();
         }
-
+        _levelText.text = "Level: " + shopUpgrades.CurrentLevel + 1;
     }
 
     private IEnumerator LockCoinInfo()

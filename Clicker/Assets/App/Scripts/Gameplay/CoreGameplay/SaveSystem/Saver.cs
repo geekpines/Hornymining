@@ -17,7 +17,6 @@ public class Saver : MonoBehaviour
     private PlayerProfile _playerProfile;
     private MinerCreatorSystem _minerCreatorSystem;
     [SerializeField] private MinersSelectPanelUiController selectPanelUiController;
-    [SerializeField] private Button _clearSave;
 
     private int minerCounts = 0;
 
@@ -38,7 +37,7 @@ public class Saver : MonoBehaviour
         //save
         StartCoroutine(AllMinerSaver());
         StartCoroutine(SaveCoins());
-        _clearSave.onClick.AddListener(ClearSave);
+
     }
 
 
@@ -150,8 +149,4 @@ public class Saver : MonoBehaviour
         }
     }
 
-    private void ClearSave()
-    {
-        PlayerPrefs.DeleteAll();
-    }
 }

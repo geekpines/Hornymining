@@ -3,6 +3,7 @@ using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.MinersPanel;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
+using App.Scripts.UiViews.GameScreen.MinersListPanel;
 using App.Scripts.Utilities.MonoBehaviours;
 using Sirenix.OdinInspector;
 using System;
@@ -49,7 +50,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         [SerializeField] private DialogContainer dataContainer;
 
         [SerializeField] private DialogUiController dialogUiController;
-
+        [SerializeField] private List<GameObject> _hearts;
+        [SerializeField] private List<GameObject> _stars;
+ 
         [Title ("Сторонние элементы")]
         [SerializeField] private MinerActiveSlotsUiController minerActiveSlotsUiController;
         [SerializeField] private AutoMiningSystem autoMining;
@@ -88,11 +91,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             _sellMiner.onClick.RemoveListener(MinerSeller);
         }
 
-        private void ShowInformation(int idMiner)
+        private void ShowInformation(MiniMinerElementView _miniMinerMiner)
         {
-
-            if (!TryInitializationMinerVisual(idMiner))
+            int idMiner = _miniMinerMiner.ID;
+            if (!TryInitializationMinerVisual(idMiner, _miniMinerMiner.GetHearts(), _miniMinerMiner.GetStars()))
             {
+                
                 return;
             }
             InitializationUpgradeCosts(idMiner);
@@ -107,7 +111,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             }
         }
 
-        private bool TryInitializationMinerVisual(int idMiner)
+        private bool TryInitializationMinerVisual(int idMiner, int hearts, int stars)
         {
             _currentMiner = _playerProfile.GetAllMiners().FirstOrDefault(targetMiner => targetMiner.ID == idMiner);
             if (_currentMiner == null)
@@ -130,7 +134,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             }
             MinerToVisual[_currentMiner].UnlockComponents.SetUnlockLevel(_currentMiner.Level);
             MinerToVisual[_currentMiner].gameObject.SetActive(true);
-            
+
+            SetHearts(hearts);
+            SetStars(stars);
             return true;
         }
 
@@ -182,11 +188,13 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 StartCoroutine(PopOffDialog(_currentMiner));
                 _minersSelectPanelUiController.SetMinerLevel(_outsideMinerId, _currentMiner.Level + 1);
                 InitializationUpgradeCosts(_currentMiner.ID);
+                SetStars(_currentMiner.Level + 1);
             }
             else
             {
                 Debug.Log("Недостаточно средств для повышения уровня!");
             }
+            
         }
 
         private bool CheckPossibleLevelUp(List<MinerConfiguration.MiningResource> costs)
@@ -311,6 +319,32 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         private void CallRemoveMiner()
         {
             StartCoroutine(RemoveMiner());
+        }
+
+        private void SetStars(int stars)
+        {
+            for (int i = 1; i < _stars.Count; i++)
+            {
+                _stars[i].SetActive(false);
+            }
+            while (stars > 0)
+            {
+                stars--;
+                _stars[stars].SetActive(true);
+            }
+        }
+        private void SetHearts(int hearts)
+        {
+            for (int i = 1; i < _hearts.Count; i++)
+            {
+                _hearts[i].SetActive(false);
+            }
+
+            while (hearts > 0)
+            {
+                hearts--;
+                _hearts[hearts].SetActive(true);
+            }
         }
     }
 }

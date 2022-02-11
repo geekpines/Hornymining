@@ -6,23 +6,33 @@ namespace App.Scripts.UiControllers
     //todo: Заменить на дузи?
     public class MainCanvasUiController : MonoBehaviour
     {
+        [Header("Screen Panels")]
         [SerializeField] private GameObject _gameScreen;
         [SerializeField] private GameObject _rouletteScreen;
         [SerializeField] private GameObject _shopScreen;
         [SerializeField] private GameObject _stockPanel;
         [SerializeField] private GameObject _upgradePanel;
-
+        [SerializeField] private GameObject _loadingScreenPanel;
+        
+        [Header ("Roulettle Buttons")]
         [SerializeField] private Button _openRouletteScreenButton;
         [SerializeField] private Button _backRouletteScreenButton;
-
+        
+        [Header("Stock Buttons")]
         [SerializeField] private Button _openStockButton;
         [SerializeField] private Button _openStockButton1;
         [SerializeField] private Button _backStockButton;
-
+        
+        [Header("Upgrade Buttons")]
         [SerializeField] private Button _openUpgradeButton;
         [SerializeField] private Button _openUpgradeButton1;
         [SerializeField] private Button _backUpgradeButton;
+        
+        [Header("Loading Screen Buttons")]
+        [SerializeField] private Button _continueButton;
+        [SerializeField] private Button _quit;
 
+        private bool _escFlag = true;
         private void OnEnable()
         {
             _openRouletteScreenButton.onClick.AddListener(ShowRouletteScreen);
@@ -39,6 +49,19 @@ namespace App.Scripts.UiControllers
             //закрытие биржи и апгрейда
             _backStockButton.onClick.AddListener(ShowGameScreen);
             _backUpgradeButton.onClick.AddListener(ShowGameScreen);
+
+            //Continue
+            _continueButton.onClick.AddListener(ContinueGame);
+            _quit.onClick.AddListener(QuitGame);
+        }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _loadingScreenPanel.SetActive(_escFlag);
+                _gameScreen.SetActive(!_escFlag);
+                _escFlag = !_escFlag;
+            }
         }
 
         private void OnDisable()
@@ -82,6 +105,16 @@ namespace App.Scripts.UiControllers
             _openStockButton.gameObject.SetActive(false);
             _openUpgradeButton.gameObject.SetActive(false);
         }
-
+        
+        private void ContinueGame()
+        {
+            _loadingScreenPanel.SetActive(_escFlag);
+            _gameScreen.SetActive(!_escFlag);
+            _escFlag = !_escFlag;
+        }
+        private void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }

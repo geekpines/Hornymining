@@ -13,7 +13,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
     public class MinersSelectPanelUiController : MonoBehaviour
     {
         public event Action<int> OnMinerClicked;
-        public event Action<int> OnMinerDoubleClicked;
+        public event Action<MiniMinerElementView> OnMinerDoubleClicked;
         [SerializeField] private MiniMinerElementsPool _miniMinersPool;
         private Dictionary<int, MiniMinerElementView> IdtoViews = new Dictionary<int, MiniMinerElementView>();
         public class MiniMinerElementData
@@ -147,7 +147,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
 
         private void MinerDoubleClicked(MiniMinerElementView sender)
         {
-            OnMinerDoubleClicked?.Invoke(sender.ID);
+            OnMinerDoubleClicked?.Invoke(sender);
         }
 
         public void SetHearts(int id)
