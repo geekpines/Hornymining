@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -11,6 +12,7 @@ namespace MkeyFW
 
         [SerializeField] private List<MinerConfiguration> AddMiners = new List<MinerConfiguration>();
         [SerializeField] private RollGirlController rollGirl;
+
 
         private PlayerProfile _playerProfile;
         private MinerCreatorSystem _minerCreatorSystem;
@@ -49,7 +51,7 @@ namespace MkeyFW
                         
                     }
                 }
-                MinerConfiguration minerConfiguration = _minerConfs[Random.Range(0, _minerConfs.Count)];
+                MinerConfiguration minerConfiguration = _minerConfs[UnityEngine.Random.Range(0, _minerConfs.Count)];
                 _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));
                 AddMiners.Remove(minerConfiguration);
 
