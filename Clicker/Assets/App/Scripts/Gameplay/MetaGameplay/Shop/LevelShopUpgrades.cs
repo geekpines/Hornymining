@@ -196,8 +196,8 @@ public class LevelShopUpgrades : MonoBehaviour
         StartCoroutine(SaveLevel(key));
     }
 
-    public void LoadLevel(string key)
+    public int LoadLevel(string key)
     {
-       CurrentLevel = PlayerPrefs.GetInt(_shopLevelKey + key);        
+       return PlayerPrefs.GetInt(_shopLevelKey + key);        
     }
 }

@@ -48,9 +48,14 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             InitializationActiveMiners();
             OpenSlotButton.onClick.AddListener(MinersViewController);
             RefreshMinerUI.onClick.AddListener(UpdateVisual);
-            Level.LoadLevel(_slotKey);
+            var k = Level.LoadLevel(_slotKey);
             Level.SaveLevel(_slotKey);
-            Debug.Log(Level.CurrentLevel);
+
+            while (k != 0)
+            {
+                MinersViewController();
+                k--;
+            }
         }
 
 

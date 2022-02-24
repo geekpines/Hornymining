@@ -218,7 +218,6 @@ namespace MkeyFW // mkey fortune wheel
 
         public void StartSpin()
         {
-            Debug.Log(_playerProfile.Coins[spinCounts].Value);
             if(_playerProfile.Coins[spinCounts].Value >= 100)
             {
                 

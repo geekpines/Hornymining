@@ -29,9 +29,15 @@ public class ShopScreenUiController : MonoBehaviour
         _StockUpgradeButton.onClick.AddListener(OpenTrade);
         SetActiveUnits(false);
         StartCoroutine(LockCoinInfo());
-        shopUpgrades.LoadLevel(_shopKey);
+        var k = shopUpgrades.LoadLevel(_shopKey);
+
+        while (k != 0)
+        {
+            k--;
+            OpenTrade();
+        }
+
         shopUpgrades.SaveLevel(_shopKey);
-        Debug.Log(shopUpgrades.CurrentLevel);
     }
 
     private void SetActiveUnits(bool state)

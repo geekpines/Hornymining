@@ -34,10 +34,19 @@ public class UpgradeUiController : MonoBehaviour
         int k = levelShop.Count;
         foreach(var level in levelShop)
         {            
-            level.LoadLevel(_levelShopKey + k);
+            var s = level.LoadLevel(_levelShopKey + k);
+            while (s != 0 && k == 1)
+            {                
+                s--;
+                CasualUpgrade();
+            }
+            while(s != 0 && k == 2)
+            {
+                SurpriseButtonPressed();
+                s--;
+            }
             level.SaveLevel(_levelShopKey + k);
             k--;
-            Debug.Log(level.CurrentLevel);
         }
     }
 
