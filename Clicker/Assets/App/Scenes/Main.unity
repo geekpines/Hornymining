@@ -289,6 +289,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24348889}
   m_CullTransparentMesh: 1
+--- !u!1 &29565080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8913483926185525401, guid: e0786d8bd593462489d73192cde09720, type: 3}
+  m_PrefabInstance: {fileID: 2811581424331097976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &29565083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29565080}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82993af15d862b4b812090e3b8dd65e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minerConfiguration: {fileID: 11400000, guid: 415164b710307de478ea86d397e4ff8b, type: 2}
 --- !u!1 &41229016
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &41229017
 Transform:
   m_ObjectHideFlags: 0
@@ -651,9 +669,53 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1522773163}
     m_Modifications:
+    - target: {fileID: 866525775454966055, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525775517687886, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525775829430048, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525775947550270, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525776216068767, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525776301414034, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525776389399119, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 866525776466409671, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: animationName
       value: stand
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525776585661032, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525776861264808, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525776987081777, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866525777285994566, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3026925401911402819, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: m_Enabled
@@ -661,7 +723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4042785478464919280, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: AddMiners.Array.size
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4042785478464919280, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: AddMiners.Array.data[0]
@@ -723,6 +785,10 @@ PrefabInstance:
       propertyPath: AddMiners.Array.data[14]
       value: 
       objectReference: {fileID: 11400000, guid: f78d5b7aac64ad64b925f36af46d4655, type: 2}
+    - target: {fileID: 4042785478464919280, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: AddMiners.Array.data[15]
+      value: 
+      objectReference: {fileID: 11400000, guid: 363536b79f04b094baf4235c4196a0f3, type: 2}
     - target: {fileID: 5311099182954804802, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: m_Name
       value: RouletteScreenAlt
@@ -1424,7 +1490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &594141451
 Transform:
   m_ObjectHideFlags: 0
@@ -1915,7 +1981,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042075597}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb97205b54348c9a62a793c020ac565, type: 3}
   m_Name: 
@@ -1968,7 +2034,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042075597}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a6a1083a797bb24487ea9b5b2f97ee7, type: 3}
   m_Name: 
@@ -1989,6 +2055,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f1f7bcf9afccb864c8e81ddaa06cacf3, type: 2}
   - {fileID: 11400000, guid: 78c0412f987179b4cb6df7249565d96b, type: 2}
   - {fileID: 11400000, guid: f78d5b7aac64ad64b925f36af46d4655, type: 2}
+  - {fileID: 11400000, guid: 363536b79f04b094baf4235c4196a0f3, type: 2}
   selectPanelUiController: {fileID: 1937910220}
 --- !u!1 &1064899500
 GameObject:
@@ -2210,17 +2277,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1095870ee9f4839a8c2a31c0f13ab80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1152923919 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7459563302558390744, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
-  m_PrefabInstance: {fileID: 1960925697786300666}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1165970875 stripped
@@ -3123,6 +3179,7 @@ MonoBehaviour:
   _openUpgradeButton1: {fileID: 1769297976}
   _backUpgradeButton: {fileID: 128131582}
   _continueButton: {fileID: 800510103}
+  _resetButton: {fileID: 421505907}
   _quit: {fileID: 2139395817}
 --- !u!1 &1545219198
 GameObject:
@@ -4689,7 +4746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1960925698194759437, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_Name
-      value: Bit
+      value: Tokken
       objectReference: {fileID: 0}
     - target: {fileID: 1960925698197850313, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4714,11 +4771,11 @@ PrefabInstance:
     - target: {fileID: 1960925698216585135, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: <CoinInfoViews>k__BackingField.Array.data[1]
       value: 
-      objectReference: {fileID: 1243304362}
+      objectReference: {fileID: 995363256}
     - target: {fileID: 1960925698216585135, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: <CoinInfoViews>k__BackingField.Array.data[2]
       value: 
-      objectReference: {fileID: 995363256}
+      objectReference: {fileID: 1130411616}
     - target: {fileID: 1960925698216585135, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: <CoinInfoViews>k__BackingField.Array.data[3]
       value: 
@@ -4726,7 +4783,7 @@ PrefabInstance:
     - target: {fileID: 1960925698216585135, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: <CoinInfoViews>k__BackingField.Array.data[4]
       value: 
-      objectReference: {fileID: 1130411616}
+      objectReference: {fileID: 1243304362}
     - target: {fileID: 1960925698216585135, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: <CoinInfoViews>k__BackingField.Array.data[5]
       value: 
@@ -4936,10 +4993,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OpenStock
       objectReference: {fileID: 0}
-    - target: {fileID: 6508509712585683431, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
-      propertyPath: _StockUpgradeButton
-      value: 
-      objectReference: {fileID: 1152923919}
     - target: {fileID: 6535816241244943227, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: _level
       value: 0
@@ -5150,7 +5203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8318747709278867948, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_Name
-      value: Dash
+      value: USDfork
       objectReference: {fileID: 0}
     - target: {fileID: 8318747709327212238, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5421,8 +5474,7 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6508509712585683431, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
 --- !u!114 &1960925697786300667 stripped
 MonoBehaviour:
@@ -5433,6 +5485,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee4c04de233e4f74ead4347415bfbcfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1960925697786300668 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
+  m_PrefabInstance: {fileID: 1960925697786300666}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2811581424331097976
@@ -5498,6 +5561,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7374424853595616160, guid: e0786d8bd593462489d73192cde09720, type: 3}
+      propertyPath: _levelUpOfflineMiner
+      value: 
+      objectReference: {fileID: 1960925697786300668}
     - target: {fileID: 8023935468042259549, guid: e0786d8bd593462489d73192cde09720, type: 3}
       propertyPath: _minerActiveSlotsUiController
       value: 

@@ -16,7 +16,7 @@ namespace MkeyFW
 
         private PlayerProfile _playerProfile;
         private MinerCreatorSystem _minerCreatorSystem;
-        private List<MinerConfiguration> _minerConfs = new List<MinerConfiguration>();
+       
 
         private int minerCounter = 0;
 
@@ -39,19 +39,20 @@ namespace MkeyFW
 
         public void TestEvent_1(string coin)
         {
-            
-            if (coin != "nothing" || minerCounter < 5)
+
+            List<MinerConfiguration> _minerConfs = new List<MinerConfiguration>();
+
+            if (coin != "nothing" && minerCounter < 5)
             {
                 rollGirl.PlayHappy();
                 foreach (var miner in AddMiners)
                 {
                     if (miner.Levels[0].MiningResources[0].Type.ToString() == coin)
                     {
-                        _minerConfs.Add(miner);
-                        
+                        _minerConfs.Add(miner);                        
                     }
                 }
-                MinerConfiguration minerConfiguration = _minerConfs[UnityEngine.Random.Range(0, _minerConfs.Count)];
+                MinerConfiguration minerConfiguration = _minerConfs[UnityEngine.Random.Range(0, _minerConfs.Count - 1)];
                 _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));
                 AddMiners.Remove(minerConfiguration);
 

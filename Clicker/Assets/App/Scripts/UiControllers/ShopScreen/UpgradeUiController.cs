@@ -37,6 +37,7 @@ public class UpgradeUiController : MonoBehaviour
             level.LoadLevel(_levelShopKey + k);
             level.SaveLevel(_levelShopKey + k);
             k--;
+            Debug.Log(level.CurrentLevel);
         }
     }
 

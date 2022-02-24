@@ -50,7 +50,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             RefreshMinerUI.onClick.AddListener(UpdateVisual);
             Level.LoadLevel(_slotKey);
             Level.SaveLevel(_slotKey);
-
+            Debug.Log(Level.CurrentLevel);
         }
 
 

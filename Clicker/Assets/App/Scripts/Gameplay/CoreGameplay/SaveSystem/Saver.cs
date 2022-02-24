@@ -73,28 +73,34 @@ public class Saver : MonoBehaviour
 
     private IEnumerator LoadMiner()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
+
         if (true)
         {
             Debug.Log("Trying Load");
             int count = PlayerPrefs.GetInt("HMinerCounts");
-            
-            while (count != 0)
-            {
-                Debug.Log("Loaded");
-                
-                foreach(var miner in AddMiners)
+            Debug.LogWarning(count);
+            if (count != 0)
+                while (count != 0)
                 {
-                    
-                    if(miner.Name.ToString() == PlayerPrefs.GetString(key + count))
-                    {
-                        
-                        Miner minerC = _minerCreatorSystem.CreateMiner(miner);
+                    Debug.Log("Loaded");
 
-                        LoadLevel(minerC, count);
+                    foreach (var miner in AddMiners)
+                    {
+
+                        if (miner.Name.ToString() == PlayerPrefs.GetString(key + count))
+                        {
+
+                            Miner minerC = _minerCreatorSystem.CreateMiner(miner);
+
+                            LoadLevel(minerC, count);
+                        }
                     }
+                    count--;
                 }
-                count--;
+            else
+            {
+                AddStartMiner();
             }
         }
     }
@@ -147,6 +153,21 @@ public class Saver : MonoBehaviour
             float coinsValue = PlayerPrefs.GetFloat(coinKey + coin.ID.ToString());
             coin.Add(coinsValue);            
         }
+    }
+
+    private void AddStartMiner()
+    {
+        List<MinerConfiguration> confs = new List<MinerConfiguration>();
+        foreach (var miner in AddMiners)
+        {
+            if (miner.Levels[0].MiningResources[0].Type == App.Scripts.Gameplay.CoreGameplay.Coins.CoinType.Tokken)
+            {
+                confs.Add(miner);
+                Debug.Log("*");
+            }
+        }
+        Miner miner1 = _minerCreatorSystem.CreateMiner(confs[Random.Range(0, confs.Count - 1)]);
+        _playerProfile.AddMiner(miner1);
     }
 
 }

@@ -9,7 +9,7 @@ public class LevelShopUpgrades : MonoBehaviour
     [field: SerializeField, Range(0, 5)] public int CurrentLevel { get; private set; } = 0;
     private string _shopLevelKey = "HMShopsLevel";
 
-    private void LevelUp()
+    public void LevelUp()
     {
         CurrentLevel++;
     }
@@ -23,10 +23,10 @@ public class LevelShopUpgrades : MonoBehaviour
             case 0:
                 break;
             case 1:
-                playerProfile.AddScore(CoinType.Bit, -100);
+                playerProfile.AddScore(CoinType.Tokken, -100);
                 return 0.25f;
             case 2:
-                playerProfile.AddScore(CoinType.Dash, -100);
+                playerProfile.AddScore(CoinType.Usdfork, -100);
                 return 0.10f;
             case 3:
                 playerProfile.AddScore(CoinType.LTC, -100);
@@ -53,10 +53,10 @@ public class LevelShopUpgrades : MonoBehaviour
             case 0:
                 break;
             case 1:
-                playerProfile.AddScore(CoinType.Bit, -10);
+                playerProfile.AddScore(CoinType.Tokken, -10);
                 break;
             case 2:
-                playerProfile.AddScore(CoinType.Dash, -10);
+                playerProfile.AddScore(CoinType.Usdfork, -10);
                 break;
             case 3:
                 playerProfile.AddScore(CoinType.LTC, -10);
@@ -105,10 +105,10 @@ public class LevelShopUpgrades : MonoBehaviour
             case 0:
                 return true;
             case 1:
-                playerProfile.AddScore(CoinType.Bit, -100);
+                playerProfile.AddScore(CoinType.Tokken, -100);
                 return true;
             case 2:
-                playerProfile.AddScore(CoinType.Dash, -100);
+                playerProfile.AddScore(CoinType.Usdfork, -100);
                 return true;
             case 3:
                 playerProfile.AddScore(CoinType.LTC, -100);
@@ -131,14 +131,14 @@ public class LevelShopUpgrades : MonoBehaviour
         {
             case 1:
                 {                    
-                    additionalCoins.SetAdditionalCoin(CoinType.Dash, 5);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 5);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
                     LevelUp();
                     break;
                 }
             case 2:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Dash, 7);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 7);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.3f);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
@@ -147,7 +147,7 @@ public class LevelShopUpgrades : MonoBehaviour
                 }
             case 3:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Dash, 7);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 7);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.7f);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
@@ -158,7 +158,7 @@ public class LevelShopUpgrades : MonoBehaviour
                 }
             case 4:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Dash, 50);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 50);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.LTC, 3);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
@@ -171,7 +171,7 @@ public class LevelShopUpgrades : MonoBehaviour
                 }
             case 5:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Dash, 100);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 100);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.LTC, 15);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
@@ -192,6 +192,7 @@ public class LevelShopUpgrades : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
         PlayerPrefs.SetInt(_shopLevelKey + key, CurrentLevel);
+        PlayerPrefs.Save();
         StartCoroutine(SaveLevel(key));
     }
 

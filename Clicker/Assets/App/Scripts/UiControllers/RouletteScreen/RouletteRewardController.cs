@@ -13,6 +13,8 @@ public class RouletteRewardController : MonoBehaviour
     [SerializeField] private Transform _rewardMinerPosition;
     [SerializeField] private Button _backButton;
 
+    private MinerVisualContext visualContext;
+
     private PlayerProfile _playerProfile;
 
     [Inject]
@@ -31,14 +33,17 @@ public class RouletteRewardController : MonoBehaviour
     {        
         _wheelContainer.SetActive(false);
         _rewardMinerWindow.SetActive(true);
-        var visualContext = Instantiate(miner.Configuration.Visual, _rewardMinerPosition);
-        visualContext.transform.localScale = new Vector3(12, 12, 12);
-        visualContext.transform.localPosition = new Vector3(0, -137, 0);
+        visualContext = Instantiate(miner.Configuration.Visual, _rewardMinerPosition);
+        visualContext.gameObject.transform.localScale = new Vector3(12, 12, 12);
+        visualContext.gameObject.transform.localPosition = new Vector3(0, -137, 0);
+        
     }
 
     private void Back()
     {
+        Destroy(visualContext.gameObject);
         _wheelContainer.SetActive(true);
         _rewardMinerWindow.SetActive(false);
+        
     }
 }

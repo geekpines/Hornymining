@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace App.Scripts.UiControllers
@@ -30,6 +31,7 @@ namespace App.Scripts.UiControllers
         
         [Header("Loading Screen Buttons")]
         [SerializeField] private Button _continueButton;
+        [SerializeField] private Button _resetButton;
         [SerializeField] private Button _quit;
 
         private bool _escFlag = true;
@@ -53,6 +55,9 @@ namespace App.Scripts.UiControllers
             //Continue
             _continueButton.onClick.AddListener(ContinueGame);
             _quit.onClick.AddListener(QuitGame);
+
+            //Reset
+            _resetButton.onClick.AddListener(ResetGame);
         }
         private void Update()
         {
@@ -115,6 +120,12 @@ namespace App.Scripts.UiControllers
         private void QuitGame()
         {
             Application.Quit();
+        }
+
+        private void ResetGame()
+        {
+            PlayerPrefs.DeleteAll();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

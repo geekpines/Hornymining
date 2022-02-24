@@ -31,6 +31,7 @@ public class ShopScreenUiController : MonoBehaviour
         StartCoroutine(LockCoinInfo());
         shopUpgrades.LoadLevel(_shopKey);
         shopUpgrades.SaveLevel(_shopKey);
+        Debug.Log(shopUpgrades.CurrentLevel);
     }
 
     private void SetActiveUnits(bool state)

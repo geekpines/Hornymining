@@ -218,19 +218,15 @@ namespace MkeyFW // mkey fortune wheel
 
         public void StartSpin()
         {
-
-            if(_playerProfile.Coins[spinCounts].Value >= 100 && spinCounts < 4)
+            Debug.Log(_playerProfile.Coins[spinCounts].Value);
+            if(_playerProfile.Coins[spinCounts].Value >= 100)
             {
+                
                 rollGirl.RollEnable();
                 _playerProfile.AddScore(_playerProfile.Coins[spinCounts].ID, -100);
                 StartSpin(null);
                 spinCounts++;
             }
-            if(spinCounts == 4)
-            {
-                resetButton.gameObject.SetActive(true);
-            } 
-            
             
 
         }

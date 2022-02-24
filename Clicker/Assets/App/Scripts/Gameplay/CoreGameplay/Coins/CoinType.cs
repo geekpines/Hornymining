@@ -2,11 +2,11 @@
 {
     public enum CoinType
     {
-        Bit = 0,
-        BTC = 1,
-        Dash = 2,
+        Tokken = 0,
+        Usdfork = 1,
+        LTC= 2,
         Ether = 3,
-        LTC = 4,
+        BTC = 4,
         HornyBucks = 5
     }
 }

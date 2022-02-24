@@ -7,7 +7,7 @@ public class RollGirlController : MonoBehaviour
 
     private void OnEnable()
     {
-        ArmatureComponent.animation.Play("stand");
+        //ArmatureComponent.animation.Play("stand");
     }
 
     public void RollEnable()
