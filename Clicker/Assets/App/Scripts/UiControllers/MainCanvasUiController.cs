@@ -31,7 +31,6 @@ namespace App.Scripts.UiControllers
         
         [Header("Loading Screen Buttons")]
         [SerializeField] private Button _continueButton;
-        [SerializeField] private Button _resetButton;
         [SerializeField] private Button _quit;
 
         private bool _escFlag = true;
@@ -56,8 +55,6 @@ namespace App.Scripts.UiControllers
             _continueButton.onClick.AddListener(ContinueGame);
             _quit.onClick.AddListener(QuitGame);
 
-            //Reset
-            _resetButton.onClick.AddListener(ResetGame);
         }
         private void Update()
         {
@@ -122,9 +119,6 @@ namespace App.Scripts.UiControllers
             Application.Quit();
         }
 
-        private void ResetGame()
-        {
-            
-        }
+        
     }
 }

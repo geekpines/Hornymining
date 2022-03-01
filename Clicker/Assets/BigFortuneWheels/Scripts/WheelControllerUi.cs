@@ -13,7 +13,9 @@ namespace MkeyFW // mkey fortune wheel
 
         private PlayerProfile _playerProfile;
         private int spinCounts = 0;
-        [SerializeField] private Button resetButton;
+        private string spinKey = "HMSpins";
+        [SerializeField] Button ResetGame;
+
 
         [Header("Main references")]
         [Space(16, order = 0)]
@@ -123,6 +125,14 @@ namespace MkeyFW // mkey fortune wheel
 
         void Start()
         {
+            spinCounts = _playerProfile.GetAllMiners().Count;
+            int cycle = PlayerPrefs.GetInt("HMNG");
+            if (cycle > 1)
+            {
+                spinCounts -= 5;
+            }
+
+
             sectors = GetComponentsInChildren<Sector>();
             sectorsCount = (sectors != null) ? sectors.Length : 0;
             if (debug) Debug.Log("sectorsCount: " + sectorsCount);
@@ -218,16 +228,19 @@ namespace MkeyFW // mkey fortune wheel
 
         public void StartSpin()
         {
+            
+
             if(_playerProfile.Coins[spinCounts].Value >= 100)
-            {
-                
+            {                
                 rollGirl.RollEnable();
                 _playerProfile.AddScore(_playerProfile.Coins[spinCounts].ID, -100);
                 StartSpin(null);
                 spinCounts++;
             }
-            
-
+            if(spinCounts == 5)
+            {
+                ResetGame.gameObject.SetActive(true);
+            }
         }
 
         /// <summary>

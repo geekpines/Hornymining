@@ -204,5 +204,14 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
                 i++;
             }
         }
+        public void ResetPlayer()
+        {
+            percentUpgrade = 1;
+            _activeMiners.Clear();
+            for (int i = 0; i < Coins.Count; i++)
+            {
+                AddScore(Coins[i].ID, Coins[i].Value);
+            }
+        }
     }
 }
