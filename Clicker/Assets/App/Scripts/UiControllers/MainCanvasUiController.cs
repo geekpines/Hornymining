@@ -124,8 +124,7 @@ namespace App.Scripts.UiControllers
 
         private void ResetGame()
         {
-            PlayerPrefs.DeleteAll();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
         }
     }
 }

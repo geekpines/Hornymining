@@ -192,5 +192,17 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             }
         }
 
+        public void ResetPlayer(PlayerProfile playerProfile)
+        {
+            _allMiners.Clear();
+            _activeMiners.Clear();
+            percentUpgrade = 1;
+            int i = 0;
+            foreach (var coin in Coins)
+            {
+                playerProfile.AddScore(coin.ID, -playerProfile.Coins[i].Value);
+                i++;
+            }
+        }
     }
 }
