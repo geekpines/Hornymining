@@ -1,6 +1,7 @@
 using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.MinersPanel;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -16,59 +17,50 @@ public class LevelShopUpgrades : MonoBehaviour
 
     public float CasualUpgrade(PlayerProfile playerProfile)
     {
-        LevelUp();
-
-        switch (CurrentLevel)
+        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 100))
         {
-            case 0:
-                break;
-            case 1:
-                playerProfile.AddScore(CoinType.Tokken, -100);
-                return 0.25f;
-            case 2:
-                playerProfile.AddScore(CoinType.Usdfork, -100);
-                return 0.10f;
-            case 3:
-                playerProfile.AddScore(CoinType.LTC, -100);
-                return 0.15f;
-            case 4:
-                playerProfile.AddScore(CoinType.Ether, -100);
-                return 0.5f;
-            case 5:
-                playerProfile.AddScore(CoinType.BTC, -100);
-                return 1f;
+            LevelUp();
 
-            default:
-                return 1;
+            switch (CurrentLevel)
+            {
+                case 0:
+                    break;
+                case 1:
+                    playerProfile.AddScore(CoinType.Tokken, -100);
+                    return 0.25f;
+                case 2:
+                    playerProfile.AddScore(CoinType.Usdfork, -100);
+                    return 0.10f;
+                case 3:
+                    playerProfile.AddScore(CoinType.LTC, -100);
+                    return 0.15f;
+                case 4:
+                    playerProfile.AddScore(CoinType.Ether, -100);
+                    return 0.5f;
+                case 5:
+                    playerProfile.AddScore(CoinType.BTC, -100);
+                    return 1f;
+
+                default:
+                    return 0;
+            }
         }
-        return 1;
+        return 0;
     }
 
-    public void OpenSlot(PlayerProfile playerProfile, GameObject _object)
+    public float OpenSlot(PlayerProfile playerProfile, GameObject _object)
     {
-        LevelUp();
-        _object.SetActive(true);
-        switch (CurrentLevel)
+        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 1))
         {
-            case 0:
-                break;
-            case 1:
-                playerProfile.AddScore(CoinType.Tokken, -10);
-                break;
-            case 2:
-                playerProfile.AddScore(CoinType.Usdfork, -10);
-                break;
-            case 3:
-                playerProfile.AddScore(CoinType.LTC, -10);
-                break;
-            case 4:
-                playerProfile.AddScore(CoinType.Ether, -10);
-                break;
-            case 5:
-                playerProfile.AddScore(CoinType.BTC, -10);
-                break;
-            default:
-                break;
+            LevelUp();
+            _object.SetActive(true);
+
+            playerProfile.AddScore(playerProfile.Coins[CurrentLevel].ID, -1);
+            return GetSale();
+        }
+        else
+        {
+            return GetSale();
         }
     }
 
@@ -100,33 +92,13 @@ public class LevelShopUpgrades : MonoBehaviour
     {
         LevelUp();
 
-        switch (CurrentLevel)
-        {
-            case 0:
-                return true;
-            case 1:
-                playerProfile.AddScore(CoinType.Tokken, -100);
-                return true;
-            case 2:
-                playerProfile.AddScore(CoinType.Usdfork, -100);
-                return true;
-            case 3:
-                playerProfile.AddScore(CoinType.LTC, -100);
-                return true;
-            case 4:
-                playerProfile.AddScore(CoinType.Ether, -100);
-                return true;
-            case 5:
-                playerProfile.AddScore(CoinType.BTC, -100);
-                return true;
-
-            default:
-                return true;
-        }
+        playerProfile.AddScore(playerProfile.Coins[CurrentLevel].ID, -100);
+        return playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 100);
     }
 
     public void Surprise(AdditionalCoins additionalCoins, MinerActiveSlotsEventsUiController _minerActiveSlotsEventsUiController)
     {
+
         switch (CurrentLevel)
         {
             case 1:

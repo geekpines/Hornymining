@@ -52,7 +52,7 @@ public class UpgradeUiController : MonoBehaviour
 
     private void CasualUpgrade()
     {
-
+        
         _playerProfile.percentUpgrade += levelShop[0].CasualUpgrade(_playerProfile);
         Debug.Log(_playerProfile.percentUpgrade);
         _leveltext.text = "Level: " + levelShop[0].CurrentLevel;
@@ -61,9 +61,12 @@ public class UpgradeUiController : MonoBehaviour
     private void SurpriseButtonPressed()
     {
         AdditionalCoins additionalCoins = new AdditionalCoins();
-        levelShop[1].Surprise(additionalCoins, _minerActiveSlotEventsUiController);
-        _playerProfile.AddScore(_playerProfile.Coins[levelShop[1].CurrentLevel].ID, -100);
-        _leveltext.text = "Level: " + levelShop[1].CurrentLevel;
+        if(!_playerProfile.TryRemoveScore(_playerProfile.Coins[levelShop[1].CurrentLevel].ID, 100))
+        {
+            levelShop[1].Surprise(additionalCoins, _minerActiveSlotEventsUiController);
+            _playerProfile.AddScore(_playerProfile.Coins[levelShop[1].CurrentLevel].ID, -100);
+            _leveltext.text = "Level: " + levelShop[1].CurrentLevel;
+        }        
     }
 
 

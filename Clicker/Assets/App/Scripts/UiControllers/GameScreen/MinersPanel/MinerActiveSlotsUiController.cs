@@ -184,7 +184,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private void MinersViewController()
         {
 
-            if (Level.CurrentLevel < 4)
+            if (Level.CurrentLevel < 4 && _playerProfile.TryRemoveScore(_playerProfile.Coins[Level.CurrentLevel].ID, 100))
             {
                 MinersSlotView[Level.CurrentLevel + 1].IsOpen = Level.OpenMinerSlot(_playerProfile);
                 _levelText.text = "Level: " + Level.CurrentLevel;

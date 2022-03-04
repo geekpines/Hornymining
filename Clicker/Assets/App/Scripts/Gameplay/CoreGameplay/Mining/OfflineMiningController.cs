@@ -23,7 +23,7 @@ public class OfflineMiningController : MonoBehaviour
 
     void Start()
     {
-        _levelUpOfflineMiner.onClick.AddListener(_level.LevelUp);
+        
         _levelUpOfflineMiner.onClick.AddListener(LevelUp);
         int k = _level.CurrentLevel - 1;
         while (k >= 0)
@@ -35,7 +35,12 @@ public class OfflineMiningController : MonoBehaviour
     }
     void LevelUp()
     {
-        _playerProfile.AddScore(_playerProfile.Coins[_level.CurrentLevel].ID, -100);
+        if(_playerProfile.TryRemoveScore(_playerProfile.Coins[_level.CurrentLevel].ID, 100))
+        {
+            _level.LevelUp();
+            _playerProfile.AddScore(_playerProfile.Coins[_level.CurrentLevel].ID, -100);
+        }
+        
     }
 
     

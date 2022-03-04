@@ -47,15 +47,17 @@ namespace MkeyFW
                 rollGirl.PlayHappy();
                 foreach (var miner in AddMiners)
                 {
-                    if (miner.Levels[0].MiningResources[0].Type.ToString() == coin)
+                    if (miner.Levels[0].MiningResources[0].Type.ToString() == coin && miner != null)
                     {
                         _minerConfs.Add(miner);                        
                     }
                 }
-                MinerConfiguration minerConfiguration = _minerConfs[UnityEngine.Random.Range(0, _minerConfs.Count - 1)];
-                _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));
-                AddMiners.Remove(minerConfiguration);
-
+                if(_minerConfs != null)
+                {
+                    MinerConfiguration minerConfiguration = _minerConfs[UnityEngine.Random.Range(0, _minerConfs.Count - 1)];
+                    _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));
+                    AddMiners.Remove(minerConfiguration);
+                }
             }
         }
 

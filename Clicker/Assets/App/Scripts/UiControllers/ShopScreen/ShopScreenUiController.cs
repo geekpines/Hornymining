@@ -54,6 +54,7 @@ public class ShopScreenUiController : MonoBehaviour
         {
             shopUpgrades.OpenSlot(_playerProfile, _sellBuyUnits[shopUpgrades.CurrentLevel]);
             _sellBuyUnits[shopUpgrades.CurrentLevel].GetComponent<CoinsTradeSystemView>().SetUnlock();
+            _levelText.text = "Level: " + shopUpgrades.CurrentLevel + 1;
         }
 
         foreach (var unit in _sellBuyUnits)
@@ -62,7 +63,7 @@ public class ShopScreenUiController : MonoBehaviour
 
             coinTradeSystem.percent = shopUpgrades.GetSale();
         }
-        _levelText.text = "Level: " + shopUpgrades.CurrentLevel + 1;
+        
     }
 
     private IEnumerator LockCoinInfo()

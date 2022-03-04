@@ -55,6 +55,7 @@ namespace App.Scripts.UiControllers
             _continueButton.onClick.AddListener(ContinueGame);
             _quit.onClick.AddListener(QuitGame);
 
+
         }
         private void Update()
         {

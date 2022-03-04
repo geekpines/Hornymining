@@ -59,8 +59,7 @@ public class CoinEndgame : MonoBehaviour
         PlayerPrefs.SetFloat(Coinkey, percent);
         _playerProfile.percentUpgrade = percent;
         KeepMiner();
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene("Start");
     }
     
     private void KeepMiner()

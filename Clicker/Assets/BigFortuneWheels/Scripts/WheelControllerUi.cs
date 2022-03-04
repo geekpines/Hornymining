@@ -230,7 +230,7 @@ namespace MkeyFW // mkey fortune wheel
         {
             
 
-            if(_playerProfile.Coins[spinCounts].Value >= 100)
+            if(_playerProfile.TryRemoveScore(_playerProfile.Coins[spinCounts].ID, 100))
             {                
                 rollGirl.RollEnable();
                 _playerProfile.AddScore(_playerProfile.Coins[spinCounts].ID, -100);

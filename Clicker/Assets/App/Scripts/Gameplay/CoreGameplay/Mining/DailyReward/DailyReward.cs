@@ -20,6 +20,8 @@ public class DailyReward : MonoBehaviour
     private string dayKey = "HMDay";
     private string leftKey = "HMTLeft";
 
+    public event Action<int> dayLeft;
+
 
     [Inject]
     private void Construct(PlayerProfile playerProfile)
@@ -88,11 +90,12 @@ public class DailyReward : MonoBehaviour
 
     public bool DayLeft()
     {
-        string time = PlayerPrefs.GetString(key);
-        if(time != null)
+        var time = PlayerPrefs.GetString(key);
+        Debug.Log(time);
+        if(time != null && time != "")
         {
             DateTime today = DateTime.Now;
-            DateTime yesterday = DateTime.ParseExact(time, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            DateTime yesterday = Convert.ToDateTime(time, CultureInfo.InvariantCulture);//DateTime.ParseExact(time, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             TimeSpan result = today - yesterday;
             if(PlayerPrefs.GetFloat(leftKey) != 0)
             {
@@ -103,6 +106,7 @@ public class DailyReward : MonoBehaviour
             if (hourLeft > 24 && day < 7)
             {
                 day++;
+                Day();
                 hourLeft = 0;
                 return true;                
             }
@@ -139,5 +143,10 @@ public class DailyReward : MonoBehaviour
                 PlayerPrefs.DeleteKey(hourKey);
             }
         }
+    }
+
+    public void Day()
+    {
+        dayLeft?.Invoke(day);
     }
 }

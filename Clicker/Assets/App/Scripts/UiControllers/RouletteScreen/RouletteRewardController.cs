@@ -42,7 +42,10 @@ public class RouletteRewardController : MonoBehaviour
 
     private void Back()
     {
-        Destroy(visualContext.gameObject);
+        if (visualContext != null)
+        {
+            Destroy(visualContext.gameObject);
+        }        
         _wheelContainer.SetActive(true);
         _rewardMinerWindow.SetActive(false);
         

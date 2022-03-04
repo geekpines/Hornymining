@@ -30,7 +30,10 @@ public class CoinsTradeSystemView : MonoBehaviour
     {
         _buyButton.onClick.AddListener(Buy);
         _sellButton.onClick.AddListener(Sell);
+        gameObject.tag = "CoinTradeSys";
+
     }
+
 
     void Buy()
     {
@@ -47,7 +50,6 @@ public class CoinsTradeSystemView : MonoBehaviour
 
             }
         }
-
     }
     void Sell()
     {
@@ -74,5 +76,18 @@ public class CoinsTradeSystemView : MonoBehaviour
     public void SetUnlock()
     {
         _coinInfoView.SetUnlock();
+    }
+
+    public void NG()
+    {
+        for (int i = 0; i < panelInformation.CoinInfoViews.Count; i++)
+        {
+            if (panelInformation.CoinInfoViews[i] == _coinInfoView)
+                while (_player.Coins[i].Value > 0 && _player.Coins[i].Value - _player.Coins[i].TradeValue > 0)
+                {
+                    Buy();
+                }
+
+        }
     }
 }

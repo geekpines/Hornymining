@@ -18,6 +18,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         private const int MaxActiveMinersCount = 5;
         public event Action<Miner> OnAllMinersCountChanged;
         public event Action<Miner> OnActiveMinersCountChanged;
+        public event Action<bool> OnMoneyNotEnough;
 
         [field: SerializeField]
         public List<CoinData> Coins { get; private set; } = new List<CoinData>();
@@ -155,8 +156,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         public void AddScore(CoinType resourceId, float addScore)
         {
             if (CoinTypeToData.ContainsKey(resourceId))
-            {
-                CoinTypeToData[resourceId].Add(addScore * percentUpgrade);
+            {                
+                    CoinTypeToData[resourceId].Add(addScore * percentUpgrade);                              
             }
         }
 
@@ -168,6 +169,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         /// <returns></returns>
         public bool TryRemoveScore(CoinType resourceId, float value)
         {
+            OnMoneyNotEnough?.Invoke(!(CoinTypeToData[resourceId].Value - value > 0));
             return CoinTypeToData[resourceId].Value - value > 0;
         }
 
@@ -210,8 +212,10 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             _activeMiners.Clear();
             for (int i = 0; i < Coins.Count; i++)
             {
-                AddScore(Coins[i].ID, Coins[i].Value);
+                AddScore(Coins[i].ID, -Coins[i].Value);
             }
         }
+
+        
     }
 }
