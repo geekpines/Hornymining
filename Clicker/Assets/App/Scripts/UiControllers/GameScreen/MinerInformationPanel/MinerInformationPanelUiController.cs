@@ -193,6 +193,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             else
             {
                 Debug.Log("Недостаточно средств для повышения уровня!");
+                
             }
             
         }
@@ -291,30 +292,29 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 if (miner.ID == _outsideMinerId)
                 {
                     MinerCreatorSystem minerCreatorSystem = new MinerCreatorSystem();
-                    
-                    foreach(var minerConf in _minerConfList.AddMiners)
+
+                    foreach (var minerConf in _minerConfList.AddMiners)
                     {
-                        if(miner.Name == minerConf.Name)
+                        if (miner.Name == minerConf.Name)
                         {
                             minerS = minerCreatorSystem.CreateMiner(minerConf);
                             int k = miner.Level;
+
                             while (k != 0)
                             {
                                 minerS.LevelUp();
                                 k--;
                             }
+
                             yield return new WaitForSeconds(0.5f);
                             _playerProfile.AddMiner(minerS);
                             MinerSeller(miner);
-                            
-                            
-                            break;
+                        
                         }                        
                     }
-                    break;
                 }
+
             }
-            
         }
         private void CallRemoveMiner()
         {
