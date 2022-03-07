@@ -1,5 +1,6 @@
 ﻿using Assets.App.Scripts.Common;
 using Sirenix.OdinInspector;
+using System;
 
 namespace App.Scripts.Gameplay.CoreGameplay.Mining
 {
@@ -13,7 +14,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
     {
         public Miner CreateMiner(MinerConfiguration configuration, int grade = 3)
         {
-            return new Miner(configuration, grade);
+            return new Miner(configuration, grade);            
         }
     }
 }

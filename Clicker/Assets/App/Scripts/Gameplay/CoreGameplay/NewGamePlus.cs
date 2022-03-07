@@ -23,7 +23,6 @@ public class NewGamePlus : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(gameObject.name);
         yesButton.onClick.AddListener(GameReset);
         cycle = PlayerPrefs.GetInt(newGameKey);
         if (cycle > 1)

@@ -216,6 +216,6 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             }
         }
 
-        
+      
     }
 }

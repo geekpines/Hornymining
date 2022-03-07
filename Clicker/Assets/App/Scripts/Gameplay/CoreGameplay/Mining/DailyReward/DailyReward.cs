@@ -17,7 +17,6 @@ public class DailyReward : MonoBehaviour
     private PlayerProfile _playerProfile;
     private string key = "HMDailyTime";
     private string hourKey = "HMHtime";
-    private string dayKey = "HMDay";
     private string leftKey = "HMTLeft";
 
     public event Action<int> dayLeft;

@@ -44,8 +44,13 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void Awake()
         {
+
+            _scrollMinerView = gameObject.GetComponent<ExtendedScrollView>();
+            extension = gameObject.GetComponent<ScrollerExtension>();
+
+            
             //todo: добавить в систему инициализации
-            InitializationActiveMiners();
+            StartCoroutine( InitializationActiveMiners());
             OpenSlotButton.onClick.AddListener(MinersViewController);
             RefreshMinerUI.onClick.AddListener(UpdateVisual);
             var k = Level.LoadLevel(_slotKey);
@@ -59,9 +64,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         }
 
 
-        private void InitializationActiveMiners()
+        private IEnumerator InitializationActiveMiners()
         {
-
+            yield return new WaitForSeconds(0.1f);
             InitializeScroll();
             InitializeViews();
             InitializeContent();
@@ -84,6 +89,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 if (element.TryGetComponent(out MinerSlotView view))
                 {
+                    
                     MinersSlotView.Add(view);
                     view.OnMinerClicked += MinerClicked;
                 }
@@ -92,9 +98,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void InitializeContent()
         {
-
             MinersSlotView[0].IsOpen = true;
-
+            /*
             if (MinersSlotView.Count > 0)
             {
                 var allActiveMiners = _playerProfile.GetActiveMiners();
@@ -103,6 +108,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     AddMinerToSlot(MinersSlotView[i], allActiveMiners[i]);
                 }
             }
+            */
         }
 
         private void MinerClicked(MinerSlotView sender)

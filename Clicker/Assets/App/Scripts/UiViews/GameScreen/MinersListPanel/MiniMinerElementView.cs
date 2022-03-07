@@ -1,4 +1,6 @@
-﻿using System;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
+using App.Scripts.Gameplay.CoreGameplay.Player;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.UI;
+using Zenject;
 
 namespace App.Scripts.UiViews.GameScreen.MinersListPanel
 {
@@ -35,14 +38,14 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         public int ID { get; private set; }
         public bool IsActive { get; private set; }
 
-
         public void SetMinerInformation(LocalizedString name, Sprite icon, int id, int grade = 3, int level = 1)
         {
             SetName(name);
             SetIcon(icon);
             ID = id;
-            SetStars(grade); //временно отключены в префабе
+            //SetStars(grade); //временно отключены в префабе
             SetLevel(level);
+            SetStars(level);
             
         }
 
@@ -66,8 +69,8 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
 
         public void SetStars(int countStars)
         {
+            
             _currentStars = Mathf.Clamp(countStars, 1, 5);
-
             ResetStars();
             for (int i = 0; i < _currentStars; i++)
             {
@@ -109,6 +112,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         private void OnEnable()
         {
             _minerButton.onClick.AddListener(MinerClicked);
+
             //проверка уровня
         }
 
@@ -153,5 +157,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         {
             return _currentStars;
         }
+
+  
     }
 }

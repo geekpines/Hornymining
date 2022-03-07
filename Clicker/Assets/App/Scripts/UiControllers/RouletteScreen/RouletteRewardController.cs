@@ -21,17 +21,25 @@ public class RouletteRewardController : MonoBehaviour
     [Inject]
     private void Construct(PlayerProfile playerProfile)
     {
+
         _playerProfile = playerProfile;
+        
     }
 
-    void Start()
+    void OnEnable()
     {
         _playerProfile.OnAllMinersCountChanged += AddMinerToRewardPosition;
+        _wheelContainer = GameObject.FindGameObjectWithTag("WheelContainer");
         _backButton.onClick.AddListener(Back);
     }
 
+    private void OnDisable()
+    {
+        _playerProfile.OnAllMinersCountChanged -= AddMinerToRewardPosition;
+        _backButton.onClick.RemoveListener(Back);
+    }
     void AddMinerToRewardPosition(Miner miner)
-    {        
+    {
         _wheelContainer.SetActive(false);
         _rewardMinerWindow.SetActive(true);
         visualContext = Instantiate(miner.Configuration.Visual, _rewardMinerPosition);

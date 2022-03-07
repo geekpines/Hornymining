@@ -94,6 +94,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         private void ShowInformation(MiniMinerElementView _miniMinerMiner)
         {
             int idMiner = _miniMinerMiner.ID;
+            
             if (!TryInitializationMinerVisual(idMiner, _miniMinerMiner.GetHearts(), _miniMinerMiner.GetStars()))
             {
                 

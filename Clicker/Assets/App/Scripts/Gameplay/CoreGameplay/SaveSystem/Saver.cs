@@ -37,6 +37,7 @@ public class Saver : MonoBehaviour
         //save
         StartCoroutine(AllMinerSaver());
         StartCoroutine(SaveCoins());
+        //checked
 
     }
 
@@ -73,13 +74,13 @@ public class Saver : MonoBehaviour
 
     private IEnumerator LoadMiner()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
 
         if (true)
         {
             Debug.Log("Trying Load");
             int count = PlayerPrefs.GetInt("HMinerCounts");
-            Debug.LogWarning(count);
+
             if (count != 0)
                 while (count != 0)
                 {
@@ -108,20 +109,16 @@ public class Saver : MonoBehaviour
     private void LoadLevel(Miner miner, int count)
     {
         int level = PlayerPrefs.GetInt(levelKey + count);
-        _playerProfile.AddMiner(miner);
 
         while (level != 0)
         {
-            foreach(var m in _playerProfile.GetAllMiners())
-            {
-                if(m == miner)
-                {
-                    m.LevelUp();
-                    level--;
-                }
-            }
-                        
+            miner.LevelUp();
+            level--;
         }
+        
+        _playerProfile.AddMiner(miner);
+
+       
     }
 
 
@@ -163,10 +160,9 @@ public class Saver : MonoBehaviour
             if (miner.Levels[0].MiningResources[0].Type == App.Scripts.Gameplay.CoreGameplay.Coins.CoinType.Tokken)
             {
                 confs.Add(miner);
-                Debug.Log("*");
             }
         }
-        Miner miner1 = _minerCreatorSystem.CreateMiner(confs[Random.Range(0, confs.Count - 1)]);
+        Miner miner1 = _minerCreatorSystem.CreateMiner(confs[Random.Range(0, confs.Count)]);
         _playerProfile.AddMiner(miner1);
     }
 
