@@ -166,4 +166,9 @@ public class Saver : MonoBehaviour
         _playerProfile.AddMiner(miner1);
     }
 
+    private void OnApplicationQuit()
+    {
+        AllMinerSaver();
+        SaveCoins();
+    }
 }

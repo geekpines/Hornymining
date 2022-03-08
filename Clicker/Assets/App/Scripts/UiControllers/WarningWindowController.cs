@@ -18,10 +18,13 @@ public class WarningWindowController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _warningWindow = GameObject.FindGameObjectWithTag("WarningWindow");
         _playerProfile.OnMoneyNotEnough += StartWarning;
     }
 
+    private void OnDestroy()
+    {
+        _playerProfile.OnMoneyNotEnough -= StartWarning;
+    }
     private void StartWarning(bool start)
     {
         if (start)

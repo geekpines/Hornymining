@@ -15,21 +15,5 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
             UnlockComponents.SetUnlockLevel(UnlockComponents.CurrentLevel);
             ArmatureComponent.animationName = "action";
         }
-
-        public void SetClothes(int level)
-        {
-            /*
-            if(level > UnlockComponents.CurrentLevel)
-            {
-                Debug.LogError("Уровень недоступен");
-            }
-            else
-            {
-                UnlockComponents.SetUnlockLevel(level);
-            }
-            */
-            UnlockComponents.SetUnlockLevel(1);
-            Debug.Log(UnlockComponents.CurrentLevel);
-        } 
     }
 }

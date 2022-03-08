@@ -45,7 +45,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             minerView.SetMinerInformation(
                 data.Name,
                 data.Icon,
-                data.ID, 3, data.Level);
+                data.ID, 3, data.Level + 1);
             
             IdtoViews.Add(data.ID, minerView);
             minerView.OnMinerClicked += MinerClicked;

@@ -10,11 +10,14 @@ using Zenject;
 public class NewGamePlus : MonoBehaviour
 {
     [SerializeField] Button yesButton;
-  
+
+    string minerKey = "HMinerName";
+    string levelKey = "HMinerLevel";
     private PlayerProfile _playerProfile;
     private string newGameKey = "HMNG";
     public int cycle = 0;
 
+    int minerCounts = 0;
     [Inject]
     private void Construct(PlayerProfile playerProfile)
     {
@@ -35,7 +38,7 @@ public class NewGamePlus : MonoBehaviour
     {
 
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
+        SaveAllMiners();
         cycle += 1;
         PlayerPrefs.SetInt(newGameKey, cycle);
         PlayerPrefs.Save();
@@ -50,6 +53,27 @@ public class NewGamePlus : MonoBehaviour
         _playerProfile.percentUpgrade += i;
         //GameObject[] shopUpgrades = GameObject.FindGameObjectsWithTag("ShopUpgrade");
         SceneManager.LoadScene("Loading");
+    }
+
+
+    private void SaveAllMiners()
+    {
+        minerCounts = _playerProfile.GetAllMiners().Count;
+        PlayerPrefs.SetInt("HMinerCounts", minerCounts);
+        PlayerPrefs.Save();
+        foreach (var miner in _playerProfile.GetAllMiners())
+        {
+
+            SaveMiner(miner.Name.ToString(), miner.Level);
+        }
+    }
+    private void SaveMiner(string MinerName, int MinerLevel)
+    {
+
+        PlayerPrefs.SetString(minerKey + minerCounts, MinerName);
+        PlayerPrefs.SetInt(levelKey + minerCounts, MinerLevel);
+        minerCounts--;
+        PlayerPrefs.Save();
     }
 
 }

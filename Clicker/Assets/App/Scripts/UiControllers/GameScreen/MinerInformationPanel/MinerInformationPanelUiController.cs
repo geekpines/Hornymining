@@ -129,6 +129,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                     _minerRootPosition);
                 visualContext.transform.localScale = new Vector3(12, 12, 12);
                 visualContext.transform.localPosition = new Vector3(0, -137, 0);
+                visualContext.UnlockComponents.SetUnlockLevel(_currentMiner.Level);
+                visualContext.ArmatureComponent.animationName = "still";
                 _currentMiner.OnLevelUp += visualContext.UnlockComponents.SetUnlockLevel;
                 MinerToVisual.Add(_currentMiner, visualContext);
                 SetNameAndDescriprion(_currentMiner.Name, _currentMiner.Description);

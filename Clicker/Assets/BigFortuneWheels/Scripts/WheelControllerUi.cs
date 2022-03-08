@@ -125,13 +125,7 @@ namespace MkeyFW // mkey fortune wheel
 
         void Start()
         {
-            spinCounts = _playerProfile.GetAllMiners().Count;
-            int cycle = PlayerPrefs.GetInt("HMNG");
-            if (cycle > 1)
-            {
-                spinCounts -= 5;
-            }
-
+            spinCounts = PlayerPrefs.GetInt(spinKey);
 
             sectors = GetComponentsInChildren<Sector>();
             sectorsCount = (sectors != null) ? sectors.Length : 0;
@@ -228,16 +222,18 @@ namespace MkeyFW // mkey fortune wheel
 
         public void StartSpin()
         {
-            
-
-            if(_playerProfile.TryRemoveScore(_playerProfile.Coins[spinCounts].ID, 100))
-            {                
-                rollGirl.RollEnable();
-                _playerProfile.AddScore(_playerProfile.Coins[spinCounts].ID, -100);
-                StartSpin(null);
-                spinCounts++;
+            if (spinCounts < 5)
+            {
+                if (_playerProfile.TryRemoveScore(_playerProfile.Coins[spinCounts].ID, 100))
+                {
+                    
+                    rollGirl.RollEnable();
+                    _playerProfile.AddScore(_playerProfile.Coins[spinCounts].ID, -100);
+                    StartSpin(null);
+                    spinCounts++;
+                }
             }
-            if(spinCounts == 5)
+            if (spinCounts == 5)
             {
                 ResetGame.gameObject.SetActive(true);
             }
@@ -454,5 +450,13 @@ namespace MkeyFW // mkey fortune wheel
             }
             return res;
         }
-    }
+
+        private void OnApplicationQuit()
+        {
+            PlayerPrefs.SetInt(spinKey, spinCounts);
+            PlayerPrefs.Save();
+        }
+
+
+    }    
 }

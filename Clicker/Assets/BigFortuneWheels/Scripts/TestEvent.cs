@@ -32,7 +32,6 @@ namespace MkeyFW
             foreach (var miner in _playerProfile.GetAllMiners())
             {
                 AddMiners.Remove(miner.Configuration);
-                minerCounter++;
             }
         }
 
@@ -42,7 +41,7 @@ namespace MkeyFW
 
             List<MinerConfiguration> _minerConfs = new List<MinerConfiguration>();
 
-            if (coin != "nothing" && minerCounter < 5)
+            if (coin != "nothing")
             {
                 rollGirl.PlayHappy();
                 foreach (var miner in AddMiners)
@@ -52,12 +51,19 @@ namespace MkeyFW
                         _minerConfs.Add(miner);                        
                     }
                 }
-                if(_minerConfs != null)
+                if (_minerConfs != null && _minerConfs.Count != 0)
                 {
+                    Debug.Log(_minerConfs);
                     MinerConfiguration minerConfiguration = _minerConfs[UnityEngine.Random.Range(0, _minerConfs.Count - 1)];
                     _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));
                     AddMiners.Remove(minerConfiguration);
                 }
+                else
+                {
+                    Debug.LogError("Out Of Miners");
+
+                }
+
             }
         }
 
