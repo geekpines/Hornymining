@@ -173,6 +173,7 @@ MonoBehaviour:
   _coinInfoView: {fileID: 0}
   _buyButton: {fileID: 3835637698706062388}
   _sellButton: {fileID: 3609758948535885375}
+  exchangeRateText: {fileID: 0}
   percent: 1
   panelInformation: {fileID: 0}
 --- !u!1 &635285108566307574
@@ -228,6 +229,7 @@ MonoBehaviour:
   _coinInfoView: {fileID: 0}
   _buyButton: {fileID: 8641079519569514736}
   _sellButton: {fileID: 4119120822235856920}
+  exchangeRateText: {fileID: 0}
   percent: 1
   panelInformation: {fileID: 0}
 --- !u!1 &1120086600400349865
@@ -283,6 +285,7 @@ MonoBehaviour:
   _coinInfoView: {fileID: 0}
   _buyButton: {fileID: 7163885000233789791}
   _sellButton: {fileID: 786168569566158084}
+  exchangeRateText: {fileID: 0}
   percent: 1
   panelInformation: {fileID: 0}
 --- !u!1 &2159402857134028382
@@ -832,10 +835,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 2
     m_MaxSize: 47
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -843,7 +846,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SELL
+  m_Text: EXCHANGE FROM HB
 --- !u!1 &3182794852001186515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,10 +1034,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 0
     m_MaxSize: 47
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1042,7 +1045,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BUY
+  m_Text: EXCHANGE TO HB
 --- !u!1 &4292650369402795802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1219,7 @@ MonoBehaviour:
   _coinInfoView: {fileID: 0}
   _buyButton: {fileID: 1883101173797150686}
   _sellButton: {fileID: 8239520970731963031}
+  exchangeRateText: {fileID: 0}
   percent: 1
   panelInformation: {fileID: 0}
 --- !u!1 &5138332595880167747
@@ -1681,7 +1685,8 @@ MonoBehaviour:
   - {fileID: 5022539275325968461}
   - {fileID: 7579363238674514162}
   - {fileID: 635285108566307574}
-  _openTradesButton: {fileID: 0}
+  _StockUpgradeButton: {fileID: 0}
+  _levelText: {fileID: 0}
 --- !u!1 &7579363238674514162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,6 +1740,7 @@ MonoBehaviour:
   _coinInfoView: {fileID: 0}
   _buyButton: {fileID: 8644329692062226296}
   _sellButton: {fileID: 9147867965389545373}
+  exchangeRateText: {fileID: 0}
   percent: 1
   panelInformation: {fileID: 0}
 --- !u!1 &7829898057489654898

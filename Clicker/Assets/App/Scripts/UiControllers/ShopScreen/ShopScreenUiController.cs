@@ -55,13 +55,14 @@ public class ShopScreenUiController : MonoBehaviour
             shopUpgrades.OpenSlot(_playerProfile, _sellBuyUnits[shopUpgrades.CurrentLevel]);
             _sellBuyUnits[shopUpgrades.CurrentLevel].GetComponent<CoinsTradeSystemView>().SetUnlock();
             _levelText.text = "Level: " + shopUpgrades.CurrentLevel + 1;
-        }
 
-        foreach (var unit in _sellBuyUnits)
-        {
-            CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
 
-            coinTradeSystem.percent = shopUpgrades.GetSale();
+            foreach (var unit in _sellBuyUnits)
+            {
+                CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
+
+                coinTradeSystem.percent = shopUpgrades.GetSale();
+            }
         }
         
     }

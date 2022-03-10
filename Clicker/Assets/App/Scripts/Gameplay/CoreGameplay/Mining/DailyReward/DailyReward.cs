@@ -107,11 +107,13 @@ public class DailyReward : MonoBehaviour
                 day++;
                 Day();
                 hourLeft = 0;
-                return true;                
+                hourLeft += result.TotalHours;
+                return true;
+                
             }
             else if (day < 7)
             {
-                hourLeft += result.TotalHours;
+                
                 PlayerPrefs.SetFloat(leftKey, (float)hourLeft);
                 PlayerPrefs.Save();
             }

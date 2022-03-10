@@ -2,6 +2,7 @@ using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.ScorePanel;
 using App.Scripts.UiViews.GameScreen.TopPanel;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -12,6 +13,8 @@ public class CoinsTradeSystemView : MonoBehaviour
     [SerializeField] private CoinInfoView _coinInfoView;
     [SerializeField] private Button _buyButton;
     [SerializeField] private Button _sellButton;
+
+    [SerializeField] private TextMeshProUGUI exchangeRateText;
 
     public float percent = 1;
 
@@ -31,7 +34,12 @@ public class CoinsTradeSystemView : MonoBehaviour
         _buyButton.onClick.AddListener(Buy);
         _sellButton.onClick.AddListener(Sell);
         gameObject.tag = "CoinTradeSys";
+        
+    }
 
+    private void OnEnable()
+    {
+        SetExchangeRate();
     }
 
 
@@ -76,6 +84,17 @@ public class CoinsTradeSystemView : MonoBehaviour
     public void SetUnlock()
     {
         _coinInfoView.SetUnlock();
+    }
+
+    public void SetExchangeRate()
+    {
+        for (int i = 0; i < panelInformation.CoinInfoViews.Count; i++)
+        {
+            if (panelInformation.CoinInfoViews[i] == _coinInfoView)
+            {
+                exchangeRateText.text = _player.Coins[i].ID + " :" + _player.Coins[i].TradeValue * percent;
+            }
+        }
     }
 
     public void NG()
