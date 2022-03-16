@@ -53,7 +53,6 @@ namespace MkeyFW
                 }
                 if (_minerConfs != null && _minerConfs.Count != 0)
                 {
-                    Debug.Log(_minerConfs);
                     MinerConfiguration minerConfiguration = _minerConfs[UnityEngine.Random.Range(0, _minerConfs.Count - 1)];
                     _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));
                     AddMiners.Remove(minerConfiguration);

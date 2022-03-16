@@ -210,6 +210,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             percentUpgrade = 1;
             _activeMiners.Clear();
+            _allMiners.Clear();
             for (int i = 0; i < Coins.Count; i++)
             {
                 AddScore(Coins[i].ID, -Coins[i].Value);

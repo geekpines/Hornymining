@@ -40,7 +40,6 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         /// <param name="data"></param>
         public void AddMinerInformation(MiniMinerElementData data)
         {
-
             var minerView = _miniMinersPool.Spawn();
             minerView.SetMinerInformation(
                 data.Name,
@@ -159,5 +158,11 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         {
             return IdtoViews[id].GetHearts();
         }
-    }
+
+        public void Cleaner()
+        {
+            _miniMinersPool.Elements.Clear();
+        }
+           
+    }   
 }

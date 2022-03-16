@@ -23,6 +23,9 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         [Title("Дополнительные реплики")]
         public List<DialogLevel> additionalDialogs = new List<DialogLevel>();
 
+        [Title("Miner Sounds")]
+        public List<AudioClip> lines;
+
         [Serializable]
         public class DialogLevel
         {

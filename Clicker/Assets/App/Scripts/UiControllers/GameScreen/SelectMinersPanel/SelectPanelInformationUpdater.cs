@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -34,6 +35,12 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
 
         private void ChangeMinerInformation(Miner miner)
         {
+            StartCoroutine(SlowChangeMinerInformation(miner));
+        }
+
+        private IEnumerator SlowChangeMinerInformation(Miner miner)
+        {
+            yield return new WaitForSeconds(0.1f);
             if (_playerProfile.ContainsMiner(miner))
             {
                 _minersSelectPanel.AddMinerInformation(new MinersSelectPanelUiController.MiniMinerElementData(

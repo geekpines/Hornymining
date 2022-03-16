@@ -1,4 +1,5 @@
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using Zenject;
 public class NewGamePlus : MonoBehaviour
 {
     [SerializeField] Button yesButton;
+    [SerializeField] MinersSelectPanelUiController minersSelectPanelUiController;
 
     string minerKey = "HMinerName";
     string levelKey = "HMinerLevel";
@@ -36,7 +38,7 @@ public class NewGamePlus : MonoBehaviour
 
     private void GameReset()
     {
-
+        
         PlayerPrefs.DeleteAll();
         SaveAllMiners();
         cycle += 1;
@@ -46,8 +48,8 @@ public class NewGamePlus : MonoBehaviour
         foreach(var tradeSystem in TS)
         {
             tradeSystem.GetComponent<CoinsTradeSystemView>().NG();
-        } 
-
+        }
+        minersSelectPanelUiController.Cleaner();
         float i = (float)Math.Sqrt( _playerProfile.Coins[5].Value * 0.001f) * 0.1f;
         _playerProfile.ResetPlayer();
         _playerProfile.percentUpgrade += i;
@@ -61,15 +63,16 @@ public class NewGamePlus : MonoBehaviour
         minerCounts = _playerProfile.GetAllMiners().Count;
         PlayerPrefs.SetInt("HMinerCounts", minerCounts);
         PlayerPrefs.Save();
+        Debug.Log(minerCounts);
         foreach (var miner in _playerProfile.GetAllMiners())
         {
-
+            
             SaveMiner(miner.Name.ToString(), miner.Level);
         }
     }
     private void SaveMiner(string MinerName, int MinerLevel)
     {
-
+        Debug.Log(MinerName + " from save");
         PlayerPrefs.SetString(minerKey + minerCounts, MinerName);
         PlayerPrefs.SetInt(levelKey + minerCounts, MinerLevel);
         minerCounts--;

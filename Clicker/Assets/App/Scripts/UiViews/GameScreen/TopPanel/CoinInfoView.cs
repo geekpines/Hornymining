@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
@@ -8,7 +9,7 @@ namespace App.Scripts.UiViews.GameScreen.TopPanel
 {
     public class CoinInfoView : BaseUiElement<CoinInfoView>
     {
-        [SerializeField] private Image _icon;
+        [SerializeField] private SVGImage _icon;
         [SerializeField] private Sprite _lockIcon;
         private Sprite _openIcon;
 

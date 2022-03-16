@@ -24,6 +24,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] Button stock;
 
         [SerializeField] DialogContainer dataContainer;
+        [SerializeField] AudioSource audioSource;
 
         private int _countsActiveClick = 0;
         private int _maxCountsActiveClick = 100;
@@ -132,6 +133,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                         view.dialogUiController.OpenRuDialogContent(true, dialog.Dialogs_Ru[heartsCount-1].Dialog[dialogRand]);
                         yield return new WaitForSeconds(3);
                         view.dialogUiController.SetOff(false);
+                        MinerSoundStart(dialog.lines[Random.Range(0, dialog.lines.Count)]);
                     }
                 }
             }
@@ -150,6 +152,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 if (activeMiner.ID == view.Id)
                 {
                     StartCoroutine(PopOffDialog(view, rand, activeMiner));
+
                 }
             }
         }
@@ -204,5 +207,14 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         {
             _additionalCoins.Add(additionalCoin);
         }
+
+        public void MinerSoundStart(AudioClip clip)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+
+
+
     }
 }

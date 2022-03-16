@@ -49,7 +49,6 @@ public class Saver : MonoBehaviour
         yield return new WaitForSeconds(10);
         if (true)
         {
-            PlayerPrefs.DeleteAll();
             minerCounts = _playerProfile.GetAllMiners().Count;
             PlayerPrefs.SetInt("HMinerCounts", minerCounts);
             PlayerPrefs.Save();
@@ -79,6 +78,7 @@ public class Saver : MonoBehaviour
         if (true)
         {
             Debug.Log("Trying Load");
+            
             int count = PlayerPrefs.GetInt("HMinerCounts");
 
             if (count != 0)
