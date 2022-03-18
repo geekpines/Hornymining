@@ -4221,6 +4221,10 @@ PrefabInstance:
       value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 4042785478464919280, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: rollButton
+      value: 
+      objectReference: {fileID: 1574322378}
+    - target: {fileID: 4042785478464919280, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: AddMiners.Array.size
       value: 26
       objectReference: {fileID: 0}
@@ -4454,30 +4458,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1605315293}
     - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1574322378}
     - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartSpin
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MkeyFW.WheelControllerUi, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311099183352586029, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5325693879629739590, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
@@ -7582,6 +7602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1574322378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5311099183352586035, guid: 2dbecc2a30804f04db71e28cab069e7e, type: 3}
+  m_PrefabInstance: {fileID: 249758325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1591034540
 GameObject:
   m_ObjectHideFlags: 0

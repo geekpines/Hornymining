@@ -12,7 +12,7 @@ namespace MkeyFW
 
         [SerializeField] private List<MinerConfiguration> AddMiners = new List<MinerConfiguration>();
         [SerializeField] private RollGirlController rollGirl;
-
+        [SerializeField] private GameObject rollButton;
 
         private PlayerProfile _playerProfile;
         private MinerCreatorSystem _minerCreatorSystem;
@@ -62,7 +62,7 @@ namespace MkeyFW
                     Debug.LogError("Out Of Miners");
 
                 }
-
+                rollButton.SetActive(true);
             }
         }
 
@@ -74,6 +74,7 @@ namespace MkeyFW
         public void HitEvent_10000000()
         {
             rollGirl.PlaySad();
+            rollButton.SetActive(true);
         }
 
         public void ResultEvent()
