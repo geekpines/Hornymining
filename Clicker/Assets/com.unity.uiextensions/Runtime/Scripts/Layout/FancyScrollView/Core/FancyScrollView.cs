@@ -1,6 +1,7 @@
 ﻿/// Credit setchi (https://github.com/setchi)
 /// Sourced from - https://github.com/setchi/FancyScrollView
 
+using App.Scripts.UiViews.GameScreen.MinersPanel;
 using System;
 using System.Collections.Generic;
 
@@ -146,7 +147,12 @@ namespace UnityEngine.UI.Extensions
             var addCount = Mathf.CeilToInt((1f - firstPosition) / CellInterval) - pool.Count;
             for (var i = 0; i < addCount; i++)
             {
+
                 var cell = Instantiate(CellPrefab, cellContainer).GetComponent<FancyCell<TItemData, TContext>>();
+
+                Image videocard = cell.GetComponent<MinerSlotView>().videocard;
+                videocard.sprite = gameObject.GetComponent<VideocardPool>().pool[i];
+
                 if (cell == null)
                 {
                     throw new MissingComponentException(string.Format(

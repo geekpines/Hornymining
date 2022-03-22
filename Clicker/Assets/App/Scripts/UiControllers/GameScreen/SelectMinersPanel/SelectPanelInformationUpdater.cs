@@ -46,6 +46,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
                 _minersSelectPanel.AddMinerInformation(new MinersSelectPanelUiController.MiniMinerElementData(
                     miner.Name,
                     miner.Icon,
+                    miner.CoinIcon,
                     miner.Grade,
                     miner.Level,
                     miner.ID));
@@ -78,6 +79,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
                 _minersSelectPanel.AddMinerInformation(new MinersSelectPanelUiController.MiniMinerElementData(
                     miner.Name,
                     miner.Icon,
+                    miner.CoinIcon,
                     miner.Grade,
                     miner.Level,
                     miner.ID));

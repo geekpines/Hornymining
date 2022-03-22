@@ -18,12 +18,16 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         public event Action<MiniMinerElementView> OnMinerDoubleClicked;
 
         private LocalizedString _name;
+
         private float _timeForDoubleClick = 0.5f;
         private bool _isReadyForDoubleClick;
+
         [SerializeField] private LocalizeStringEvent _nameEvent;
         [SerializeField] private LocalizedString _level;
         [SerializeField] private TextMeshProUGUI _levelText;
         [SerializeField] private Image _avatar;
+        [SerializeField] private Image _coinImg;
+
         [SerializeField] private List<GameObject> _stars = new List<GameObject>();
         [SerializeField] private List<GameObject> _hearts = new List<GameObject>();
 
@@ -34,14 +38,15 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
 
         [SerializeField, Range(1, 5)] private int _currentStars = 1;
         [SerializeField, Range(1, 5)] private int _currentHearts  = 1;
+        
         [SerializeField] private Button _minerButton;
         public int ID { get; private set; }
         public bool IsActive { get; private set; }
 
-        public void SetMinerInformation(LocalizedString name, Sprite icon, int id, int grade = 3, int level = 1)
+        public void SetMinerInformation(LocalizedString name, Sprite icon, Sprite coinIcon, int id, int grade = 3, int level = 1)
         {
             SetName(name);
-            SetIcon(icon);
+            SetIcon(icon, coinIcon);
             ID = id;
             //SetStars(grade); //временно отключены в префабе
             SetLevel(level);
@@ -62,9 +67,10 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             SetStars(level);
         }
 
-        public void SetIcon(Sprite newIcon)
+        public void SetIcon(Sprite newIcon, Sprite coinIcon)
         {
             _avatar.sprite = newIcon;
+            _coinImg.sprite = coinIcon;
         }
 
         public void SetStars(int countStars)

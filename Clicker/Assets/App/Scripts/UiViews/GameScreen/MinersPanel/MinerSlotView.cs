@@ -16,6 +16,8 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         [SerializeField] private GameObject _minerContent;
         [SerializeField] private GameObject _lockMask;
         [SerializeField] private MiningCoinsView _miningCoinsView;
+
+        public Image videocard;
         public DialogUiController dialogUiController;
 
         [field: SerializeField] public Transform RootPosition { get; private set; }

@@ -20,14 +20,16 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
         {
             public LocalizedString Name { get; }
             public Sprite Icon { get; }
+            public Sprite CoinIcon { get; }
             public int Grade { get; }
             public int Level { get; }
             public int ID { get; }
 
-            public MiniMinerElementData(LocalizedString name, Sprite icon, int grade, int level, int id)
+            public MiniMinerElementData(LocalizedString name, Sprite icon, Sprite coinIcon,int grade, int level, int id)
             {
                 Name = name;
                 Icon = icon;
+                CoinIcon = coinIcon;
                 Grade = grade;
                 Level = level;
                 ID = id;
@@ -44,6 +46,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             minerView.SetMinerInformation(
                 data.Name,
                 data.Icon,
+                data.CoinIcon,
                 data.ID, 3, data.Level + 1);
             
             IdtoViews.Add(data.ID, minerView);

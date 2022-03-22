@@ -23,6 +23,12 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         /// </summary>
         public Sprite Icon => Configuration.Visual.Icon;
 
+
+        /// <summary>
+        /// Иконка монеты принадлежащей к майнеру
+        /// </summary>
+        public Sprite CoinIcon => Configuration.Visual.CoinIcon;
+
         /// <summary>
         /// Конфигурационный файл (общий для всех героев одного типа)
         /// </summary>
