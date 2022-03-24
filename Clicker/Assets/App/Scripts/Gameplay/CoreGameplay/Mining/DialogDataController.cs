@@ -15,10 +15,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         public MinerConfiguration MinerConf;
         
         [Title ("English dialogs")]
-        public List<DialogLevel> Dialogs_En = new List<DialogLevel>();
-        
-        [Title("Русские реплики")]
-        public List<DialogLevel> Dialogs_Ru = new List<DialogLevel>();
+        public List<DialogLevel> Dialogs;
 
         [Title("Дополнительные реплики")]
         public List<DialogLevel> additionalDialogs = new List<DialogLevel>();
@@ -29,7 +26,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         [Serializable]
         public class DialogLevel
         {
-            public List<string> Dialog = new List<string>();
+            public List<LocalizedString> Dialog;
         }
 
     }

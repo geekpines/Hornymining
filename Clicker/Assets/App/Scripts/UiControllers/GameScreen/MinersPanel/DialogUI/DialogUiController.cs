@@ -18,10 +18,10 @@ public class DialogUiController : MonoBehaviour
         dialogContainer.Dialog.text = text;
     }
     //открытие русского контента
-    public void OpenRuDialogContent(bool state, string text)
+    public void OpenRuDialogContent(bool state, LocalizedString text)
     {
         DialogContent.SetActive(state);
-        dialogContainer.Dialog.text = text;
+        dialogContainer.Dialog.text = text.GetLocalizedString();
     }
 
     public void SetName(LocalizedString text)
