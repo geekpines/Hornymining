@@ -130,7 +130,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     {
                         int dialogRand = Random.Range(0, dialog.Dialogs.Count);
                         view.dialogUiController.SetName(dialog.MinerConf.Name);
-                        view.dialogUiController.OpenRuDialogContent(true, dialog.Dialogs[heartsCount-1].Dialog[Random.Range(0,4)]);
+                        view.dialogUiController.OpenRuDialogContent(true, dialog.Dialogs[heartsCount-1].Dialog[Random.Range(0, dialog.Dialogs[heartsCount - 1].Dialog.Count)]);
                         yield return new WaitForSeconds(3);
                         view.dialogUiController.SetOff(false);
                         MinerSoundStart(dialog.lines[Random.Range(0, dialog.lines.Count)]);
