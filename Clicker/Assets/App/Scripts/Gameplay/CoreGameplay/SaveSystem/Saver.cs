@@ -10,13 +10,19 @@ using UnityEngine.UI;
 public class Saver : MonoBehaviour
 {
     
-    string key = "HMinerName";
-    string levelKey = "HMinerLevel";
-    string coinKey = "HMCoins";
+    private string key = "HMinerName";
+    private string levelKey = "HMinerLevel";
+    private string coinKey = "HMCoins";
+    private string volumeKey = "HMVolume";
+
     [SerializeField] public List<MinerConfiguration> AddMiners = new List<MinerConfiguration>();
+    
+    [SerializeField] private MinersSelectPanelUiController selectPanelUiController;
+    
+    [SerializeField] private List<AudioSource> audioSources;
+
     private PlayerProfile _playerProfile;
     private MinerCreatorSystem _minerCreatorSystem;
-    [SerializeField] private MinersSelectPanelUiController selectPanelUiController;
 
     private int minerCounts = 0;
 
@@ -34,6 +40,7 @@ public class Saver : MonoBehaviour
         //load
         StartCoroutine(LoadMiner());
         LoadCoin();
+        LoadVolume();
         //save
         StartCoroutine(AllMinerSaver());
         StartCoroutine(SaveCoins());
@@ -164,6 +171,18 @@ public class Saver : MonoBehaviour
         }
         Miner miner1 = _minerCreatorSystem.CreateMiner(confs[Random.Range(0, confs.Count)]);
         _playerProfile.AddMiner(miner1);
+    }
+
+    private void LoadVolume()
+    {
+        for (int i = 0; i < audioSources.Count; i++)
+        {
+            float vol = PlayerPrefs.GetFloat(volumeKey + i);
+            if (vol != 0)
+            {
+                audioSources[i].volume = vol;
+            }
+        }
     }
 
     private void OnApplicationQuit()
