@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f22fd09c7e154724851426af928d9bb8, type: 3}
+  m_Name: Miner_Russia
+  m_EditorClassIdentifier: 
+  Name:
+    m_TableReference:
+      m_TableCollectionName: GUID:571558a06f6853d4fad1c3d742444157
+    m_TableEntryReference:
+      m_KeyId: 634718756864
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  Description:
+    m_TableReference:
+      m_TableCollectionName: GUID:571558a06f6853d4fad1c3d742444157
+    m_TableEntryReference:
+      m_KeyId: 803740819456
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  Visual: {fileID: 5566913184324762444, guid: 1743ed230f3bb6247bb5ae9c2ffa6fb8, type: 3}
+  Levels:
+  - PeriodAutoMining: 5
+    MiningResources:
+    - Type: 0
+      Value: 1
+    UpgradeCost:
+    - Type: 0
+      Value: 1
+  - PeriodAutoMining: 5
+    MiningResources:
+    - Type: 0
+      Value: 20
+    UpgradeCost:
+    - Type: 1
+      Value: 1
+  - PeriodAutoMining: 5
+    MiningResources:
+    - Type: 0
+      Value: 300
+    UpgradeCost:
+    - Type: 2
+      Value: 1
+  - PeriodAutoMining: 5
+    MiningResources:
+    - Type: 0
+      Value: 4000
+    UpgradeCost:
+    - Type: 3
+      Value: 1
+  - PeriodAutoMining: 5
+    MiningResources:
+    - Type: 0
+      Value: 50000
+    UpgradeCost:
+    - Type: 4
+      Value: 1

@@ -273,6 +273,7 @@ namespace UnityEngine.UI.Extensions
             velocity = 0f;
             scrollStartPosition = currentPosition;
 
+
             UpdateSelection(Mathf.RoundToInt(CircularPosition(autoScrollState.EndPosition, totalCount)));
         }
 

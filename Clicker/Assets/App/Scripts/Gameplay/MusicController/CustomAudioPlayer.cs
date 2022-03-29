@@ -1,24 +1,45 @@
+using App.Scripts.UiControllers.GameScreen.MinersPanel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CustomAudioPlayer : MonoBehaviour
 {
+    [SerializeField] private MinerActiveSlotsEventsUiController activeSlot;
+
     [SerializeField] private AudioClipsContainier backgroundMusic;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource backgroundAudioSource;
+    [SerializeField] private AudioSource clickAudioSource;
+    [SerializeField] private AudioSource buyAudioSource;
+    [SerializeField] private AudioSource sellAudioSource;
+    [SerializeField] private AudioSource levelUpAudioSource;
+    [SerializeField] private AudioSource placeUpAudioSource;
     int trackNumber = 0;
 
     private void Start()
     {
         ChangeTrack();
+        activeSlot.OnGirlPlaced += PlayPlaceSound;
     }
-
-    void ChangeTrack()
+    
+    //todo: Сделать более лучше, пожалуйста, это плохо. Но работает. Воспроизводит звук клика при нажатии ЛКМ везде
+    private void Update()
     {
-        Invoke("NextTrack", audioSource.clip.length);
+        if (Input.GetMouseButtonDown(0))
+        {
+            PlaySound(clickAudioSource);
+
+        }
+    }
+   
+    private void ChangeTrack()
+    {
+        Invoke("NextTrack", backgroundAudioSource.clip.length);
     }
 
-    void NextTrack()
+    private void NextTrack()
     {
 
         trackNumber++;
@@ -26,8 +47,36 @@ public class CustomAudioPlayer : MonoBehaviour
         {
             trackNumber = 0;
         }
-        audioSource.clip = backgroundMusic.audioClips[trackNumber];
-        audioSource.Play();        
-        Invoke("NextTrack", audioSource.clip.length);
+        backgroundAudioSource.clip = backgroundMusic.audioClips[trackNumber];
+        backgroundAudioSource.Play();
+        Invoke("NextTrack", backgroundAudioSource.clip.length);
+    }
+
+    private void PlaySound(AudioSource audioSource)
+    {
+        if (!clickAudioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+    }
+    
+    public void PlayBuySound()
+    {
+        PlaySound(buyAudioSource);
+    }
+
+    public void PlaySellSound()
+    {
+        PlaySound(sellAudioSource);
+    }
+
+    public void PlayLevelUpSound()
+    {
+        PlaySound(levelUpAudioSource);
+    }
+
+    public void PlayPlaceSound()
+    {
+        PlaySound(placeUpAudioSource);
     }
 }

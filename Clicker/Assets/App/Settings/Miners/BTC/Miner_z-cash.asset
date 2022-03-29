@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f22fd09c7e154724851426af928d9bb8, type: 3}
+  m_Name: Miner_z-cash
+  m_EditorClassIdentifier: 
+  Name:
+    m_TableReference:
+      m_TableCollectionName: GUID:571558a06f6853d4fad1c3d742444157
+    m_TableEntryReference:
+      m_KeyId: 47739679175159808
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  Description:
+    m_TableReference:
+      m_TableCollectionName: GUID:571558a06f6853d4fad1c3d742444157
+    m_TableEntryReference:
+      m_KeyId: 47739795088945152
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
+  Visual: {fileID: 190708672789043438, guid: 03516799ecff16c4aac482387142e401, type: 3}
+  Levels:
+  - PeriodAutoMining: 5
+    MiningResources:
+    - Type: 4
+      Value: 0.00002
+    UpgradeCost: []
+  - PeriodAutoMining: 4
+    MiningResources:
+    - Type: 4
+      Value: 0.0004
+    UpgradeCost:
+    - Type: 4
+      Value: 5
+  - PeriodAutoMining: 3
+    MiningResources:
+    - Type: 4
+      Value: 0.006
+    UpgradeCost:
+    - Type: 4
+      Value: 20
+  - PeriodAutoMining: 2
+    MiningResources:
+    - Type: 4
+      Value: 0.08
+    UpgradeCost:
+    - Type: 4
+      Value: 20
+  - PeriodAutoMining: 1
+    MiningResources:
+    - Type: 4
+      Value: 1
+    UpgradeCost:
+    - Type: 4
+      Value: 20

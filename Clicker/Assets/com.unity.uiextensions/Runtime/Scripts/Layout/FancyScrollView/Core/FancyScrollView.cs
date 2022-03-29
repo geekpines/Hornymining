@@ -3,6 +3,7 @@
 
 using App.Scripts.UiViews.GameScreen.MinersPanel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace UnityEngine.UI.Extensions
@@ -43,6 +44,8 @@ namespace UnityEngine.UI.Extensions
         /// セルの親要素となる <c>Transform</c>.
         /// </summary>
         [SerializeField] protected Transform cellContainer = default;
+
+        [SerializeField] protected AudioSource SpinSound;
 
         readonly IList<FancyCell<TItemData, TContext>> pool = new List<FancyCell<TItemData, TContext>>();
 
@@ -133,8 +136,14 @@ namespace UnityEngine.UI.Extensions
                 ResizePool(firstPosition);
             }
 
+
+            
+
             UpdateCells(firstPosition, firstIndex, forceRefresh);
         }
+
+       
+
 
         void ResizePool(float firstPosition)
         {
@@ -233,4 +242,6 @@ namespace UnityEngine.UI.Extensions
     /// <typeparam name="TItemData"></typeparam>
     /// <seealso cref="FancyScrollView{TItemData, TContext}"/>
     public abstract class FancyScrollView<TItemData> : FancyScrollView<TItemData, NullContext> { }
+
+
 }

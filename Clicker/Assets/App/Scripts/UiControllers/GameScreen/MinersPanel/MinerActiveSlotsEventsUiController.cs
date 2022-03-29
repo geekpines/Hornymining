@@ -2,6 +2,7 @@
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using App.Scripts.UiViews.GameScreen.MinersPanel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private int _countsActiveClick = 0;
         private int _maxCountsActiveClick = 100;
         private List<AdditionalCoins> _additionalCoins;
+
+        public event Action OnGirlPlaced;
 
         [Inject]
         private void Construct(PlayerProfile playerProfile)
@@ -66,7 +69,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     _activeSlots.SetLock(id, false);
                     _selectPanel.SetMinerActive(id, true);
                     _playerProfile.AddActiveMiner(miner);
-
+                    OnGirlPlaced?.Invoke();
                 }
                 ResetLockActiveMinersOnSelectPanel();
             }
@@ -128,12 +131,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 {
                     if (view.CheckName(dialog.MinerConf.Name))
                     {
-                        int dialogRand = Random.Range(0, dialog.Dialogs.Count);
+                        int dialogRand = UnityEngine.Random.Range(0, dialog.Dialogs.Count);
                         view.dialogUiController.SetName(dialog.MinerConf.Name);
-                        view.dialogUiController.OpenRuDialogContent(true, dialog.Dialogs[heartsCount-1].Dialog[Random.Range(0, dialog.Dialogs[heartsCount - 1].Dialog.Count)]);
+                        view.dialogUiController.OpenRuDialogContent(true, dialog.Dialogs[heartsCount-1].Dialog[UnityEngine.Random.Range(0, dialog.Dialogs[heartsCount - 1].Dialog.Count)]);
                         yield return new WaitForSeconds(3);
                         view.dialogUiController.SetOff(false);
-                        MinerSoundStart(dialog.lines[Random.Range(0, dialog.lines.Count)]);
+                        MinerSoundStart(dialog.lines[UnityEngine.Random.Range(0, dialog.lines.Count)]);
                     }
                 }
             }
@@ -146,7 +149,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void OpenDialog(MinerSlotView view)
         {
-            int rand = Random.Range(0, 100);
+            int rand = UnityEngine.Random.Range(0, 100);
             foreach (var activeMiner in _playerProfile.GetActiveMiners())
             {
                 if (activeMiner.ID == view.Id)
@@ -183,7 +186,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         public void SpecialDialogPopOff(MinerSlotView view)
         {
-            int rand = Random.Range(0, 100);
+            int rand = UnityEngine.Random.Range(0, 100);
             foreach (var activeMiner in _playerProfile.GetActiveMiners())
             {
                 if (activeMiner.ID == view.Id)
@@ -196,7 +199,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void AddSpecialScore(AdditionalCoins additionalCoin)
         {
-            if (Random.Range(0, 100) <= additionalCoin.chance)
+            if (UnityEngine.Random.Range(0, 100) <= additionalCoin.chance)
             {
                 _playerProfile.AddScore(additionalCoin.type, 1f);
             }

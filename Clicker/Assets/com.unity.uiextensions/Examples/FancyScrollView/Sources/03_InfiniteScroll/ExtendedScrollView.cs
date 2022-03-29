@@ -69,6 +69,12 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample03
                 return;
             }
 
+                        
+            if (!SpinSound.isPlaying)
+            {
+                SpinSound.Play();
+            }
+
             UpdateSelection(index);
             _scrollerExtension.ScrollTo(index, 0.35f, Ease.OutCubic);
         }
