@@ -72,7 +72,7 @@ public class CustomAudioPlayer : MonoBehaviour
 
     public void PlayLevelUpSound()
     {
-        PlaySound(levelUpAudioSource);
+        levelUpAudioSource.Play();
     }
 
     public void PlayPlaceSound()

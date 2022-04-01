@@ -16,6 +16,7 @@ namespace App.Scripts.UiViews.GameScreen
         public void SetInformation(Sprite icon, float score)
         {
             _icon.sprite = icon;
+            _score.color = new Color32(0, 0, 0, 0);
             _score.text = $"{score:F1}";
         }
     }

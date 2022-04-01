@@ -1,11 +1,12 @@
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
+using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.Settings;
 using Zenject;
-using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
-using UnityEngine.UI;
 
 public class Saver : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class Saver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
         //load
         StartCoroutine(LoadMiner());
         LoadCoin();
@@ -91,7 +93,6 @@ public class Saver : MonoBehaviour
             if (count != 0)
                 while (count != 0)
                 {
-                    Debug.Log("Loaded");
 
                     foreach (var miner in AddMiners)
                     {

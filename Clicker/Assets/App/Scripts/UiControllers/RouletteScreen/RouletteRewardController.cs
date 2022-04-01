@@ -3,6 +3,7 @@ using App.Scripts.Gameplay.CoreGameplay.Player;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Components;
 using UnityEngine.UI;
@@ -22,6 +23,8 @@ public class RouletteRewardController : MonoBehaviour
     [SerializeField] private Button getButton;
 
     private MinerVisualContext visualContext;
+    [SerializeField] TextMeshProUGUI _coinInfo;
+
 
     private PlayerProfile _playerProfile;
 
@@ -35,6 +38,8 @@ public class RouletteRewardController : MonoBehaviour
 
     private void OnEnable()
     {
+        _coinInfo.text = _playerProfile.Coins[5].Value.ToString();
+
         _playerProfile.OnAllMinersCountChanged += AddMinerToRewardPosition;
         _playerProfile.OnAllMinersCountChanged += AddMinerInfo;
         _wheelContainer = GameObject.FindGameObjectWithTag("WheelContainer");

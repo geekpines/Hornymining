@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
+
 
 public class UpgradeShopButtonsController : MonoBehaviour
 {
     private Button button;
     [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private string descriptionLine;
+    [SerializeField] private LocalizeStringEvent descriptionLine;
     void Start()
     {
         button = gameObject.GetComponent<Button>();
@@ -23,6 +25,6 @@ public class UpgradeShopButtonsController : MonoBehaviour
 
     private void SetDescription()
     {
-        text.text = descriptionLine;
+         text.text = descriptionLine.StringReference.GetLocalizedString();
     }
 }

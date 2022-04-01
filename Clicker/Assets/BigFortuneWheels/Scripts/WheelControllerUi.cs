@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
+using TMPro;
 
 namespace MkeyFW // mkey fortune wheel
 {
@@ -123,9 +124,13 @@ namespace MkeyFW // mkey fortune wheel
             Validate();
         }
 
+
+
         void Start()
         {
             spinCounts = PlayerPrefs.GetInt(spinKey);
+
+            
 
             sectors = GetComponentsInChildren<Sector>();
             sectorsCount = (sectors != null) ? sectors.Length : 0;
