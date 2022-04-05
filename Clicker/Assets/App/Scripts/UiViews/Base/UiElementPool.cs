@@ -56,6 +56,16 @@ namespace App.Scripts.UiViews.Base
             }
         }
 
+        public void DestroyObj(T element)
+        {
+            if (_elements.Contains(element))
+            {
+                _elements.Remove(element);
+                _pool.DestroyObject(element);
+                Despawned?.Invoke(element);
+            }
+        }
+
         public void DespawnAll()
         {
             var chachedElements = new List<T>();
@@ -71,6 +81,5 @@ namespace App.Scripts.UiViews.Base
             }
             _elements.Clear();
         }
-
     }
 }

@@ -111,6 +111,18 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             }
         }
 
+        public void DestroyMiner(int id)
+        {
+            if (IdtoViews.ContainsKey(id))
+            {
+                _miniMinersPool.DestroyObj(IdtoViews[id]);
+                IdtoViews[id].OnMinerClicked -= MinerClicked;
+                IdtoViews[id].OnMinerDoubleClicked -= MinerDoubleClicked;
+
+                IdtoViews.Remove(id);
+            }
+        }
+
         /// <summary>
         /// Скрыть всех майнеров с панели
         /// </summary>
@@ -154,7 +166,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
 
         public void SetHearts(int id)
         {
-            IdtoViews[id].SetHearts();
+            IdtoViews[id].SetHeartLevel();
         }
 
         public int GetHearts(int id)

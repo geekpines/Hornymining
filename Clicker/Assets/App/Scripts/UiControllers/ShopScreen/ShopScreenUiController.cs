@@ -14,7 +14,7 @@ public class ShopScreenUiController : MonoBehaviour
 
     private PlayerProfile _playerProfile;
     
-    private LevelShopUpgrades shopUpgrades = new LevelShopUpgrades();
+    [SerializeField] private LevelShopUpgrades _shopUpgrades;
     
     private string _shopKey = "shop";
 
@@ -29,7 +29,7 @@ public class ShopScreenUiController : MonoBehaviour
         _StockUpgradeButton.onClick.AddListener(OpenTrade);
         SetActiveUnits(false);
         StartCoroutine(LockCoinInfo());
-        var k = shopUpgrades.LoadLevel(_shopKey);
+        var k = _shopUpgrades.LoadLevel(_shopKey);
 
         while (k != 0)
         {
@@ -37,7 +37,7 @@ public class ShopScreenUiController : MonoBehaviour
             OpenTrade();
         }
 
-        shopUpgrades.SaveLevel(_shopKey);
+        _shopUpgrades.SaveLevel(_shopKey);
     }
 
     private void SetActiveUnits(bool state)
@@ -50,18 +50,16 @@ public class ShopScreenUiController : MonoBehaviour
 
     private void OpenTrade()
     {
-        if (shopUpgrades.CurrentLevel < 5)
+        if (_shopUpgrades.CurrentLevel < 6 && _playerProfile.TryRemoveScore(_playerProfile.Coins[_shopUpgrades.CurrentLevel - 1].ID, 1))
         {
-            shopUpgrades.OpenSlot(_playerProfile, _sellBuyUnits[shopUpgrades.CurrentLevel]);
-            _sellBuyUnits[shopUpgrades.CurrentLevel].GetComponent<CoinsTradeSystemView>().SetUnlock();
-            _levelText.text = "Level: " + shopUpgrades.CurrentLevel + 1;
-
+            _shopUpgrades.OpenSlot(_playerProfile, _sellBuyUnits[_shopUpgrades.CurrentLevel-1]);
+            _sellBuyUnits[_shopUpgrades.CurrentLevel-1].GetComponent<CoinsTradeSystemView>().SetUnlock();
+            _shopUpgrades.UpdateLevelText();
 
             foreach (var unit in _sellBuyUnits)
             {
                 CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
-
-                coinTradeSystem.percent = shopUpgrades.GetSale();
+                 coinTradeSystem.percent = _shopUpgrades.GetSale();
             }
         }
         
@@ -72,10 +70,14 @@ public class ShopScreenUiController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         for (int i = 1; i < _sellBuyUnits.Count; i++)
         {
-
             CoinsTradeSystemView coinTradeSystem = _sellBuyUnits[i].GetComponent<CoinsTradeSystemView>();
-
             coinTradeSystem.SetLock();
         }
+    }
+
+    public void RenewLevelText(LevelShopUpgrades levelShopUpgrades)
+    {
+        int level = levelShopUpgrades.CurrentLevel;
+        _levelText.text = "Level: " + level;
     }
 }

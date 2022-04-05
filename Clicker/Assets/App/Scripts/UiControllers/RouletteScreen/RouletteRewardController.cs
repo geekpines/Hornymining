@@ -11,10 +11,13 @@ using Zenject;
 
 public class RouletteRewardController : MonoBehaviour
 {
+    [SerializeField] private GameObject _costDialogue;
     [SerializeField] private GameObject _rewardMinerWindow;
     [SerializeField] private GameObject _wheelContainer;
     [SerializeField] private Transform _rewardMinerPosition;
     [SerializeField] private Button _backButton;
+    [SerializeField] private TextMeshProUGUI _coinInfo;
+    [SerializeField] private TextMeshProUGUI _spinCost;
     
 
     [Title("Miner Info Elements")]
@@ -23,7 +26,6 @@ public class RouletteRewardController : MonoBehaviour
     [SerializeField] private Button getButton;
 
     private MinerVisualContext visualContext;
-    [SerializeField] TextMeshProUGUI _coinInfo;
 
 
     private PlayerProfile _playerProfile;
@@ -38,13 +40,18 @@ public class RouletteRewardController : MonoBehaviour
 
     private void OnEnable()
     {
-        _coinInfo.text = _playerProfile.Coins[5].Value.ToString();
+        _costDialogue.SetActive(true);
 
         _playerProfile.OnAllMinersCountChanged += AddMinerToRewardPosition;
         _playerProfile.OnAllMinersCountChanged += AddMinerInfo;
         _wheelContainer = GameObject.FindGameObjectWithTag("WheelContainer");
         _backButton.onClick.AddListener(Back);
         getButton.onClick.AddListener(Back);
+    }
+
+    private void Update()
+    {
+        _coinInfo.text = _playerProfile.Coins[5].Value.ToString();
     }
 
     private void OnDisable()
@@ -77,7 +84,11 @@ public class RouletteRewardController : MonoBehaviour
             Destroy(visualContext.gameObject);
         }        
         _wheelContainer.SetActive(true);
+        _costDialogue.SetActive(true);
         _rewardMinerWindow.SetActive(false);
         
     }
+
+    
+    
 }

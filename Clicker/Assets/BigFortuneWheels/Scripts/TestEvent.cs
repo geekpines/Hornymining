@@ -13,6 +13,7 @@ namespace MkeyFW
         [SerializeField] private List<MinerConfiguration> AddMiners = new List<MinerConfiguration>();
         [SerializeField] private RollGirlController rollGirl;
         [SerializeField] private GameObject rollButton;
+        [SerializeField] private GameObject costDilogue;
 
         private PlayerProfile _playerProfile;
         private MinerCreatorSystem _minerCreatorSystem;
@@ -75,6 +76,7 @@ namespace MkeyFW
         {
             rollGirl.PlaySad();
             rollButton.SetActive(true);
+            costDilogue.SetActive(true);
         }
 
         public void ResultEvent()

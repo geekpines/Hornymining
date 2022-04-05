@@ -29,7 +29,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private int _countsActiveClick = 0;
         private int _maxCountsActiveClick = 100;
-        private List<AdditionalCoins> _additionalCoins;
+        private List<AdditionalCoins> _additionalCoins = new List<AdditionalCoins>();
 
         public event Action OnGirlPlaced;
 

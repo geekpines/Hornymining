@@ -72,7 +72,6 @@ public class NewGamePlus : MonoBehaviour
     }
     private void SaveMiner(string MinerName, int MinerLevel)
     {
-        Debug.Log(MinerName + " from save");
         PlayerPrefs.SetString(minerKey + minerCounts, MinerName);
         PlayerPrefs.SetInt(levelKey + minerCounts, MinerLevel);
         minerCounts--;

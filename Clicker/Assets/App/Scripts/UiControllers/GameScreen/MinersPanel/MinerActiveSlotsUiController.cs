@@ -24,8 +24,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         [SerializeField] private Button OpenSlotButton;
         [SerializeField] private Button RefreshMinerUI;
 
-        [SerializeField] private TextMeshProUGUI _levelText;
-        private LevelShopUpgrades Level = new LevelShopUpgrades();
+        [SerializeField] private LevelShopUpgrades _shopLevel;
         private string _slotKey = "slot";
 
         public event Action<MinerSlotView> OnMinerSelected;
@@ -53,8 +52,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             StartCoroutine( InitializationActiveMiners());
             OpenSlotButton.onClick.AddListener(MinersViewController);
             RefreshMinerUI.onClick.AddListener(UpdateVisual);
-            var k = Level.LoadLevel(_slotKey);
-            Level.SaveLevel(_slotKey);
+            var k = _shopLevel.LoadLevel(_slotKey);
+            _shopLevel.SaveLevel(_slotKey);
 
             while (k != 0)
             {
@@ -190,10 +189,11 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private void MinersViewController()
         {
 
-            if (Level.CurrentLevel < 4 && _playerProfile.TryRemoveScore(_playerProfile.Coins[Level.CurrentLevel].ID, 100))
+            if (_shopLevel.CurrentLevel < 5 && _playerProfile.TryRemoveScore(_playerProfile.Coins[_shopLevel.CurrentLevel-1].ID, 100))
             {
-                MinersSlotView[Level.CurrentLevel + 1].IsOpen = Level.OpenMinerSlot(_playerProfile);
-                _levelText.text = "Level: " + Level.CurrentLevel;
+                MinersSlotView[_shopLevel.CurrentLevel].IsOpen = _shopLevel.OpenMinerSlot(_playerProfile);
+                _shopLevel.LevelUp();
+                _shopLevel.UpdateLevelText();
             }
         }
 

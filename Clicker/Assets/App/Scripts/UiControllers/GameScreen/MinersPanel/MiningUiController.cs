@@ -54,7 +54,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 var miner = IdToMiner[view.Id];
                 foreach (var miningResource in miner.Configuration.Levels[miner.Level].MiningResources)
                 {
-                    _playerProfile.AddScore(miningResource.Type, miningResource.Value);
+                    _playerProfile.AddScore(miningResource.Type, miningResource.Value * _playerProfile.percentUpgrade);
                     view.ShowScoreLine(
                         CoinsInformation.GetCoinIcon(miningResource.Type),
                         miningResource.Value * _playerProfile.percentUpgrade);

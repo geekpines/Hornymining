@@ -55,7 +55,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 yield return new WaitForSeconds(miner.Configuration.Levels[miner.Level].PeriodAutoMining);
                 foreach (var miningResource in miner.Configuration.Levels[miner.Level].MiningResources)
                 {
-                    _playerProfile.AddScore(miningResource.Type, miningResource.Value);
+                    _playerProfile.AddScore(miningResource.Type, miningResource.Value * _playerProfile.percentUpgrade);
                     if (ActiveMinerToView.ContainsKey(miner))
                     {
                         ActiveMinerToView[miner].ShowScoreLine(

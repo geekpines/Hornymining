@@ -7,7 +7,7 @@ using Zenject;
 public class WarningWindowController : MonoBehaviour
 {
     [SerializeField] private GameObject _warningWindow;
-    
+
     PlayerProfile _playerProfile;
 
     [Inject]

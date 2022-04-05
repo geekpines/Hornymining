@@ -229,11 +229,11 @@ namespace MkeyFW // mkey fortune wheel
         {
             if (spinCounts < 5)
             {
-                if (_playerProfile.TryRemoveScore(_playerProfile.Coins[spinCounts].ID, 100))
+                if (_playerProfile.TryRemoveScore(_playerProfile.Coins[5].ID, ShowSpinCost(spinCounts)))
                 {
                     
                     rollGirl.RollEnable();
-                    _playerProfile.AddScore(_playerProfile.Coins[spinCounts].ID, -100);
+                    _playerProfile.AddScore(_playerProfile.Coins[5].ID, -ShowSpinCost(spinCounts));
                     StartSpin(null);
                     spinCounts++;
                 }
@@ -242,6 +242,8 @@ namespace MkeyFW // mkey fortune wheel
             {
                 ResetGame.gameObject.SetActive(true);
             }
+            PlayerPrefs.SetInt(spinKey, spinCounts);
+            PlayerPrefs.Save();
         }
 
         /// <summary>
@@ -462,6 +464,19 @@ namespace MkeyFW // mkey fortune wheel
             PlayerPrefs.Save();
         }
 
+        private int ShowSpinCost(int spin)
+        {
+            switch (spin)
+            {
+                case 0: return 1;
+                case 1: return 15;
+                case 2: return 50;
+                case 3: return 100;
+                case 4: return 300;
 
+                default:
+                    return 0;
+            }
+        }
     }    
 }

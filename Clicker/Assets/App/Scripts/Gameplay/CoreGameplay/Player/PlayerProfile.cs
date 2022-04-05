@@ -157,7 +157,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             if (CoinTypeToData.ContainsKey(resourceId))
             {                
-                    CoinTypeToData[resourceId].Add(addScore * percentUpgrade);                              
+                    CoinTypeToData[resourceId].Add(addScore);                              
             }
         }
 

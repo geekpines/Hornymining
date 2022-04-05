@@ -11,7 +11,7 @@ public class OfflineMiningController : MonoBehaviour
     [SerializeField] private Button _levelUpOfflineMiner;
     
     private PlayerProfile _playerProfile;
-    private LevelShopUpgrades _level = new LevelShopUpgrades();
+    [SerializeField] private LevelShopUpgrades _level;
     private OfflineMining _offlineMining = new OfflineMining();
 
     [Inject]
@@ -35,10 +35,11 @@ public class OfflineMiningController : MonoBehaviour
     }
     void LevelUp()
     {
-        if(_playerProfile.TryRemoveScore(_playerProfile.Coins[_level.CurrentLevel].ID, 100))
+        if(_playerProfile.TryRemoveScore(_playerProfile.Coins[_level.CurrentLevel-1].ID, 100) && _level.CurrentLevel < 5)
         {
             _level.LevelUp();
-            _playerProfile.AddScore(_playerProfile.Coins[_level.CurrentLevel].ID, -100);
+            _level.UpdateLevelText();
+            _playerProfile.AddScore(_playerProfile.Coins[_level.CurrentLevel - 1 ].ID, -100);
         }
         
     }

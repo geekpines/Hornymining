@@ -4,11 +4,13 @@ using App.Scripts.UiControllers.GameScreen.MinersPanel;
 using System;
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class LevelShopUpgrades : MonoBehaviour
 {
-    [field: SerializeField, Range(0, 5)] public int CurrentLevel { get; private set; } = 0;
+    [field: SerializeField, Range(1, 5)] public int CurrentLevel { get; private set; } = 1;
     private string _shopLevelKey = "HMShopsLevel";
+    [SerializeField] private TextMeshProUGUI _levelText;
 
     public void LevelUp()
     {
@@ -17,9 +19,9 @@ public class LevelShopUpgrades : MonoBehaviour
 
     public float CasualUpgrade(PlayerProfile playerProfile)
     {
-        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 100))
+        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, 100) && CurrentLevel < 5)
         {
-            LevelUp();
+            
 
             switch (CurrentLevel)
             {
@@ -27,15 +29,19 @@ public class LevelShopUpgrades : MonoBehaviour
                     break;
                 case 1:
                     playerProfile.AddScore(CoinType.Tokken, -100);
+                    LevelUp();
                     return 0.25f;
                 case 2:
                     playerProfile.AddScore(CoinType.Usdfork, -100);
+                    LevelUp();
                     return 0.10f;
                 case 3:
                     playerProfile.AddScore(CoinType.LTC, -100);
+                    LevelUp();
                     return 0.15f;
                 case 4:
                     playerProfile.AddScore(CoinType.Ether, -100);
+                    LevelUp();
                     return 0.5f;
                 case 5:
                     playerProfile.AddScore(CoinType.BTC, -100);
@@ -49,19 +55,11 @@ public class LevelShopUpgrades : MonoBehaviour
     }
 
     public float OpenSlot(PlayerProfile playerProfile, GameObject _object)
-    {
-        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 1))
-        {
-            LevelUp();
+    {            
             _object.SetActive(true);
-
-            playerProfile.AddScore(playerProfile.Coins[CurrentLevel].ID, -1);
+            playerProfile.AddScore(playerProfile.Coins[CurrentLevel-1].ID, -1);
+            LevelUp();
             return GetSale();
-        }
-        else
-        {
-            return GetSale();
-        }
     }
 
 
@@ -90,17 +88,23 @@ public class LevelShopUpgrades : MonoBehaviour
 
     public bool OpenMinerSlot(PlayerProfile playerProfile)
     {
-        LevelUp();
+        
 
-        playerProfile.AddScore(playerProfile.Coins[CurrentLevel].ID, -100);
+        playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -100);
         return playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 100);
     }
 
     public void Surprise(AdditionalCoins additionalCoins, MinerActiveSlotsEventsUiController _minerActiveSlotsEventsUiController)
     {
-
+        
         switch (CurrentLevel)
         {
+            case 0:
+                {
+                    LevelUp();
+                    break;
+                } 
+                
             case 1:
                 {                    
                     additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 5);
@@ -151,7 +155,6 @@ public class LevelShopUpgrades : MonoBehaviour
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.BTC, 0.5f);
                     _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
-                    LevelUp();
                     break;
                 }
 
@@ -171,5 +174,10 @@ public class LevelShopUpgrades : MonoBehaviour
     public int LoadLevel(string key)
     {
        return PlayerPrefs.GetInt(_shopLevelKey + key);        
+    }
+
+    public void UpdateLevelText()
+    {
+        _levelText.text = "Level: " + CurrentLevel;
     }
 }

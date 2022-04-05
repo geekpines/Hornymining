@@ -35,7 +35,7 @@ namespace NiobiumStudios
         public Text textReward;             // The Text containing the Reward amount
         public Image imageRewardBackground; // The Reward Image Background
         public Image imageReward;           // The Reward Image
-        public Color colorClaim;            // The Color of the background when claimed
+        public Color colorClaim = Color.gray;            // The Color of the background when claimed
         private Color colorUnclaimed;       // The Color of the background when not claimed
 
         [Header("Internal")]

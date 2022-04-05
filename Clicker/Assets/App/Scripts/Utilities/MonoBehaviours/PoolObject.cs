@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 namespace App.Scripts.Utilities.MonoBehaviours
 {
@@ -123,6 +124,16 @@ namespace App.Scripts.Utilities.MonoBehaviours
             if (_objectsList.Contains(poolObj) && poolObj.gameObject.activeSelf)
             {
                 poolObj.gameObject.SetActive(false);
+            }
+        }
+
+        public void DestroyObject(T poolObj)
+        {
+            if (_objectsList.Contains(poolObj) && poolObj.gameObject.activeSelf)
+            {
+                _objectsList.Remove(poolObj);
+                Object.Destroy(poolObj.gameObject);
+                Add(poolObj);
             }
         }
 

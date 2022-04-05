@@ -51,6 +51,8 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             //SetStars(grade); //временно отключены в префабе
             SetLevel(level);
             SetStars(level);
+            SetHearts();
+            
             
         }
 
@@ -84,11 +86,21 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             }
         }
 
-        public void SetHearts()
+        public void SetHeartLevel()
         {
             _currentHearts++;
+            SetHearts();
+        }
+
+        public void SetHearts()
+        {
+            
             int countHearts = _currentHearts;            
             _currentHearts = Mathf.Clamp(countHearts, 1, 5);
+            foreach (var heart in _hearts)
+            {
+                heart.SetActive(false);
+            }
             for (int i = 0; i < _currentHearts; i++)
             {
                 _hearts[i].SetActive(true);
@@ -145,6 +157,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         private void OnValidate()
         {
             SetStars(_currentStars);
+            SetHearts();
         }
 
         private IEnumerator WaitingDoubleClick()
