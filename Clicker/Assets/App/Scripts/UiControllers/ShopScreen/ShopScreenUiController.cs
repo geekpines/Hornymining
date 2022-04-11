@@ -50,7 +50,7 @@ public class ShopScreenUiController : MonoBehaviour
 
     private void OpenTrade()
     {
-        if (_shopUpgrades.CurrentLevel < 6 && _playerProfile.TryRemoveScore(_playerProfile.Coins[_shopUpgrades.CurrentLevel - 1].ID, 1))
+        if (_shopUpgrades.CurrentLevel < 6 && _playerProfile.TryRemoveScore(_playerProfile.Coins[_shopUpgrades.CurrentLevel - 1].ID, 10))
         {
             _shopUpgrades.OpenSlot(_playerProfile, _sellBuyUnits[_shopUpgrades.CurrentLevel-1]);
             _sellBuyUnits[_shopUpgrades.CurrentLevel-1].GetComponent<CoinsTradeSystemView>().SetUnlock();

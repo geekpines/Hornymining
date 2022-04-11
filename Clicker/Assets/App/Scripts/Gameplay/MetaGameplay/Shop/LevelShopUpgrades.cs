@@ -59,7 +59,7 @@ public class LevelShopUpgrades : MonoBehaviour
     public float OpenSlot(PlayerProfile playerProfile, GameObject _object)
     {            
             _object.SetActive(true);
-            playerProfile.AddScore(playerProfile.Coins[CurrentLevel-1].ID, -1);
+            playerProfile.AddScore(playerProfile.Coins[CurrentLevel-1].ID, -10);
             LevelUp();
             return GetSale();
     }
