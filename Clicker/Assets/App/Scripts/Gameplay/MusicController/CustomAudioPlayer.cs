@@ -48,7 +48,7 @@ public class CustomAudioPlayer : MonoBehaviour
             trackNumber = 0;
         }
         backgroundAudioSource.clip = backgroundMusic.audioClips[trackNumber];
-        backgroundAudioSource.Play();
+        backgroundAudioSource.PlayDelayed(1f);
         Invoke("NextTrack", backgroundAudioSource.clip.length);
     }
 

@@ -33,7 +33,7 @@ public class UpgradeUiController : MonoBehaviour
         int k = _levelShop.Count;
         foreach(var level in _levelShop)
         {            
-            var s = level.LoadLevel(_levelShopKey + k);
+            var s = PlayerPrefs.GetInt("HMShopsLevel" + level.gameObject.name);
             while (s != 0 && k == 1)
             {                
                 s--;
@@ -44,14 +44,13 @@ public class UpgradeUiController : MonoBehaviour
                 SurpriseButtonPressed();
                 s--;
             }
-            level.SaveLevel(_levelShopKey + k);
+            //level.SaveLevel(_levelShopKey + k);
             k--;
         }
     }
 
     private void CasualUpgrade()
     {
-        
         _playerProfile.percentUpgrade += _levelShop[0].CasualUpgrade(_playerProfile);
         _levelShop[0].UpdateLevelText();
         Debug.Log(_playerProfile.percentUpgrade);
@@ -59,13 +58,14 @@ public class UpgradeUiController : MonoBehaviour
 
     private void SurpriseButtonPressed()
     {
-       
-        if(_playerProfile.TryRemoveScore(_playerProfile.Coins[_levelShop[1].CurrentLevel-1].ID, 100) && _levelShop[1].CurrentLevel < 5)
+        CoinType type = _playerProfile.Coins[_levelShop[1].CurrentLevel - 1].ID;
+
+        if (_playerProfile.TryRemoveScore(type, 100) && _levelShop[1].CurrentLevel < 5)
         {
             AdditionalCoins additionalCoins = new AdditionalCoins();
             _levelShop[1].Surprise(additionalCoins, _minerActiveSlotEventsUiController);
             
-            _playerProfile.AddScore(_playerProfile.Coins[_levelShop[1].CurrentLevel-1].ID, -100);
+            _playerProfile.AddScore(type, -100);
             _levelShop[1].UpdateLevelText();
         }        
     }

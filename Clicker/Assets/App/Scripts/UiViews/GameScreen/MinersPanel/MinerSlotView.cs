@@ -13,10 +13,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
     {
         public event Action<MinerSlotView> OnMinerClicked;
 
+        [SerializeField] private GameObject _plusIcon;
         [SerializeField] private GameObject _minerContent;
         [SerializeField] private GameObject _lockMask;
         [SerializeField] private MiningCoinsView _miningCoinsView;
-
+        
         public Image videocard;
         public DialogUiController dialogUiController;
 
@@ -70,6 +71,14 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         {
             _minerButton.onClick.AddListener(MinerClicked);
             _lockButton.onClick.AddListener(MinerClicked);
+            if (!IsOpen)
+            {
+                _plusIcon.SetActive(false);
+            }
+            else
+            {
+                _plusIcon.SetActive(true);
+            }
         }
 
         private void OnDisable()
@@ -96,6 +105,14 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
                 return true;
             }
             return false;
+        }
+
+        public void SetVisible()
+        {
+            if (IsOpen)
+            {
+                _plusIcon.SetActive(true);
+            }
         }
     }
 }

@@ -17,12 +17,14 @@ public class LevelShopUpgrades : MonoBehaviour
         CurrentLevel++;
     }
 
+    private void OnDisable()
+    {
+        SaveLevel(gameObject.name);
+    }
     public float CasualUpgrade(PlayerProfile playerProfile)
     {
         if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, 100) && CurrentLevel < 5)
         {
-            
-
             switch (CurrentLevel)
             {
                 case 0:
@@ -98,13 +100,7 @@ public class LevelShopUpgrades : MonoBehaviour
     {
         
         switch (CurrentLevel)
-        {
-            case 0:
-                {
-                    LevelUp();
-                    break;
-                } 
-                
+        {     
             case 1:
                 {                    
                     additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 5);
@@ -163,12 +159,12 @@ public class LevelShopUpgrades : MonoBehaviour
         }
     }
 
-    public IEnumerator SaveLevel(string key)
+    public void SaveLevel(string key)
     {
-        yield return new WaitForSeconds(10f);
+        Debug.Log("**");
+        //yield return new WaitForSeconds(10f);
         PlayerPrefs.SetInt(_shopLevelKey + key, CurrentLevel);
         PlayerPrefs.Save();
-        StartCoroutine(SaveLevel(key));
     }
 
     public int LoadLevel(string key)

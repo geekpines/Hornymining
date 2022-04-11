@@ -29,7 +29,7 @@ public class ShopScreenUiController : MonoBehaviour
         _StockUpgradeButton.onClick.AddListener(OpenTrade);
         SetActiveUnits(false);
         StartCoroutine(LockCoinInfo());
-        var k = _shopUpgrades.LoadLevel(_shopKey);
+        var k = PlayerPrefs.GetInt("HMShopsLevel" + _shopUpgrades.name);
 
         while (k != 0)
         {
@@ -37,7 +37,7 @@ public class ShopScreenUiController : MonoBehaviour
             OpenTrade();
         }
 
-        _shopUpgrades.SaveLevel(_shopKey);
+        //_shopUpgrades.SaveLevel(_shopKey);
     }
 
     private void SetActiveUnits(bool state)
