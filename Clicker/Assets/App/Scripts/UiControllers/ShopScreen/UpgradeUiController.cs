@@ -34,14 +34,15 @@ public class UpgradeUiController : MonoBehaviour
         foreach(var level in _levelShop)
         {            
             var s = PlayerPrefs.GetInt("HMShopsLevel" + level.gameObject.name);
-            while (s != 0 && k == 1)
+            Debug.Log(s);
+            while (s >1 && k == 1)
             {                
                 s--;
-                CasualUpgrade();
+                LoadCasualUpgrade();
             }
-            while(s != 0 && k == 2)
+            while(s > 1 && k == 2)
             {
-                SurpriseButtonPressed();
+                LoadSurprise();
                 s--;
             }
             //level.SaveLevel(_levelShopKey + k);
@@ -53,7 +54,12 @@ public class UpgradeUiController : MonoBehaviour
     {
         _playerProfile.percentUpgrade += _levelShop[0].CasualUpgrade(_playerProfile);
         _levelShop[0].UpdateLevelText();
-        Debug.Log(_playerProfile.percentUpgrade);
+    }
+
+    private void LoadCasualUpgrade()
+    {
+        _playerProfile.percentUpgrade += _levelShop[0].LoadCasualUpgrade(_playerProfile);
+        _levelShop[0].UpdateLevelText();
     }
 
     private void SurpriseButtonPressed()
@@ -68,6 +74,13 @@ public class UpgradeUiController : MonoBehaviour
             _playerProfile.AddScore(type, -100);
             _levelShop[1].UpdateLevelText();
         }        
+    }
+
+    private void LoadSurprise()
+    {
+        AdditionalCoins additionalCoins = new AdditionalCoins();
+        _levelShop[1].Surprise(additionalCoins, _minerActiveSlotEventsUiController);
+        _levelShop[1].UpdateLevelText();
     }
 
 

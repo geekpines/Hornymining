@@ -185,7 +185,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private void MinersViewController()
         {
 
-            if (_shopLevel.CurrentLevel < 5 && _playerProfile.TryRemoveScore(_playerProfile.Coins[_shopLevel.CurrentLevel-1].ID, 100))
+            if (_shopLevel.CurrentLevel < 5 && _playerProfile.TryRemoveScore(_playerProfile.Coins[_shopLevel.CurrentLevel-1].ID, 10))
             {
                 MinersSlotView[_shopLevel.CurrentLevel].IsOpen = _shopLevel.OpenMinerSlot(_playerProfile);
                 MinersSlotView[_shopLevel.CurrentLevel].SetVisible();
@@ -197,7 +197,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private IEnumerator LoadMinersViews(int level)
         {
             yield return new WaitForSeconds(0.5f);
-            for (int i = 1; i < level; i++)
+            for (int i = 1; i < level && level != 1; i++)
             {
                 _shopLevel.LevelUp();
                 _shopLevel.UpdateLevelText();

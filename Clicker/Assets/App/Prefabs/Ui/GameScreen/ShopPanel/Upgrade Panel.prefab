@@ -499,8 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradeButton: {fileID: 448489252536721114}
   _surpriseButton: {fileID: 1148953231721047200}
-  levelShop:
-  - {fileID: 4020202294782344050}
+  _levelShop: []
   _minerActiveSlotEventsUiController: {fileID: 0}
 --- !u!1 &4351897974544500590
 GameObject:
@@ -1293,7 +1292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4c04de233e4f74ead4347415bfbcfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CurrentLevel>k__BackingField: 0
+  <CurrentLevel>k__BackingField: 1
   _levelText: {fileID: 9217713959754180501}
 --- !u!114 &4648978836071698700
 MonoBehaviour:
@@ -2202,7 +2201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2229,8 +2228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
