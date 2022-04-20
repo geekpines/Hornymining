@@ -58,6 +58,7 @@ public class TutorialController : MonoBehaviour
         _closeButton.onClick.AddListener(TutorialTextActiveController);
         _playerProfile.OnActiveMinersCountChanged += TutorialTextActiveController;
 
+        _playerProfile.OnAllMinersCountChanged += DeleteTutorialMiners;
 
         foreach (var _shopButton in _shopButtons)
         {
@@ -139,12 +140,12 @@ public class TutorialController : MonoBehaviour
                 _rouletteScreen.SetActive(true);
                 _playerProfile.OnAllMinersCountChanged += TutorialTextActiveController;
                 break;
-            case 5:
+            case 5:                
+                ClearPlayerSingleton();
                 Background.color = new Color32(255, 255, 255, 255);
                 _rouletteScreen.SetActive(false);
-                gameObject.SetActive(true);
+                gameObject.SetActive(true);                
                 EndingTutorial();
-
                 break;
           
             default:
@@ -152,6 +153,19 @@ public class TutorialController : MonoBehaviour
         }
 
         
+    }
+
+    private void ClearPlayerSingleton()
+    {
+        foreach (var coins in _playerProfile.Coins)
+        {
+            _playerProfile.AddScore(coins.ID, -coins.Value);
+        }
+    }
+
+    private void DeleteTutorialMiners(Miner miner)
+    {
+        _playerProfile.RemoveMiner(miner);
     }
 
     private void ClearAllListeners()
