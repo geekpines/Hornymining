@@ -8,8 +8,8 @@ using Zenject;
 
 public class ShopScreenUiController : MonoBehaviour
 {
+    [SerializeField] private UpgradeEvents _openTradeEvent;
     [SerializeField] private List<GameObject> _sellBuyUnits;
-    [SerializeField] private Button _StockUpgradeButton;
     [SerializeField] private TextMeshProUGUI _levelText;
 
     private PlayerProfile _playerProfile;
@@ -26,20 +26,25 @@ public class ShopScreenUiController : MonoBehaviour
 
     private void Awake()
     {
-        _StockUpgradeButton.onClick.AddListener(OpenTrade);
+        _openTradeEvent.OnOpenStockSlot += OpenTrade;
         SetActiveUnits(false);
         StartCoroutine(LockCoinInfo());
         var k = PlayerPrefs.GetInt("HMShopsLevel" + _shopUpgrades.name);
-        Debug.Log(k);
-        while (k > 1)
+        
+        while (k - 1 > 1)
         {
             k--;
             LoadOpenTrade();
         }
-
-        //_shopUpgrades.SaveLevel(_shopKey);
+        
     }
 
+    private void OnDestroy()
+    {
+        _openTradeEvent.OnOpenStockSlot -= OpenTrade;
+    }
+
+    
     private void SetActiveUnits(bool state)
     {
         foreach (var unit in _sellBuyUnits)
@@ -48,21 +53,17 @@ public class ShopScreenUiController : MonoBehaviour
         }
     }
 
-    private void OpenTrade()
+    private void OpenTrade(bool flag, int level)
     {
-        if (_shopUpgrades.CurrentLevel < 6 && _playerProfile.TryRemoveScore(_playerProfile.Coins[_shopUpgrades.CurrentLevel - 1].ID, 10))
-        {
-            _shopUpgrades.OpenSlot(_playerProfile, _sellBuyUnits[_shopUpgrades.CurrentLevel-1]);
-            _sellBuyUnits[_shopUpgrades.CurrentLevel-1].GetComponent<CoinsTradeSystemView>().SetUnlock();
-            _shopUpgrades.UpdateLevelText();
+        _sellBuyUnits[level - 1].gameObject.SetActive(flag);
+        _sellBuyUnits[level - 1].GetComponent<CoinsTradeSystemView>().SetUnlock();
+        _shopUpgrades.UpdateLevelText();
 
-            foreach (var unit in _sellBuyUnits)
-            {
-                CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
-                 coinTradeSystem.percent = _shopUpgrades.GetSale();
-            }
+        foreach (var unit in _sellBuyUnits)
+        {
+            CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
+            coinTradeSystem.percent = _shopUpgrades.GetSale();
         }
-        
     }
 
     private void LoadOpenTrade()

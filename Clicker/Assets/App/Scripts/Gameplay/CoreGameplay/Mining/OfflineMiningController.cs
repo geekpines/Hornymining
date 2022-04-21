@@ -7,11 +7,11 @@ using Zenject;
 
 public class OfflineMiningController : MonoBehaviour
 {
-    
+    [Header ("Ёлементы Upgrade")]
+    [SerializeField] private LevelShopUpgrades _level;
     [SerializeField] private Button _levelUpOfflineMiner;
     
     private PlayerProfile _playerProfile;
-    [SerializeField] private LevelShopUpgrades _level;
     private OfflineMining _offlineMining = new OfflineMining();
 
     [Inject]

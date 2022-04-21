@@ -8,13 +8,15 @@ public class TutorialStart : MonoBehaviour
 {
     [SerializeField] private Button _yesStartTutorial;
     [SerializeField] private Button _noStartTutorial;
+    [SerializeField] private GameObject _startTutorial;
 
     private void Start()
     {
         if (PlayerPrefs.GetInt("HMTutorial") == 1)
         {
-            gameObject.SetActive(false);
+            _startTutorial.SetActive(false);
         }
+        else _startTutorial.SetActive(true);
     }
 
 
@@ -22,11 +24,6 @@ public class TutorialStart : MonoBehaviour
     {
         _yesStartTutorial.onClick.AddListener(LoadTutorial);
         _noStartTutorial.onClick.AddListener(CloseTutorialWindow);
-
-        if (PlayerPrefs.GetInt("HMTutorial") == 1)
-        {
-            gameObject.SetActive(false);
-        }
     }
 
     private void OnDisable()

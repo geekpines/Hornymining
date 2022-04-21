@@ -1,6 +1,7 @@
 using App.Scripts.Gameplay.CoreGameplay.Coins;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.MinersPanel;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,10 +10,18 @@ using Zenject;
 
 public class UpgradeUiController : MonoBehaviour
 {
+    [Title ("Events")]
+    [SerializeField] private UpgradeEvents _upgradeEvents;
+
+    [Title ("Кнопки")]
     [SerializeField] private Button _upgradeButton;
+    [SerializeField] private Button _openSlotButton;
     [SerializeField] private Button _surpriseButton;
+    [SerializeField] private Button _openStockButton;
+
+    [Title ("Список Улучшений")]
     [SerializeField] private List<LevelShopUpgrades> _levelShop;
-    [SerializeField] private MinerActiveSlotsEventsUiController _minerActiveSlotEventsUiController;
+    //[SerializeField] private MinerActiveSlotsEventsUiController _minerActiveSlotEventsUiController;
 
     private string _levelShopKey = "levelShop";
 
@@ -25,63 +34,63 @@ public class UpgradeUiController : MonoBehaviour
         _playerProfile = playerProfile;
     }
 
-    private void Awake()
+    private void OnEnable()
     {
-        _upgradeButton.onClick.AddListener(CasualUpgrade);
-        _surpriseButton.onClick.AddListener(SurpriseButtonPressed);
-
-        int k = _levelShop.Count;
-        foreach(var level in _levelShop)
-        {            
-            var s = PlayerPrefs.GetInt("HMShopsLevel" + level.gameObject.name);
-            Debug.Log(s);
-            while (s >1 && k == 1)
-            {                
-                s--;
-                LoadCasualUpgrade();
-            }
-            while(s > 1 && k == 2)
-            {
-                LoadSurprise();
-                s--;
-            }
-            //level.SaveLevel(_levelShopKey + k);
-            k--;
-        }
+        SetListeners();
     }
 
-    private void CasualUpgrade()
+    private void OnDisable()
     {
-        _playerProfile.percentUpgrade += _levelShop[0].CasualUpgrade(_playerProfile);
-        _levelShop[0].UpdateLevelText();
+        RemoveListeners();
     }
 
-    private void LoadCasualUpgrade()
+    private void OnDestroy()
     {
-        _playerProfile.percentUpgrade += _levelShop[0].LoadCasualUpgrade(_playerProfile);
-        _levelShop[0].UpdateLevelText();
+        RemoveListeners();
     }
 
-    private void SurpriseButtonPressed()
+    private void SetListeners()
     {
-        CoinType type = _playerProfile.Coins[_levelShop[1].CurrentLevel - 1].ID;
-
-        if (_playerProfile.TryRemoveScore(type, 100) && _levelShop[1].CurrentLevel < 5)
-        {
-            AdditionalCoins additionalCoins = new AdditionalCoins();
-            _levelShop[1].Surprise(additionalCoins, _minerActiveSlotEventsUiController);
-            
-            _playerProfile.AddScore(type, -100);
-            _levelShop[1].UpdateLevelText();
-        }        
+        _upgradeButton.onClick.AddListener(UpgradeClicked);
+        _openSlotButton.onClick.AddListener(OpenSlotClicked);
+        _surpriseButton.onClick.AddListener(SurpriseClicked);
+        _openStockButton.onClick.AddListener(OpenStockClicked);
     }
 
-    private void LoadSurprise()
+    private void RemoveListeners()
     {
+        _upgradeButton?.onClick.RemoveListener(UpgradeClicked);
+        _openSlotButton.onClick.RemoveListener(OpenSlotClicked);
+        _surpriseButton.onClick.RemoveListener(SurpriseClicked);
+        _openStockButton.onClick.RemoveListener(OpenStockClicked);
+        
+    }
+
+    private void UpgradeClicked()
+    {
+        LevelShopUpgrades casualUpgrade = _levelShop[0];
+        
+        _playerProfile.percentUpgrade += casualUpgrade.CasualUpgrade(_playerProfile);
+    }
+
+    private void OpenSlotClicked()
+    {
+        LevelShopUpgrades openMinerSlot = _levelShop[1];
+
+        _upgradeEvents.MinerSlotOppened(openMinerSlot.OpenMinerSlot(_playerProfile));
+    }
+
+    private void SurpriseClicked()
+    {
+        LevelShopUpgrades surpriseUpgrade = _levelShop[2];
         AdditionalCoins additionalCoins = new AdditionalCoins();
-        _levelShop[1].Surprise(additionalCoins, _minerActiveSlotEventsUiController);
-        _levelShop[1].UpdateLevelText();
+        
+        _upgradeEvents.SurpriseUpgrade(surpriseUpgrade.Surprise(additionalCoins));
     }
 
-
+    private void OpenStockClicked()
+    {
+        LevelShopUpgrades openStock = _levelShop[3];
+         _upgradeEvents.StockOpened(openStock.OpenStock(_playerProfile) != 0, openStock.CurrentLevel - 1);
+    }
 }

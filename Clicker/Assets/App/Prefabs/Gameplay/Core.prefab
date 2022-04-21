@@ -30,8 +30,39 @@ Transform:
   - {fileID: 3439082070264920374}
   - {fileID: 1141274058968806749}
   - {fileID: 8805738621397633931}
+  - {fileID: 1281970248011902621}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2889555081251595298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1281970248011902621}
+  m_Layer: 0
+  m_Name: Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1281970248011902621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2889555081251595298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2341585185595185776}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5396480719864842960
 GameObject:
@@ -88,7 +119,6 @@ GameObject:
   - component: {fileID: 8805738621397633931}
   - component: {fileID: 8190414442596080024}
   - component: {fileID: 8023935468042259549}
-  - component: {fileID: 7374424853595616160}
   m_Layer: 0
   m_Name: Mining
   m_TagString: Untagged
@@ -136,19 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minerActiveSlotsUiController: {fileID: 0}
---- !u!114 &7374424853595616160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020496335918799871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de6fb43bb59e20e42935dd0b5310df4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _levelUpOfflineMiner: {fileID: 0}
 --- !u!1 &8913483926185525401
 GameObject:
   m_ObjectHideFlags: 0

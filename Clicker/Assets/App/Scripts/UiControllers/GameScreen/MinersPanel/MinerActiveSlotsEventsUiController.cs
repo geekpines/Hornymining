@@ -18,13 +18,18 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
     /// </summary>
     public class MinerActiveSlotsEventsUiController : MonoBehaviour
     {
+        [Header("EventSys")]
+        [SerializeField] private UpgradeEvents _upgradeEvent;
+
+        [Header ("Miner Scroll things")]
         [SerializeField] private MinerActiveSlotsUiController _activeSlots;
         [SerializeField] private MinersSelectPanelUiController _selectPanel;
         private PlayerProfile _playerProfile;
         private MinerSlotView _selectedActiveView;
-        [SerializeField] Button stock;
 
+        [Header ("Dialogue sys")]
         [SerializeField] DialogContainer dataContainer;
+        [Header ("MinerSounds")]
         [SerializeField] AudioSource audioSource;
 
         private int _countsActiveClick = 0;
@@ -43,7 +48,12 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         {
             _activeSlots.OnMinerSelected += ActiveClick;
             _selectPanel.OnMinerClicked += MiniViewClick;
-            
+            _upgradeEvent.OnSurpriseUpgraded += AddAdditionalCoinsToTheList;
+        }
+
+        private void AddAdditionalCoinsToTheList(List<AdditionalCoins> coinsToAdd)
+        {
+            _additionalCoins.AddRange(coinsToAdd);
         }
 
         private void OnDisable()

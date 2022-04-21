@@ -17,12 +17,6 @@ public class UpgradeShopButtonsController : MonoBehaviour
         button.onClick.AddListener(SetDescription);        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void SetDescription()
     {
          text.text = descriptionLine.StringReference.GetLocalizedString();

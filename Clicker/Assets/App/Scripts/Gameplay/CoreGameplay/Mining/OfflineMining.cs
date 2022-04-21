@@ -15,7 +15,6 @@ public class OfflineMining : MonoBehaviour
     void Start()
     {
         LoadData();
-        StartCoroutine(SaveData());
     }
 
     
@@ -53,5 +52,15 @@ public class OfflineMining : MonoBehaviour
             k--;
             
         }
+    }
+
+    private void OnDestroy()
+    {
+        SaveData();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveData();
     }
 }

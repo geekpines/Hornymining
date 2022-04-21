@@ -5,6 +5,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class LevelShopUpgrades : MonoBehaviour
 {
@@ -17,8 +19,14 @@ public class LevelShopUpgrades : MonoBehaviour
         CurrentLevel++;
     }
 
+    private void OnEnable()
+    {
+        gameObject.GetComponent<Button>().onClick.AddListener(UpdateLevelText);
+    }
+
     private void OnDisable()
     {
+        gameObject.GetComponent<Button>().onClick.RemoveListener(UpdateLevelText);
         SaveLevel(gameObject.name);
     }
     public float CasualUpgrade(PlayerProfile playerProfile)
@@ -79,12 +87,15 @@ public class LevelShopUpgrades : MonoBehaviour
         return 0;
     }
 
-    public float OpenSlot(PlayerProfile playerProfile, GameObject _object)
-    {            
-            _object.SetActive(true);
-            playerProfile.AddScore(playerProfile.Coins[CurrentLevel-1].ID, -10);
+    public float OpenStock(PlayerProfile playerProfile)
+    {
+        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, -10))
+        {
+            playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -10);
             LevelUp();
             return GetSale();
+        }
+        else return 0;
     }
 
     public float LoadOpenSlot(GameObject _object)
@@ -122,77 +133,78 @@ public class LevelShopUpgrades : MonoBehaviour
         if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 10))
         {
             playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -10);
+            LevelUp();
             return true;
         }
         else return false;
     }
 
-    public void Surprise(AdditionalCoins additionalCoins, MinerActiveSlotsEventsUiController _minerActiveSlotsEventsUiController)
+    public List<AdditionalCoins> Surprise(AdditionalCoins additionalCoins)
     {
-        
+        List<AdditionalCoins> coins = new List<AdditionalCoins>();
         switch (CurrentLevel)
         {     
             case 1:
                 {                    
                     additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 5);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     LevelUp();
                     break;
                 }
             case 2:
                 {
                     additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 7);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.3f);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     LevelUp();
                     break;
                 }
             case 3:
                 {
                     additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 7);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.7f);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.Ether, 0.3f);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     LevelUp();
                     break;
                 }
             case 4:
                 {
                     additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 50);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.LTC, 3);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.Ether, 1);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.BTC, 0.05f);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     LevelUp();
                     break;
                 }
             case 5:
                 {
                     additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 100);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.LTC, 15);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.Ether, 5);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     additionalCoins.SetAdditionalCoin(CoinType.BTC, 0.5f);
-                    _minerActiveSlotsEventsUiController.AddAdditionalCoin(additionalCoins);
+                    coins.Add(additionalCoins);
                     break;
                 }
 
             default:
                 break;
         }
+        return coins;
     }
 
     public void SaveLevel(string key)
     {
-        Debug.Log("**");
         //yield return new WaitForSeconds(10f);
         PlayerPrefs.SetInt(_shopLevelKey + key, CurrentLevel);
         PlayerPrefs.Save();
@@ -205,6 +217,15 @@ public class LevelShopUpgrades : MonoBehaviour
 
     public void UpdateLevelText()
     {
-        _levelText.text = "Level: " + CurrentLevel;
+        if(CurrentLevel < 5)
+        {
+            _levelText.text = "Level: " + CurrentLevel;
+        }
+        else
+        {
+            _levelText.text = "Level: MAX";
+        }
+        
     }
+
 }

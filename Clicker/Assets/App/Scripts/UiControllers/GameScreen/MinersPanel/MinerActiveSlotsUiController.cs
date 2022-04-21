@@ -21,7 +21,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
     public class MinerActiveSlotsUiController : MonoBehaviour
     {
         [SerializeField] private ScrollerExtension extension;
-        [SerializeField] private Button OpenSlotButton;
         [SerializeField] private Button RefreshMinerUI;
 
         [SerializeField] private LevelShopUpgrades _shopLevel;
@@ -34,6 +33,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         public List<MinerSlotView> MinersSlotView { get; private set; } = new List<MinerSlotView>();
         private Dictionary<int, MinerSlotView> IdToView = new Dictionary<int, MinerSlotView>();
 
+        [SerializeField] private UpgradeEvents _upgradeEvents;
 
         [Inject]
         private void Construct(PlayerProfile playerProfile)
@@ -50,10 +50,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             
             //todo: добавить в систему инициализации
             StartCoroutine( InitializationActiveMiners());
-            OpenSlotButton.onClick.AddListener(MinersViewController);
+            _upgradeEvents.OnMinerOpenSlot += MinersViewController; //Функция для открытия слотов майнера, тоже переделать
             RefreshMinerUI.onClick.AddListener(UpdateVisual);
-            int k = PlayerPrefs.GetInt("HMShopsLevel" + _shopLevel.gameObject.name) ;            
-            StartCoroutine(LoadMinersViews(k));
+            int k = PlayerPrefs.GetInt("HMShopsLevel" + _shopLevel.gameObject.name) ;
+            StartCoroutine(LoadMinersViews(k-1));
             
         }
 
@@ -94,16 +94,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         {
             MinersSlotView[0].IsOpen = true;
             MinersSlotView[0].SetVisible();
-            /*
-            if (MinersSlotView.Count > 0)
-            {
-                var allActiveMiners = _playerProfile.GetActiveMiners();
-                for (int i = 0; i < allActiveMiners.Count; i++)
-                {
-                    AddMinerToSlot(MinersSlotView[i], allActiveMiners[i]);
-                }
-            }
-            */
         }
 
         private void MinerClicked(MinerSlotView sender)
@@ -182,16 +172,15 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             }
         }
 
-        private void MinersViewController()
+        private void MinersViewController(bool flag)
         {
-
-            if (_shopLevel.CurrentLevel < 5 && _playerProfile.TryRemoveScore(_playerProfile.Coins[_shopLevel.CurrentLevel-1].ID, 10))
+            if (flag)
             {
-                MinersSlotView[_shopLevel.CurrentLevel].IsOpen = _shopLevel.OpenMinerSlot(_playerProfile);
-                MinersSlotView[_shopLevel.CurrentLevel].SetVisible();
-                _shopLevel.LevelUp();
+                MinersSlotView[_shopLevel.CurrentLevel-1].IsOpen = flag;
+                MinersSlotView[_shopLevel.CurrentLevel-1].SetVisible();
                 _shopLevel.UpdateLevelText();
             }
+                
         }
 
         private IEnumerator LoadMinersViews(int level)
