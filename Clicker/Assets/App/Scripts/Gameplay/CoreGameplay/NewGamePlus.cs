@@ -53,7 +53,6 @@ public class NewGamePlus : MonoBehaviour
         float i = (float)Math.Sqrt( _playerProfile.Coins[5].Value * 0.001f) * 0.1f;
         _playerProfile.ResetPlayer();
         _playerProfile.percentUpgrade += i;
-        //GameObject[] shopUpgrades = GameObject.FindGameObjectsWithTag("ShopUpgrade");
         SceneManager.LoadScene("Loading");
     }
 
@@ -66,8 +65,7 @@ public class NewGamePlus : MonoBehaviour
         Debug.Log(minerCounts);
         foreach (var miner in _playerProfile.GetAllMiners())
         {
-            
-            SaveMiner(miner.Name.ToString(), miner.Level);
+            SaveMiner(miner.Name.ToString(), 0);
         }
     }
     private void SaveMiner(string MinerName, int MinerLevel)

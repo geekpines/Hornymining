@@ -32,7 +32,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         [SerializeField] private Button _minerButton;
         [SerializeField] private Button _lockButton;
 
-        [SerializeField] private LocalizeStringEvent minerName;
+        [SerializeField] public LocalizeStringEvent minerName { get; private set; }
 
         /// <summary>
         /// Блокировать/Разблокировать майнера

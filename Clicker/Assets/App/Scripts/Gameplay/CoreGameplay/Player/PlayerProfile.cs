@@ -217,6 +217,18 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             }
         }
 
+        public Miner FindMiner(int id)
+        {
+
+            foreach(Miner miner in GetAllMiners())
+            {
+                if (miner.ID == id)
+                {
+                    return miner;
+                }
+            }
+            return null;
+        }
       
     }
 }

@@ -353,5 +353,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 _hearts[hearts].SetActive(true);
             }
         }
+
+        private void RemoveListener()
+        {
+            
+        }
     }
 }

@@ -179,8 +179,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 MinersSlotView[_shopLevel.CurrentLevel-1].IsOpen = flag;
                 MinersSlotView[_shopLevel.CurrentLevel-1].SetVisible();
                 _shopLevel.UpdateLevelText();
-            }
-                
+            }  
         }
 
         private IEnumerator LoadMinersViews(int level)
@@ -202,7 +201,13 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             var allActiveMiners = _playerProfile.GetActiveMiners();
             for (int i = 0; i < allActiveMiners.Count; i++)
             {
-                CheckForVisualUpdate(MinersSlotView[i], allActiveMiners[i]);
+                for (int j = 0; j < allActiveMiners.Count; j++)
+                {
+                    if(MinersSlotView[j].minerName.StringReference == allActiveMiners[i].Name)
+                    {
+                        CheckForVisualUpdate(MinersSlotView[j], allActiveMiners[i]);
+                    }
+                }
             }
         }
 
@@ -211,6 +216,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             if (viewSlot != null &&
                !viewSlot.IsEmpty)
             {
+                Debug.Log(miner.Name.GetLocalizedString() +" Lvl: " + miner.Level);
+                Debug.Log(viewSlot.name);
+                Debug.Log("_________________________");
                 viewSlot.SetLevelVisual(miner.Level);
             }
         }
