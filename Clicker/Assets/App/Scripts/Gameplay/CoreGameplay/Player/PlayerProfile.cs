@@ -57,8 +57,6 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             _allMiners.Add(miner);
             OnAllMinersCountChanged?.Invoke(miner);
-            Debug.Log("Added");
-
         }
 
         /// <summary>

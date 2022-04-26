@@ -124,7 +124,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 viewSlot.SetLock(false);
 
                 viewSlot.SetLevelVisual(miner.Level);
-                Debug.Log(miner.Name);
                 viewSlot.SetName(miner.Name);
             }
 

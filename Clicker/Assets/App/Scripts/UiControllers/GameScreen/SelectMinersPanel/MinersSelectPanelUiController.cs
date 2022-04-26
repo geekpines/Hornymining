@@ -164,9 +164,9 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             OnMinerDoubleClicked?.Invoke(sender);
         }
 
-        public void SetHearts(int id, SteamEvents steamEvents)
+        public void SetHearts(int id)
         {
-            IdtoViews[id].SetHeartLevel(steamEvents);
+            IdtoViews[id].SetHeartLevel();
         }
 
         public int GetHearts(int id)

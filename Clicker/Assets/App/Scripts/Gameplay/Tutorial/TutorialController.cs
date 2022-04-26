@@ -47,7 +47,7 @@ public class TutorialController : MonoBehaviour
 
     private void Awake()
     {
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
     }
 
     void Start()

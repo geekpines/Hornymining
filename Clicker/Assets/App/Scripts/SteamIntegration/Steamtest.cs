@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SteamTest : MonoBehaviour
+public class Steamtest : MonoBehaviour
 {
-    [SerializeField] private SteamEvents _achievementEvents;
-
+    // Start is called before the first frame update
     void Start()
     {
         if (!SteamManager.Initialized)
@@ -14,45 +13,13 @@ public class SteamTest : MonoBehaviour
             return;
         }
         string name = SteamFriends.GetPersonaName();
-        _achievementEvents.OnAllFifthStar += SetAchievement;
-        _achievementEvents.OnBackInPast += SetAchievement;
-        _achievementEvents.OnFifthStar += SetAchievement;
-        _achievementEvents.OnAllFifthStar += SetAchievement;
-        _achievementEvents.OnFilledAllActiveSlot += SetAchievement;
-        _achievementEvents.OnFirstLove += SetAchievement;
-        _achievementEvents.OnGotAllBTC += SetAchievement;
-        _achievementEvents.OnGotAllEther += SetAchievement;
-        _achievementEvents.OnGotAllHearted += SetAchievement;
-        _achievementEvents.OnGotAllTokken += SetAchievement;
-        _achievementEvents.OnGotAllUSDC += SetAchievement;
-        _achievementEvents.OnGotAllLTC += SetAchievement;
+        Debug.Log(name);
+        //SteamUserStats.SetAchievement("SPEEN_WHEEL"); https://partner.steamgames.com/doc/features/achievements/ach_guide 
     }
 
-
-    private void SetAchievement(string nameAchivement)
+    // Update is called once per frame
+    void Update()
     {
-        bool a;
-        SteamUserStats.GetAchievement(nameAchivement, out a);
         
-        if (a)
-        {
-            SteamUserStats.SetAchievement(nameAchivement); // https://partner.steamgames.com/doc/features/achievements/ach_guide 
-        }
-    }
-
-    private void OnDestroy()
-    {
-        _achievementEvents.OnAllFifthStar -= SetAchievement;
-        _achievementEvents.OnBackInPast -= SetAchievement;
-        _achievementEvents.OnFifthStar -= SetAchievement;
-        _achievementEvents.OnAllFifthStar -= SetAchievement;
-        _achievementEvents.OnFilledAllActiveSlot += SetAchievement;
-        _achievementEvents.OnFirstLove -= SetAchievement;
-        _achievementEvents.OnGotAllBTC -= SetAchievement;
-        _achievementEvents.OnGotAllEther -= SetAchievement;
-        _achievementEvents.OnGotAllHearted -= SetAchievement;
-        _achievementEvents.OnGotAllTokken -= SetAchievement;
-        _achievementEvents.OnGotAllUSDC -= SetAchievement;
-        _achievementEvents.OnGotAllLTC -= SetAchievement;
     }
 }

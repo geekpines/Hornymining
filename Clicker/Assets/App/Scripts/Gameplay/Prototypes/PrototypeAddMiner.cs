@@ -32,7 +32,7 @@ namespace App.Scripts.Gameplay.Prototypes
 
         private IEnumerator MinerAdder()
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1);
             foreach (var minerConfiguration in AddMiners)
             {
                 _playerProfile.AddMiner(_minerCreatorSystem.CreateMiner(minerConfiguration));

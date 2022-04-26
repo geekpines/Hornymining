@@ -1,4 +1,6 @@
-﻿using System;
+﻿using App.Scripts.Gameplay.CoreGameplay.Mining;
+using App.Scripts.Gameplay.CoreGameplay.Player;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.UI;
+using Zenject;
 
 namespace App.Scripts.UiViews.GameScreen.MinersListPanel
 {
@@ -24,7 +27,6 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         [SerializeField] private TextMeshProUGUI _levelText;
         [SerializeField] private Image _avatar;
         [SerializeField] private Image _coinImg;
-        [SerializeField] private Image _miniMinerDecal;
 
         [SerializeField] private List<GameObject> _stars = new List<GameObject>();
         [SerializeField] private List<GameObject> _hearts = new List<GameObject>();
@@ -50,8 +52,8 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             SetLevel(level);
             SetStars(level);
             SetHearts();
-
-            SetDecalColor(coinIcon.name);
+            
+            
         }
 
         public void SetName(LocalizedString name)
@@ -84,12 +86,8 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             }
         }
 
-        public void SetHeartLevel(SteamEvents steamEvents)
+        public void SetHeartLevel()
         {
-            if (_currentHearts >= 5)
-            {
-                steamEvents.FirstLove();
-            }
             _currentHearts++;
             SetHearts();
         }
@@ -179,30 +177,6 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             return _currentStars;
         }
 
-        public void SetDecalColor(string name)
-        {
-            switch (name)
-            {
-                case "BTC":
-                    _miniMinerDecal.color = new Color32(255, 155, 2, 255);
-                    break;
-                case "ETHER":
-                    _miniMinerDecal.color = new Color32 (98,126,234, 153);
-                    break;
-                case "LTC":
-                    _miniMinerDecal.color = new Color32(33, 58, 116, 153);
-                    break;
-                case "Tokken":
-                    _miniMinerDecal.color = new Color32(0, 200, 1, 153);
-                    break;
-                case "UsdFork":
-                    _miniMinerDecal.color = new Color32(27, 163, 122, 153);
-                    break;
-
-                default:
-                    break;
-            }
-        }
   
     }
 }

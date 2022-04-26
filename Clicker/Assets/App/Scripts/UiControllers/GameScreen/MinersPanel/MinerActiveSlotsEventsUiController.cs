@@ -20,7 +20,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
     {
         [Header("EventSys")]
         [SerializeField] private UpgradeEvents _upgradeEvent;
-        [SerializeField] private SteamEvents _steamEvent;
 
         [Header ("Miner Scroll things")]
         [SerializeField] private MinerActiveSlotsUiController _activeSlots;
@@ -153,9 +152,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             }
         }
 
-        private void SetHearts(Miner activeMiner)
+        private void SetHearts(MinerSlotView view, Miner activeMiner)
         {
-            _selectPanel.SetHearts(activeMiner.ID, _steamEvent);
+            _selectPanel.SetHearts(activeMiner.ID);
         }
 
         private void OpenDialog(MinerSlotView view)
@@ -185,7 +184,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     {
                         if (activeMiner.ID == view.Id)
                         {
-                            SetHearts(activeMiner);
+                            SetHearts(view, activeMiner);
                             PopOffDialog(view, 0, activeMiner);
                         }
                     }
