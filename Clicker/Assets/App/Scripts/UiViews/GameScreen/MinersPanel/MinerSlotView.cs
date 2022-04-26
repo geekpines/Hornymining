@@ -95,6 +95,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
 
         public void SetName(LocalizedString minerName)
         {
+            Debug.Log(this.minerName.name + "Miner Name: " + minerName);
             this.minerName.StringReference = minerName;
         }
 

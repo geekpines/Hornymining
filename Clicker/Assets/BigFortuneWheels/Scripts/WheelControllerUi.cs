@@ -15,8 +15,10 @@ namespace MkeyFW // mkey fortune wheel
         private PlayerProfile _playerProfile;
         private int spinCounts = 0;
         private string spinKey = "HMSpins";
-        [SerializeField] Button ResetGame;
-
+        [SerializeField] 
+        private Button _ResetGame;
+        [SerializeField] 
+        private SteamEvents _steamEvents;
 
         [Header("Main references")]
         [Space(16, order = 0)]
@@ -231,16 +233,16 @@ namespace MkeyFW // mkey fortune wheel
             {
                 if (_playerProfile.TryRemoveScore(_playerProfile.Coins[5].ID, ShowSpinCost(spinCounts)))
                 {
-                    
+                    //_steamEvents.FirstWheeled();// Выдача ачивки за первое кручение колеса   
                     rollGirl.RollEnable();
                     _playerProfile.AddScore(_playerProfile.Coins[5].ID, -ShowSpinCost(spinCounts));
                     StartSpin(null);
                     spinCounts++;
                 }
             }
-            if (spinCounts == 5)
+            if (spinCounts >= 5)
             {
-                ResetGame.gameObject.SetActive(true);
+                _ResetGame.gameObject.SetActive(true);
             }
             PlayerPrefs.SetInt(spinKey, spinCounts);
             PlayerPrefs.Save();
