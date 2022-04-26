@@ -31,7 +31,7 @@ public class OfflineMining : MonoBehaviour
     {
         end = DateTime.Now;
         string time = PlayerPrefs.GetString("HMTime");
-        if (time != null)
+        if (time != null && time != "")
         {
             start = DateTime.ParseExact(time, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture) ;
             result = start - end;
