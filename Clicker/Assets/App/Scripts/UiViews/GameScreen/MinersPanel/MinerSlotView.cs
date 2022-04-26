@@ -32,8 +32,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
         [SerializeField] private Button _minerButton;
         [SerializeField] private Button _lockButton;
 
-        [SerializeField] public LocalizeStringEvent minerName { get; private set; }
-
+        [SerializeField] private LocalizeStringEvent minerName;
         /// <summary>
         /// Блокировать/Разблокировать майнера
         /// </summary>
@@ -114,6 +113,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
             {
                 _plusIcon.SetActive(true);
             }
+        }
+
+        public LocalizedString GetMinerName()
+        {
+            return minerName.StringReference;
         }
     }
 }

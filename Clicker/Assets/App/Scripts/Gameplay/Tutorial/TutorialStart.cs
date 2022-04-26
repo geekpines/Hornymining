@@ -12,7 +12,7 @@ public class TutorialStart : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("HMTutorial") == 1)
+        if (PlayerPrefs.GetInt("HBTutorial") == 1)
         {
             _startTutorial.SetActive(false);
         }
@@ -22,6 +22,12 @@ public class TutorialStart : MonoBehaviour
 
     private void OnEnable()
     {
+        if (PlayerPrefs.GetInt("HBTutorial") == 1)
+        {
+            _startTutorial.SetActive(false);
+        }
+        else _startTutorial.SetActive(true);
+
         _yesStartTutorial.onClick.AddListener(LoadTutorial);
         _noStartTutorial.onClick.AddListener(CloseTutorialWindow);
     }
@@ -40,6 +46,7 @@ public class TutorialStart : MonoBehaviour
     private void CloseTutorialWindow()
     {
         gameObject.SetActive(false);
+        PlayerPrefs.SetInt("HBTutorial", 1);
     }
 
 }

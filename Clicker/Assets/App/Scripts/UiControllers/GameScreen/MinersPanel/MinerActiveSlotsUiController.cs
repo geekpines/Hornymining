@@ -204,7 +204,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 for (int j = 0; j < allActiveMiners.Count; j++)
                 {
-                    if(MinersSlotView[j].minerName.StringReference == allActiveMiners[i].Name)
+                    if(MinersSlotView[j].GetMinerName() == allActiveMiners[i].Name)
                     {
                         CheckForVisualUpdate(MinersSlotView[j], allActiveMiners[i]);
                     }

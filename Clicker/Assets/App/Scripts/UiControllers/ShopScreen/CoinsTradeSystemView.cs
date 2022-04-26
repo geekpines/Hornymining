@@ -67,7 +67,7 @@ public class CoinsTradeSystemView : MonoBehaviour
             {
                 if (_player.Coins[i].Value - _player.Coins[i].TradeValue * percent >= 0)
                 {
-                    Debug.Log(-_player.Coins[i].TradeValue * percent);
+                    
                     _player.AddScore(_player.Coins[i].ID, -_player.Coins[i].TradeValue * percent);
                     _player.AddScore(CoinType.HornyBucks, 1);
                 }

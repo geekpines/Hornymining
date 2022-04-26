@@ -1,6 +1,7 @@
 using App.Scripts.Gameplay.CoreGameplay.Mining;
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private GameObject _gameScreen;
     [SerializeField] private GameObject _rouletteScreen;
     [SerializeField] private List<GameObject> _shopScreen;
+    [SerializeField] private GameObject _tutorialGirlHolder;
 
     [Title("Система Диалогов")]
     [SerializeField] private DialogContainer _dialogContainer;
@@ -37,6 +39,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private Button _closeButton;
     [SerializeField] private List<Button> _shopButtons;
     [SerializeField] private Button _offZoneButton;
+    [SerializeField] private Button _minerButton;
 
 
     [Inject]
@@ -56,7 +59,8 @@ public class TutorialController : MonoBehaviour
         _enButton.onClick.AddListener(EnLanguageSet);
 
         _closeButton.onClick.AddListener(TutorialTextActiveController);
-        _playerProfile.OnActiveMinersCountChanged += TutorialTextActiveController;
+
+        _minerButton.onClick.AddListener(DelayedNextStep);
 
         _playerProfile.OnAllMinersCountChanged += DeleteTutorialMiners;
 
@@ -99,7 +103,7 @@ public class TutorialController : MonoBehaviour
 
     private void TutorialTextActiveController()
     {
-        gameObject.SetActive(_isOpenFlag);
+        _tutorialGirlHolder.SetActive(_isOpenFlag);
         _isOpenFlag = !_isOpenFlag;
         if (_isOpenFlag)
         {
@@ -109,7 +113,7 @@ public class TutorialController : MonoBehaviour
 
     private void TutorialTextActiveController(Miner miner)
     {
-        gameObject.SetActive(_isOpenFlag);
+        _tutorialGirlHolder.SetActive(_isOpenFlag);
         _isOpenFlag = !_isOpenFlag;
         if (_isOpenFlag)
         {
@@ -187,6 +191,7 @@ public class TutorialController : MonoBehaviour
         PlayerPrefs.DeleteAll();
         ClearAllListeners();
         PlayerPrefs.SetInt("HBTutorial", 1);
+        Debug.Log("ClearedAndUpdated");
         PlayerPrefs.SetInt(_key, _languageIndex);
         PlayerPrefs.Save();
         SceneManager.LoadScene(1);
@@ -195,5 +200,16 @@ public class TutorialController : MonoBehaviour
     public void NextStep()
     {
         TutorialTextActiveController();
+    }
+
+    private void DelayedNextStep()
+    {
+        StartCoroutine(DelayMiner());
+    }
+
+    private IEnumerator DelayMiner()
+    {
+        yield return new WaitForSeconds(1);
+        NextStep();
     }
 }
