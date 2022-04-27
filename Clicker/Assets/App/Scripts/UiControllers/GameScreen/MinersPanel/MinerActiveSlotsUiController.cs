@@ -175,11 +175,21 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void MinersViewController(bool flag)
         {
-            if (flag)
+            if (flag && _shopLevel.CurrentLevel - 1 < MinersSlotView.Count)
             {
-                MinersSlotView[_shopLevel.CurrentLevel-1].IsOpen = flag;
-                MinersSlotView[_shopLevel.CurrentLevel-1].SetVisible();
-                _shopLevel.UpdateLevelText();
+                try
+                {
+                    MinersSlotView[_shopLevel.CurrentLevel - 1].IsOpen = flag;
+                    MinersSlotView[_shopLevel.CurrentLevel - 1].SetVisible();
+                    _shopLevel.UpdateLevelText();
+
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+
+                    throw;
+                }
+                
             }  
         }
 

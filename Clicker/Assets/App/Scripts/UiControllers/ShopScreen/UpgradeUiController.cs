@@ -91,6 +91,9 @@ public class UpgradeUiController : MonoBehaviour
     private void OpenStockClicked()
     {
         LevelShopUpgrades openStock = _levelShop[3];
-         _upgradeEvents.StockOpened(openStock.OpenStock(_playerProfile) != 0, openStock.CurrentLevel - 1);
+        if (true)
+        {
+            _upgradeEvents.StockOpened(openStock.OpenStock(_playerProfile) != 0, openStock.CurrentLevel - 1);
+        }
     }
 }

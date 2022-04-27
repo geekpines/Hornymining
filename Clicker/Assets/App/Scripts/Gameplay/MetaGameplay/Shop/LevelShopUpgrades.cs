@@ -89,7 +89,8 @@ public class LevelShopUpgrades : MonoBehaviour
 
     public float OpenStock(PlayerProfile playerProfile)
     {
-        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, -10))
+        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, -10)
+            && playerProfile.Coins.Count > CurrentLevel) 
         {
             playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -10);
             LevelUp();
@@ -130,13 +131,22 @@ public class LevelShopUpgrades : MonoBehaviour
 
     public bool OpenMinerSlot(PlayerProfile playerProfile)
     {
-        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 10))
+        try
         {
-            playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -10);
-            LevelUp();
-            return true;
+            if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 10))
+            {
+                playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -10);
+                LevelUp();
+                return true;
+            }
+            else return false;
         }
-        else return false;
+        catch (ArgumentOutOfRangeException)
+        {
+            return false;
+            throw;
+        }
+        
     }
 
     public List<AdditionalCoins> Surprise(AdditionalCoins additionalCoins)
@@ -217,7 +227,7 @@ public class LevelShopUpgrades : MonoBehaviour
 
     public void UpdateLevelText()
     {
-        if(CurrentLevel < 5)
+        if(CurrentLevel <= 5)
         {
             _levelText.text = "Level: " + CurrentLevel;
         }

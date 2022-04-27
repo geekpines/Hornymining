@@ -55,10 +55,12 @@ public class ShopScreenUiController : MonoBehaviour
 
     private void OpenTrade(bool flag, int level)
     {
-        _sellBuyUnits[level - 1].gameObject.SetActive(flag);
-        _sellBuyUnits[level - 1].GetComponent<CoinsTradeSystemView>().SetUnlock();
-        _shopUpgrades.UpdateLevelText();
-
+        if (_sellBuyUnits.Count > level-1)
+        {
+            _sellBuyUnits[level - 1].gameObject.SetActive(flag);
+            _sellBuyUnits[level - 1].GetComponent<CoinsTradeSystemView>().SetUnlock();
+            _shopUpgrades.UpdateLevelText();
+        }
         foreach (var unit in _sellBuyUnits)
         {
             CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
