@@ -14,6 +14,7 @@ public class Steamtest : MonoBehaviour
         }
         string name = SteamFriends.GetPersonaName();
         Debug.Log(name);
+        //SteamUserStats.SetAchievement("SPEEN_WHEEL"); https://partner.steamgames.com/doc/features/achievements/ach_guide 
     }
 
     // Update is called once per frame

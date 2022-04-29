@@ -38,7 +38,7 @@ public class Saver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[PlayerPrefs.GetInt("HMLanguage")];
         //load
         StartCoroutine(LoadMiner());
         LoadCoin();

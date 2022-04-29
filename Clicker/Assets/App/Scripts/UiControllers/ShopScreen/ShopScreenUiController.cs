@@ -30,11 +30,11 @@ public class ShopScreenUiController : MonoBehaviour
         SetActiveUnits(false);
         StartCoroutine(LockCoinInfo());
         var k = PlayerPrefs.GetInt("HMShopsLevel" + _shopUpgrades.name);
-
-        while (k != 0)
+        Debug.Log(k);
+        while (k > 1)
         {
             k--;
-            OpenTrade();
+            LoadOpenTrade();
         }
 
         //_shopUpgrades.SaveLevel(_shopKey);
@@ -63,6 +63,19 @@ public class ShopScreenUiController : MonoBehaviour
             }
         }
         
+    }
+
+    private void LoadOpenTrade()
+    {
+        _shopUpgrades.LoadOpenSlot(_sellBuyUnits[_shopUpgrades.CurrentLevel - 1]);
+        _sellBuyUnits[_shopUpgrades.CurrentLevel - 1].GetComponent<CoinsTradeSystemView>().SetUnlock();
+        _shopUpgrades.UpdateLevelText();
+
+        foreach (var unit in _sellBuyUnits)
+        {
+            CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
+            coinTradeSystem.percent = _shopUpgrades.GetSale();
+        }
     }
 
     private IEnumerator LockCoinInfo()

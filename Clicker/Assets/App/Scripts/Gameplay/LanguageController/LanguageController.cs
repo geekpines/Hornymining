@@ -5,7 +5,7 @@ using UnityEngine.Localization.Settings;
 public class LanguageController : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown dropdown;
-    [SerializeField] private string key = "HMLanguage";
+    private string key = "HMLanguage";
     void Start()
     {
         dropdown.onValueChanged.AddListener(delegate { ChangeLanguage(); });
@@ -13,11 +13,8 @@ public class LanguageController : MonoBehaviour
 
     private void ChangeLanguage()
     {
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[dropdown.value]; 
-    }
-
-    private void OnApplicationQuit()
-    {
-        
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[dropdown.value];
+        PlayerPrefs.SetInt(key, dropdown.value);
+        PlayerPrefs.Save();
     }
 }
