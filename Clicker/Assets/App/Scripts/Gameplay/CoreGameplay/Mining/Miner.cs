@@ -53,15 +53,24 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
         public int Grade { get; private set; }
 
         /// <summary>
+        /// Уровень привязанности девушки
+        /// </summary>
+        [SerializeField]
+        public int Hearts { get; private set; }
+
+        /// <summary>
         /// Событие повышения уровня
         /// </summary>
         public event Action<int> OnLevelUp;
+
+        public event Action OnHeartsUp;
 
         public Miner(MinerConfiguration configuration, int grade)
         {
             Configuration = configuration;
             Grade = grade;
             Level = 0;
+            Hearts = 0;
             ID = UniqueID.Generate();
         }
 
@@ -72,6 +81,15 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining
             {
                 Level++;
                 OnLevelUp?.Invoke(Level);
+            }
+        }
+
+        public void HeartsUp()
+        {
+            if(Hearts < 5)
+            {
+                Hearts++;
+                OnHeartsUp?.Invoke();
             }
         }
     }

@@ -3823,13 +3823,14 @@ GameObject:
   - component: {fileID: 594141451}
   - component: {fileID: 594141452}
   - component: {fileID: 594141453}
+  - component: {fileID: 594141454}
   m_Layer: 0
   m_Name: SteamManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &594141451
 Transform:
   m_ObjectHideFlags: 0
@@ -3869,6 +3870,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _achievementEvents: {fileID: 2811581424331097983}
+--- !u!114 &594141454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594141450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3296c170c0c24a498a397e743298495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SteamEvents: {fileID: 2811581424331097983}
+  _minerLevelUp: {fileID: 921735763}
+  _ngStart: {fileID: 1064899502}
 --- !u!4 &641695635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4650248414114539063, guid: 6d91992285df44140baa313b86387b9f, type: 3}
@@ -5603,6 +5619,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &921735763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4150704973322899567, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
+  m_PrefabInstance: {fileID: 1960925697786300666}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &974575788
 GameObject:
   m_ObjectHideFlags: 0
@@ -5813,7 +5840,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042075597}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b05967d473a4c65a00a446ef1a3f1b7, type: 3}
   m_Name: 
@@ -5834,7 +5861,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042075597}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb97205b54348c9a62a793c020ac565, type: 3}
   m_Name: 
@@ -12880,6 +12907,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1.360498
       objectReference: {fileID: 0}
+    - target: {fileID: 1960925698081208970, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
+      propertyPath: SteamEvents
+      value: 
+      objectReference: {fileID: 2811581424331097983}
     - target: {fileID: 1960925698081208983, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -12990,7 +13021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12999,7 +13030,7 @@ PrefabInstance:
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1459089970}
+      objectReference: {fileID: 1960925697786300672}
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -13014,7 +13045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RenewLevelText
+      value: UpdateLevelText
       objectReference: {fileID: 0}
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -13022,19 +13053,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ShopScreenUiController, Assembly-CSharp
+      value: LevelShopUpgrades, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1960925697786300672}
+      objectReference: {fileID: 0}
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2134729790469050925, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: LevelShopUpgrades, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2135311220593802090, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -14383,7 +14414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14392,7 +14423,7 @@ PrefabInstance:
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1459089970}
+      objectReference: {fileID: 1960925697786300670}
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -14407,7 +14438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RenewLevelText
+      value: UpdateLevelText
       objectReference: {fileID: 0}
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -14415,19 +14446,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ShopScreenUiController, Assembly-CSharp
+      value: LevelShopUpgrades, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1960925697786300670}
+      objectReference: {fileID: 0}
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6026250050416888211, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: LevelShopUpgrades, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6047363397507109660, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_fontSize
@@ -14475,7 +14506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14484,7 +14515,7 @@ PrefabInstance:
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1459089970}
+      objectReference: {fileID: 1960925697786300669}
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -14499,7 +14530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RenewLevelText
+      value: UpdateLevelText
       objectReference: {fileID: 0}
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -14507,19 +14538,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ShopScreenUiController, Assembly-CSharp
+      value: LevelShopUpgrades, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1960925697786300669}
+      objectReference: {fileID: 0}
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6263897141855375855, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: LevelShopUpgrades, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6400931410883905796, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_IsActive
@@ -14547,7 +14578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14556,7 +14587,7 @@ PrefabInstance:
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1459089970}
+      objectReference: {fileID: 3645185171574572722}
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -14571,7 +14602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RenewLevelText
+      value: UpdateLevelText
       objectReference: {fileID: 0}
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -14579,19 +14610,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ShopScreenUiController, Assembly-CSharp
+      value: LevelShopUpgrades, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 3645185171574572722}
+      objectReference: {fileID: 0}
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6453184521431415058, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: LevelShopUpgrades, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6497932826647598187, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_Name
@@ -15195,7 +15226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -15204,7 +15235,7 @@ PrefabInstance:
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1459089970}
+      objectReference: {fileID: 1960925697786300675}
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -15219,7 +15250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RenewLevelText
+      value: UpdateLevelText
       objectReference: {fileID: 0}
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -15227,19 +15258,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ShopScreenUiController, Assembly-CSharp
+      value: LevelShopUpgrades, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1960925697786300675}
+      objectReference: {fileID: 0}
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7529900262090449865, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: LevelShopUpgrades, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7585959026350146528, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
       propertyPath: m_IsActive
@@ -16137,17 +16168,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4117054520678163248, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
   m_PrefabInstance: {fileID: 1960925697786300666}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1960925697786300686 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1119669819844437484, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
-  m_PrefabInstance: {fileID: 1960925697786300666}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960925697786300673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2075616575677632229 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 574360474981844511, guid: 9a7cbf487f48df140992e7568bc98fdf, type: 3}
@@ -16299,7 +16319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _level: {fileID: 1960925697786300675}
-  _levelUpOfflineMiner: {fileID: 1960925697786300686}
+  _levelUpOfflineMiner: {fileID: 8307188498033109811}
 --- !u!114 &2811581424331097982
 MonoBehaviour:
   m_ObjectHideFlags: 0

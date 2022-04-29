@@ -34,12 +34,6 @@ public class Saver : MonoBehaviour
         _minerCreatorSystem = minerCreatorSystem;
     }
 
-
-    private void Awake()
-    {
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[PlayerPrefs.GetInt("HMLanguage")];
-    }
-
     // Start is called before the first frame update
     void Start()
     {

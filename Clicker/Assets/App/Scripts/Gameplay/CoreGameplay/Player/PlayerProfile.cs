@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 namespace App.Scripts.Gameplay.CoreGameplay.Player
 {
@@ -31,6 +32,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
 
         private void Awake()
         {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[PlayerPrefs.GetInt("HMLanguage")];
+
             //todo: добавить сохранение
             Coins.Clear();
             var temp = new List<CoinData>();

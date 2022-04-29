@@ -67,6 +67,17 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             SetStars(level);
         }
 
+        public void SetLevel(int level, SteamEvents steamEvents)
+        {
+            _currentLevel = level;
+            _levelText.text = $"{_level.GetLocalizedString()} {_currentLevel}";
+            SetStars(level);
+            if (level >= 5)
+            {
+                steamEvents.FirstLove();
+            }
+        }
+
         public void SetIcon(Sprite newIcon, Sprite coinIcon)
         {
             _avatar.sprite = newIcon;
@@ -82,6 +93,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             {
                 _stars[i].SetActive(true);
             }
+
         }
 
         public void SetHeartLevel(SteamEvents steamEvents)

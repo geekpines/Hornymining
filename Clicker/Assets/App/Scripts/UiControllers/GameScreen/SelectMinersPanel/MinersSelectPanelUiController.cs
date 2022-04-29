@@ -12,6 +12,8 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
     /// </summary>
     public class MinersSelectPanelUiController : MonoBehaviour
     {
+        [SerializeField] private SteamEvents SteamEvents;
+
         public event Action<int> OnMinerClicked;
         public event Action<MiniMinerElementView> OnMinerDoubleClicked;
         [SerializeField] private MiniMinerElementsPool _miniMinersPool;
@@ -64,7 +66,7 @@ namespace App.Scripts.UiControllers.GameScreen.SelectMinersPanel
             
             if (IdtoViews.ContainsKey(id))
             {
-                IdtoViews[id].SetLevel(level);
+                IdtoViews[id].SetLevel(level, SteamEvents);
             }
         }
 

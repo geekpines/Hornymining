@@ -186,6 +186,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                         if (activeMiner.ID == view.Id)
                         {
                             SetHearts(activeMiner);
+                            activeMiner.HeartsUp();
                             PopOffDialog(view, 0, activeMiner);
                         }
                     }

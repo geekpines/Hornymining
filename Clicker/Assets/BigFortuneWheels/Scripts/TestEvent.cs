@@ -15,6 +15,7 @@ namespace MkeyFW
         [SerializeField] private GameObject rollButton;
         [SerializeField] private GameObject costDilogue;
 
+        [SerializeField] private SteamEvents SteamEvents;
         private PlayerProfile _playerProfile;
         private MinerCreatorSystem _minerCreatorSystem;
        
@@ -51,6 +52,13 @@ namespace MkeyFW
                     {
                         _minerConfs.Add(miner);                        
                     }
+                    else
+                    {
+                        if(AddMiners.Count == 0)
+                        {
+                            GotAllCertainMiners(miner);
+                        }
+                    }
                 }
                 if (_minerConfs != null && _minerConfs.Count != 0)
                 {
@@ -62,6 +70,10 @@ namespace MkeyFW
                 {
                     Debug.LogError("Out Of Miners");
 
+                }
+                if(AddMiners.Count == 0)
+                {                     
+                    SteamEvents.GotAll();
                 }
                 rollButton.SetActive(true);
             }
@@ -84,6 +96,13 @@ namespace MkeyFW
             
 
             Debug.Log("Result event");
+        }
+
+        private void GotAllCertainMiners(MinerConfiguration miner)
+        {
+            string resource = miner.Levels[0].MiningResources[0].Type.ToString();
+            SteamEvents.GotAllCertain(resource);
+            
         }
     }
 }

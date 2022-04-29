@@ -24,7 +24,7 @@ public class SteamTest : MonoBehaviour
         _achievementEvents.OnGotAllEther += SetAchievement;
         _achievementEvents.OnGotAllHearted += SetAchievement;
         _achievementEvents.OnGotAllTokken += SetAchievement;
-        _achievementEvents.OnGotAllUSDC += SetAchievement;
+        _achievementEvents.OnGotAllUsdFork += SetAchievement;
         _achievementEvents.OnGotAllLTC += SetAchievement;
     }
 
@@ -52,7 +52,7 @@ public class SteamTest : MonoBehaviour
         _achievementEvents.OnGotAllEther -= SetAchievement;
         _achievementEvents.OnGotAllHearted -= SetAchievement;
         _achievementEvents.OnGotAllTokken -= SetAchievement;
-        _achievementEvents.OnGotAllUSDC -= SetAchievement;
+        _achievementEvents.OnGotAllUsdFork -= SetAchievement;
         _achievementEvents.OnGotAllLTC -= SetAchievement;
     }
 }
