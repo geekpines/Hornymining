@@ -32,8 +32,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
 
         private void Awake()
         {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[PlayerPrefs.GetInt("HMLanguage")];
-
+            
             //todo: добавить сохранение
             Coins.Clear();
             var temp = new List<CoinData>();
@@ -51,6 +50,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
                 }
             }
         }
+
 
         /// <summary>
         /// Добавить майнера игроку

@@ -33,6 +33,7 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
         {
 
             _iDtoCoinView.Clear();
+            
             if (_player.Coins.Count <= _coinsPanelInformation.CoinInfoViews.Count)
             {
                 for (int i = 0; i < _coinsPanelInformation.CoinInfoViews.Count; i++)
@@ -43,17 +44,12 @@ namespace App.Scripts.UiControllers.GameScreen.ScorePanel
                         _coinsPanelInformation.CoinInfoViews[i].SetCoinInformation(
                             coinInfo.Icon, _player.Coins[i].Value, coinInfo.Description);
                         _iDtoCoinView.Add(_player.Coins[i].ID, _coinsPanelInformation.CoinInfoViews[i]);
-
-
-
                     }
                     else
                     {
                         _coinsPanelInformation.CoinInfoViews[i].gameObject.SetActive(false);
                     }
                 }
-
-
             }
             else
             {
