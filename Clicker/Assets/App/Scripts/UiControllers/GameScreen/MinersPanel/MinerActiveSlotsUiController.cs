@@ -124,7 +124,6 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 viewSlot.SetLock(false);
 
                 viewSlot.SetLevelVisual(miner.Level);
-                Debug.Log(miner.Name);
                 viewSlot.SetName(miner.Name);
             }
 
@@ -227,9 +226,9 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             if (viewSlot != null &&
                !viewSlot.IsEmpty)
             {
-                Debug.Log(miner.Name.GetLocalizedString() +" Lvl: " + miner.Level);
-                Debug.Log(viewSlot.name);
-                Debug.Log("_________________________");
+                //Debug.Log(miner.Name.GetLocalizedString() +" Lvl: " + miner.Level);
+                //Debug.Log(viewSlot.name);
+                //Debug.Log("_________________________");
                 viewSlot.SetLevelVisual(miner.Level);
             }
         }

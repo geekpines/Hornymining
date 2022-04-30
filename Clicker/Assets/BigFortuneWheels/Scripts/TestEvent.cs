@@ -104,5 +104,11 @@ namespace MkeyFW
             SteamEvents.GotAllCertain(resource);
             
         }
+
+        public void TutorialEvent()
+        {
+            Miner a =  _minerCreatorSystem.CreateMiner(AddMiners[0]);
+            _playerProfile.AddMiner(a);
+        }
     }
 }

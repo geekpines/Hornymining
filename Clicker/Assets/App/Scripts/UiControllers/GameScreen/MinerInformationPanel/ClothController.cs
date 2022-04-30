@@ -6,34 +6,37 @@ using UnityEngine.UI;
 
 public class ClothController : MonoBehaviour
 {
-    [SerializeField] private Button clothOn;
-    [SerializeField] private Button clothOff;
+    [SerializeField] private List<Button> clothButtons;
+    
 
-    public event Action OnClothOn;
-    public event Action OnClothOff;
+    public event Action<int> OnCloth;
 
     public void OnEnable()
     {
-        clothOff.onClick.AddListener(ClothOff);
-        clothOn.onClick.AddListener(ClothOn);
+        
+            clothButtons[0].onClick.AddListener(delegate { ClothOn(0); });
+            clothButtons[1].onClick.AddListener(delegate { ClothOn(1); });
+            clothButtons[2].onClick.AddListener(delegate { ClothOn(2); });
+            clothButtons[3].onClick.AddListener(delegate { ClothOn(3); });
+            clothButtons[4].onClick.AddListener(delegate { ClothOn(4); });
+            //clothButtons[5].onClick.AddListener(delegate { ClothOn(5); });
+        
+        
     }
 
     private void OnDisable()
     {
-        clothOff.onClick.RemoveListener(ClothOff);
-        clothOn.onClick.RemoveListener(ClothOn);
+        foreach (var button in clothButtons)
+        {
+            button.onClick.RemoveAllListeners();
+        }
     }
 
 
-    public void ClothOff()
-    {
-        OnClothOff?.Invoke();
-    }
 
-
-    public void ClothOn()
+    public void ClothOn(int i)
     {
-        OnClothOn?.Invoke();
-        
+        Debug.Log("**" + i);
+        OnCloth?.Invoke(i);
     }
 }

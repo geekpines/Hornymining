@@ -62,7 +62,7 @@ public class TutorialController : MonoBehaviour
 
         _minerButton.onClick.AddListener(DelayedNextStep);
 
-        _playerProfile.OnAllMinersCountChanged += DeleteTutorialMiners;
+        //_playerProfile.OnAllMinersCountChanged += DeleteTutorialMiners;
 
         foreach (var _shopButton in _shopButtons)
         {
@@ -191,7 +191,6 @@ public class TutorialController : MonoBehaviour
         PlayerPrefs.DeleteAll();
         ClearAllListeners();
         PlayerPrefs.SetInt("HBTutorial", 1);
-        Debug.Log("ClearedAndUpdated");
         PlayerPrefs.SetInt(_key, _languageIndex);
         PlayerPrefs.Save();
         SceneManager.LoadScene(1);
@@ -202,7 +201,7 @@ public class TutorialController : MonoBehaviour
         TutorialTextActiveController();
     }
 
-    private void DelayedNextStep()
+    public void DelayedNextStep()
     {
         StartCoroutine(DelayMiner());
     }

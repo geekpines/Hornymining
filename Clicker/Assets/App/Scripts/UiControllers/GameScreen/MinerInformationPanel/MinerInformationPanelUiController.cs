@@ -58,13 +58,18 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         [SerializeField] private AutoMiningSystem autoMining;
         [SerializeField] private MiningUiController miningUi;
         [SerializeField] private Saver _minerConfList;
-        
+
+        [Title("Конроллер одежды")]
+        [SerializeField]
+        private ClothController _clothController;
+
         private Miner _currentMiner;
         private bool _isShow;
         private bool _isOnceRemoved = true;
 
         private int _outsideMinerId;
 
+        private int _setClothLevel;
 
         private Dictionary<Miner, MinerVisualContext> MinerToVisual = new Dictionary<Miner, MinerVisualContext>();
 
@@ -135,6 +140,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 visualContext.ArmatureComponent.animationName = "still";
                 _currentMiner.OnLevelUp += visualContext.UnlockComponents.SetUnlockLevel;
                 MinerToVisual.Add(_currentMiner, visualContext);
+                _clothController.OnCloth += visualContext.UnlockComponents.SetUnlockLevel;
+                
                 SetNameAndDescriprion(_currentMiner.Name, _currentMiner.Description);
             }
             MinerToVisual[_currentMiner].UnlockComponents.SetUnlockLevel(_currentMiner.Level);
@@ -354,9 +361,5 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             }
         }
 
-        private void RemoveListener()
-        {
-            
-        }
     }
 }

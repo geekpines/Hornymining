@@ -18,6 +18,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining.MinerLevelUnlock
 
         public void SetUnlockLevel(int levelUnlockIndex)
         {
+            Debug.Log(levelUnlockIndex);
             if (Levels.Count <= levelUnlockIndex)
             {
                 Debug.LogError("Указан неверный уровень для разблокировки контента!");
@@ -46,6 +47,11 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining.MinerLevelUnlock
             {
                 SetVisibleLevel(levelUnlockLevel, true);
             }
+        }
+
+        public void ChangeClothSet(int clothLevel)
+        {
+            SetUnlockLevel(clothLevel);
         }
     }
 }
