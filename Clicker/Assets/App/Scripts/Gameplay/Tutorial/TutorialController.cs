@@ -143,10 +143,11 @@ public class TutorialController : MonoBehaviour
                 _shopScreen[1].SetActive(false);
                 _rouletteScreen.SetActive(true);
                 _playerProfile.OnAllMinersCountChanged += TutorialTextActiveController;
+                Background.color = new Color32(255, 255, 255, 255);
                 break;
             case 5:                
                 ClearPlayerSingleton();
-                Background.color = new Color32(255, 255, 255, 255);
+                
                 _rouletteScreen.SetActive(false);
                 gameObject.SetActive(true);                
                 EndingTutorial();

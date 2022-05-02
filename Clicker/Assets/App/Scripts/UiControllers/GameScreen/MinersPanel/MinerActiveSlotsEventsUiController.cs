@@ -213,7 +213,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         {
             if (UnityEngine.Random.Range(0, 100) <= additionalCoin.chance)
             {
-                _playerProfile.AddScore(additionalCoin.type, 1f);
+                _playerProfile.AddScore(additionalCoin.type, additionalCoin.amount);
             }
             
             

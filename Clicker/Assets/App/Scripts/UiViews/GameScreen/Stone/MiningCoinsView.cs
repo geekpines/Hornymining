@@ -20,6 +20,8 @@ namespace App.Scripts.UiViews.GameScreen.Stone
         [SerializeField, Range(0, 200)] private float _randomSpawnRangeY;
         private PoolObject<ScoreLineView> ScoreLines;
 
+        
+
         private void Awake()
         {
             ScoreLines = new PoolObject<ScoreLineView>(_lineViewPrefab, _poolSize, _spawnPosition.transform, true);

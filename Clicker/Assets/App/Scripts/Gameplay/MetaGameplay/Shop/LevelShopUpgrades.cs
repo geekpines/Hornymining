@@ -156,53 +156,53 @@ public class LevelShopUpgrades : MonoBehaviour
         {     
             case 1:
                 {                    
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 5);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 5, 0.005f);
                     coins.Add(additionalCoins);
                     LevelUp();
                     break;
                 }
             case 2:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 7);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 7, 0.07f);
                     coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.3f);
+                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.3f, 0.03f);
                     coins.Add(additionalCoins);
                     LevelUp();
                     break;
                 }
             case 3:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 7);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 15, 0.7f);
                     coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.7f);
+                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.7f, 0.07f);
                     coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.Ether, 0.3f);
+                    additionalCoins.SetAdditionalCoin(CoinType.Ether, 0.3f, 0.003f);
                     coins.Add(additionalCoins);
                     LevelUp();
                     break;
                 }
             case 4:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 50);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 50, 0.5f);
                     coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 3);
+                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 3, 0.3f);
                     coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.Ether, 1);
+                    additionalCoins.SetAdditionalCoin(CoinType.Ether, 1, 1);
                     coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.BTC, 0.05f);
+                    additionalCoins.SetAdditionalCoin(CoinType.BTC, 0.05f, 0.005f);
                     coins.Add(additionalCoins);
                     LevelUp();
                     break;
                 }
             case 5:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 100);
+                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 1, 150);
                     coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 15);
+                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 15, 1);
                     coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.Ether, 5);
+                    additionalCoins.SetAdditionalCoin(CoinType.Ether, 5, 0.05f);
                     coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.BTC, 0.5f);
+                    additionalCoins.SetAdditionalCoin(CoinType.BTC, 0.5f, 0.005f);
                     coins.Add(additionalCoins);
                     break;
                 }

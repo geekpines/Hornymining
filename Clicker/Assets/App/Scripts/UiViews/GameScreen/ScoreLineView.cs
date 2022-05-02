@@ -9,10 +9,11 @@ namespace App.Scripts.UiViews.GameScreen
     {
         public SVGImage Icon => _icon;
         public TMP_Text Score => _score;
+        //public GameObject Particle => _particle;
 
         [SerializeField] private SVGImage _icon;
         [SerializeField] private TMP_Text _score;
-
+        [SerializeField] private GameObject _particle;
         public void SetInformation(Sprite icon, float score)
         {
             _icon.sprite = icon;

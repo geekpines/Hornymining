@@ -160,7 +160,8 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             if (CoinTypeToData.ContainsKey(resourceId))
             {                
-                    CoinTypeToData[resourceId].Add(addScore);                              
+                    CoinTypeToData[resourceId].Add(addScore);
+                //Debug.Log(percentUpgrade * addScore + " :percentUpgrade;" + " CoinType: " + resourceId);
             }
         }
 
