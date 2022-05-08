@@ -19,7 +19,7 @@ public class ClothController : MonoBehaviour
             clothButtons[2].onClick.AddListener(delegate { ClothOn(2); });
             clothButtons[3].onClick.AddListener(delegate { ClothOn(3); });
             clothButtons[4].onClick.AddListener(delegate { ClothOn(4); });
-            //clothButtons[5].onClick.AddListener(delegate { ClothOn(5); });
+            clothButtons[5].onClick.AddListener(delegate { ClothOn(5); });
         
         
     }
@@ -36,7 +36,6 @@ public class ClothController : MonoBehaviour
 
     public void ClothOn(int i)
     {
-        Debug.Log("**" + i);
         OnCloth?.Invoke(i);
     }
 }

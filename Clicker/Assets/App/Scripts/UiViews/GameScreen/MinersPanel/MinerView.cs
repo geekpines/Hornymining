@@ -45,6 +45,11 @@ namespace App.Scripts.UiViews.GameScreen.MinersPanel
             MinerVisualContext mvc = ArmatureComponent.gameObject.GetComponent<MinerVisualContext>();
             mvc.UnlockComponents.SetUnlockLevel(level);
         }
+        public void SetClothLevel(int level)
+        {
+            MinerVisualContext mvc = ArmatureComponent.gameObject.GetComponent<MinerVisualContext>();
+            mvc.PartsUnlockComponents.ChangeClothSet(level);
+        }
 
     }
 }

@@ -40,6 +40,14 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining.MinerLevelUnlock
             }
         }
 
+        private void SetVisibleLevel(LevelUnlock unlockLevel)
+        {
+            foreach (var unlockLevelCloth in unlockLevel.Cloths)
+            {
+                unlockLevelCloth.SetActive(!unlockLevelCloth.activeSelf);
+            }
+        }
+
         private void ResetAllLevels()
         {
             foreach (var levelUnlockLevel in Levels)
@@ -51,6 +59,18 @@ namespace App.Scripts.Gameplay.CoreGameplay.Mining.MinerLevelUnlock
         public void ChangeClothSet(int clothLevel)
         {
             SetUnlockLevel(clothLevel);
+        }
+
+        public void PartsUnlockLevel(int levelUnlockIndex)
+        {
+            
+            if (Levels.Count <= levelUnlockIndex)
+            {
+                Debug.LogError("Указан неверный уровень для разблокировки контента!");
+                return;
+            }
+
+            SetVisibleLevel(Levels[levelUnlockIndex]);
         }
     }
 }

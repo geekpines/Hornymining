@@ -47,6 +47,7 @@ public class TutorialStart : MonoBehaviour
     {
         gameObject.SetActive(false);
         PlayerPrefs.SetInt("HBTutorial", 1);
+        PlayerPrefs.Save();
     }
 
 }

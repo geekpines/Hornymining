@@ -54,6 +54,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void AddAdditionalCoinsToTheList(List<AdditionalCoins> coinsToAdd)
         {
+            _additionalCoins.Clear();
             _additionalCoins.AddRange(coinsToAdd);
         }
 
@@ -106,19 +107,20 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 _selectedActiveView = null;
                 ResetLockActiveMinersOnSelectPanel();
-            }
-            //Открытие случайных диалогов для майнера
-            OpenDialog(view);
-            //увеличение количества сердечек
-            AddHeartCounts(view);
-            //Выпадение рандомной валюты при surprise button upgrade
-            if(_additionalCoins != null)
-            {
-                foreach (var additionalCoin in _additionalCoins)
+
+                //Открытие случайных диалогов для майнера
+                OpenDialog(view);
+                //увеличение количества сердечек
+                AddHeartCounts(view);
+                //Выпадение рандомной валюты при surprise button upgrade
+                if (_additionalCoins != null)
                 {
-                    AddSpecialScore(additionalCoin);
+                    foreach (var additionalCoin in _additionalCoins)
+                    {
+                        AddSpecialScore(additionalCoin);
+                    }
                 }
-            }            
+            }
         }
 
 
@@ -211,12 +213,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
 
         private void AddSpecialScore(AdditionalCoins additionalCoin)
         {
-            if (UnityEngine.Random.Range(0, 100) <= additionalCoin.chance)
-            {
-                _playerProfile.AddScore(additionalCoin.type, additionalCoin.amount);
-            }
             
-            
+            _playerProfile.AddScore(additionalCoin.type, additionalCoin.amount);            
         }
         public void AddAdditionalCoin(AdditionalCoins additionalCoin)
         {

@@ -202,7 +202,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         {
             _allMiners.Clear();
             _activeMiners.Clear();
-            percentUpgrade = 1;
+            //percentUpgrade = 1;
             int i = 0;
             foreach (var coin in Coins)
             {
@@ -212,7 +212,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
         }
         public void ResetPlayer()
         {
-            percentUpgrade = 1;
+            //percentUpgrade = 1;
             _activeMiners.Clear();
             _allMiners.Clear();
             for (int i = 0; i < Coins.Count; i++)

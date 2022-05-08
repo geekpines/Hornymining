@@ -42,17 +42,27 @@ public class NewGamePlus : MonoBehaviour
         PlayerPrefs.DeleteAll();
         SaveAllMiners();
         cycle += 1;
+
         PlayerPrefs.SetInt(newGameKey, cycle);
         PlayerPrefs.Save();
+
+        PlayerPrefs.SetInt("HBTutorial", 1);
+        PlayerPrefs.Save();
+
         GameObject[] TS = GameObject.FindGameObjectsWithTag("CoinTradeSys");
+        
         foreach(var tradeSystem in TS)
         {
             tradeSystem.GetComponent<CoinsTradeSystemView>().NG();
         }
+        
         minersSelectPanelUiController.Cleaner();
+        
         float i = (float)Math.Sqrt( _playerProfile.Coins[5].Value * 0.001f) * 0.1f;
         _playerProfile.ResetPlayer();
         _playerProfile.percentUpgrade += i;
+        
+        
         SceneManager.LoadScene("Loading");
     }
 

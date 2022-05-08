@@ -122,6 +122,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
         private bool TryInitializationMinerVisual(int idMiner, int hearts, int stars)
         {
             _currentMiner = _playerProfile.GetAllMiners().FirstOrDefault(targetMiner => targetMiner.ID == idMiner);
+            _clothController.gameObject.SetActive(_currentMiner.Level == 4);
+
             if (_currentMiner == null)
             {
                 Debug.LogError("Попытка отобразить майнера, ID которого нет у игрока");
@@ -134,14 +136,15 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 var visualContext = Instantiate(
                     _currentMiner.Configuration.Visual,
                     _minerRootPosition);
+                visualContext.gameObject.name = visualContext.gameObject.name.Replace("(Clone)", "");
                 visualContext.transform.localScale = new Vector3(12, 12, 12);
                 visualContext.transform.localPosition = new Vector3(0, -137, 0);
                 visualContext.UnlockComponents.SetUnlockLevel(_currentMiner.Level);
                 visualContext.ArmatureComponent.animationName = "still";
                 _currentMiner.OnLevelUp += visualContext.UnlockComponents.SetUnlockLevel;
                 MinerToVisual.Add(_currentMiner, visualContext);
-                _clothController.OnCloth += visualContext.UnlockComponents.SetUnlockLevel;
-                
+                _clothController.OnCloth += visualContext.PartsUnlockComponents.PartsUnlockLevel;
+                _currentMiner.OnLevelUp += OpenClothController;
                 SetNameAndDescriprion(_currentMiner.Name, _currentMiner.Description);
             }
             MinerToVisual[_currentMiner].UnlockComponents.SetUnlockLevel(_currentMiner.Level);
@@ -361,5 +364,10 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
             }
         }
 
+        private void OpenClothController(int level)
+        {
+            Debug.Log("level" + level);
+            
+        }
     }
 }

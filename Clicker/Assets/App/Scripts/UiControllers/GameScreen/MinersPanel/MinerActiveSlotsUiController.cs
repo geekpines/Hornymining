@@ -51,7 +51,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             //todo: добавить в систему инициализации
             StartCoroutine( InitializationActiveMiners());
             _upgradeEvents.OnMinerOpenSlot += MinersViewController; //Функция для открытия слотов майнера, тоже переделать
-            RefreshMinerUI.onClick.AddListener(UpdateVisual);
+            //RefreshMinerUI.onClick.AddListener(UpdateVisual);
             int k = PlayerPrefs.GetInt("HMShopsLevel" + _shopLevel.gameObject.name) ;
             StartCoroutine(LoadMinersViews(k-1));
             
