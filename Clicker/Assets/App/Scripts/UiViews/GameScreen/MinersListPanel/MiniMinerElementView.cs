@@ -23,6 +23,7 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
         [SerializeField] private LocalizedString _level;
         [SerializeField] private TextMeshProUGUI _levelText;
         [SerializeField] private Image _avatar;
+        [SerializeField] private Image _avatarBorder;
         [SerializeField] private Image _coinImg;
         [SerializeField] private Image _miniMinerDecal;
 
@@ -197,18 +198,23 @@ namespace App.Scripts.UiViews.GameScreen.MinersListPanel
             {
                 case "BTC":
                     _miniMinerDecal.color = new Color32(255, 155, 2, 255);
+                    _avatarBorder.color = new Color32(255, 155, 2, 255);
                     break;
                 case "ETHER":
                     _miniMinerDecal.color = new Color32 (98,126,234, 153);
+                    _avatarBorder.color = new Color32(71, 83, 156, 255);
                     break;
                 case "LTC":
                     _miniMinerDecal.color = new Color32(33, 58, 116, 153);
+                    _avatarBorder.color = new Color32(33, 58, 116, 153);
                     break;
                 case "Tokken":
                     _miniMinerDecal.color = new Color32(0, 200, 1, 153);
+                    _avatarBorder.color = new Color32(0, 200, 1, 153);
                     break;
                 case "UsdFork":
                     _miniMinerDecal.color = new Color32(27, 163, 122, 153);
+                    _avatarBorder.color = new Color32(27, 163, 122, 153);
                     break;
 
                 default:

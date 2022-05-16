@@ -29,7 +29,7 @@ public class TutorialController : MonoBehaviour
 
     [Title ("языкова€ система")]
     [SerializeField] private GameObject _buttonHolder;
-    [SerializeField] private Button _ruButton;
+    //[SerializeField] private Button _ruButton;
     [SerializeField] private Button _enButton;
     private string _key = "HMLanguage";
     private int _dialogueNumber = 0;
@@ -55,7 +55,7 @@ public class TutorialController : MonoBehaviour
 
     void Start()
     {
-        _ruButton.onClick.AddListener(RuLanguageSet);
+        //_ruButton.onClick.AddListener(RuLanguageSet);
         _enButton.onClick.AddListener(EnLanguageSet);
 
         _closeButton.onClick.AddListener(TutorialTextActiveController);
@@ -177,7 +177,7 @@ public class TutorialController : MonoBehaviour
     {
         _playerProfile.OnAllMinersCountChanged -= TutorialTextActiveController;
         _playerProfile.OnActiveMinersCountChanged -= TutorialTextActiveController;
-        _ruButton.onClick.RemoveAllListeners();
+        //_ruButton.onClick.RemoveAllListeners();
         _enButton.onClick.RemoveAllListeners();
         _offZoneButton.onClick.RemoveAllListeners();
 

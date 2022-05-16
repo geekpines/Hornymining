@@ -322,7 +322,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                             }
 
                             _playerProfile.AddMiner(minerS);
-                            yield return new WaitForSeconds(0.5f);
+                            yield return new WaitForSeconds(0.1f);
                             _minersSelectPanelUiController.DestroyMiner(miner.ID);
                             MinerSeller(miner);
                         }                        

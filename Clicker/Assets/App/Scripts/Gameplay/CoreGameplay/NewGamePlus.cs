@@ -60,8 +60,9 @@ public class NewGamePlus : MonoBehaviour
         
         float i = (float)Math.Sqrt( _playerProfile.Coins[5].Value * 0.001f) * 0.1f;
         _playerProfile.ResetPlayer();
-        _playerProfile.percentUpgrade += i;
-        
+        _playerProfile.percentUpgrade += i + PlayerPrefs.GetFloat("HMNGUpd");
+        PlayerPrefs.SetFloat("HMNGUpd",_playerProfile.percentUpgrade);
+        PlayerPrefs.Save();
         
         SceneManager.LoadScene("Loading");
     }

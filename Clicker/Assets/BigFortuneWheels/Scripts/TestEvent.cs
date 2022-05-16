@@ -10,12 +10,21 @@ namespace MkeyFW
     public class TestEvent : MonoBehaviour
     {
 
-        [SerializeField] private List<MinerConfiguration> AddMiners = new List<MinerConfiguration>();
-        [SerializeField] private RollGirlController rollGirl;
-        [SerializeField] private GameObject rollButton;
-        [SerializeField] private GameObject costDilogue;
-
-        [SerializeField] private SteamEvents SteamEvents;
+        [SerializeField]
+        private List<MinerConfiguration> AddMiners = new List<MinerConfiguration>();
+        [SerializeField]
+        private RollGirlController rollGirl;
+        [SerializeField]
+        private GameObject rollButton;
+        [SerializeField]
+        private GameObject costDilogue;
+        [SerializeField]
+        private GameObject _outOfMinerWindow;
+        [SerializeField]
+        private SteamEvents SteamEvents;
+        [SerializeField]
+        private GameObject EndgameWindow;
+        
         private PlayerProfile _playerProfile;
         private MinerCreatorSystem _minerCreatorSystem;
        
@@ -68,12 +77,14 @@ namespace MkeyFW
                 }
                 else
                 {
-                    Debug.LogError("Out Of Miners");
-
+                    //Debug.LogError("Out Of Miners");
+                    _outOfMinerWindow.SetActive(true);
+                    _playerProfile.AddScore(_playerProfile.Coins[6].ID, 10);
                 }
                 if(AddMiners.Count == 0)
                 {                     
                     SteamEvents.GotAll();
+                    EndgameWindow.SetActive(true);
                 }
                 rollButton.SetActive(true);
             }

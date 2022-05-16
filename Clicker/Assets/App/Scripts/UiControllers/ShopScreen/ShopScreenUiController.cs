@@ -34,6 +34,7 @@ public class ShopScreenUiController : MonoBehaviour
         while (k - 1 > 1)
         {
             k--;
+            Debug.Log(k);
             LoadOpenTrade();
         }
         
@@ -55,17 +56,24 @@ public class ShopScreenUiController : MonoBehaviour
 
     private void OpenTrade(bool flag, int level)
     {
-        if (_sellBuyUnits.Count > level-1)
+        try
         {
             _sellBuyUnits[level - 1].gameObject.SetActive(flag);
             _sellBuyUnits[level - 1].GetComponent<CoinsTradeSystemView>().SetUnlock();
             _shopUpgrades.UpdateLevelText();
+
+            foreach (var unit in _sellBuyUnits)
+            {
+                CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
+                coinTradeSystem.percent = _shopUpgrades.GetSale();
+            }
         }
-        foreach (var unit in _sellBuyUnits)
+        catch (System.ArgumentOutOfRangeException)
         {
-            CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
-            coinTradeSystem.percent = _shopUpgrades.GetSale();
+
+            throw;
         }
+        
     }
 
     private void LoadOpenTrade()

@@ -19,6 +19,10 @@ namespace MkeyFW // mkey fortune wheel
         private Button _ResetGame;
         [SerializeField] 
         private SteamEvents _steamEvents;
+        [SerializeField]
+        private GameObject _lastSpinInfo;
+        [SerializeField]
+        private GameObject _wheelOutOfMoney;
 
         [Header("Main references")]
         [Space(16, order = 0)]
@@ -239,10 +243,19 @@ namespace MkeyFW // mkey fortune wheel
                     StartSpin(null);
                     spinCounts++;
                 }
+                else
+                {
+                    if (_playerProfile.TryRemoveScore(_playerProfile.Coins[6].ID, ShowSpinCost(spinCounts)))
+                    {
+                        _wheelOutOfMoney.SetActive(true);
+                    }
+                }
             }
             if (spinCounts >= 5)
             {
                 _ResetGame.gameObject.SetActive(true);
+                _lastSpinInfo.SetActive(true);
+
             }
             PlayerPrefs.SetInt(spinKey, spinCounts);
             PlayerPrefs.Save();
@@ -471,14 +484,22 @@ namespace MkeyFW // mkey fortune wheel
             switch (spin)
             {
                 case 0: return 1;
-                case 1: return 15;
-                case 2: return 50;
-                case 3: return 100;
-                case 4: return 300;
+                case 1: return 7;
+                case 2: return 15;
+                case 3: return 25;
+                case 4: return 30;
 
                 default:
                     return 0;
             }
+        }
+
+        public void StartSpinForGoldHB()
+        {
+            rollGirl.RollEnable();
+            _playerProfile.AddScore(_playerProfile.Coins[6].ID, -ShowSpinCost(spinCounts));
+            StartSpin(null);
+            spinCounts++;
         }
     }    
 }

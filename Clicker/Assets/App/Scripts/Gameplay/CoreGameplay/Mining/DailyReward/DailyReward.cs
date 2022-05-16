@@ -12,7 +12,8 @@ using NiobiumStudios;
 public class DailyReward : MonoBehaviour
 {
 
-    [SerializeField] MinerConfiguration minerConfiguration;
+    [SerializeField] private MinerConfiguration _WavesCoin;
+    [SerializeField] private MinerConfiguration _XRPCoin;
     private PlayerProfile _playerProfile;
 
     public event Action<int> dayLeft;
@@ -22,35 +23,48 @@ public class DailyReward : MonoBehaviour
     private void Construct(PlayerProfile playerProfile)
     {
         _playerProfile = playerProfile;
+
+        foreach (var miner in _playerProfile.GetAllMiners())
+        {
+            if (_WavesCoin == miner.Configuration)
+            {
+                _WavesCoin = null;
+            }
+            if (_XRPCoin == miner.Configuration)
+            {
+                _XRPCoin = null;
+            }
+        }
     }
 
-    void Start()
+    private void Start()
     {
         DailyRewards.instance.onClaimPrize += Reward;
     }
     
-    void MiningUp(float added)
+    private IEnumerator MiningUp(float added)
     {
         _playerProfile.percentUpgrade += added;
+        yield return new WaitForSeconds(1800f);
+        _playerProfile.percentUpgrade -= added;
     }
 
-    void MinerUp()
+    private void MinerUp()
     {
         _playerProfile.GetAllMiners()[UnityEngine.Random.Range(0, _playerProfile.GetAllMiners().Count)].LevelUp();
     }
 
-    void AddExtraMiner()
+    private void AddExtraMiner(MinerConfiguration miner)
     {
+        if(miner == null)
+        {
+            return;
+        }
         MinerCreatorSystem minerCreator = new MinerCreatorSystem();
-        _playerProfile.AddMiner(minerCreator.CreateMiner(minerConfiguration));
+        _playerProfile.AddMiner(minerCreator.CreateMiner(miner));
     }
 
-    void AddCoin(CoinType coinType, float count)
-    {
-        _playerProfile.AddScore(coinType, count);
-    }
-
-    void Reward(int day)
+    private void Reward(int day)
     {
         switch (day)
         {
@@ -58,22 +72,22 @@ public class DailyReward : MonoBehaviour
                 MiningUp(1.5f);
                 break;
             case 2:
-                AddCoin(CoinType.Tokken, 15);
-                break;
-            case 3:
                 MinerUp();
                 break;
+            case 3:
+                AddExtraMiner(_XRPCoin);
+                break;
             case 4:
-                AddCoin(CoinType.Usdfork, 15);
+                _playerProfile.AddScore(CoinType.HornyBucks, 5);
                 break;
             case 5:
-                MiningUp(1.5f);
+                MinerUp();
                 break;
             case 6:
-                AddCoin(CoinType.LTC, 15);
+                _playerProfile.AddScore(CoinType.HornyBucks, 25);
                 break;
             case 7:
-                AddExtraMiner();
+                AddExtraMiner(_WavesCoin);
                 break;
             default:
                 break;

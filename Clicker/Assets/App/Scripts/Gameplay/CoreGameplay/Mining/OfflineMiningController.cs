@@ -37,9 +37,9 @@ public class OfflineMiningController : MonoBehaviour
     {
         if(_playerProfile.TryRemoveScore(_playerProfile.Coins[_level.CurrentLevel-1].ID, 100) && _level.CurrentLevel < 5)
         {
+            _playerProfile.AddScore(_playerProfile.Coins[_level.CurrentLevel - 1 ].ID, -100);
             _level.LevelUp();
             _level.UpdateLevelText();
-            _playerProfile.AddScore(_playerProfile.Coins[_level.CurrentLevel - 1 ].ID, -100);
         }
     }
 

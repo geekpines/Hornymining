@@ -7,6 +7,7 @@
         LTC= 2,
         Ether = 3,
         BTC = 4,
-        HornyBucks = 5
+        HornyBucks = 5,
+        GoldHornyBucks = 6
     }
 }

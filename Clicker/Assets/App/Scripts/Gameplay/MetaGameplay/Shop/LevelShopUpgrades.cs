@@ -31,7 +31,7 @@ public class LevelShopUpgrades : MonoBehaviour
     }
     public float CasualUpgrade(PlayerProfile playerProfile)
     {
-        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, 100) && CurrentLevel < 5)
+        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, 100) && CurrentLevel <= 5)
         {
             playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -100);
             switch (CurrentLevel)
@@ -51,6 +51,7 @@ public class LevelShopUpgrades : MonoBehaviour
                     LevelUp();
                     return 0.5f;
                 case 5:
+                    LevelUp();
                     return 1f;
 
                 default:
@@ -79,7 +80,9 @@ public class LevelShopUpgrades : MonoBehaviour
                 LevelUp();
                 return 0.5f;
             case 5:
+                LevelUp();
                 return 1f;
+
 
             default:
                 return 0;
@@ -89,14 +92,17 @@ public class LevelShopUpgrades : MonoBehaviour
 
     public float OpenStock(PlayerProfile playerProfile)
     {
-        if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, -10)
-            && playerProfile.Coins.Count > CurrentLevel) 
+        if (CurrentLevel < 6)
         {
-            playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -10);
-            LevelUp();
-            return GetSale();
+            if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, 10))
+            {
+                playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -10);
+                LevelUp();
+                return GetSale();
+            }
+            else return 0;
         }
-        else return 0;
+        return 0;
     }
 
     public float LoadOpenSlot(GameObject _object)
@@ -133,13 +139,26 @@ public class LevelShopUpgrades : MonoBehaviour
     {
         try
         {
-            if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 10))
+            if (CurrentLevel < 5)
             {
-                playerProfile.AddScore(playerProfile.Coins[CurrentLevel - 1].ID, -10);
-                LevelUp();
-                return true;
+
+
+                if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel].ID, 10))
+                {
+                    playerProfile.AddScore(playerProfile.Coins[CurrentLevel].ID, -10);
+                    LevelUp();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else return false;
+            else
+            {
+                LevelUp();
+                return false;
+            }
         }
         catch (ArgumentOutOfRangeException)
         {
@@ -149,67 +168,63 @@ public class LevelShopUpgrades : MonoBehaviour
         
     }
 
-    public List<AdditionalCoins> Surprise(AdditionalCoins additionalCoins)
+    public List<AdditionalCoins> Surprise()
     {
         List<AdditionalCoins> coins = new List<AdditionalCoins>();
         switch (CurrentLevel)
         {     
             case 1:
-                {                    
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 0.5f);
-                    coins.Add(additionalCoins);
+                {            
+                    coins.Add(SetAdditionalCoins(CoinType.Usdfork, 0.5f));
                     LevelUp();
                     break;
                 }
             case 2:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 1f);
-                    coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.03f);
-                    coins.Add(additionalCoins);
+                    coins.Add(SetAdditionalCoins(CoinType.Usdfork, 1f));
+                    coins.Add(SetAdditionalCoins(CoinType.LTC, 0.03f));
                     LevelUp();
                     break;
                 }
             case 3:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 1f);
-                    coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 0.07f);
-                    coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.Ether, 0.003f);
-                    coins.Add(additionalCoins);
+                    coins.Add(SetAdditionalCoins(CoinType.Usdfork, 1f));
+                    coins.Add(SetAdditionalCoins(CoinType.LTC, 0.07f));
+                    coins.Add(SetAdditionalCoins(CoinType.Ether, 0.003f));
                     LevelUp();
                     break;
                 }
             case 4:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 1.5f);
-                    coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 1f);
-                    coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.Ether, 0.03f);
-                    coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.BTC, 0.0005f);
-                    coins.Add(additionalCoins);
+                    coins.Add(SetAdditionalCoins(CoinType.Usdfork, 1.5f));
+                    coins.Add(SetAdditionalCoins(CoinType.LTC, 1f));
+                    coins.Add(SetAdditionalCoins(CoinType.Ether, 0.03f));
+                    coins.Add(SetAdditionalCoins(CoinType.BTC, 0.0005f));
                     LevelUp();
                     break;
                 }
             case 5:
                 {
-                    additionalCoins.SetAdditionalCoin(CoinType.Usdfork, 1.5f);
-                    coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.LTC, 1);
-                    coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.Ether, 0.05f);
-                    coins.Add(additionalCoins);
-                    additionalCoins.SetAdditionalCoin(CoinType.BTC, 0.005f);
-                    coins.Add(additionalCoins);
+                    coins.Add(SetAdditionalCoins(CoinType.Usdfork, 1.5f));
+                    coins.Add(SetAdditionalCoins(CoinType.LTC, 1));
+                    coins.Add(SetAdditionalCoins(CoinType.Ether, 0.05f));
+                    coins.Add(SetAdditionalCoins(CoinType.BTC, 0.005f));
+                    LevelUp();
                     break;
                 }
 
             default:
                 break;
         }
+        return coins;
+    }
+
+    private AdditionalCoins SetAdditionalCoins(CoinType type, float amount)
+    {
+        AdditionalCoins coins = new AdditionalCoins();
+
+        coins.SetAdditionalCoin(type, amount);
+
         return coins;
     }
 

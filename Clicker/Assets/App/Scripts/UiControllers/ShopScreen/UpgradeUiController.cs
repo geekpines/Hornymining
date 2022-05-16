@@ -83,9 +83,12 @@ public class UpgradeUiController : MonoBehaviour
     private void SurpriseClicked()
     {
         LevelShopUpgrades surpriseUpgrade = _levelShop[2];
-        AdditionalCoins additionalCoins = new AdditionalCoins();
-        
-        _upgradeEvents.SurpriseUpgrade(surpriseUpgrade.Surprise(additionalCoins));
+        if(_playerProfile.TryRemoveScore(_playerProfile.Coins[surpriseUpgrade.CurrentLevel-1].ID, 100))
+        {
+            
+            _playerProfile.AddScore(_playerProfile.Coins[surpriseUpgrade.CurrentLevel - 1].ID, -100);
+            _upgradeEvents.SurpriseUpgrade(surpriseUpgrade.Surprise());
+        }
     }
 
     private void OpenStockClicked()

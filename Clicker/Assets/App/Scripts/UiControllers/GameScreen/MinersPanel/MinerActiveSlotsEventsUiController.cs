@@ -97,6 +97,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             if (view.IsEmpty)
             {
                 _selectedActiveView = view;
+                _maxCountsActiveClick = 100;
                 Debug.Log("Выберите майнера для того, чтобы сделать его активным");
                 foreach (var activeMiner in _playerProfile.GetActiveMiners())
                 {
@@ -118,10 +119,11 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                     foreach (var additionalCoin in _additionalCoins)
                     {
                         AddSpecialScore(additionalCoin);
+                        Debug.Log(additionalCoin.amount);
                     }
-                }
             }
         }
+                }
 
 
         private void ResetLockActiveMinersOnSelectPanel()
