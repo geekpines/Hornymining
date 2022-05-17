@@ -184,7 +184,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
                 if (_countsActiveClick == _maxCountsActiveClick)
                 {
                     _countsActiveClick = 0;
-                    _maxCountsActiveClick *= 10;
+                    _maxCountsActiveClick *= 2;
                     foreach (var activeMiner in _playerProfile.GetActiveMiners())
                     {
                         if (activeMiner.ID == view.Id)

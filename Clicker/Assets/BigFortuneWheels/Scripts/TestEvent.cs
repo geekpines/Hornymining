@@ -79,7 +79,7 @@ namespace MkeyFW
                 {
                     //Debug.LogError("Out Of Miners");
                     _outOfMinerWindow.SetActive(true);
-                    _playerProfile.AddScore(_playerProfile.Coins[6].ID, 10);
+                    _playerProfile.AddScore(_playerProfile.Coins[6].ID, 5);
                 }
                 if(AddMiners.Count == 0)
                 {                     
@@ -100,6 +100,7 @@ namespace MkeyFW
             rollGirl.PlaySad();
             rollButton.SetActive(true);
             costDilogue.SetActive(true);
+            _playerProfile.AddScore(_playerProfile.Coins[6].ID, 5);
         }
 
         public void ResultEvent()

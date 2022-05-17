@@ -484,10 +484,10 @@ namespace MkeyFW // mkey fortune wheel
             switch (spin)
             {
                 case 0: return 1;
-                case 1: return 7;
-                case 2: return 15;
-                case 3: return 25;
-                case 4: return 30;
+                case 1: return 3;
+                case 2: return 7;
+                case 3: return 9;
+                case 4: return 13;
 
                 default:
                     return 0;

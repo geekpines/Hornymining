@@ -28,13 +28,13 @@ public class ShopScreenUiController : MonoBehaviour
     {
         _openTradeEvent.OnOpenStockSlot += OpenTrade;
         SetActiveUnits(false);
-        StartCoroutine(LockCoinInfo());
+        LockCoinInfo();
         var k = PlayerPrefs.GetInt("HMShopsLevel" + _shopUpgrades.name);
         
         while (k - 1 > 1)
         {
             k--;
-            Debug.Log(k);
+            //Debug.Log(k);
             LoadOpenTrade();
         }
         
@@ -78,21 +78,31 @@ public class ShopScreenUiController : MonoBehaviour
 
     private void LoadOpenTrade()
     {
-        _shopUpgrades.LoadOpenSlot(_sellBuyUnits[_shopUpgrades.CurrentLevel - 1]);
-        _sellBuyUnits[_shopUpgrades.CurrentLevel - 1].GetComponent<CoinsTradeSystemView>().SetUnlock();
-        _shopUpgrades.UpdateLevelText();
-
-        foreach (var unit in _sellBuyUnits)
+        try
         {
-            CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
-            coinTradeSystem.percent = _shopUpgrades.GetSale();
+            Debug.Log(_sellBuyUnits[_shopUpgrades.CurrentLevel - 1].GetComponent<CoinsTradeSystemView>().name);
+            _shopUpgrades.LoadOpenSlot(_sellBuyUnits[_shopUpgrades.CurrentLevel - 1]);
+            _sellBuyUnits[_shopUpgrades.CurrentLevel - 2].GetComponent<CoinsTradeSystemView>().SetUnlock();
+            _shopUpgrades.UpdateLevelText();
+
+            foreach (var unit in _sellBuyUnits)
+            {
+                CoinsTradeSystemView coinTradeSystem = unit.GetComponent<CoinsTradeSystemView>();
+                coinTradeSystem.percent = _shopUpgrades.GetSale();
+            }
         }
+        catch (System.ArgumentOutOfRangeException)
+        {
+
+            throw;
+        }
+        
     }
 
-    private IEnumerator LockCoinInfo()
+    private void LockCoinInfo()
     {
-        yield return new WaitForSeconds(0.1f);
-        for (int i = 1; i < _sellBuyUnits.Count; i++)
+        //yield return new WaitForSeconds(0.1f);
+        for (int i = 0; i < _sellBuyUnits.Count; i++)
         {
             CoinsTradeSystemView coinTradeSystem = _sellBuyUnits[i].GetComponent<CoinsTradeSystemView>();
             coinTradeSystem.SetLock();

@@ -27,6 +27,7 @@ public class SteamAchievementCatcher : MonoBehaviour
     private void Start()
     {
         _minerLevelUp.onClick.AddListener(CheckMinersLevel);
+        _minerLevelUp.onClick.AddListener(CheckMinerLevel);
         _ngStart.onClick.AddListener(CheckNgStart);
 
         _playerProfile.OnAllMinersCountChanged += CatchMinerToAddListener;
@@ -36,6 +37,7 @@ public class SteamAchievementCatcher : MonoBehaviour
     private void OnDestroy()
     {
         _minerLevelUp.onClick.RemoveListener(CheckMinersLevel);
+        _minerLevelUp.onClick.RemoveListener(CheckMinerLevel);
         _ngStart.onClick.RemoveListener(CheckNgStart);
 
         _playerProfile.OnAllMinersCountChanged -= CatchMinerToAddListener;
@@ -56,7 +58,7 @@ public class SteamAchievementCatcher : MonoBehaviour
         int minerCount = 0;
         foreach (var miner in _playerProfile.GetAllMiners())
         {
-            if (miner.Level == 5)
+            if (miner.Level == 4)
             {
                 minerCount++;
             }
@@ -65,6 +67,17 @@ public class SteamAchievementCatcher : MonoBehaviour
         if (minerCount == 26)
         {
             SteamEvents.AllFifthStar();
+        }
+    }
+
+    private void CheckMinerLevel()
+    {
+        foreach (var miner in _playerProfile.GetAllMiners())
+        {
+            if (miner.Level == 4)
+            {
+                SteamEvents.FifthStar();
+            }
         }
     }
 
