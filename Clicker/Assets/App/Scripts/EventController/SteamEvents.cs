@@ -71,6 +71,7 @@ public class SteamEvents : MonoBehaviour
 
     public void FifthStar()
     {
+        Debug.Log("5Stars");
         AchievementUnlock(OnFifthStar, "FIFTH_STAR_GIRL");
     }
 
@@ -81,6 +82,7 @@ public class SteamEvents : MonoBehaviour
 
     public void BackInPast()
     {
+        Debug.Log("BackInPast");
         AchievementUnlock(OnBackInPast, "BACK_IN_PAST");
     }
     

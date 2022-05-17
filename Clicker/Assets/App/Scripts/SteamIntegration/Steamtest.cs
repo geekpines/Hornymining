@@ -37,6 +37,7 @@ public class SteamTest : MonoBehaviour
         if (a)
         {
             SteamUserStats.SetAchievement(nameAchivement); // https://partner.steamgames.com/doc/features/achievements/ach_guide 
+            Debug.Log(nameAchivement);
         }
     }
 

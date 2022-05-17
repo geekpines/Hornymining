@@ -144,7 +144,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
                 _currentMiner.OnLevelUp += visualContext.UnlockComponents.SetUnlockLevel;
                 MinerToVisual.Add(_currentMiner, visualContext);
                 _clothController.OnCloth += visualContext.PartsUnlockComponents.PartsUnlockLevel;
-                _currentMiner.OnLevelUp += OpenClothController;
+                //_currentMiner.OnLevelUp += OpenClothController;
                 SetNameAndDescriprion(_currentMiner.Name, _currentMiner.Description);
             }
             MinerToVisual[_currentMiner].UnlockComponents.SetUnlockLevel(_currentMiner.Level);
@@ -366,7 +366,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinerInformationPanel
 
         private void OpenClothController(int level)
         {
-            Debug.Log("level" + level);
+            //Debug.Log("level" + level);
             
         }
     }
