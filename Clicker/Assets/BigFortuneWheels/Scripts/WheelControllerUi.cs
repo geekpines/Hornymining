@@ -486,8 +486,8 @@ namespace MkeyFW // mkey fortune wheel
                 case 0: return 1;
                 case 1: return 3;
                 case 2: return 7;
-                case 3: return 10;
-                case 4: return 15;
+                case 3: return 9;
+                case 4: return 13;
 
                 default:
                     return 0;
