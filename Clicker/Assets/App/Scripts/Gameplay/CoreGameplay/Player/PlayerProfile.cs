@@ -35,6 +35,7 @@ namespace App.Scripts.Gameplay.CoreGameplay.Player
             
             //todo: добавить сохранение
             Coins.Clear();
+            Application.runInBackground = true;
             var temp = new List<CoinData>();
             foreach (var coin in CoinsInformation.GetElements())
             {

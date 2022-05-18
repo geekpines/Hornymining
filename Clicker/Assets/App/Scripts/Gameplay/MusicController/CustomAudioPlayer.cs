@@ -20,7 +20,7 @@ public class CustomAudioPlayer : MonoBehaviour
 
     private void Start()
     {
-        ChangeTrack();
+        //ChangeTrack();
         activeSlot.OnGirlPlaced += PlayPlaceSound;
     }
     

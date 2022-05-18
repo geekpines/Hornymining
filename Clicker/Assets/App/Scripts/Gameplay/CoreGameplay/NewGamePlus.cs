@@ -1,5 +1,6 @@
 using App.Scripts.Gameplay.CoreGameplay.Player;
 using App.Scripts.UiControllers.GameScreen.SelectMinersPanel;
+using NiobiumStudios;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,13 +11,17 @@ using Zenject;
 
 public class NewGamePlus : MonoBehaviour
 {
-    [SerializeField] Button yesButton;
-    [SerializeField] MinersSelectPanelUiController minersSelectPanelUiController;
+    [SerializeField] private Button yesButton;
+    [SerializeField] private MinersSelectPanelUiController minersSelectPanelUiController;
 
-    string minerKey = "HMinerName";
-    string levelKey = "HMinerLevel";
+    private string minerKey = "HMinerName";
+    private string levelKey = "HMinerLevel";
     private PlayerProfile _playerProfile;
     private string newGameKey = "HMNG";
+    private string spinKey = "HMSpins";
+    private string coinKey = "HMCoins";
+
+
     public int cycle = 0;
 
     int minerCounts = 0;
@@ -38,8 +43,11 @@ public class NewGamePlus : MonoBehaviour
 
     private void GameReset()
     {
-        
-        PlayerPrefs.DeleteAll();
+
+        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey(spinKey);
+        PlayerPrefs.DeleteKey(coinKey);
+        ClearUpgrades();
         SaveAllMiners();
         cycle += 1;
 
@@ -87,4 +95,13 @@ public class NewGamePlus : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    private void ClearUpgrades()
+    {
+        GameObject[] Upgrades = GameObject.FindGameObjectsWithTag("LevelShopUpgrade");
+        foreach (var upgrade in Upgrades)
+        {
+            upgrade.GetComponent<LevelShopUpgrades>().OnReset(upgrade.name);
+
+        }
+    }
 }

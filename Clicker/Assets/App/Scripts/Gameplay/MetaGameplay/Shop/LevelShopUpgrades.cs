@@ -253,4 +253,8 @@ public class LevelShopUpgrades : MonoBehaviour
         
     }
 
+    public void OnReset(string key)
+    {
+        PlayerPrefs.DeleteKey(_shopLevelKey + key);
+    }
 }
