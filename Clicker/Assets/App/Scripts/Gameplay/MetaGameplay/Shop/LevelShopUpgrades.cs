@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class LevelShopUpgrades : MonoBehaviour
 {
-    [field: SerializeField, Range(1, 5)] public int CurrentLevel { get; private set; } = 1;
+    public int CurrentLevel { get; private set; } = 1;
     private string _shopLevelKey = "HMShopsLevel";
     [SerializeField] private TextMeshProUGUI _levelText;
 
@@ -253,8 +253,8 @@ public class LevelShopUpgrades : MonoBehaviour
         
     }
 
-    public void OnReset(string key)
+    public void OnReset()
     {
-        PlayerPrefs.DeleteKey(_shopLevelKey + key);
+        PlayerPrefs.DeleteKey(_shopLevelKey + gameObject.name);
     }
 }

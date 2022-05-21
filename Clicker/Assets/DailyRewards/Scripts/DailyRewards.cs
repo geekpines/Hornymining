@@ -22,6 +22,7 @@ namespace NiobiumStudios
         public int lastReward;              // the last reward the player claimed
         public bool keepOpen = true;        // Keep open even when there are no Rewards available?
 
+
         // Delegates
         public delegate void OnClaimPrize(int day);                 // When the player claims the prize
         public OnClaimPrize onClaimPrize;
@@ -198,6 +199,16 @@ namespace NiobiumStudios
             PlayerPrefs.DeleteKey(GetLastRewardKey());
             PlayerPrefs.DeleteKey(GetLastRewardTimeKey());
             PlayerPrefs.DeleteKey(GetDebugTimeKey());
+        }
+
+        public void Save()
+        {
+            PlayerPrefs.SetInt(GetLastRewardKey(), availableReward);
+            string lastClaimedStr = now.AddHours(debugTime.TotalHours).ToString(FMT);
+            PlayerPrefs.SetString(GetLastRewardTimeKey(), lastClaimedStr);
+            PlayerPrefs.SetInt(GetDebugTimeKey(), (int)debugTime.TotalHours);
+            PlayerPrefs.Save();
+
         }
     }
 }

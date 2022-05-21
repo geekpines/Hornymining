@@ -195,14 +195,23 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
         private IEnumerator LoadMinersViews(int level)
         {
             yield return new WaitForSeconds(0.5f);
-            for (int i = 1; i < level && level != 1; i++)
+            try
             {
-                _shopLevel.LevelUp();
-                _shopLevel.UpdateLevelText();
-                MinersSlotView[_shopLevel.CurrentLevel-1].IsOpen = true;
-                MinersSlotView[_shopLevel.CurrentLevel-1].SetVisible();
-                
+                for (int i = 1; i < level && level != 1; i++)
+                {
+                    _shopLevel.LevelUp();
+                    _shopLevel.UpdateLevelText();
+                    MinersSlotView[_shopLevel.CurrentLevel - 1].IsOpen = true;
+                    MinersSlotView[_shopLevel.CurrentLevel - 1].SetVisible();
+
+                }
             }
+            catch (ArgumentOutOfRangeException)
+            {
+
+                throw;
+            }
+            
         }
 
 

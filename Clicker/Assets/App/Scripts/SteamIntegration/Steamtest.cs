@@ -34,10 +34,12 @@ public class SteamTest : MonoBehaviour
         bool a;
         SteamUserStats.GetAchievement(nameAchivement, out a);
         
-        if (a)
+        if (!a)
         {
             SteamUserStats.SetAchievement(nameAchivement); // https://partner.steamgames.com/doc/features/achievements/ach_guide 
-            Debug.Log(nameAchivement);
+            SteamUserStats.StoreStats();
+            //Debug.Log(nameAchivement);
+            //SteamUserStats.ResetAllStats(true);
         }
     }
 

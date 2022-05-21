@@ -13,6 +13,8 @@ public class NewGamePlus : MonoBehaviour
 {
     [SerializeField] private Button yesButton;
     [SerializeField] private MinersSelectPanelUiController minersSelectPanelUiController;
+    [SerializeField] private DailyRewards dailyRewards;
+    [SerializeField] private List<LevelShopUpgrades> Upgrades;
 
     private string minerKey = "HMinerName";
     private string levelKey = "HMinerLevel";
@@ -45,9 +47,8 @@ public class NewGamePlus : MonoBehaviour
     {
 
         //PlayerPrefs.DeleteAll();
-        PlayerPrefs.DeleteKey(spinKey);
-        PlayerPrefs.DeleteKey(coinKey);
-        ClearUpgrades();
+        
+        
         SaveAllMiners();
         cycle += 1;
 
@@ -70,6 +71,12 @@ public class NewGamePlus : MonoBehaviour
         _playerProfile.ResetPlayer();
         _playerProfile.percentUpgrade += i + PlayerPrefs.GetFloat("HMNGUpd");
         PlayerPrefs.SetFloat("HMNGUpd",_playerProfile.percentUpgrade);
+
+        PlayerPrefs.DeleteKey(spinKey);
+        
+        ClearUpgrades();
+        ClearCoins();
+        //dailyRewards.Save();
         PlayerPrefs.Save();
         
         SceneManager.LoadScene("Loading");
@@ -81,7 +88,6 @@ public class NewGamePlus : MonoBehaviour
         minerCounts = _playerProfile.GetAllMiners().Count;
         PlayerPrefs.SetInt("HMinerCounts", minerCounts);
         PlayerPrefs.Save();
-        Debug.Log(minerCounts);
         foreach (var miner in _playerProfile.GetAllMiners())
         {
             SaveMiner(miner.Name.ToString(), 0);
@@ -97,11 +103,21 @@ public class NewGamePlus : MonoBehaviour
 
     private void ClearUpgrades()
     {
-        GameObject[] Upgrades = GameObject.FindGameObjectsWithTag("LevelShopUpgrade");
+        //GameObject[] Upgrades = GameObject.FindGameObjectsWithTag("LevelShopUpgrade");
         foreach (var upgrade in Upgrades)
         {
-            upgrade.GetComponent<LevelShopUpgrades>().OnReset(upgrade.name);
+            upgrade.GetComponent<LevelShopUpgrades>().OnReset();
+        }
+    }
 
+    private void ClearCoins()
+    {
+        foreach (var coin in _playerProfile.Coins)
+        {
+            if (coin.ID.ToString() != "GoldHB")
+            {
+                PlayerPrefs.DeleteKey(coinKey + coin.ID.ToString());
+            }
         }
     }
 }

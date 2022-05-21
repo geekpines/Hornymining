@@ -233,6 +233,11 @@ namespace MkeyFW // mkey fortune wheel
 
         public void StartSpin()
         {
+            if (spinCounts >= 5)
+            {
+                _ResetGame.gameObject.SetActive(true);
+                _lastSpinInfo.SetActive(true);
+            }
             if (spinCounts < 5)
             {
                 if (_playerProfile.TryRemoveScore(_playerProfile.Coins[5].ID, ShowSpinCost(spinCounts)))
@@ -250,12 +255,6 @@ namespace MkeyFW // mkey fortune wheel
                         _wheelOutOfMoney.SetActive(true);
                     }
                 }
-            }
-            if (spinCounts >= 5)
-            {
-                _ResetGame.gameObject.SetActive(true);
-                _lastSpinInfo.SetActive(true);
-
             }
             PlayerPrefs.SetInt(spinKey, spinCounts);
             PlayerPrefs.Save();

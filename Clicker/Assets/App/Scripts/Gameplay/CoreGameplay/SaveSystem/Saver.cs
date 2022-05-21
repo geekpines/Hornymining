@@ -60,22 +60,31 @@ public class Saver : MonoBehaviour
     private IEnumerator AllMinerSaver()
     {
         Debug.Log("Save in 50 sec");
-        
+
         yield return new WaitForSeconds(10);
-        if (true)
+
+        minerCounts = _playerProfile.GetAllMiners().Count;
+        PlayerPrefs.SetInt("HMinerCounts", minerCounts);
+        PlayerPrefs.Save();
+        foreach (var miner in _playerProfile.GetAllMiners())
         {
-            minerCounts = _playerProfile.GetAllMiners().Count;
-            PlayerPrefs.SetInt("HMinerCounts", minerCounts);
-            PlayerPrefs.Save();
-            foreach (var miner in _playerProfile.GetAllMiners())
-            {
-                SaveMiner(miner.Name.ToString(), miner.Level);
-            }
-            
+            SaveMiner(miner.Name.ToString(), miner.Level);
         }
+
+
         StartCoroutine(AllMinerSaver());
     }
 
+    private void SaveAllMiner()
+    {
+        minerCounts = _playerProfile.GetAllMiners().Count;
+        PlayerPrefs.SetInt("HMinerCounts", minerCounts);
+        PlayerPrefs.Save();
+        foreach (var miner in _playerProfile.GetAllMiners())
+        {
+            SaveMiner(miner.Name.ToString(), miner.Level);
+        }
+    }
     private void SaveMiner(string MinerName, int MinerLevel)
     {
         
@@ -139,16 +148,21 @@ public class Saver : MonoBehaviour
     private IEnumerator SaveCoins()
     {
         yield return new WaitForSeconds(10);
-        if (true)
+        foreach (var coin in _playerProfile.Coins)
         {
-            
-            foreach (var coin in _playerProfile.Coins)
-            {
-                SaveCoin(coin.Value, coin.ID.ToString());
-            }
-            
+            SaveCoin(coin.Value, coin.ID.ToString());
         }
+
         StartCoroutine(SaveCoins());
+    }
+
+    private void SaveCoin()
+    {
+
+        foreach (var coin in _playerProfile.Coins)
+        {
+            SaveCoin(coin.Value, coin.ID.ToString());
+        }
     }
 
     private void SaveCoin(float value, string coinName)
@@ -193,8 +207,8 @@ public class Saver : MonoBehaviour
     }
 
     private void OnApplicationQuit()
-    {
-        AllMinerSaver();
-        SaveCoins();
+    { 
+        SaveAllMiner();
+        SaveCoin();
     }
 }
