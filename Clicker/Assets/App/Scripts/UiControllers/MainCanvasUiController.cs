@@ -28,8 +28,9 @@ namespace App.Scripts.UiControllers
         [SerializeField] private Button _openUpgradeButton;
         [SerializeField] private Button _openUpgradeButton1;
         [SerializeField] private Button _backUpgradeButton;
-        
+
         [Header("Loading Screen Buttons")]
+        [SerializeField] private Button _openMenuButton;
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button _quit;
 
@@ -52,25 +53,19 @@ namespace App.Scripts.UiControllers
             _backUpgradeButton.onClick.AddListener(ShowGameScreen);
 
             //Continue
+            _openMenuButton.onClick.AddListener(ContinueGame);
             _continueButton.onClick.AddListener(ContinueGame);
             _quit.onClick.AddListener(QuitGame);
 
 
-        }
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                _loadingScreenPanel.SetActive(_escFlag);
-                _gameScreen.SetActive(!_escFlag);
-                _escFlag = !_escFlag;
-            }
         }
 
         private void OnDisable()
         {
             _openRouletteScreenButton.onClick.RemoveListener(ShowRouletteScreen);
             _backRouletteScreenButton.onClick.RemoveListener(ShowGameScreen);
+            _openMenuButton.onClick.RemoveListener(ContinueGame);
+            _continueButton.onClick.RemoveListener(ContinueGame);
         }
 
         private void ShowRouletteScreen()
