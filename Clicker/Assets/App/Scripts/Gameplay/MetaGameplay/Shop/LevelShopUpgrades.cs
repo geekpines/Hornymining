@@ -29,6 +29,11 @@ public class LevelShopUpgrades : MonoBehaviour
         gameObject.GetComponent<Button>().onClick.RemoveListener(UpdateLevelText);
         SaveLevel(gameObject.name);
     }
+
+    private void OnDestroy()
+    {
+        SaveLevel(gameObject.name);
+    }
     public float CasualUpgrade(PlayerProfile playerProfile)
     {
         if (playerProfile.TryRemoveScore(playerProfile.Coins[CurrentLevel - 1].ID, 100) && CurrentLevel <= 5)
@@ -61,7 +66,7 @@ public class LevelShopUpgrades : MonoBehaviour
         return 0;
     }
 
-    public float LoadCasualUpgrade(PlayerProfile playerProfile)
+    public float LoadCasualUpgrade()
     {
         switch (CurrentLevel)
         {
@@ -101,6 +106,16 @@ public class LevelShopUpgrades : MonoBehaviour
                 return GetSale();
             }
             else return 0;
+        }
+        return 0;
+    }
+
+    public float LoadOpenStock()
+    {
+        if (CurrentLevel < 6)
+        {
+            LevelUp();
+            return GetSale();
         }
         return 0;
     }
@@ -165,8 +180,8 @@ public class LevelShopUpgrades : MonoBehaviour
             return false;
             throw;
         }
-        
     }
+    
 
     public List<AdditionalCoins> Surprise()
     {

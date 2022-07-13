@@ -52,8 +52,8 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             StartCoroutine( InitializationActiveMiners());
             _upgradeEvents.OnMinerOpenSlot += MinersViewController; //Функция для открытия слотов майнера, тоже переделать
             //RefreshMinerUI.onClick.AddListener(UpdateVisual);
-            int k = PlayerPrefs.GetInt("HMShopsLevel" + _shopLevel.gameObject.name) ;
-            StartCoroutine(LoadMinersViews(k-1));
+            //int k = PlayerPrefs.GetInt("HMShopsLevel" + _shopLevel.gameObject.name) ;
+            //StartCoroutine(LoadMinersViews(k-1));
             
         }
 
@@ -178,6 +178,7 @@ namespace App.Scripts.UiControllers.GameScreen.MinersPanel
             {
                 try
                 {
+                    Debug.Log("open");
                     MinersSlotView[_shopLevel.CurrentLevel - 1].IsOpen = flag;
                     MinersSlotView[_shopLevel.CurrentLevel - 1].SetVisible();
                     _shopLevel.UpdateLevelText();

@@ -35,7 +35,7 @@ public class ShopScreenUiController : MonoBehaviour
         {
             k--;
             //Debug.Log(k);
-            LoadOpenTrade();
+            //LoadOpenTrade();
         }
         
     }
@@ -71,7 +71,7 @@ public class ShopScreenUiController : MonoBehaviour
         catch (System.ArgumentOutOfRangeException)
         {
 
-            throw;
+            _shopUpgrades.LevelUp();
         }
         
     }
@@ -80,7 +80,6 @@ public class ShopScreenUiController : MonoBehaviour
     {
         try
         {
-            Debug.Log(_sellBuyUnits[_shopUpgrades.CurrentLevel - 1].GetComponent<CoinsTradeSystemView>().name);
             _shopUpgrades.LoadOpenSlot(_sellBuyUnits[_shopUpgrades.CurrentLevel - 1]);
             _sellBuyUnits[_shopUpgrades.CurrentLevel - 2].GetComponent<CoinsTradeSystemView>().SetUnlock();
             _shopUpgrades.UpdateLevelText();

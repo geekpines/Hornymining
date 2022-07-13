@@ -50,7 +50,7 @@ public class Saver : MonoBehaviour
         LoadCoin();
         LoadVolume();
         //save
-        StartCoroutine(AllMinerSaver());
+        //StartCoroutine(AllMinerSaver());
         StartCoroutine(SaveCoins());
         //checked
 
@@ -125,6 +125,7 @@ public class Saver : MonoBehaviour
             else
             {
                 AddStartMiner();
+                Debug.Log("add");
             }
         }
     }

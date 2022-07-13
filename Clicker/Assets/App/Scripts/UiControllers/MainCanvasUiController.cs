@@ -31,6 +31,7 @@ namespace App.Scripts.UiControllers
         
         [Header("Loading Screen Buttons")]
         [SerializeField] private Button _continueButton;
+        [SerializeField] private Button _openMenu;
         [SerializeField] private Button _quit;
 
         private bool _escFlag = true;
@@ -53,6 +54,7 @@ namespace App.Scripts.UiControllers
 
             //Continue
             _continueButton.onClick.AddListener(ContinueGame);
+            _openMenu.onClick.AddListener(ContinueGame);
             _quit.onClick.AddListener(QuitGame);
 
 
